@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SuperGame</title>
+    <link rel="stylesheet" href="static/css/login.css" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+    <script src="app/TemplateManager.js"></script>
+</head>
+    <body>
+
+    </body>
+    <script id="login-template" type="text/x-handlebars-template">
+        <form>
+            <div class="login-block__input-block">
+                <label class="error error-disable">Wrong login</label>
+                <label>Login:</label>
+                <input class="login__input">
+            </div>
+
+            <div class="login-block__input-block">
+                <label class="error error-disable">Wrong password</label>
+                <label>Password:</label>
+                <input type="password" class="login__input">
+            </div>
+
+            <div id="1" class="login-block__login-button"><p>Sign in!</p></div>
+        </form>
+    </script>
+
+    <script src="app/pages/login/login-template.js"></script>
+    <script src="app/pages/login/login.js"></script>
+</html>

@@ -1,0 +1,28 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "Frontend (technopark)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 'hello'",
+    "eslint": "./node_modules/.bin/eslint ./src/",
+    "flint": "./node_modules/.bin/eslint --fix ./src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tarados-feroces/frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tarados-feroces/frontend/issues"
+  },
+  "homepage": "https://github.com/tarados-feroces/frontend#readme",
+  "devDependencies": {
+    "eslint": "^4.17.0",
+    "eslint-config-google": "^0.9.1",
+    "express": "^4.16.2"
+  },
+  "dependencies": {
+  }
+}
