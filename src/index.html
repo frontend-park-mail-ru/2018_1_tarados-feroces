@@ -14,14 +14,20 @@
     </div>
 
     <script id="test1-template" type="text/x-handlebars-template">
-        <h1>{{ title }}</h1>
-        <button id="1"><p>{{ buttonText }}</p></button>
+        {{#if first}}
+            <h1>{{ title }}</h1>
+            <button id="1"><p>{{ buttonText }}</p></button>
+        {{else}}
+            <h1>{{ title }}</h1>
+            <button id="2"><p>{{ buttonText }}</p></button>
+            <h1>{{ title2 }}</h1>
+        {{/if}}
     </script>
 
-    <script id="test2-template" type="text/x-handlebars-template">
-        <h1>{{ title }}</h1>
-        <button id="2"><p>{{ buttonText }}</p></button>
-    </script>
+    <!--<script id="test2-template" type="text/x-handlebars-template">-->
+        <!--<h1>{{ title }}</h1>-->
+        <!--<button id="2"><p>{{ buttonText }}</p></button>-->
+    <!--</script>-->
 </body>
     <script src="app/index.js"></script>
 </html>
