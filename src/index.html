@@ -5,13 +5,23 @@
     <title>Title</title>
     <link rel="stylesheet" href="static/css/login.css" type="text/css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+    <script src="app/TemplateManager.js"></script>
     <link rel="stylesheet" href="static/css/authorized.css" type="text/css">
 </head>
 <body>
     <div class="root">
 
     </div>
+
+    <script id="test1-template" type="text/x-handlebars-template">
+        <h1>{{ title }}</h1>
+        <button id="1"><p>{{ buttonText }}</p></button>
+    </script>
+
+    <script id="test2-template" type="text/x-handlebars-template">
+        <h1>{{ title }}</h1>
+        <button id="2"><p>{{ buttonText }}</p></button>
+    </script>
 </body>
-    <script src="app/pages/login/login-template.js"></script>
-    <script src="app/pages/login/login.js"></script>
+    <script src="app/index.js"></script>
 </html>

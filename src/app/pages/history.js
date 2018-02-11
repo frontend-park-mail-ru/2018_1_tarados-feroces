@@ -1,31 +1,39 @@
 "use strict";
 
-const changeButton = document.getElementById("change");
 
-window.addEventListener("popstate", (event) => {
-    console.log(event.state.page);
-});
+const managerTest1 = new TemplateManager("test1-template");
+const managerTest2 = new TemplateManager("test2-template");
 
-changeButton.addEventListener("click", () => {
-   const currentState = history.state;
-   if (currentState === null || currentState.page === "base") {
-      goNext();
-   }
-   else if (currentState.page === "test"){
-      goPrevious();
-   }
+document.body.innerHTML = (managerTest1.getHTML({title: "Hello", buttonText: "Next"}));
+
+const forwardButton = document.getElementById("1");
+
+forwardButton.addEventListener("click", () => {
+    goNext();
 });
 
 const goNext = () => {
-    const newState = {page: "test"};
-    history.pushState(newState, "Test", "/test");
-    document.getElementById("data").innerText = "Goodbye";
-    document.getElementById("change").innerText = "Prev";
+    const newState = {page: "test1"};
+    history.pushState(newState, "Test", "/test1");
+
+    document.body.innerHTML = (managerTest2.getHTML({title: "Goodbye", buttonText: "Prev"}));
+    console.log(document.getElementById("2"));
+    const backwardButton = document.getElementById("2");
+
+    backwardButton.addEventListener("click", () => {
+        goPrevious();
+    });
 };
 
 const goPrevious = () => {
-    const newState = {page: "base"};
-    history.pushState(newState, "History", "/history.html");
-    document.getElementById("data").innerText = "Hello";
-    document.getElementById("change").innerText = "Next";
+    const newState = {page: "test2"};
+    history.pushState(newState, "History", "/test2");
+
+    document.body.innerHTML = (managerTest1.getHTML({title: "Hello", buttonText: "Next"}));
+    console.log(document.getElementById("1"));
+    const forwardButton = document.getElementById("1");
+
+    forwardButton.addEventListener("click", () => {
+        goNext();
+    });
 };

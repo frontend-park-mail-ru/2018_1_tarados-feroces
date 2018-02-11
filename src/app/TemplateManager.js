@@ -18,6 +18,10 @@ class TemplateManager {
         return element;
     };
 
+    getHTML(context) {
+        return this.template(context);
+    }
+
     set changeTemplate(templateId) {
         const source = document.getElementById(templateId).innerHTML;
         this.template = Handlebars.compile(source);
