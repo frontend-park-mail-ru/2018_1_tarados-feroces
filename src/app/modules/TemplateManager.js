@@ -7,16 +7,13 @@ class TemplateManager {
             return;
         }
 
-        const source = document.getElementById(templateId).innerHTML;
-        this.template = Handlebars.compile(source);
+        this.changeTemplate(templateId);
     }
 
-    getElement(context, className) {
+    getElement(context) {
         const html = this.template(context);
-
         let element = document.createElement('div');
 
-        className && element.classList.add(className);
         element.innerHTML = html;
 
         return element;

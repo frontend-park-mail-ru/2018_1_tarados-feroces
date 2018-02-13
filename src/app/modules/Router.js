@@ -5,16 +5,16 @@ class Router {
         this.urls = {};
     }
 
-    setUrlToTemplate(url, templateId, className = '', context = {}) {
+    addUrl(url, templateId, context = {}) {
         this.manager.changeTemplate(templateId);
-        const element = this.manager.getElement(context, className);
+        const element = this.manager.getElement(context);
         element.classList.add('hidden');
         this.urls[url] = element;
         document.body.appendChild(element);
     }
 
     go(url) {
-        if (!(url in this.urls)) {
+        if (!this.urls[url]) {
             return false;
         }
 
