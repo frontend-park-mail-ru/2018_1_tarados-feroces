@@ -1,5 +1,4 @@
 class Router {
-
     constructor() {
         this.manager = new TemplateManager('');
         this.insertionBlock = document.body;
@@ -15,7 +14,10 @@ class Router {
 
         element.classList.add('hidden');
 
-        this.urls[url] = {'element': element, 'loaded': false};
+        this.urls[url] = {
+            element,
+            loaded: false
+        };
     }
 
     go(url) {
