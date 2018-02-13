@@ -1,9 +1,9 @@
-"use strict";
+'use strict';
 
 class TemplateManager {
 
     constructor(templateId) {
-        if(!templateId.length) {
+        if (!templateId.length) {
             return;
         }
 
@@ -14,7 +14,7 @@ class TemplateManager {
     getElement(context, className) {
         const html = this.template(context);
 
-        let element = document.createElement("div");
+        let element = document.createElement('div');
 
         className && element.classList.add(className);
         element.innerHTML = html;

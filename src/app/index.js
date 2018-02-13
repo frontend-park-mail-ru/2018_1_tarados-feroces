@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // import Router from './modules/Router';
 

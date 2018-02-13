@@ -1,5 +1,5 @@
 'use strict';
 
-const manager = new TemplateManager("login-template");
+const manager = new TemplateManager('login-template');
 
-document.body.appendChild(manager.getElement({}, "login-block"));
+document.body.appendChild(manager.getElement({}, 'login-block'));

@@ -1,14 +1,13 @@
 class Router {
-
-    idCreator(templateName){
-        return `${templateName.split(".")[0]}-template`;
+    idCreator(templateName) {
+        return `${templateName.split('.')[0]}-template`;
     }
 
     constructor() {
         this.manager = new TemplateManager('');
 
         this.urls = {
-            "/login/": "login.html"
+            '/login/': 'login.html'
         };
     }
 
@@ -16,12 +15,12 @@ class Router {
         history.pushState(data, '', url);
         console.log(this.idCreator(this.urls[url]));
         this.manager.changeTemplate(this.idCreator(this.urls[url]));
-        this.element = this.manager.getElement(context, "");
+        this.element = this.manager.getElement(context, '');
         this.hide();
         this.showPage();
     }
 
-    //Отображает страницу
+    //  Отображает страницу
     showPage() {
         document.body.appendChild(this.element);
     }

@@ -2,39 +2,39 @@
 
 const regToValidateLogin = /^([a-z0-9_])+$/i;
 
-const inputsBlocks = [...document.getElementsByClassName("login-block__input-block")];
+const inputsBlocks = [...document.getElementsByClassName('login-block__input-block')];
 
-document.getElementsByClassName("login-block__login-button")[0].addEventListener("click", () => {
+document.getElementsByClassName('login-block__login-button')[0].addEventListener('click', () => {
     if (inputsBlocks.reduce((correctCount, item) => correctCount + validate(item), 0) === inputsBlocks.length) {
-        document.location.href = "authorized.html";
+        document.location.href = 'authorized.html';
     }
 });
 
 const addValidation = inputBlock => {
-    const input = inputBlock.getElementsByTagName("input")[0];
-    const error = inputBlock.getElementsByClassName("error")[0];
+    const input = inputBlock.getElementsByTagName('input')[0];
+    const error = inputBlock.getElementsByClassName('error')[0];
 
-    input.addEventListener("blur", () => {
-        input.value.search(regToValidateLogin) === -1 ? error.style.display = "block" : error.style.display = "";
+    input.addEventListener('blur', () => {
+        input.value.search(regToValidateLogin) === -1 ? error.style.display = 'block' : error.style.display = '';
     });
 
-    input.addEventListener("focus", () => {
-        if (error.style.display === "block") {
-            error.style.display = "";
+    input.addEventListener('focus', () => {
+        if (error.style.display === 'block') {
+            error.style.display = '';
         }
     });
 };
 
 const validate = inputBlock => {
-    const input = inputBlock.getElementsByTagName("input")[0];
-    const error = inputBlock.getElementsByClassName("error")[0];
+    const input = inputBlock.getElementsByTagName('input')[0];
+    const error = inputBlock.getElementsByClassName('error')[0];
 
-    if(input.value.search(regToValidateLogin) === -1) {
-        error.style.display = "block";
+    if (input.value.search(regToValidateLogin) === -1) {
+        error.style.display = 'block';
         return false;
     }
 
-    error.style.display = "";
+    error.style.display = '';
     return true;
 };
 
