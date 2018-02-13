@@ -32,7 +32,6 @@ class Router {
             this.urls[url].loaded = true;
             this.insertionBlock.appendChild(this.urls[url].element);
             this.showPage(url);
-            this.urls[url].loaded = true;
         } else {
             this.showPage(url);
         }
@@ -41,8 +40,6 @@ class Router {
 
         return true;
     }
-
-
 
     showPage(url) {
         this.urls[url].element.classList.remove('hidden');
