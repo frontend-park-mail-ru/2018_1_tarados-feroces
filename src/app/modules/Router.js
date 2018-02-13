@@ -25,12 +25,13 @@ class Router {
             return false;
         }
 
-        history.pushState({}, '', url);
+        history.pushState({path: url}, '', url);
         this.hideLast();
 
         if (!this.urls[url].loaded) {
             this.insertionBlock.appendChild(this.urls[url].element);
             this.showPage(url);
+            this.urls[url].loaded = true;
         } else {
             this.showPage(url);
         }
@@ -39,6 +40,8 @@ class Router {
 
         return true;
     }
+
+
 
     showPage(url) {
         this.urls[url].element.classList.remove('hidden');
