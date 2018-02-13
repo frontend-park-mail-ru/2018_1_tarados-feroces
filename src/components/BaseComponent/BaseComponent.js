@@ -1,3 +1,5 @@
+'use strict';
+
 class BaseComponent {
     constructor(tagName) {
         this.component = document.createElement(tagName);
@@ -13,6 +15,10 @@ class BaseComponent {
 
     makeVisible() {
         this.component.classList.remove('hidden');
+    }
+
+    addChild(childNode) {
+        this.component.appendChild(childNode);
     }
 
     remove() {
