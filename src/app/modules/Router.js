@@ -49,3 +49,8 @@ class Router {
         this.lastElement && this.lastElement.classList.add('hidden');
     }
 }
+
+const router = new Router();
+
+router.addUrl('/login/', 'login-template', document.querySelector('.root'));
+router.addUrl('/auth/', 'authorized-template', document.querySelector('.root'));
