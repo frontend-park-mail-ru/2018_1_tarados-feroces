@@ -1,7 +1,7 @@
 "use strict";
 
-// import Router from "./modules/Router";
+// import Router from './modules/Router';
 
 const router = new Router();
 
-router.go({}, "/login", {});
+router.go({}, document.location.pathname, {});

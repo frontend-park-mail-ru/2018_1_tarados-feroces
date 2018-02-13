@@ -1,5 +1,3 @@
-"use strict";
-
 class Router {
 
     idCreator(templateName){
@@ -10,7 +8,7 @@ class Router {
         this.manager = new TemplateManager('');
 
         this.urls = {
-            "/login": "login.html"
+            "/login/": "login.html"
         };
     }
 
