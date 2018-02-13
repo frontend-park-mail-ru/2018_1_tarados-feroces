@@ -26,8 +26,9 @@ class Router {
         history.pushState({}, '', url);
         this.hideLast();
 
-        if (this.urls[url].loaded) {
-            this.insertionBlock.childList.add(this.urls[url].element);
+        if (!this.urls[url].loaded) {
+            this.insertionBlock.appendChild(this.urls[url].element);
+            this.showPage(url);
         } else {
             this.showPage(url);
         }

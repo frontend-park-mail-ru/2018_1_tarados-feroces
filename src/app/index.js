@@ -2,8 +2,8 @@
 
 const router = new Router();
 
-router.setUrlToTemplate('/login/', 'login-template', 'login-block');
-router.setUrlToTemplate('/auth/', 'authorized-template');
+router.addUrl('/login/', 'login-template', document.querySelector('.root'));
+router.addUrl('/auth/', 'authorized-template', document.querySelector('.root'));
 
 router.go(document.location.pathname);
 
