@@ -6,7 +6,7 @@ const inputsBlocks = [...document.getElementsByClassName('login-block__input-blo
 
 document.getElementsByClassName('login-block__login-button')[0].addEventListener('click', () => {
     if (inputsBlocks.reduce((correctCount, item) => correctCount + validate(item), 0) === inputsBlocks.length) {
-        document.location.href = 'authorized.html';
+        document.location.href = '/auth';
     }
 });
 
