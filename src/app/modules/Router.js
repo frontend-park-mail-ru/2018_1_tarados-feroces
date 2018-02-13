@@ -29,6 +29,7 @@ class Router {
         this.hideLast();
 
         if (!this.urls[url].loaded) {
+            this.urls[url].loaded = true;
             this.insertionBlock.appendChild(this.urls[url].element);
             this.showPage(url);
         } else {
