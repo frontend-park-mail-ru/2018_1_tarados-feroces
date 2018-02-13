@@ -1,31 +1,37 @@
 class Router {
-    idCreator(templateName) {
-        return `${templateName.split('.')[0]}-template`;
-    }
 
     constructor() {
         this.manager = new TemplateManager('');
-
-        this.urls = {
-            '/login/': 'login.html'
-        };
+        this.urls = {};
     }
 
-    go(data, url, context, handler) {
-        history.pushState(data, '', url);
-        console.log(this.idCreator(this.urls[url]));
-        this.manager.changeTemplate(this.idCreator(this.urls[url]));
-        this.element = this.manager.getElement(context, '');
-        this.hide();
-        this.showPage();
+    setUrlToTemplate(url, templateId, className = '', context = {}) {
+        this.manager.changeTemplate(templateId);
+        const element = this.manager.getElement(context, className);
+        element.classList.add('hidden');
+        this.urls[url] = element;
+        document.body.appendChild(element);
     }
 
-    //  Отображает страницу
-    showPage() {
-        document.body.appendChild(this.element);
+    go(url) {
+        if (!(url in this.urls)) {
+            return false;
+        }
+
+        history.pushState({}, '', url);
+        this.hideAll();
+        this.showPage(url);
+
+        return true;
     }
 
-    hide() {
-        document.body.removeChild(document.body.lastChild);
+    showPage(url) {
+        this.urls[url].classList.remove('hidden');
+    }
+
+    hideAll() {
+        for (let url in this.urls) {
+            this.urls[url].classList.add('hidden');
+        }
     }
 }

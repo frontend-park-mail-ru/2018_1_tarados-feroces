@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="static/css/authorized.css" type="text/css">
 </head>
 <body>
-    <h1>Hello</h1>
+    <!--<h1>Hello</h1>-->
     <script id="login-template" type="text/x-handlebars-template">
         <form>
             <div class="login-block__input-block">
@@ -27,6 +27,11 @@
 
             <div id="1" class="login-block__login-button"><p>Sign in!</p></div>
         </form>
+    </script>
+
+    <script id="authorized-template" type="text/x-handlebars-template">
+        <p class="text">Привет, {{login}}</p>
+        <button class="exitButton">Exit</button>
     </script>
 
 </body>

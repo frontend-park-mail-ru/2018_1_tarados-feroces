@@ -1,7 +1,9 @@
 'use strict';
 
-// import Router from './modules/Router';
-
 const router = new Router();
 
-router.go({}, document.location.pathname, {});
+router.setUrlToTemplate('/login/', 'login-template', 'login-block');
+router.setUrlToTemplate('/auth/', 'authorized-template');
+
+router.go(document.location.pathname);
+
