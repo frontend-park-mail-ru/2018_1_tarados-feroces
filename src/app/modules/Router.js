@@ -1,37 +1,50 @@
 class Router {
-
     constructor() {
         this.manager = new TemplateManager('');
+        this.insertionBlock = document.body;
+        this.lastElement = 0;
         this.urls = {};
     }
 
-    setUrlToTemplate(url, templateId, className = '', context = {}) {
+    addUrl(url, templateId, insertionElement = document.body, context = {}) {
+        this.insertionBlock = insertionElement;
+
         this.manager.changeTemplate(templateId);
-        const element = this.manager.getElement(context, className);
+        const element = this.manager.getElement(context);
+
         element.classList.add('hidden');
-        this.urls[url] = element;
-        document.body.appendChild(element);
+
+        this.urls[url] = {
+            element,
+            loaded: false
+        };
     }
 
     go(url) {
-        if (!(url in this.urls)) {
+        if (!this.urls[url]) {
             return false;
         }
 
         history.pushState({}, '', url);
-        this.hideAll();
-        this.showPage(url);
+        this.hideLast();
+
+        if (!this.urls[url].loaded) {
+            this.insertionBlock.appendChild(this.urls[url].element);
+            this.showPage(url);
+        } else {
+            this.showPage(url);
+        }
+
+        this.lastElement = this.urls[url].element;
 
         return true;
     }
 
     showPage(url) {
-        this.urls[url].classList.remove('hidden');
+        this.urls[url].element.classList.remove('hidden');
     }
 
-    hideAll() {
-        for (let url in this.urls) {
-            this.urls[url].classList.add('hidden');
-        }
+    hideLast() {
+        this.lastElement && this.lastElement.classList.add('hidden');
     }
 }

@@ -1,22 +1,18 @@
 'use strict';
 
 class TemplateManager {
-
     constructor(templateId) {
         if (!templateId.length) {
             return;
         }
 
-        const source = document.getElementById(templateId).innerHTML;
-        this.template = Handlebars.compile(source);
+        this.changeTemplate(templateId);
     }
 
-    getElement(context, className) {
+    getElement(context) {
         const html = this.template(context);
+        const element = document.createElement('div');
 
-        let element = document.createElement('div');
-
-        className && element.classList.add(className);
         element.innerHTML = html;
 
         return element;
