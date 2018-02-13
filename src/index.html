@@ -5,29 +5,30 @@
     <title>Title</title>
     <link rel="stylesheet" href="static/css/login.css" type="text/css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
-    <script src="app/TemplateManager.js"></script>
+    <script src="app/modules/TemplateManager.js"></script>
+    <script src="app/modules/Router.js"></script>
     <link rel="stylesheet" href="static/css/authorized.css" type="text/css">
 </head>
 <body>
-    <div class="root">
 
-    </div>
+    <script id="login-template" type="text/x-handlebars-template">
+        <form>
+            <div class="login-block__input-block">
+                <label class="error error-disable">Wrong login</label>
+                <label>Login:</label>
+                <input class="login__input">
+            </div>
 
-    <script id="test1-template" type="text/x-handlebars-template">
-        {{#if first}}
-            <h1>{{ title }}</h1>
-            <button id="1"><p>{{ buttonText }}</p></button>
-        {{else}}
-            <h1>{{ title }}</h1>
-            <button id="2"><p>{{ buttonText }}</p></button>
-            <h1>{{ title2 }}</h1>
-        {{/if}}
+            <div class="login-block__input-block">
+                <label class="error error-disable">Wrong password</label>
+                <label>Password:</label>
+                <input type="password" class="login__input">
+            </div>
+
+            <div id="1" class="login-block__login-button"><p>Sign in!</p></div>
+        </form>
     </script>
 
-    <!--<script id="test2-template" type="text/x-handlebars-template">-->
-        <!--<h1>{{ title }}</h1>-->
-        <!--<button id="2"><p>{{ buttonText }}</p></button>-->
-    <!--</script>-->
 </body>
     <script src="app/index.js"></script>
 </html>

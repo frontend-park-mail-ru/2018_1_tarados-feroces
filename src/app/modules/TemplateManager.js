@@ -3,6 +3,10 @@
 class TemplateManager {
 
     constructor(templateId) {
+        if(!templateId.length) {
+            return;
+        }
+
         const source = document.getElementById(templateId).innerHTML;
         this.template = Handlebars.compile(source);
     }
@@ -12,7 +16,7 @@ class TemplateManager {
 
         let element = document.createElement("div");
 
-        element.classList.add(className);
+        className && element.classList.add(className);
         element.innerHTML = html;
 
         return element;
@@ -22,7 +26,7 @@ class TemplateManager {
         return this.template(context);
     }
 
-    set changeTemplate(templateId) {
+    changeTemplate(templateId) {
         const source = document.getElementById(templateId).innerHTML;
         this.template = Handlebars.compile(source);
     }

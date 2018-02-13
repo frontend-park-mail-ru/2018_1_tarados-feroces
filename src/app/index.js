@@ -1,33 +1,7 @@
 "use strict";
 
-const managerTest1 = new TemplateManager("test1-template");
-// const managerTest2 = new TemplateManager("test2-template");
+// import Router from "./modules/Router";
 
-const goNext = () => {
-    const newState = {page: "test1"};
-    history.pushState(newState, "Test", "/test1");
+const router = new Router();
 
-    document.body.innerHTML = (managerTest1.getHTML({title: "Goodbye", title2: "Sorry", buttonText: "Prev", first: false}));
-    console.log(document.getElementById("2"));
-    const backwardButton = document.getElementById("2");
-
-    backwardButton.addEventListener("click", () => {
-        goPrevious();
-    })
-};
-
-const goPrevious = () => {
-    const newState = {page: "test2"};
-    history.pushState(newState, "History", "/test2");
-
-    document.body.innerHTML = (managerTest1.getHTML({title: "Hello", buttonText: "Next", first: true}));
-    console.log(document.getElementById("1"));
-    const forwardButton = document.getElementById("1");
-
-    forwardButton.addEventListener("click", () => {
-        goNext();
-    });
-
-};
-
-goPrevious();
+router.go({}, "/login", {});
