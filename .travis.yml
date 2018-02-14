@@ -6,6 +6,11 @@ node_js:
 branches:
   only:
   - develop
+  - feature-add-lint-to-travis
+
+cache:
+  directories:
+    - "node_modules"
 
 deploy:
   provider: heroku
@@ -19,3 +24,6 @@ deploy:
 
 before_script:
   - npm install
+
+script:
+  - npm run eslint
