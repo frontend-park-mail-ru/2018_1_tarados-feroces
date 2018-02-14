@@ -13,33 +13,10 @@
         <h1>Hi</h1>
 
     </div>
-    <script id="login-template" type="text/x-handlebars-template">
-        <div class="login-block">
-            <form>
-                <div class="login-block__input-block">
-                    <label class="error error-disable">Wrong login</label>
-                    <label>Login:</label>
-                    <input class="login__input">
-                </div>
-
-                <div class="login-block__input-block">
-                    <label class="error error-disable">Wrong password</label>
-                    <label>Password:</label>
-                    <input type="password" class="login__input">
-                </div>
-
-                <div id="1" class="login-block__login-button"><p>Sign in!</p></div>
-            </form>
-        </div>
-    </script>
-
-    <script id="authorized-template" type="text/x-handlebars-template">
-        <p class="text">Привет, {{login}}</p>
-        <button class="exitButton">Exit</button>
-    </script>
-
 </body>
     <script src="app/modules/Router.js"></script>
+    <script src="app/pages/login/login.template.js"></script>
+    <script src="app/pages/authorized/authorized.template.js"></script>
     <script src="app/index.js"></script>
     <script src="app/pages/login/login.js"></script>
 </html>

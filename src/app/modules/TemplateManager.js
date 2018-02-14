@@ -23,7 +23,8 @@ class TemplateManager {
     }
 
     changeTemplate(templateId) {
-        const source = document.getElementById(templateId).innerHTML;
+        const source = templateId;
+        // const source = document.getElementById(templateId).innerHTML;
         this.template = Handlebars.compile(source);
     }
 }

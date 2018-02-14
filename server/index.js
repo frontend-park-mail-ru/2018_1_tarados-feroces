@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
-app.use('', express.static(path.join('src')));
+app.use('/', express.static(path.join('src')));
 app.use('/login', express.static(path.join('src')));
 app.use('/auth', express.static(path.join('src')));
 
