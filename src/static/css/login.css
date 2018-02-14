@@ -1,3 +1,11 @@
+.root{
+
+}
+
+.hidden{
+    display: none;
+}
+
 .login-block{
     background-color: beige;
     width: 400px;
