@@ -1,11 +1,8 @@
 'use strict';
 
 class BaseComponent {
-    constructor(tagName) {
+    constructor(tagName, data) {
         this.component = document.createElement(tagName);
-    }
-
-    setInner(data) {
         this.component.innerHTML = data;
     }
 
