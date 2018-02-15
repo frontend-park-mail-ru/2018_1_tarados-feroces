@@ -1,17 +1,14 @@
 class Router {
     constructor() {
-        this.manager = new TemplateManager('');
-        this.insertionBlock = document.body;
         this.lastElement = 0;
         this.urls = {};
     }
 
     addUrl(url, element, insertionElement = document.body, context = {}) {
-        this.insertionBlock = insertionElement;
-
         element.classList.add('hidden');
 
         this.urls[url] = {
+            insertionElement,
             element,
             loaded: false
         };
@@ -27,12 +24,10 @@ class Router {
 
         if (!this.urls[url].loaded) {
             this.urls[url].loaded = true;
-            this.insertionBlock.appendChild(this.urls[url].element);
-            this.showPage(url);
-        } else {
-            this.showPage(url);
+            this.urls[url].insertionElement.appendChild(this.urls[url].element);
         }
-
+        
+        this.showPage(url);
         this.lastElement = this.urls[url].element;
 
         return true;
