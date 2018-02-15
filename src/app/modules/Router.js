@@ -28,6 +28,7 @@ class Router {
         history.pushState({path: url}, '', url);
         this.hideLast();
 
+        
         if (!this.urls[url].loaded) {
             this.urls[url].loaded = true;
             this.insertionBlock.appendChild(this.urls[url].element);

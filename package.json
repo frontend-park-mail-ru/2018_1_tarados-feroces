@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo 'hello'",
     "eslint": "./node_modules/.bin/eslint ./src/",
-    "flint": "./node_modules/.bin/eslint --fix ./src/"
+    "flint": "./node_modules/.bin/eslint --fix ./src/",
+    "watch:lint": "node node_modules/eslint-watch/bin/esw -w --fix"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   "devDependencies": {
     "eslint": "^4.17.0",
     "eslint-config-google": "^0.9.1",
+    "eslint-watch": "^3.1.3",
     "express": "^4.16.2"
   },
   "dependencies": {}
