@@ -1,6 +1,8 @@
+
+
 const loginTemplate = '<div class="login-block"> ' +
         '<form> ' +
-            '<div class="login-block__input-block"> ' +
+            '<div {{attrs attributes}} ' +
                 '<label class="error error-disable">Wrong login</label> ' +
                 '<label>Login:</label> ' +
                 '<input class="login__input"> ' +
