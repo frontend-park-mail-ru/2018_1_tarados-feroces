@@ -2,8 +2,20 @@
 
 const router = new Router();
 
+// const loginComponent = new BaseComponent('div', templateManager.getHTML({}, loginTemplate));
 
-router.addUrl('/login/', templateManager.getElement({}, loginTemplate), document.querySelector('.root'));
-router.addUrl('/auth/', templateManager.getElement({}, authorizedTemplate), document.querySelector('.root'));
+// loginComponent.hide();
+
+
+router.addUrl(
+    '/login/',
+    new BaseComponent('div', templateManager.getHTML({}, loginTemplate)),
+    document.querySelector('.root')
+);
+
+router.addUrl(
+    '/auth/',
+    new BaseComponent('div', templateManager.getHTML({}, authorizedTemplate)),
+    document.querySelector('.root'));
 
 router.go(document.location.pathname);
