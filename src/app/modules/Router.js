@@ -1,15 +1,15 @@
 class Router {
     constructor() {
-        this.lastElement = 0;
+        this.lastComponent = 0;
         this.urls = {};
     }
 
-    addUrl(url, element, insertionElement = document.body, context = {}) {
-        element.classList.add('hidden');
+    addUrl(url, component, insertionElement = document.body, context = {}) {
+        component.hide();
 
         this.urls[url] = {
             insertionElement,
-            element,
+            component,
             loaded: false
         };
     }
@@ -18,26 +18,26 @@ class Router {
         if (!this.urls[url]) {
             return false;
         }
-
         history.pushState({path: url}, '', url);
+
         this.hideLast();
 
         if (!this.urls[url].loaded) {
             this.urls[url].loaded = true;
-            this.urls[url].insertionElement.appendChild(this.urls[url].element);
+            this.urls[url].insertionElement.appendChild(this.urls[url].component._component);
         }
-        
+
         this.showPage(url);
-        this.lastElement = this.urls[url].element;
+        this.lastComponent = this.urls[url].component;
 
         return true;
     }
 
     showPage(url) {
-        this.urls[url].element.classList.remove('hidden');
+        this.urls[url].component.makeVisible();
     }
 
     hideLast() {
-        this.lastElement && this.lastElement.classList.add('hidden');
+        this.lastComponent && this.lastComponent.hide();
     }
 }

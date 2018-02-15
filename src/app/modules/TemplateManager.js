@@ -2,14 +2,17 @@
 
 class TemplateManager {
     constructor(templateId) {
-        if (!templateId.length) {
+        if (!templateId) {
             return;
         }
 
         this.changeTemplate(templateId);
     }
 
-    getElement(context) {
+    getElement(context, templateId) {
+        if (templateId) {
+            this.changeTemplate(templateId);
+        }
         const html = this.template(context);
         const element = document.createElement('div');
 
@@ -18,14 +21,15 @@ class TemplateManager {
         return element;
     };
 
-    getHTML(context) {
+    getHTML(context, templateId) {
+        if (templateId) {
+            this.changeTemplate(templateId);
+        }
         return this.template(context);
     }
 
     changeTemplate(templateId) {
-        const source = templateId;
-        // const source = document.getElementById(templateId).innerHTML;
-        this.template = Handlebars.compile(source);
+        this.template = Handlebars.compile(templateId);
     }
 }
 

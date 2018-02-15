@@ -2,28 +2,32 @@
 
 class BaseComponent {
     constructor(tagName, data) {
-        this.component = document.createElement(tagName);
-        this.component.innerHTML = data;
+        this._component = document.createElement(tagName);
+        this._component.innerHTML = data;
     }
 
     hide() {
-        this.component.classList.add('hidden');
+        this._component.classList.add('hidden');
     }
 
     makeVisible() {
-        this.component.classList.remove('hidden');
+        this._component.classList.remove('hidden');
     }
 
     addChild(childNode) {
-        this.component.appendChild(childNode);
+        this._component.appendChild(childNode);
+    }
+
+    addClass(className) {
+        this._component.classList.add(className);
     }
 
     remove() {
-        this.component.children.clear();
-        document.removeChild(this.component);
+        this._component.children.clear();
+        document.removeChild(this._component);
     }
 
     removeChild(childNode) {
-        this.component.removeChild(childNode);
+        this._component.removeChild(childNode);
     }
 }
