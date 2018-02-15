@@ -2,9 +2,11 @@ class Router {
     constructor() {
         this.lastComponent = null;
         this.urls = {};
+        this.insertionElement = document.querySelector('.root');
+
     }
 
-    addUrl(url, component, insertionElement = document.body, context = {}) {
+    addUrl(url, component, insertionElement = this.insertionElement, context = {}) {
         component.hide();
 
         this.urls[url] = {
@@ -12,6 +14,8 @@ class Router {
             component,
             loaded: false
         };
+
+        return this;
     }
 
     go(url) {
