@@ -1,5 +1,3 @@
-'use strict';
-
 const regExp = /<[a-z0-9 _\-"=(){}]+>|<\/[a-z0-9 _\-"=(){}]+>/ig;
 const regExpBegin = /<([a-z0-9 _\-"=(){}]+)>/i;
 // const regExpEnd = /<\/([a-z0-9 _\-"=(){}]+)>/i;
@@ -7,7 +5,7 @@ const regExpBegin = /<([a-z0-9 _\-"=(){}]+)>/i;
 let parsedHtml = [];
 let tagStack = [];
 
-const testStr = '<a><b><c class="login-block"></c></b><d><f></f></d><e></e></a>';
+const testStr = '<a>abc<b><c class="login-block"></c></b><d><f></f></d><e></e></a>';
 
 
 const handleCloseTag = () => {
@@ -36,17 +34,19 @@ const handleTag = (tag) => {
 
 const parse = (input) => {
     let compareResult = '';
+    let previousIndex = 0;
 
     while (compareResult = regExp.exec(input)) {
-        console.log(compareResult[0]);
+        if (previousIndex < compareResult.index) {
+            tagStack[tagStack.length - 1].text = input.slice(previousIndex, compareResult.index);
+        }
+
         handleTag(compareResult[0]);
+
+        previousIndex = compareResult.index + compareResult[0].length;
     }
 
     console.log(parsedHtml);
 
     return parsedHtml;
 };
-
-parse(testStr);
-
-

@@ -23,10 +23,8 @@ class ObjectParser {
         }
 
         for (let i = 0; i < object.children.length; ++i) {
-            object.children[i] = this.parse(object.children[i]);
+            this.parse(object.children[i]);
         }
-
-        return object;
     }
 }
 
@@ -36,3 +34,9 @@ const obj = {object: 'lol class="cool"', children: [
                 { object: 'star class="Sanya" id="backend"' }
             ] } ]
 };
+
+const parser = new ObjectParser(obj);
+
+parser.parse(obj);
+
+console.log(parser.object);
