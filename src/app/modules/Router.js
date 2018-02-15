@@ -1,21 +1,15 @@
 class Router {
     constructor() {
-        this.manager = new TemplateManager('');
-        this.insertionBlock = document.body;
-        this.lastElement = 0;
+        this.lastComponent = null;
         this.urls = {};
     }
 
-    addUrl(url, templateId, insertionElement = document.body, context = {}) {
-        this.insertionBlock = insertionElement;
-
-        this.manager.changeTemplate(templateId);
-        const element = this.manager.getElement(context);
-
-        element.classList.add('hidden');
+    addUrl(url, component, insertionElement = document.body, context = {}) {
+        component.hide();
 
         this.urls[url] = {
-            element,
+            insertionElement,
+            component,
             loaded: false
         };
     }
@@ -24,28 +18,26 @@ class Router {
         if (!this.urls[url]) {
             return false;
         }
-
         history.pushState({path: url}, '', url);
+
         this.hideLast();
 
         if (!this.urls[url].loaded) {
             this.urls[url].loaded = true;
-            this.insertionBlock.appendChild(this.urls[url].element);
-            this.showPage(url);
-        } else {
-            this.showPage(url);
+            this.urls[url].insertionElement.appendChild(this.urls[url].component._component);
         }
 
-        this.lastElement = this.urls[url].element;
+        this.showPage(url);
+        this.lastComponent = this.urls[url].component;
 
         return true;
     }
 
     showPage(url) {
-        this.urls[url].element.classList.remove('hidden');
+        this.urls[url].component.makeVisible();
     }
 
     hideLast() {
-        this.lastElement && this.lastElement.classList.add('hidden');
+        this.lastComponent && this.lastComponent.hide();
     }
 }
