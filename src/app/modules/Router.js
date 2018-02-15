@@ -11,7 +11,7 @@ class Router {
 
         this.urls[url] = {
             component,
-            loaded: false
+            loaded: false,
         };
 
         return this;
@@ -25,7 +25,7 @@ class Router {
 
         this.hideLast();
 
-        
+
         if (!this.urls[url].loaded) {
             this.urls[url].loaded = true;
             insertionElement.appendChild(this.urls[url].component._component);
