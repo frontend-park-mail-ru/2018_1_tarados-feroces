@@ -2,19 +2,22 @@ class Router {
     constructor() {
         this.lastComponent = null;
         this.urls = {};
+        this.insertionElement = document.querySelector('.root');
+
     }
 
-    addUrl(url, component, insertionElement = document.body, context = {}) {
+    addUrl(url, component, context = {}) {
         component.hide();
 
         this.urls[url] = {
-            insertionElement,
             component,
             loaded: false
         };
+
+        return this;
     }
 
-    go(url) {
+    go(url, insertionElement = this.insertionElement) {
         if (!this.urls[url]) {
             return false;
         }
@@ -25,7 +28,7 @@ class Router {
         
         if (!this.urls[url].loaded) {
             this.urls[url].loaded = true;
-            this.urls[url].insertionElement.appendChild(this.urls[url].component._component);
+            insertionElement.appendChild(this.urls[url].component._component);
         }
 
         this.showPage(url);
