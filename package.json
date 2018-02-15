@@ -6,8 +6,7 @@
   "scripts": {
     "test": "echo 'hello'",
     "eslint": "./node_modules/.bin/eslint ./src/",
-    "flint": "./node_modules/.bin/eslint --fix ./src/",
-    "eswatch": "esw ./node_modules/.bin/eslint/eslint ./src/"
+    "flint": "./node_modules/.bin/eslint --fix ./src/"
   },
   "repository": {
     "type": "git",
