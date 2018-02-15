@@ -6,11 +6,8 @@ class Router {
         this.urls = {};
     }
 
-    addUrl(url, templateId, insertionElement = document.body, context = {}) {
+    addUrl(url, element, insertionElement = document.body, context = {}) {
         this.insertionBlock = insertionElement;
-
-        this.manager.changeTemplate(templateId);
-        const element = this.manager.getElement(context);
 
         element.classList.add('hidden');
 

@@ -28,3 +28,5 @@ class TemplateManager {
         this.template = Handlebars.compile(source);
     }
 }
+
+const templateManager = new TemplateManager();
