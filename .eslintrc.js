@@ -5,15 +5,15 @@ module.exports = {
         "browser": true
     },
     "rules": {
-        "no-lonely-if": 0,
-        "guard-for-in": 0,
-        "no-console": 0,
+        "no-lonely-if": false,
+        "guard-for-in": false,
+        "no-console": false,
         "quotes": ["error", "single", {"allowTemplateLiterals": true}],
         "prefer-template": "error",
-        "no-plusplus": 0,
-        "no-unused-vars": 0,
-        "arrow-body-style": 0,
-        "padded-blocks": 0,
+        "no-plusplus": false,
+        "no-unused-vars": false,
+        "arrow-body-style": false,
+        "padded-blocks": false,
         "operator-assignment": ["error", "always"],
         "require-jsdoc": ["error", {
         "require": {
