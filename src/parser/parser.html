@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parser</title>
+    <script src="parser.js"></script>
+</head>
+<body>
+    <textarea id="test">
+    </textarea>
+</body>
+
+
+<script>
+    const test = document.getElementById("test");
+
+    test.addEventListener("blur", () => {
+        let string = test.value;
+        parse(string);
+    });
+
+    test.addEventListener("focus", () => {
+        test.value = '<a><b><c class="login-block"></c></b><d></d></a>';
+    });
+</script>
+
+
+</html>
+
