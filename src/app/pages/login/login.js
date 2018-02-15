@@ -11,7 +11,7 @@ document.getElementsByClassName('login-block__login-button')[0].addEventListener
     }
 });
 
-const addValidation = inputBlock => {
+const addValidation = (inputBlock) => {
     const input = inputBlock.getElementsByTagName('input')[0];
     const error = inputBlock.getElementsByClassName('error')[0];
 
@@ -26,7 +26,7 @@ const addValidation = inputBlock => {
     });
 };
 
-const validate = inputBlock => {
+const validate = (inputBlock) => {
     const input = inputBlock.getElementsByTagName('input')[0];
     const error = inputBlock.getElementsByClassName('error')[0];
 
@@ -39,4 +39,4 @@ const validate = inputBlock => {
     return true;
 };
 
-inputsBlocks.forEach(item => addValidation(item));
+inputsBlocks.forEach((item) => addValidation(item));
