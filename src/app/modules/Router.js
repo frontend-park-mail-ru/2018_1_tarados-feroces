@@ -22,6 +22,7 @@ class Router {
 
         this.hideLast();
 
+        
         if (!this.urls[url].loaded) {
             this.urls[url].loaded = true;
             this.urls[url].insertionElement.appendChild(this.urls[url].component._component);
