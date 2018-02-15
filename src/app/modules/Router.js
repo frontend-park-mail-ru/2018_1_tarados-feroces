@@ -1,6 +1,6 @@
 class Router {
     constructor() {
-        this.lastComponent = 0;
+        this.lastComponent = null;
         this.urls = {};
     }
 
