@@ -51,7 +51,7 @@ class HtmlParser {
         }
     }
 
-    parseObject(object) {
+    performObject(object) {
         if (!object || !object.object) {
             return object;
         }
@@ -85,10 +85,10 @@ class HtmlParser {
             return object;
         }
 
-        object.children.forEach((obj) => this.parseObject(obj));
+        object.children.forEach((obj) => this.performObject(obj));
     }
 
-    getHtmlObject(object) {
+    objectToElement(object) {
         let component = this.tagToComponent[object['tag']];
         component.setAttrs(object.attributes);
         if (object.attributes.class) {
@@ -102,24 +102,25 @@ class HtmlParser {
         console.log(element);
 
         object.children.forEach((item) => {
-            element.appendChild(this.getHtmlObject(item));
+            element.appendChild(this.objectToElement(item));
         });
 
         return element;
     }
 
-    getHtml(template) {
+    getHtmlElement(template) {
         let html = document.createElement('div');
-        this.parse(template);
+        this.stringToObject(template);
 
-        console.log(this.getHtmlObject(this.parsedHtml[0]).innerHTML);
-        html.appendChild(this.getHtmlObject(this.parsedHtml[0]));
+        console.log(this.objectToElement(this.parsedHtml[0]).innerHTML);
+        html.appendChild(this.objectToElement(this.parsedHtml[0]));
 
         return html;
     }
-    parse(input) {
+
+    stringToObject(input) {
         this.parseHtml(input);
-        this.parsedHtml.map((obj) => this.parseObject(obj));
+        this.parsedHtml.map((obj) => this.performObject(obj));
 
         return this.parsedHtml;
     }
@@ -127,9 +128,3 @@ class HtmlParser {
 
 const htmlParser = new HtmlParser();
 
-// const testStr = '<a class="login-block cool" id="kk">abc<b><c class="login-block"></c></b><d><f></f></d><e></e></a>';
-// const parser = new HtmlParser();
-//
-// parser.parse(testStr);
-//
-// console.log(parser.parsedHtml);

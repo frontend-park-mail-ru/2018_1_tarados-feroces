@@ -25,7 +25,7 @@ class BaseComponent {
     }
 
     addChild(childNode) {
-        this._component.appendChild(childNode);
+        this._component.lastChild.appendChild(childNode);
     }
 
     addClass(className) {
@@ -39,11 +39,9 @@ class BaseComponent {
 
     setAttrs(attrs) {
         let block = this._component.lastChild;
-        // console.log(block.innerHTML);
 
         for (let key in attrs) {
             block[key] = attrs[key];
-            // console.log(block[key]);
         }
     }
 
@@ -52,6 +50,6 @@ class BaseComponent {
     }
 
     removeChild(childNode) {
-        this._component.removeChild(childNode);
+        this._component.lastChild.removeChild(childNode);
     }
 }
