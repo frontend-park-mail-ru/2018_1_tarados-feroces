@@ -3,9 +3,7 @@
 class BaseComponent {
     constructor(tagName, data) {
         this._component = document.createElement(tagName);
-        // for (let key in data) {
-        //     this._component.key = data[key];
-        // }
+
 
         this._component.innerHTML = data;
     }
@@ -31,7 +29,7 @@ class BaseComponent {
     }
 
     addClass(className) {
-        this._component.classList.add(className);
+        this._component.lastChild.classList.add(className);
     }
 
     remove() {
@@ -40,15 +38,12 @@ class BaseComponent {
     }
 
     setAttrs(attrs) {
-
         let block = this._component.lastChild;
-        console.log(block.innerHTML);
+        // console.log(block.innerHTML);
 
         for (let key in attrs) {
-
-            console.log(block[key]);
             block[key] = attrs[key];
-            console.log(block[key]);
+            // console.log(block[key]);
         }
     }
 

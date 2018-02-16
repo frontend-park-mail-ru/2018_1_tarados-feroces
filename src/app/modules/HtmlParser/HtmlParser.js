@@ -7,9 +7,9 @@ class HtmlParser {
         this.parsedHtml = [];
         this.tagStack = [];
 
-        // this.tagToComponent = {
-        //     Button: button,
-        // };
+        this.tagToComponent = {
+            Button: button,
+        };
     }
 
     handleCloseTag() {
@@ -88,17 +88,32 @@ class HtmlParser {
         object.children.forEach((obj) => this.parseObject(obj));
     }
 
+    getHtmlObject(object) {
+        let component = this.tagToComponent[object['tag']];
+        component.setAttrs(object.attributes);
+        if (object.attributes.class) {
+            object.attributes.class.forEach((item) => {
+                component.addClass(item);
+            });
+        }
+
+        let element = document.createElement('div');
+        element.innerHTML = component.getClearHtml().innerHTML;
+        console.log(element);
+
+        object.children.forEach((item) => {
+            element.appendChild(this.getHtmlObject(item));
+        });
+
+        return element;
+    }
+
     getHtml(template) {
         let html = document.createElement('div');
         this.parse(template);
 
-        let obj = this.parsedHtml[0];
-        let component = this.tagToComponent[obj['tag']];
-
-        console.log(obj.attributes);
-        component.setAttrs(obj.attributes);
-
-        html.appendChild(component.getClearHtml());
+        console.log(this.getHtmlObject(this.parsedHtml[0]).innerHTML);
+        html.appendChild(this.getHtmlObject(this.parsedHtml[0]));
 
         return html;
     }
@@ -112,11 +127,9 @@ class HtmlParser {
 
 const htmlParser = new HtmlParser();
 
-const testStr = '<a class="login-block     cool"      id="kek">abc<b><c class="login-block"></c></b><d><f></f></d><e></e></a>';
-const parser = new HtmlParser();
-
-parser.parse(testStr);
-
-console.log(parser.parsedHtml);
-
-
+// const testStr = '<a class="login-block cool" id="kk">abc<b><c class="login-block"></c></b><d><f></f></d><e></e></a>';
+// const parser = new HtmlParser();
+//
+// parser.parse(testStr);
+//
+// console.log(parser.parsedHtml);

@@ -89,3 +89,11 @@
 .error-disable{
     display: none;
 }
+
+.red {
+    color: red !important;
+}
+
+.red-border {
+    border-color: red !important;
+}
