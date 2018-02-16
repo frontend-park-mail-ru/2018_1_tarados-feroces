@@ -7,9 +7,9 @@ class HtmlParser {
         this.parsedHtml = [];
         this.tagStack = [];
 
-        this.tagToComponent = {
-            Button: button,
-        };
+        // this.tagToComponent = {
+        //     Button: button,
+        // };
     }
 
     handleCloseTag() {
@@ -61,8 +61,24 @@ class HtmlParser {
         object.attributes = {};
 
         for (let i = 1; i < str.length; ++i) {
-            const [currentPropName, currentPropValue] = str[i].split('=');
-            object.attributes[currentPropName] = currentPropValue.slice(1, -1);
+            if (!str[i].length) {
+                continue;
+            }
+
+            let [currentPropName, currentPropValue] = str[i].split('=');
+            if (currentPropName === 'class') {
+                object.attributes[currentPropName] = [];
+                currentPropValue = currentPropValue.slice(1, currentPropValue.length);
+                while (currentPropValue[currentPropValue.length - 1] !== '"') {
+                    if (currentPropValue.length) {
+                        object.attributes[currentPropName].push(currentPropValue);
+                    }
+                    currentPropValue = str[++i];
+                }
+                object.attributes[currentPropName].push(currentPropValue.slice(0, -1));
+            } else {
+                object.attributes[currentPropName] = currentPropValue.slice(1, -1);
+            }
         }
 
         if (!object.children.length) {
@@ -96,9 +112,11 @@ class HtmlParser {
 
 const htmlParser = new HtmlParser();
 
-// const testStr = '<a class="login-block">abc<b><c class="login-block"></c></b><d><f></f></d><e></e></a>';
-// const parser = new HtmlParser();
-//
-// parser.parse(testStr);
+const testStr = '<a class="login-block     cool"      id="kek">abc<b><c class="login-block"></c></b><d><f></f></d><e></e></a>';
+const parser = new HtmlParser();
+
+parser.parse(testStr);
+
+console.log(parser.parsedHtml);
 
 
