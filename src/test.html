@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="static/css/login.css" type="text/css">
+
+    <link rel="stylesheet" href="static/css/authorized.css" type="text/css">
+
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+    <script src="app/modules/TemplateManager.js"></script>
+    <script src="app/components/BaseComponent/BaseComponent.js"></script>
+    <script src="app/components/Button/Button.js"></script>
+    <script src="app/modules/Router.js"></script>
+    <script src="app/modules/HtmlParser/HtmlParser.js"></script>
+
+    <script>
+        let template = '<Button textContent="kek"></Button>';
+        const object = htmlParser.getHtml(template);
+        document.body.appendChild(object);
+    </script>
+</body>
+
+
+</html>

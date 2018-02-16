@@ -69,10 +69,10 @@
     font-size: 28px;
 }
 
-.registratonButton {
+.registrationButton {
     cursor: pointer;
     text-align: center;
-    vertical-align: center;
+    /*vertical-align: center;*/
     margin: 10px;
     margin-left: 150px;
     width: 100px;

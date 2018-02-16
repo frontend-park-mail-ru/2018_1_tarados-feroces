@@ -4,10 +4,12 @@ class HtmlParser {
     constructor() {
         this.regExp = /<[a-z0-9 _\-"=(){}]+>|<\/[a-z0-9 _\-"=(){}]+>/ig;
         this.regExpBegin = /<([a-z0-9 _\-"=(){}]+)>/i;
-// const regExpEnd = /<\/([a-z0-9 _\-"=(){}]+)>/i;
-
         this.parsedHtml = [];
         this.tagStack = [];
+
+        this.tagToComponent = {
+            Button: button,
+        };
     }
 
     handleCloseTag() {
@@ -24,9 +26,6 @@ class HtmlParser {
         let obj = {
             object: tag.slice(1, -1),
             children: [],
-            toString: function() {
-                return 'name: ' + this.object + '[' + this.children.forEach((item) => item) + ']';
-            },
         };
 
         this.tagStack.push(obj);
@@ -42,7 +41,6 @@ class HtmlParser {
         let previousIndex = 0;
 
         while (compareResult = this.regExp.exec(input)) {
-            console.log(compareResult[0]);
             if (previousIndex < compareResult.index) {
                 this.tagStack[this.tagStack.length - 1].text = input.slice(previousIndex, compareResult.index);
             }
@@ -59,11 +57,12 @@ class HtmlParser {
         }
 
         const str = object.object.split(' ');
-        object['tag'] = str[0];
+        object.tag = str[0];
+        object.attributes = {};
 
         for (let i = 1; i < str.length; ++i) {
-            const currentProp = str[i].split('=');
-            object[currentProp[0]] = currentProp[1].slice(1, -1);
+            const [currentPropName, currentPropValue] = str[i].split('=');
+            object.attributes[currentPropName] = currentPropValue.slice(1, -1);
         }
 
         if (!object.children.length) {
@@ -73,15 +72,33 @@ class HtmlParser {
         object.children.forEach((obj) => this.parseObject(obj));
     }
 
+    getHtml(template) {
+        let html = document.createElement('div');
+        this.parse(template);
+
+        let obj = this.parsedHtml[0];
+        let component = this.tagToComponent[obj['tag']];
+
+        console.log(obj.attributes);
+        component.setAttrs(obj.attributes);
+
+        html.appendChild(component.getClearHtml());
+
+        return html;
+    }
     parse(input) {
         this.parseHtml(input);
         this.parsedHtml.map((obj) => this.parseObject(obj));
+
+        return this.parsedHtml;
     }
 }
 
-const testStr = '<a class="login-block">abc<b><c class="login-block"></c></b><d><f></f></d><e></e></a>';
-const parser = new HtmlParser();
+const htmlParser = new HtmlParser();
 
-parser.parse(testStr);
+// const testStr = '<a class="login-block">abc<b><c class="login-block"></c></b><d><f></f></d><e></e></a>';
+// const parser = new HtmlParser();
+//
+// parser.parse(testStr);
 
-console.log(parser.parsedHtml);
+
