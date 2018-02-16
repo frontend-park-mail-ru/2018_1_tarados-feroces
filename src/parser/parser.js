@@ -49,4 +49,5 @@ const parse = (input) => {
     console.log(parsedHtml);
 
     return parsedHtml;
-};
+
+parse(testStr);
