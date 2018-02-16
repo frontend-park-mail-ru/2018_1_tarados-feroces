@@ -1,5 +1,3 @@
-'use strict';
-
 const regExp = /<[a-z0-9 _\-"=(){}]+>|<\/[a-z0-9 _\-"=(){}]+>/ig;
 const regExpBegin = /<([a-z0-9 _\-"=(){}]+)>/i;
 // const regExpEnd = /<\/([a-z0-9 _\-"=(){}]+)>/i;
@@ -51,9 +49,5 @@ const parse = (input) => {
     console.log(parsedHtml);
 
     return parsedHtml;
-};
-
 
 parse(testStr);
-
-
