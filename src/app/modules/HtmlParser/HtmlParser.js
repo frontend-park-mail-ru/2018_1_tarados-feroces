@@ -7,8 +7,8 @@ class HtmlParser {
         this.objects = [];
         this.tagStack = [];
 
-        this.tagToComponent = {
-            Button: button,
+        this.componentFactory = {
+            Button: (context) => new Button(context),
         };
     }
 
