@@ -4,18 +4,20 @@ class HtmlParser {
     constructor() {
         this.regExp = /<[a-z0-9 _\-"=(){};.]+>|<\/[a-z0-9 _\-"=(){};.]+>/ig;
         this.regExpBegin = /<([a-z0-9 _\-"=(){};.]+)>/i;
-        this.parsedHtml = [];
+//         this.parsedHtml = [];
+        this.objects = [];
+
         this.tagStack = [];
 
-        this.tagToComponent = {
-            Button: button,
+        this.componentFactory = {
+            Button: (context) => new Button(context),
         };
     }
 
     handleCloseTag() {
         let obj = this.tagStack.pop();
         if (this.tagStack.length === 0) {
-            this.parsedHtml.push(obj);
+            this.objects.push(obj);
             return;
         }
 
@@ -100,26 +102,27 @@ class HtmlParser {
         console.log(element);
 
         object.children.forEach((item) => {
-            element.appendChild(this.objectToElement(item));
+            element.lastChild.appendChild(this.objectToElement(item));
         });
 
         return element;
     }
 
-    getHtmlElement(template) {
-        let html = document.createElement('div');
+    getHtmlElement(template, tagName = 'div') {
+        let html = document.createElement(tagName);
         this.stringToObject(template);
 
-        html.appendChild(this.objectToElement(this.parsedHtml[0]));
+        console.log(this.objectToElement(this.objects[0]).innerHTML);
+        html.appendChild(this.objectToElement(this.objects[0]));
 
         return html;
     }
 
     stringToObject(input) {
         this.parseHtml(input);
-        this.parsedHtml.map((obj) => this.performObject(obj));
+        this.objects.map((obj) => this.performObject(obj));
 
-        return this.parsedHtml;
+        return this.objects;
     }
 }
 
