@@ -22,7 +22,8 @@
 
 
     <script>
-        let template = '<Button class="red red-border" textContent="kek"><Button textContent="lel"><Button textContent="lel1"></Button></Button></Button>';
+        let template = '<Button id="1" class="red red-border" onclick="function () { console.log(1234); }" textContent="kek"><Button textContent="lel"></Button></Button>';
+
         const object = htmlParser.getHtmlElement(template);
         document.body.appendChild(object);
     </script>

@@ -2,9 +2,11 @@
 
 class HtmlParser {
     constructor() {
-        this.regExp = /<[a-z0-9 _\-"=(){}]+>|<\/[a-z0-9 _\-"=(){}]+>/ig;
-        this.regExpBegin = /<([a-z0-9 _\-"=(){}]+)>/i;
+        this.regExp = /<[a-z0-9 _\-"=(){};.]+>|<\/[a-z0-9 _\-"=(){};.]+>/ig;
+        this.regExpBegin = /<([a-z0-9 _\-"=(){};.]+)>/i;
+//         this.parsedHtml = [];
         this.objects = [];
+
         this.tagStack = [];
 
         this.componentFactory = {
@@ -59,26 +61,24 @@ class HtmlParser {
         const str = object.object.split(' ');
         object.tag = str[0];
         object.attributes = {};
-
+        console.log(str);
         for (let i = 1; i < str.length; ++i) {
             if (!str[i].length) {
                 continue;
             }
 
             let [currentPropName, currentPropValue] = str[i].split('=');
-            if (currentPropName === 'class') {
-                object.attributes[currentPropName] = [];
-                currentPropValue = currentPropValue.slice(1, currentPropValue.length);
-                while (currentPropValue[currentPropValue.length - 1] !== '"') {
-                    if (currentPropValue.length) {
-                        object.attributes[currentPropName].push(currentPropValue);
-                    }
-                    currentPropValue = str[++i];
-                }
-                object.attributes[currentPropName].push(currentPropValue.slice(0, -1));
-            } else {
-                object.attributes[currentPropName] = currentPropValue.slice(1, -1);
+            let currentPos = i;
+
+            while (str[currentPos][str[currentPos].length - 1] !== '"') {
+                currentPos++;
             }
+
+            const newValues = str.slice(i + 1, currentPos + 1);
+            const spaceBetween = newValues.length ? ' ' : '';
+            currentPropValue += spaceBetween + newValues.join(' ');
+            i = currentPos;
+            object.attributes[currentPropName] = currentPropValue.slice(1, -1);
         }
 
         if (!object.children.length) {
@@ -92,7 +92,7 @@ class HtmlParser {
         let component = this.tagToComponent[object['tag']];
         component.setAttrs(object.attributes);
         if (object.attributes.class) {
-            object.attributes.class.forEach((item) => {
+            object.attributes.class.split(' ').forEach((item) => {
                 component.addClass(item);
             });
         }
