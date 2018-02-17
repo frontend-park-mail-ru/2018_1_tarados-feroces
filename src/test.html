@@ -10,15 +10,19 @@
 </head>
 <body>
 
+    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
     <script src="app/modules/TemplateManager.js"></script>
     <script src="app/components/BaseComponent/BaseComponent.js"></script>
     <script src="app/components/Button/Button.js"></script>
-    <script src="app/modules/Router.js"></script>
     <script src="app/modules/HtmlParser/HtmlParser.js"></script>
 
+    <script src="app/modules/Router.js"></script>
+
+
     <script>
-        let template = '<Button class="red red-border" textContent="kek"><Button textContent="lel"></Button></Button>';
+        let template = '<Button class="red red-border" textContent="kek"><Button textContent="lel"><Button textContent="lel1"></Button></Button></Button>';
         const object = htmlParser.getHtmlElement(template);
         document.body.appendChild(object);
     </script>

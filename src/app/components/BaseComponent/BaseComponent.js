@@ -1,11 +1,14 @@
 'use strict';
 
 class BaseComponent {
+
+    // hasn`t ever been tested
     constructor(tagName, data) {
+
         this._component = document.createElement(tagName);
 
-
         this._component.innerHTML = data;
+        // this._component = htmlParser.getHtmlElement(data, tagName);
     }
 
     hide() {

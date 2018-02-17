@@ -91,9 +91,10 @@
 }
 
 .red {
-    color: red !important;
+    /*background-color: red;*/
+    color: red;
 }
 
 .red-border {
-    border-color: red !important;
+    border-color: red;
 }
