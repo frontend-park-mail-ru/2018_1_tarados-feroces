@@ -1,7 +1,7 @@
 
 class Button extends BaseComponent {
-    constructor(data) {
-        super('div', data);
+    constructor() {
+        super(buttonTemplate);
         // this.setText(text);
     }
 }
@@ -11,5 +11,3 @@ const buttonTemplate = '<div class={{className}}>' +
     '</div>';
 
 // const tm = new TemplateManager(buttonTemplate);
-
-// const button = new Button(templateManager.getHTML({className: 'login-block__login-button', text: 'lol'}, buttonTemplate));

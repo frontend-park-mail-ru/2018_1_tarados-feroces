@@ -4,13 +4,11 @@ class HtmlParser {
     constructor() {
         this.regExp = /<[a-z0-9 _\-"=(){};.]+>|<\/[a-z0-9 _\-"=(){};.]+>/ig;
         this.regExpBegin = /<([a-z0-9 _\-"=(){};.]+)>/i;
-//         this.parsedHtml = [];
         this.objects = [];
-
         this.tagStack = [];
 
         this.componentFactory = {
-            Button: (context) => new Button(context),
+            Button: () => new Button(),
         };
     }
 
