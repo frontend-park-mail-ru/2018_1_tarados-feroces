@@ -106,13 +106,9 @@ class HtmlParser {
         return element;
     }
 
-    getHtmlElement(template, tagName = 'div') {
-        let html = document.createElement(tagName);
+    getHtml(template) {
         this.stringToObject(template);
-
-        console.log(this.objectToElement(this.objects[0]).innerHTML);
         html.appendChild(this.objectToElement(this.objects[0]));
-
         return html;
     }
 
