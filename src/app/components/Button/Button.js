@@ -12,4 +12,4 @@ const buttonTemplate = '<div class={{className}}>' +
 
 // const tm = new TemplateManager(buttonTemplate);
 
-const button = new Button(templateManager.getHTML({className: 'login-block__login-button', text: 'lol'}, buttonTemplate));
+// const button = new Button(templateManager.getHTML({className: 'login-block__login-button', text: 'lol'}, buttonTemplate));

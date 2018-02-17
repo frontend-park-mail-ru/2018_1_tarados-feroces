@@ -3,8 +3,12 @@
 class BaseComponent {
 
     // hasn`t ever been tested
-    constructor(context, template) {
-        this.template = templateManager.getHTML(context, template);
+    constructor(template) {
+        this.template = template;
+    }
+
+    render(context) {
+        return templateManager.getHTML(context, this.template);
     }
 
     // hide() {
