@@ -38,9 +38,9 @@ class BaseComponent {
     }
 
     setAttrs(attrs) {
-        let block = this._component.lastChild;
+        const block = this._component.lastChild;
 
-        for (let key in attrs) {
+        for (const key in attrs) {
             block[key] = attrs[key];
         }
     }
