@@ -2,7 +2,6 @@
 
 class BaseComponent {
 
-    // hasn`t ever been tested
     constructor(template) {
         this.template = template;
     }

@@ -37,6 +37,8 @@ class HtmlParser {
     }
 
     parseHtml(input) {
+        input = input.replace('\n', '');
+        console.log(input);
         let compareResult = '';
         let previousIndex = 0;
 
@@ -87,29 +89,10 @@ class HtmlParser {
         object.children.forEach((obj) => this.performObject(obj));
     }
 
-    // objectToElement(object) {
-    //     let component = this.tagToComponent[object['tag']];
-    //     component.setAttrs(object.attributes);
-    //     if (object.attributes.class) {
-    //         object.attributes.class.split(' ').forEach((item) => {
-    //             component.addClass(item);
-    //         });
-    //     }
-    //
-    //     let element = document.createElement('div');
-    //     element.innerHTML = component.getClearHtml().innerHTML;
-    //     console.log(element);
-    //
-    //     object.children.forEach((item) => {
-    //         element.lastChild.appendChild(this.objectToElement(item));
-    //     });
-    //
-    //     return element;
-    // }
-
     getHtml(template) {
         this.stringToObject(template);
-        const html = this.objectToHtmlString(this.objects[0]);
+        let html = '';
+        this.objects.forEach((item) => html += this.objectToHtmlString(item));
         return html;
     }
 
@@ -125,7 +108,7 @@ class HtmlParser {
         object.attributes.children = '';
 
         object.children.forEach((item) => {
-            object.attributes.children += (this.objectToHtmlString(item));
+            object.attributes.children += this.objectToHtmlString(item);
         });
 
         const component = this.componentFactory[object.tag]();
@@ -135,4 +118,3 @@ class HtmlParser {
 }
 
 const htmlParser = new HtmlParser();
-

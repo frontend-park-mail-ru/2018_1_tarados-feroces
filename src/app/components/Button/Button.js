@@ -6,7 +6,7 @@ class Button extends BaseComponent {
     }
 }
 
-const buttonTemplate = '<div class={{class}}>' +
+const buttonTemplate = '<div class="{{class}}">' +
     '{{text}}' +
     '{{{children}}}' +
     '</div>';
