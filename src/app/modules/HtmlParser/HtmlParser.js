@@ -59,7 +59,7 @@ class HtmlParser {
         const str = object.object.split(' ');
         object.tag = str[0];
         object.attributes = {};
-        console.log(str);
+
         for (let i = 1; i < str.length; ++i) {
             if (!str[i].length) {
                 continue;
@@ -76,6 +76,7 @@ class HtmlParser {
             const spaceBetween = newValues.length ? ' ' : '';
             currentPropValue += spaceBetween + newValues.join(' ');
             i = currentPos;
+
             object.attributes[currentPropName] = currentPropValue.slice(1, -1);
         }
 
@@ -86,37 +87,50 @@ class HtmlParser {
         object.children.forEach((obj) => this.performObject(obj));
     }
 
-    objectToElement(object) {
-        let component = this.tagToComponent[object['tag']];
-        component.setAttrs(object.attributes);
-        if (object.attributes.class) {
-            object.attributes.class.split(' ').forEach((item) => {
-                component.addClass(item);
-            });
-        }
-
-        let element = document.createElement('div');
-        element.innerHTML = component.getClearHtml().innerHTML;
-        console.log(element);
-
-        object.children.forEach((item) => {
-            element.lastChild.appendChild(this.objectToElement(item));
-        });
-
-        return element;
-    }
+    // objectToElement(object) {
+    //     let component = this.tagToComponent[object['tag']];
+    //     component.setAttrs(object.attributes);
+    //     if (object.attributes.class) {
+    //         object.attributes.class.split(' ').forEach((item) => {
+    //             component.addClass(item);
+    //         });
+    //     }
+    //
+    //     let element = document.createElement('div');
+    //     element.innerHTML = component.getClearHtml().innerHTML;
+    //     console.log(element);
+    //
+    //     object.children.forEach((item) => {
+    //         element.lastChild.appendChild(this.objectToElement(item));
+    //     });
+    //
+    //     return element;
+    // }
 
     getHtml(template) {
         this.stringToObject(template);
-        html.appendChild(this.objectToElement(this.objects[0]));
+        const html = this.objectToHtmlString(this.objects[0]);
         return html;
     }
 
     stringToObject(input) {
         this.parseHtml(input);
+        console.log(this.objects[0].children);
         this.objects.map((obj) => this.performObject(obj));
 
         return this.objects;
+    }
+
+    objectToHtmlString(object) {
+        object.attributes.children = '';
+
+        object.children.forEach((item) => {
+            object.attributes.children += (this.objectToHtmlString(item));
+        });
+
+        const component = this.componentFactory[object.tag]();
+        console.log(object.attributes);
+        return component.render(object.attributes);
     }
 }
 

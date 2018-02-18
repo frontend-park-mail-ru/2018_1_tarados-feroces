@@ -22,10 +22,10 @@
 
 
     <script>
-        let template = '<Button id="1" class="red red-border" onclick="function() {console.log(1234);}" textContent="kek"><Button textContent="lel"></Button></Button>';
+        let template = '<Button id="1" class="login-block__login-button red red-border" onclick="function() {console.log(1234);}" text="kek"><Button class="login-block__login-button red" text="lel"><Button class="login-block__login-button" text="cool"></Button></Button></Button>';
 
-        const object = htmlParser.getHtmlElement(template);
-        document.body.appendChild(object);
+        const object = htmlParser.getHtml(template);
+        document.body.innerHTML += object;
     </script>
 </body>
 
