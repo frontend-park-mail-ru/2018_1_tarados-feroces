@@ -89,7 +89,7 @@ class HtmlParser {
         object.children.forEach((obj) => this.performObject(obj));
     }
 
-    getHtml(template) {
+    getHTML(template) {
         this.stringToObject(template);
         let html = '';
         this.objects.forEach((item) => html += this.objectToHtmlString(item));
