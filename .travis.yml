@@ -7,6 +7,7 @@ branches:
   only:
   - develop
   - feature-add-lint-to-travis
+  - feature-parse-html
 
 cache:
   directories:
