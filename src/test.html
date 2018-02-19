@@ -19,7 +19,13 @@
     <script src="app/modules/Router.js"></script>
 
     <script>
-        let template = '<Button id="1" class="login-block__login-button red red-border" onclick="function () {console.log(1234); return false;}" text="kek">\n<Button class="login-block__login-button red" text="lel"><Button class="login-block__login-button" text="cool"></Button></Button><Button class="login-block__login-button" text="kekkek"></Button></Button>';
+        let template = '<Button id="1" class="login-block__login-button red red-border" onclick="function () {console.log(1234); return false;}" text="kek">' +
+            '<Button class="login-block__login-button red" text="lel">' +
+            '<Button class="login-block__login-button black" text="cool">' +
+            '</Button>' +
+            '</Button>' +
+            '<Button class="login-block__login-button" text="kekkek">' +
+            '</Button></Button>';
 
         const object = htmlParser.getHtml(template);
         document.body.innerHTML += object;

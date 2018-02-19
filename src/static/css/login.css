@@ -98,3 +98,8 @@
 .red-border {
     border-color: red;
 }
+
+.black {
+    color: black;
+    border-color: black;
+}
