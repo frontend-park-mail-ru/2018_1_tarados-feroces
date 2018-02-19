@@ -16,7 +16,7 @@ cache:
 deploy:
   provider: heroku
   api_key:
-    secure: $HEROCU_KEY
+    secure: $HEROKU_KEY
   app: tf-test-server
   on:
     repo: frontend-park-mail-ru/2018_1_tarados-feroces
