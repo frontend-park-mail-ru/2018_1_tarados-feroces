@@ -1,5 +1,3 @@
-'use strict';
-
 class BaseView {
     constructor(template) {
         this.template = template;

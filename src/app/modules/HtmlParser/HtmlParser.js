@@ -9,6 +9,7 @@ class HtmlParser {
 
         this.componentFactory = {
             Button: () => new Button(),
+            Input: () => new Input(),
         };
     }
 

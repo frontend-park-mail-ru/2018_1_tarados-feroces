@@ -14,21 +14,16 @@
     <script src="app/modules/TemplateManager.js"></script>
     <script src="app/components/BaseComponent/BaseComponent.js"></script>
     <script src="app/components/Button/Button.js"></script>
+    <script src="app/components/Input/Input.js"></script>
     <script src="app/modules/HtmlParser/HtmlParser.js"></script>
+    <script src="app/views/BaseView/BaseView.js"></script>
+    <script src="app/views/LoginView/LoginView.js"></script>
 
     <script src="app/modules/Router.js"></script>
 
     <script>
-        let template = '<Button id="1" class="login-block__login-button red red-border" onclick="function () {console.log(1234); return false;}" text="kek">' +
-            '<Button class="login-block__login-button red" text="lel">' +
-            '<Button class="login-block__login-button black" text="cool">' +
-            '</Button>' +
-            '</Button>' +
-            '<Button class="login-block__login-button" text="kekkek">' +
-            '</Button></Button>';
-
-        const object = htmlParser.getHTML(template);
-        document.body.innerHTML += object;
+        const loginObject = new LoginView();
+        document.body.innerHTML += loginObject.render({});
     </script>
 </body>
 
