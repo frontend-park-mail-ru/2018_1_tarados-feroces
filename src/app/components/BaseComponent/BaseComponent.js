@@ -3,18 +3,22 @@
 class BaseComponent {
 
     constructor(template) {
-        this.element = null;
+        this._element = null;
         this.template = template;
     }
 
     render(context) {
         const div = document.createElement('div');
         div.innerHTML = templateManager.getHTML(context, this.template);
-        this.element = div.lastChild;
-        return this.element;
+        this._element = div.lastChild;
+        return this._element;
     }
 
     appendChild(component) {
-        this.element.appendChild(component);
+        this._element.appendChild(component);
+    }
+
+    get element() {
+        return this._element;
     }
 }
