@@ -18,7 +18,7 @@ class BaseComponent {
         this._element.appendChild(component);
     }
 
-    get element() {
+    element() {
         return this._element;
     }
 }

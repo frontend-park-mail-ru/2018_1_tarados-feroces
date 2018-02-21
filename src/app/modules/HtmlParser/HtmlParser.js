@@ -96,8 +96,8 @@ class HtmlParser {
 
     getHTML(template) {
         this.stringToObject(template);
-        let html = '';
-        this.objects.forEach((item) => html += this.objectToHtmlString(item));
+        const html = document.createElement('div');
+        this.objects.forEach((item) => html.appendChild(this.getElement(item)));
         return html;
     }
 
@@ -109,28 +109,16 @@ class HtmlParser {
         return this.objects;
     }
 
-    objectToElement(object) {
+    getElement(object) {
         const component = this.componentFactory[object.tag]();
         component.render(object.attributes);
 
         object.children.forEach((item) => {
-            component.appendChild(this.objectToElement(item).element());
+            component.appendChild(this.getElement(item));
         });
 
-        return component;
+        return component.element();
     }
-
-    // objectToHtmlString(object) {
-    //     object.attributes.children = '';
-    //
-    //     object.children.forEach((item) => {
-    //         object.attributes.children += this.objectToHtmlString(item);
-    //     });
-    //
-    //     const component = this.componentFactory[object.tag]();
-    //     console.log(object.attributes);
-    //     return component.render(object.attributes);
-    // }
 }
 
 const htmlParser = new HtmlParser();
