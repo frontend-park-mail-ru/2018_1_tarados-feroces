@@ -13,6 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
     <script src="app/modules/TemplateManager.js"></script>
     <script src="app/components/BaseComponent/BaseComponent.js"></script>
+    <script src="app/components/StandartComponent/StandartComponent.js"></script>
     <script src="app/components/Button/Button.js"></script>
     <script src="app/components/Input/Input.js"></script>
     <script src="app/modules/HtmlParser/HtmlParser.js"></script>
@@ -26,7 +27,8 @@
         // document.body.innerHTML += loginObject.render({});
         const test = '<Input error-text="Login error" label-text="Login:" input-placeholder="Enter login"></Input>' +
             '<Input error-text="Password error" label-text="Password:" input-placeholder="Enter password"></Input>' +
-            '<Button class="login-block__login-button" click="function () { alert(1); }">Go!</Button>';
+            '<Button class="login-block__login-button" click="function () { alert(1); }">Go!</Button> ' +
+            '<a class="red" href="/">WOW!!!</a>';
         document.body.appendChild(htmlParser.getHTML(test));
     </script>
 </body>

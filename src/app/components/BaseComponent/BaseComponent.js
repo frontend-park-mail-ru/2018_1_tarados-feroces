@@ -30,8 +30,6 @@ class BaseComponent {
         this.events.forEach((item) => {
             if (context[item]) {
                 const func = context[item].match(this.functionExp);
-                const eventArgs = func[1];
-                const eventBody = func[2];
                 this._element.addEventListener(item, new Function(func[1], func[2]));
             }
         });
