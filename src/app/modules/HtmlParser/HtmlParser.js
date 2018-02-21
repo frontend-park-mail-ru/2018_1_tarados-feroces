@@ -109,17 +109,28 @@ class HtmlParser {
         return this.objects;
     }
 
-    objectToHtmlString(object) {
-        object.attributes.children = '';
+    objectToElement(object) {
+        const component = this.componentFactory[object.tag]();
+        component.render(object.attributes);
 
         object.children.forEach((item) => {
-            object.attributes.children += this.objectToHtmlString(item);
+            component.appendChild(this.objectToElement(item).element());
         });
 
-        const component = this.componentFactory[object.tag]();
-        console.log(object.attributes);
-        return component.render(object.attributes);
+        return component;
     }
+
+    // objectToHtmlString(object) {
+    //     object.attributes.children = '';
+    //
+    //     object.children.forEach((item) => {
+    //         object.attributes.children += this.objectToHtmlString(item);
+    //     });
+    //
+    //     const component = this.componentFactory[object.tag]();
+    //     console.log(object.attributes);
+    //     return component.render(object.attributes);
+    // }
 }
 
 const htmlParser = new HtmlParser();
