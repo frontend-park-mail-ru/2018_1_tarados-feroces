@@ -13,6 +13,7 @@ module.exports = {
         "no-plusplus": "off",
         "no-unused-vars": "off",
         "arrow-body-style": "off",
+        "no-trailing-spaces": "off",
         "padded-blocks": "off",
         "operator-assignment": ["error", "always"],
         "require-jsdoc": ["error", {
