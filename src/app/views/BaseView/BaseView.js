@@ -5,6 +5,16 @@ class BaseView {
     }
 
     render(context) {
-        return htmlParser.getHTML(templateManager.getHTML(context, this.template));
+        this.element = htmlParser.getHTML(templateManager.getHTML(context, this.template));
+        return this.element;
+    }
+
+    hide() {
+        this.element.classList.add('hidden');
+    }
+
+    appendChild(element) {
+        this.element.appendChild(element);
     }
 }
+
