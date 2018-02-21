@@ -1,4 +1,3 @@
-
 class Button extends BaseComponent {
     constructor() {
         super(buttonTemplate);
@@ -7,5 +6,4 @@ class Button extends BaseComponent {
 
 const buttonTemplate = '<div class="{{class}}">' +
     '{{text}}' +
-    '{{{children}}}' +
     '</div>';

@@ -2,13 +2,14 @@
 
 class HtmlParser {
     constructor() {
-        this.regExp = /<[a-z0-9 _\-"=(){};.]+>|<\/[a-z0-9 _\-"=(){};.]+>/ig;
-        this.regExpBegin = /<([a-z0-9 _\-"=(){};.]+)>/i;
+        this.regExp = /<[a-z0-9 _\-"=(){};:.]+>|<\/[a-z0-9 _\-"=(){};:.]+>/ig;
+        this.regExpBegin = /<([a-z0-9 _\-"=(){};:.]+)>/i;
         this.objects = [];
         this.tagStack = [];
 
         this.componentFactory = {
             Button: () => new Button(),
+            Input: () => new Input(),
         };
     }
 
@@ -41,10 +42,13 @@ class HtmlParser {
         console.log(input);
         let compareResult = '';
         let previousIndex = 0;
+        // debugger;
 
         while (compareResult = this.regExp.exec(input)) {
             if (previousIndex < compareResult.index) {
-                this.tagStack[this.tagStack.length - 1].text = input.slice(previousIndex, compareResult.index);
+                if (this.tagStack.length) {
+                    this.tagStack[this.tagStack.length - 1].text = input.slice(previousIndex, compareResult.index);
+                }
             }
 
             this.handleTag(compareResult[0]);
@@ -61,6 +65,7 @@ class HtmlParser {
         const str = object.object.split(' ');
         object.tag = str[0];
         object.attributes = {};
+        object.attributes.text = object.text;
 
         for (let i = 1; i < str.length; ++i) {
             if (!str[i].length) {
@@ -89,7 +94,7 @@ class HtmlParser {
         object.children.forEach((obj) => this.performObject(obj));
     }
 
-    getHtml(template) {
+    getHTML(template) {
         this.stringToObject(template);
         let html = '';
         this.objects.forEach((item) => html += this.objectToHtmlString(item));
@@ -98,7 +103,7 @@ class HtmlParser {
 
     stringToObject(input) {
         this.parseHtml(input);
-        console.log(this.objects[0].children);
+        console.log(this.objects);
         this.objects.map((obj) => this.performObject(obj));
 
         return this.objects;
