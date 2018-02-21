@@ -1,34 +1,46 @@
 .registration-block {
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 400px;
     font-size: 20px;
     background-color: #e8e6ff;
-
     padding: 12px 20px 20px;
     border-radius: 10px;
     box-shadow: 2px 2px 10px 0px lightgray;
 }
 
-.button-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.input-block {
+    width: 100%;
 }
 
-.registration-block input {
-    /*margin-bottom: 10px;*/
+.input-block input {
+    width: 372px;
     display: block;
-    /*width: 100%;*/
-    margin: 0;
     height: 30px;
     font-size: 18px;
     padding: 2px 6px;
     border-radius: 30px;
     border: 1px solid black;
     outline: 0;
-    /*box-shadow: 0 0 0 1px darkgray inner;*/
 }
+
+.input-block * {
+    margin: 7px;
+}
+
+.button-container {
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*align-items: center;*/
+}
+
+/*input {*/
+/*margin-bottom: 10px;*/
+/*display: block;*/
+/**/
+/*box-shadow: 0 0 0 1px darkgray inner;*/
+/*}*/
 
 .registration-block > * {
     margin-bottom: 10px;

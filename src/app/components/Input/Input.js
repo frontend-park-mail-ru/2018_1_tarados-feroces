@@ -4,7 +4,7 @@ class Input extends BaseComponent {
     }
 }
 
-const inputTemplate = '<div>' +
+const inputTemplate = '<div class="input-block">' +
     '<label class="{{label-class}}">{{label-text}}</label> ' +
     '<input name="{{input-name}}" type={{type}} class="{{input-class}}" placeholder="{{placeholder}}"/>' +
     '</div>';
