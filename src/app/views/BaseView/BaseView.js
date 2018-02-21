@@ -1,6 +1,7 @@
 class BaseView {
     constructor(template) {
         this.template = template;
+        this.element = null;
     }
 
     render(context) {
