@@ -4,6 +4,6 @@ class StandartComponent extends BaseComponent {
     }
 }
 
-const standartTemplate = '<{{tag}} class="{{class}}" href="{{href}}">' +
+const standartTemplate = '<{{tag}} class="{{class}}">' +
     '{{text}}' +
     '</{{tag}}>';

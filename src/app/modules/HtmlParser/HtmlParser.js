@@ -10,6 +10,7 @@ class HtmlParser {
         this.componentFactory = {
             Button: () => new Button(),
             Input: () => new Input(),
+            Header: () => new Header(),
             div: () => new StandartComponent(),
             a: () => new StandartComponent(),
             p: () => new StandartComponent(),

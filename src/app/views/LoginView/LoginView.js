@@ -4,6 +4,13 @@ class LoginView extends BaseView {
     }
 }
 
-const loginTemplate = '<Input error-text="Login error" label-text="Login:" input-placeholder="Enter login"></Input>' +
-    '<Input error-text="Password error" label-text="Password:" input-placeholder="Enter password"></Input>' +
-    '<Button class="login-block__login-button">Go!</Button>';
+const loginTemplate = '<div class="page">' +
+    '<Header>Login</Header>' +
+    '<div class="registration-block">' +
+    '<Input label-text="Full name:" type="text" placeholder="Enter name"></Input>' +
+    '<Input label-text="Password:" type="password" placeholder="Enter password"></Input>' +
+    '<div class="button-container">' +
+    '<Button class="button large" click="function(){ alert(1); }">Log In!</Button>' +
+    '</div>' +
+    '</div>' +
+    '</div>';
