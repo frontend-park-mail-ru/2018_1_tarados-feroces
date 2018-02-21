@@ -5,6 +5,6 @@ class BaseView {
     }
 
     render(context) {
-        return htmlParser.getHTML(templateManager.getHTML(context, this.template));
+        this.element = htmlParser.getHTML(templateManager.getHTML(context, this.template));
     }
 }
