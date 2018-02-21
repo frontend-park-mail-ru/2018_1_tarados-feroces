@@ -22,8 +22,12 @@
     <script src="app/modules/Router.js"></script>
 
     <script>
-        const loginObject = new LoginView();
-        document.body.innerHTML += loginObject.render({});
+        // const loginObject = new LoginView();
+        // document.body.innerHTML += loginObject.render({});
+        const test = '<Input error-text="Login error" label-text="Login:" input-placeholder="Enter login"></Input>' +
+            '<Input error-text="Password error" label-text="Password:" input-placeholder="Enter password"></Input>' +
+            '<Button class="login-block__login-button">Go!</Button>';
+        document.body.appendChild(htmlParser.getHTML(test));
     </script>
 </body>
 
