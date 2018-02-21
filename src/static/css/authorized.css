@@ -1,11 +1,24 @@
-.exitButton {
-    width: 150px;
-    height: 50px;
+body {
+    margin: 0;
+    height: 963px;
 }
 
+.header {
+    width: 100%;
+    height: 10%;
+    /*background-color: #d1b695;*/
+}
 
-.text {
-    text-align: center;
-    vertical-align: center;
-    font-size: 30px;
+.main {
+    height: 80%;
+    width: 100%;
+    border-bottom: black thin solid;
+    border-top: black thin solid;
+    /*background-color: #a9997f;*/
+}
+
+.footer {
+    height: 10%;
+    width: 100%;
+    /*background-color: #81495a;*/
 }

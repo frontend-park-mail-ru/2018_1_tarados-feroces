@@ -2,14 +2,18 @@
 
 class HtmlParser {
     constructor() {
-        this.regExp = /<[a-z0-9 _\-"=(){};:.]+>|<\/[a-z0-9 _\-"=(){};:.]+>/ig;
-        this.regExpBegin = /<([a-z0-9 _\-"=(){};:.]+)>/i;
+        this.regExp = /<[a-z0-9 _\-"=(){};:.!?]+>|<\/[a-z0-9 _\-"=(){};:.!?]+>/ig;
+        this.regExpBegin = /<([a-z0-9 _\-"=(){};:.!?]+)>/i;
         this.objects = [];
         this.tagStack = [];
 
         this.componentFactory = {
             Button: () => new Button(),
             Input: () => new Input(),
+            Header: () => new Header(),
+            div: () => new StandartComponent(),
+            a: () => new StandartComponent(),
+            p: () => new StandartComponent(),
         };
     }
 
@@ -38,7 +42,7 @@ class HtmlParser {
     }
 
     parseHtml(input) {
-        input = input.replace('\n', '');
+        // input = input.replace('\n', '');
         console.log(input);
         let compareResult = '';
         let previousIndex = 0;
@@ -66,6 +70,7 @@ class HtmlParser {
         object.tag = str[0];
         object.attributes = {};
         object.attributes.text = object.text;
+        object.attributes.tag = object.tag;
 
         for (let i = 1; i < str.length; ++i) {
             if (!str[i].length) {
