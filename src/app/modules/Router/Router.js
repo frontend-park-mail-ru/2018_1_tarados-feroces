@@ -7,10 +7,9 @@ class Router {
     }
 
     addUrl(url, component, context = {}) {
-        component.hide();
-
         this.urls[url] = {
             component,
+            context,
             loaded: false,
         };
 
@@ -28,7 +27,8 @@ class Router {
 
         if (!this.urls[url].loaded) {
             this.urls[url].loaded = true;
-            insertionElement.appendChild(this.urls[url].component._component);
+            this.urls[url].component.render(this.urls[url].context);
+            insertionElement.appendChild(this.urls[url].component.element);
         }
 
         this.showPage(url);

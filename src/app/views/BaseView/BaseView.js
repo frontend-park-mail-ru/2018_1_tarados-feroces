@@ -10,15 +10,21 @@ class BaseView {
     }
 
     hide() {
-        this.element.classList.add('hidden');
+        if (this.element) {
+            this.element.classList.add('hidden');
+        }
     }
 
     show() {
-        this.element.classList.remove('hidden');
+        if (this.element) {
+            this.element.classList.remove('hidden');
+        }
     }
 
     appendChild(element) {
-        this.element.appendChild(element);
+        if (this.element) {
+            this.element.appendChild(element);
+        }
     }
 }
 
