@@ -106,7 +106,9 @@ class HtmlParser {
         this.stringToObject(template);
         const html = document.createElement('div');
         this.objects.forEach((item) => html.appendChild(this.getElement(item)));
+        this.objects = [];
         return html;
+
     }
 
     stringToObject(input) {

@@ -21,10 +21,10 @@ class BaseView {
         }
     }
 
-    appendChild(element) {
-        if (this.element) {
-            this.element.appendChild(element);
-        }
-    }
+    // appendChild(element) {
+    //     if (this.element) {
+    //         this.element.appendChild(element);
+    //     }
+    // }
 }
 

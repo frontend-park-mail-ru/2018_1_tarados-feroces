@@ -6,7 +6,7 @@ class BaseComponent {
         this._element = null;
         this.template = template;
         this.events = ['click', 'focus', 'blur'];
-        this.functionExp = /function\s*\(([\w, ]*)\)\n*\t*\s*{(.*)}/i;
+        this.functionExp = /\s*\(([\w, ]*)\)\n*\t*\s*{(.*)}/i;
     }
 
     render(context) {

@@ -7,7 +7,7 @@ router
         '/login/',
         new LoginView())
     .addUrl(
-        '/menu/',
+        '/',
         new MenuView())
     .addUrl(
         '/signup/',
