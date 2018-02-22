@@ -66,6 +66,10 @@
     transform: translate(-50%, -50%);
 }
 
+.hidden {
+    display: none;
+}
+
 /*.points.div {*/
     /*position: relative;*/
     /*width: 100%;*/

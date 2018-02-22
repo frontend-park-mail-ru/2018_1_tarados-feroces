@@ -20,10 +20,8 @@ class Router {
         if (!this.urls[url]) {
             return false;
         }
+
         history.pushState({path: url}, '', url);
-
-        this.hideLast();
-
 
         if (!this.urls[url].loaded) {
             this.urls[url].loaded = true;
@@ -31,8 +29,11 @@ class Router {
             insertionElement.appendChild(this.urls[url].component.element);
         }
 
-        this.showPage(url);
+        this.hideLast();
+
         this.lastComponent = this.urls[url].component;
+
+        this.showPage(url);
 
         return true;
     }
