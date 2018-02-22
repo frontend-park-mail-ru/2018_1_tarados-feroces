@@ -12,6 +12,7 @@ const loginTemplate = '<div class="page">' +
     '<Input label-text="Password:" type="password" placeholder="Enter password"></Input>' +
     '<div class="button-container">' +
     '<Button class="button large" click="function() {alert(1);}">Log In!</Button>' +
+    '<Button class="button large" click="(event){ event.preventDefault(); goBack();  }">Back</Button>' +
     '</div>' +
     '</Form>' +
     '</div>' +

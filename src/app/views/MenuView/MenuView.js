@@ -22,3 +22,7 @@ const goToLogin = () => {
 const goToSignUp = () => {
     router.go('/signup/');
 };
+
+const goBack = () => {
+    router.go('/');
+};
