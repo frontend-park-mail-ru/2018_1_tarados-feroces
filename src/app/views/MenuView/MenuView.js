@@ -4,12 +4,13 @@ class MenuView extends BaseView {
     }
 }
 
-const menuTemplate = '<div class="{{menuClass}}">' +
+const menuTemplate = '<div class="menu">' +
     '<Header>Menu</Header>' +
-    '<div class="{{pointsClass}}">' +
+    '<div class="points">' +
     '<ul>' +
-    '<MenuPoint href="registration.html">SignUp</MenuPoint>' +
-    '<MenuPoint href="login.html">SignIn</MenuPoint>' +
+    '<MenuPoint>SignUp</MenuPoint>' +
+    '<MenuPoint>SignIn</MenuPoint>' +
+    '<MenuPoint>Scoreboard</MenuPoint>' +
     '</ul>' +
     '</div>' +
     '</div>';
