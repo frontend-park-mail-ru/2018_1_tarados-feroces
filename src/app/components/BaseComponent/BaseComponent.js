@@ -26,7 +26,6 @@ class BaseComponent {
     }
 
     addListeners(context) {
-        // debugger;
         this.events.forEach((item) => {
             if (context[item]) {
                 const func = context[item].match(this.functionExp);

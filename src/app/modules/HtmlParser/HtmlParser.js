@@ -2,8 +2,8 @@
 
 class HtmlParser {
     constructor() {
-        this.regExp = /<[a-z0-9 _\-"=(){};:.!?]+>|<\/[a-z0-9 _\-"=(){};:.!?]+>/ig;
-        this.regExpBegin = /<([a-z0-9 _\-"=(){};:.!?]+)>/i;
+        this.regExp = /<[a-z0-9 _\-"'=(){}\[\],;:.!?]+>|<\/[a-z0-9 _\-"'=(){}\[\],;:.!?]+>/ig;
+        this.regExpBegin = /<([a-z0-9 _\-"'=(){}\[\],;:.!?]+)>/i;
         this.objects = [];
         this.tagStack = [];
 
@@ -13,10 +13,15 @@ class HtmlParser {
             Header: () => new Header(),
             MenuPoint: () => new MenuPoint(),
             Form: () => new Form(),
+            TableRow: () => new TableRow(),
             div: () => new StandartComponent(),
             a: () => new StandartComponent(),
             p: () => new StandartComponent(),
             ul: ()=> new StandartComponent(),
+            table: ()=> new StandartComponent(),
+            tr: ()=> new StandartComponent(),
+            th: ()=> new StandartComponent(),
+            td: ()=> new StandartComponent(),
         };
     }
 
@@ -46,7 +51,7 @@ class HtmlParser {
 
     parseHtml(input) {
         // input = input.replace('\n', '');
-        console.log(input);
+        // console.log(input);
         let compareResult = '';
         let previousIndex = 0;
         // debugger;
@@ -113,8 +118,8 @@ class HtmlParser {
 
     stringToObject(input) {
         this.parseHtml(input);
-        console.log(this.objects);
         this.objects.map((obj) => this.performObject(obj));
+        // console.log(this.objects);
 
         return this.objects;
     }
@@ -122,6 +127,7 @@ class HtmlParser {
     getElement(object) {
         const component = this.componentFactory[object.tag]();
         component.render(object.attributes);
+        // debugger;
 
         object.children.forEach((item) => {
             component.appendChild(this.getElement(item));
