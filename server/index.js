@@ -6,7 +6,7 @@ const path = require('path');
 
 app.use('/', express.static(path.join('src')));
 app.use('/login', express.static(path.join('src')));
-app.use('/auth', express.static(path.join('src')));
+app.use('/signup', express.static(path.join('src')));
 app.use('/test', express.static(path.join('src')));
 app.use('/menu', express.static(path.join('src')));
 

@@ -8,7 +8,10 @@ router
         new LoginView())
     .addUrl(
         '/menu/',
-        new MenuView());
+        new MenuView())
+    .addUrl(
+        '/signup/',
+        new RegisterView());
     // .addUrl(
     //     '/auth/',
     //     new BaseComponent('div', templateManager.getHTML({}, authorizedTemplate)))
