@@ -7,6 +7,7 @@ class RegisterView extends BaseView {
 const registerTemplate = '<div class="page">' +
     '<Header>Sign Up!</Header>' +
     '<div class="registration-block">' +
+    '<Form>' +
     '<Input label-text="Full name:" type="text" placeholder="Enter name"></Input>' +
     '<Input label-text="Login:" type="text" placeholder="Enter login"></Input>' +
     '<Input label-text="E-mail:" type="text" placeholder="Enter e-mail"></Input>' +
@@ -15,5 +16,6 @@ const registerTemplate = '<div class="page">' +
     '<div class="button-container">' +
     '<Button class="button large" click="function(){ alert(2); }">Log In!</Button>' +
     '</div>' +
+    '</Form>' +
     '</div>' +
     '</div>';
