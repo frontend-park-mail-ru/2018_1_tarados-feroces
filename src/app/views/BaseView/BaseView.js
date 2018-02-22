@@ -13,6 +13,10 @@ class BaseView {
         this.element.classList.add('hidden');
     }
 
+    show() {
+        this.element.classList.remove('hidden');
+    }
+
     appendChild(element) {
         this.element.appendChild(element);
     }

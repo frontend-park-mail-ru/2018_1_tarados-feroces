@@ -38,7 +38,7 @@ class Router {
     }
 
     showPage(url) {
-        this.urls[url].component.makeVisible();
+        this.urls[url].component.show();
     }
 
     hideLast() {
