@@ -5,7 +5,10 @@ const router = new Router();
 router
     .addUrl(
         '/login/',
-        new LoginView());
+        new LoginView())
+    .addUrl(
+        '/menu/',
+        new MenuView());
     // .addUrl(
     //     '/auth/',
     //     new BaseComponent('div', templateManager.getHTML({}, authorizedTemplate)))
