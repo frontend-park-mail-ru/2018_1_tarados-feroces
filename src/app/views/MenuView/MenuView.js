@@ -8,9 +8,17 @@ const menuTemplate = '<div class="menu">' +
     '<Header>Menu</Header>' +
     '<div class="points">' +
     '<ul>' +
-    '<MenuPoint>SignUp</MenuPoint>' +
-    '<MenuPoint>SignIn</MenuPoint>' +
+    '<MenuPoint click="function() {goToSignUp();}">SignUp</MenuPoint>' +
+    '<MenuPoint click="function() {goToLogin();}">SignIn</MenuPoint>' +
     '<MenuPoint>Scoreboard</MenuPoint>' +
     '</ul>' +
     '</div>' +
     '</div>';
+
+const goToLogin = () => {
+    router.go('/login/');
+};
+
+const goToSignUp = () => {
+    router.go('/signup/');
+};
