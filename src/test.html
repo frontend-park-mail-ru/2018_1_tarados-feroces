@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="static/css/login.css" type="text/css">
 
     <link rel="stylesheet" href="static/css/authorized.css" type="text/css">
+    <link rel="stylesheet" href="static/css/menu.css" type="text/css">
 
     <meta charset="UTF-8">
     <title>test</title>
@@ -16,6 +17,7 @@
     <script src="app/components/StandartComponent/StandartComponent.js"></script>
     <script src="app/components/Button/Button.js"></script>
     <script src="app/components/Input/Input.js"></script>
+    <script src="app/components/MenuPoint/MenuPoint.js"></script>
     <script src="app/modules/HtmlParser/HtmlParser.js"></script>
     <script src="app/views/BaseView/BaseView.js"></script>
     <script src="app/views/LoginView/LoginView.js"></script>
@@ -25,10 +27,11 @@
     <script>
         // const loginObject = new LoginView();
         // document.body.innerHTML += loginObject.render({});
-        const test = '<Input error-text="Login error" label-text="Login:" input-placeholder="Enter login"></Input>' +
-            '<Input error-text="Password error" label-text="Password:" input-placeholder="Enter password"></Input>' +
-            '<Button class="login-block__login-button" click="function () { alert(1); }">Go!</Button> ' +
-            '<a class="red" href="/">WOW!!!</a>';
+        // const test = '<Input error-text="Login error" label-text="Login:" input-placeholder="Enter login"></Input>' +
+        //     '<Input error-text="Password error" label-text="Password:" input-placeholder="Enter password"></Input>' +
+        //     '<Button class="login-block__login-button" click="function () { alert(1); }">Go!</Button> ' +
+        //     '<a class="red" href="/">WOW!!!</a>';
+        const test = '<div class="points"><ul><MenuPoint>SignIn</MenuPoint></ul></div>';
         document.body.appendChild(htmlParser.getHTML(test));
     </script>
 </body>

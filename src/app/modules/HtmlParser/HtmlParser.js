@@ -11,9 +11,11 @@ class HtmlParser {
             Button: () => new Button(),
             Input: () => new Input(),
             Header: () => new Header(),
+            MenuPoint: () => new MenuPoint(),
             div: () => new StandartComponent(),
             a: () => new StandartComponent(),
             p: () => new StandartComponent(),
+            ul: ()=> new StandartComponent(),
         };
     }
 
