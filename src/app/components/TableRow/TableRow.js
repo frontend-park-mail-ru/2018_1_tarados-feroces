@@ -5,7 +5,7 @@ class TableRow extends BaseComponent {
 
     render(context) {
         if (context.data) {
-            context.data = context.data.split(' ');
+            context.data = context.data.split(', ');
         }
         super.render(context);
     }

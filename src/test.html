@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="static/css/_reset.css" type="text/css">
     <link rel="stylesheet" href="static/css/login.css" type="text/css">
 
     <link rel="stylesheet" href="static/css/authorized.css" type="text/css">
@@ -22,14 +23,18 @@
     <script src="app/modules/HtmlParser/HtmlParser.js"></script>
     <script src="app/views/BaseView/BaseView.js"></script>
     <script src="app/views/LoginView/LoginView.js"></script>
+    <script src="app/views/TableView/TableView.js"></script>
+
 
     <script src="app/modules/Router/Router.js"></script>
 
+
+
     <script>
-        const test = '<TableRow data="{{{rows}}}"></TableRow>';
-        const context = {rows: "Toha Danya Sanya"};
+        const table = new TableView();
+        const context = {rows: ['Toha, rus, 100', 'Sanya, uzb, 0'], headers: ['Name', 'Region', 'Score']};
         // debugger;
-        document.body.appendChild(htmlParser.getHTML(templateManager.getHTML(context, test)));
+        document.body.appendChild(table.render(context));
 
     </script>
 

@@ -19,6 +19,7 @@ class HtmlParser {
             p: () => new StandartComponent(),
             ul: ()=> new StandartComponent(),
             table: ()=> new StandartComponent(),
+            tbody: ()=> new StandartComponent(),
             tr: ()=> new StandartComponent(),
             th: ()=> new StandartComponent(),
             td: ()=> new StandartComponent(),
@@ -130,7 +131,9 @@ class HtmlParser {
         // debugger;
 
         object.children.forEach((item) => {
-            component.appendChild(this.getElement(item));
+            if (item) {
+                component.appendChild(this.getElement(item));
+            }
         });
 
         return component.element();

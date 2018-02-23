@@ -13,6 +13,7 @@ class BaseComponent {
         const div = document.createElement('div');
         div.innerHTML = templateManager.getHTML(context, this.template);
         this._element = div.lastChild;
+        console.log(div.innerHTML);
         this.addListeners(context);
         return this._element;
     }
