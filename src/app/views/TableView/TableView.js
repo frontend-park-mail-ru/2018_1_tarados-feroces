@@ -6,11 +6,11 @@ class TableView extends BaseView {
 
 const tableTemplate = '<table>' +
     '<tr>' +
-    '{{#each headers}}' +
-    '<th>{{this}}</th>' +
-    '{{/each}}' +
+    '<th>Name</th>' +
+    '<th>Region</th>' +
+    '<th>Score</th>' +
     '</tr>' +
     '{{#each rows}}' +
-    '<TableRow data="{{this}}"></TableRow>' +
+    '<TableRow username="{{this.username}}" region="{{this.region}}" score="{{this.score}}"></TableRow>' +
     '{{/each}}' +
     '</table>';

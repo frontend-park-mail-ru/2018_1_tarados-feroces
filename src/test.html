@@ -32,8 +32,8 @@
 
     <script>
         const table = new TableView();
-        const context = {rows: ['Toha, rus, 100', 'Sanya, uzb, 0'], headers: ['Name', 'Region', 'Score']};
-        // debugger;
+        const context = {rows: [{username: 'Toha', region: 'rus', score: '100'}, {username: 'Sanya', region: 'uzb', score: '0'}]};
+        // debugger;-->
         document.body.appendChild(table.render(context));
 
     </script>

@@ -17,10 +17,10 @@ class HtmlParser {
             div: () => new StandartComponent(),
             a: () => new StandartComponent(),
             p: () => new StandartComponent(),
-            ul: ()=> new StandartComponent(),
-            table: ()=> new StandartComponent(),
-            tbody: ()=> new StandartComponent(),
-            tr: ()=> new StandartComponent(),
+            ul: () => new StandartComponent(),
+            table: () => new StandartComponent(),
+            tbody: () => new StandartComponent(),
+            tr: () => new StandartComponent(),
             th: ()=> new StandartComponent(),
             td: ()=> new StandartComponent(),
         };
@@ -52,7 +52,6 @@ class HtmlParser {
 
     parseHtml(input) {
         // input = input.replace('\n', '');
-        // console.log(input);
         let compareResult = '';
         let previousIndex = 0;
         // debugger;
@@ -120,15 +119,14 @@ class HtmlParser {
     stringToObject(input) {
         this.parseHtml(input);
         this.objects.map((obj) => this.performObject(obj));
-        // console.log(this.objects);
 
         return this.objects;
     }
 
     getElement(object) {
+        // debugger;
         const component = this.componentFactory[object.tag]();
         component.render(object.attributes);
-        // debugger;
 
         object.children.forEach((item) => {
             if (item) {
