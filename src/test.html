@@ -12,6 +12,10 @@
 </head>
 <body>
 
+    <table id="tet">
+
+    </table>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
     <script src="app/modules/TemplateManager/TemplateManager.js"></script>
     <script src="app/components/BaseComponent/BaseComponent.js"></script>
@@ -31,6 +35,20 @@
 
 
     <script>
+        // const tableRowTemp = '<tr>' +
+        //     '<td>{{username}}</td>' +
+        //     '<td>{{region}}</td>' +
+        //     '<td>{{score}}</td>' +
+        //     '</tr>';
+        // const temp = Handlebars.compile(tableRowTemp);
+        // console.log(temp({username:"1", region:"2", score:"3"}));
+        // // const table = '<TableRow username="1" region="2" score="3"></TableRow>';
+        // // htmlParser.getHTML(table);
+        // const context = {rows: [{username: 'Toha', region: 'rus', score: '100'}, {username: 'Sanya', region: 'uzb', score: '0'}]};
+        // // debugger;
+        // // document.getElementById('tet').innerHTML = temp({username:"1", region:"2", score:"3"});
+        // const table = new TableView(context);
+
         const table = new TableView();
         const context = {rows: [{username: 'Toha', region: 'rus', score: '100'}, {username: 'Sanya', region: 'uzb', score: '0'}]};
         // debugger;-->

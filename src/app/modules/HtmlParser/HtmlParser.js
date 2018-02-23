@@ -19,7 +19,7 @@ class HtmlParser {
             p: () => new StandartComponent(),
             ul: () => new StandartComponent(),
             table: () => new StandartComponent(),
-            tbody: () => new StandartComponent(),
+            // tbody: () => new StandartComponent(),
             tr: () => new StandartComponent(),
             th: ()=> new StandartComponent(),
             td: ()=> new StandartComponent(),
@@ -118,6 +118,7 @@ class HtmlParser {
 
     stringToObject(input) {
         this.parseHtml(input);
+        console.log(input);
         this.objects.map((obj) => this.performObject(obj));
 
         return this.objects;
