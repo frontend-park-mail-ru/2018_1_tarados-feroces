@@ -13,6 +13,7 @@ class BaseComponent {
         const div = document.createElement('div');
         div.innerHTML = templateManager.getHTML(context, this.template);
         this._element = div.lastChild;
+        console.log(div.innerHTML);
         this.addListeners(context);
         return this._element;
     }
@@ -26,7 +27,6 @@ class BaseComponent {
     }
 
     addListeners(context) {
-        // debugger;
         this.events.forEach((item) => {
             if (context[item]) {
                 const func = context[item].match(this.functionExp);

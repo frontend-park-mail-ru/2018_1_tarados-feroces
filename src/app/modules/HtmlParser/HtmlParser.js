@@ -2,8 +2,8 @@
 
 class HtmlParser {
     constructor() {
-        this.regExp = /<[a-z0-9 _\-"=(){};:.!?]+>|<\/[a-z0-9 _\-"=(){};:.!?]+>/ig;
-        this.regExpBegin = /<([a-z0-9 _\-"=(){};:.!?]+)>/i;
+        this.regExp = /<[a-z0-9 _\-"'=(){}\[\],;:.!?]+>|<\/[a-z0-9 _\-"'=(){}\[\],;:.!?]+>/ig;
+        this.regExpBegin = /<([a-z0-9 _\-"'=(){}\[\],;:.!?]+)>/i;
         this.objects = [];
         this.tagStack = [];
 
@@ -16,7 +16,12 @@ class HtmlParser {
             div: () => new StandartComponent(),
             a: () => new StandartComponent(),
             p: () => new StandartComponent(),
-            ul: ()=> new StandartComponent(),
+            ul: () => new StandartComponent(),
+            table: () => new StandartComponent(),
+            tbody: () => new StandartComponent(),
+            tr: () => new StandartComponent(),
+            th: ()=> new StandartComponent(),
+            td: ()=> new StandartComponent(),
         };
     }
 
@@ -46,7 +51,6 @@ class HtmlParser {
 
     parseHtml(input) {
         // input = input.replace('\n', '');
-        console.log(input);
         let compareResult = '';
         let previousIndex = 0;
         // debugger;
@@ -103,6 +107,7 @@ class HtmlParser {
     }
 
     getHTML(template) {
+        // debugger;
         this.stringToObject(template);
         const html = document.createElement('div');
         this.objects.forEach((item) => html.appendChild(this.getElement(item)));
@@ -113,18 +118,20 @@ class HtmlParser {
 
     stringToObject(input) {
         this.parseHtml(input);
-        console.log(this.objects);
         this.objects.map((obj) => this.performObject(obj));
 
         return this.objects;
     }
 
     getElement(object) {
+        // debugger;
         const component = this.componentFactory[object.tag]();
         component.render(object.attributes);
 
         object.children.forEach((item) => {
-            component.appendChild(this.getElement(item));
+            if (item) {
+                component.appendChild(this.getElement(item));
+            }
         });
 
         return component.element();

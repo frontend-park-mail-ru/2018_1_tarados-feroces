@@ -14,7 +14,8 @@ const registerTemplate = '<div class="page">' +
     '<Input label-text="Password:" type="password" placeholder="Enter password"></Input>' +
     '<Input label-text="Repeat Password:" type="password" placeholder="Repeat password"></Input>' +
     '<div class="button-container">' +
-    '<Button class="button large" click="function(){ alert(2); }">Log In!</Button>' +
+    '<Button class="button large" click="(){ alert(2); }">Sign Up!</Button>' +
+    '<Button class="button large" click="(event){ event.preventDefault(); goBack();  }">Back</Button>' +
     '</div>' +
     '</Form>' +
     '</div>' +

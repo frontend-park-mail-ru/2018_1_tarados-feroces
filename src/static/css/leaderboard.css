@@ -1,46 +1,10 @@
 .leaderboard {
-    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     color: #81495a;
-}
-
-.leaderboard table {
-    width: 80%;
-    margin: 0;
     padding: 0;
     border-spacing: 0;
     border-collapse: collapse;
-    box-shadow: 4px 4px 10px 2px #a9997f;
-    background-color: #fff4dc;
-    border-radius: 10px;
-}
-
-tr {
-    padding: 0;
-    margin: 0;
-    border-bottom: #81495a thin solid;
-    /*border-color: white;*/
-}
-
-tr:last-child {
-    border-bottom: none;
-}
-
-th, td {
-    padding: 10px 0;
-    text-align: center;
-    width: 33%;
-    /*border-right: white 1px solid;*/
-    /*border-left: white 0.5px solid;*/
-    margin: 0;
-}
-
-.leaderboard th {
-    font-size: 30px;
-}
-
-.leaderboard td {
-    font-size: 24px;
+    min-width: 700px;
 }

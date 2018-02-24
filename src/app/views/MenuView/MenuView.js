@@ -10,7 +10,7 @@ const menuTemplate = '<div class="menu">' +
     '<ul>' +
     '<MenuPoint click="(event) {event.preventDefault(); goToSignUp();}">SignUp</MenuPoint>' +
     '<MenuPoint click="(event) {event.preventDefault(); goToLogin();}">SignIn</MenuPoint>' +
-    '<MenuPoint>Scoreboard</MenuPoint>' +
+    '<MenuPoint click="(event) {event.preventDefault(); goToScore();}">Scoreboard</MenuPoint>' +
     '</ul>' +
     '</div>' +
     '</div>';
@@ -21,4 +21,12 @@ const goToLogin = () => {
 
 const goToSignUp = () => {
     router.go('/signup/');
+};
+
+const goToScore = () => {
+    router.go('/leaderboard/');
+};
+
+const goBack = () => {
+    router.go('/');
 };
