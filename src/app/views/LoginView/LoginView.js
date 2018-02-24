@@ -6,7 +6,7 @@ class LoginView extends BaseView {
 
 const loginTemplate = '<div class="page">' +
     '<Header>Login</Header>' +
-    '<div class="registration-block">' +
+    '<div class="registration-block login">' +
     '<Form>' +
     '<Input block-class="user-name" error-class="hidden" error-text="empty username" ' +
     'label-text="Full name:" type="text" placeholder="Enter name">' +
@@ -15,17 +15,16 @@ const loginTemplate = '<div class="page">' +
     'label-text="Password:" type="password" placeholder="Enter password">' +
     '</Input>' +
     '<div class="button-container">' +
-    '<Button class="button large" click="function() {validate();}">Log In!</Button>' +
+    '<Button class="button large" click="function() {validateLogin();}">Log In!</Button>' +
     '<Button class="button large" click="(event){ event.preventDefault(); goBack();  }">Back</Button>' +
     '</div>' +
     '</Form>' +
     '</div>' +
     '</div>';
 
-const validate = () => {
-    const username = document.querySelector('.user-name');
-    const password = document.querySelector('.user-password');
-    validateLoginInput(username) + validateLoginInput(password) && alert('authorized');
+const validateLogin = () => {
+    const blocks = [...document.querySelector('.login').getElementsByClassName('input-block')];
+    blocks.reduce((result, current) => result + validateLoginInput(current), 0) && alert('authorized');
 
 };
 
