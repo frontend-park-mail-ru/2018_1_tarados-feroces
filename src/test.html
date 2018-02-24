@@ -13,6 +13,10 @@
 </head>
 <body>
 
+    <table id="tet">
+
+    </table>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
     <script src="app/modules/TemplateManager/TemplateManager.js"></script>
     <script src="app/components/BaseComponent/BaseComponent.js"></script>
@@ -25,14 +29,6 @@
     <script src="app/views/LoginView/LoginView.js"></script>
     <script src="app/views/LeaderboardView/LeaderboardView.js"></script>
     <script src="app/modules/Router/Router.js"></script>
-
-
-
-    <script>
-        const table = new LeaderboardView();
-        const context = {rows: [['Toha', 'rus', '100'], ['Sanya', 'uzb', '1']], headers: ['Name', 'Region', 'Score']};
-        document.body.appendChild(table.render(context));
-    </script>
 
 </body>
 

@@ -35,13 +35,6 @@
     align-items: center;
 }
 
-/*input {*/
-/*margin-bottom: 10px;*/
-/*display: block;*/
-/**/
-/*box-shadow: 0 0 0 1px darkgray inner;*/
-/*}*/
-
 .registration-block > * {
     margin-bottom: 10px;
 }
@@ -58,4 +51,14 @@
 
 .header h1 {
     font-size: 50px;
+    margin: 20px;
+}
+
+.input-error {
+    box-shadow: 0 0 10px 3px red;
+}
+
+.error {
+    color: red;
+    margin-bottom: 10px;
 }
