@@ -3,7 +3,8 @@
 <head>
     <link rel="stylesheet" href="static/css/_reset.css" type="text/css">
     <link rel="stylesheet" href="static/css/login.css" type="text/css">
-
+    <link rel="stylesheet" href="static/css/leaderboard.css" type="text/css">
+    <link rel="stylesheet" href="static/css/table.css" type="text/css">
     <link rel="stylesheet" href="static/css/authorized.css" type="text/css">
     <link rel="stylesheet" href="static/css/menu.css" type="text/css">
 
@@ -23,38 +24,11 @@
     <script src="app/components/Button/Button.js"></script>
     <script src="app/components/Input/Input.js"></script>
     <script src="app/components/MenuPoint/MenuPoint.js"></script>
-    <script src="app/components/TableRow/TableRow.js"></script>
     <script src="app/modules/HtmlParser/HtmlParser.js"></script>
     <script src="app/views/BaseView/BaseView.js"></script>
     <script src="app/views/LoginView/LoginView.js"></script>
-    <script src="app/views/TableView/TableView.js"></script>
-
-
+    <script src="app/views/LeaderboardView/LeaderboardView.js"></script>
     <script src="app/modules/Router/Router.js"></script>
-
-
-
-    <script>
-        // const tableRowTemp = '<tr>' +
-        //     '<td>{{username}}</td>' +
-        //     '<td>{{region}}</td>' +
-        //     '<td>{{score}}</td>' +
-        //     '</tr>';
-        // const temp = Handlebars.compile(tableRowTemp);
-        // console.log(temp({username:"1", region:"2", score:"3"}));
-        // // const table = '<TableRow username="1" region="2" score="3"></TableRow>';
-        // // htmlParser.getHTML(table);
-        // const context = {rows: [{username: 'Toha', region: 'rus', score: '100'}, {username: 'Sanya', region: 'uzb', score: '0'}]};
-        // // debugger;
-        // // document.getElementById('tet').innerHTML = temp({username:"1", region:"2", score:"3"});
-        // const table = new TableView(context);
-
-        const table = new TableView();
-        const context = {rows: [{username: 'Toha', region: 'rus', score: '100'}, {username: 'Sanya', region: 'uzb', score: '0'}]};
-        // debugger;-->
-        document.body.appendChild(table.render(context));
-
-    </script>
 
 </body>
 
