@@ -8,9 +8,11 @@ const loginTemplate = '<div class="page">' +
     '<Header>Login</Header>' +
     '<div class="registration-block">' +
     '<Form>' +
-    '<Input input-class="user-name-input" label-text="Full name:" type="text" placeholder="Enter name">' +
+    '<Input block-class="user-name" error-class="hidden" error-text="empty username" ' +
+    'label-text="Full name:" type="text" placeholder="Enter name">' +
     '</Input>' +
-    '<Input input-class="user-password-input" label-text="Password:" type="password" placeholder="Enter password">' +
+    '<Input block-class="user-password" error-class="hidden" error-text="empty password" ' +
+    'label-text="Password:" type="password" placeholder="Enter password">' +
     '</Input>' +
     '<div class="button-container">' +
     '<Button class="button large" click="function() {validate();}">Log In!</Button>' +
@@ -21,23 +23,23 @@ const loginTemplate = '<div class="page">' +
     '</div>';
 
 const validate = () => {
-    const username = document.querySelector('.user-name-input');
-    const password = document.querySelector('.user-password-input');
-    let validationControl = 0;
+    const username = document.querySelector('.user-name');
+    const password = document.querySelector('.user-password');
+    validateLoginInput(username) + validateLoginInput(password) && alert('authorized');
 
-    if (username.value === '') {
-       alert('empty username');
+};
+
+const validateLoginInput = (block) => {
+    const input = block.querySelector('input');
+    const error = block.querySelector('.error');
+
+    if (input.value === '') {
+        input.classList.add('input-error');
+        error.classList.remove('hidden');
+        return false;
     } else {
-        validationControl += 1;
-    }
-
-    if (password.value === '') {
-        alert('empty password');
-    } else {
-        validationControl += 1;
-    }
-
-    if (validationControl === 2) {
-        alert('1');
+        input.classList.remove('input-error');
+        error.classList.add('hidden');
+        return true;
     }
 };
