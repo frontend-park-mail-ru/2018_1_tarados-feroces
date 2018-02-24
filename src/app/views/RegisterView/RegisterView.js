@@ -20,11 +20,6 @@ const registerTemplate = '<div class="page">' +
     '<Input block-class="user-repeat-password" error-class="hidden" error-text="empty password" ' +
     'label-text="Repeat Password:" type="password" placeholder="Repeat password">' +
     '</Input>' +
-    // '<Input label-text="Full name:" type="text" placeholder="Enter name"></Input>' +
-    // '<Input label-text="Login:" type="text" placeholder="Enter login"></Input>' +
-    // '<Input label-text="E-mail:" type="text" placeholder="Enter e-mail"></Input>' +
-    // '<Input label-text="Password:" type="password" placeholder="Enter password"></Input>' +
-    // '<Input label-text="Repeat Password:" type="password" placeholder="Repeat password"></Input>' +
     '<div class="button-container">' +
     '<Button class="button large" click="(){ validateRegistration(); }">Sign Up!</Button>' +
     '<Button class="button large" click="(event){ event.preventDefault(); goBack();  }">Back</Button>' +
@@ -35,8 +30,9 @@ const registerTemplate = '<div class="page">' +
 
 const validateRegistration = () => {
     const blocks = [...document.querySelector('.registration').getElementsByClassName('input-block')];
-    blocks.reduce((result, current) => result + validateRegistrationInput(current), 0) && alert('authorized');
-
+    if (blocks.reduce((result, current) => result + validateRegistrationInput(current), 0) == blocks.length) {
+        alert('authorized');
+    }
 };
 
 const validateRegistrationInput = (block) => {

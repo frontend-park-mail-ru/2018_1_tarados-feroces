@@ -24,8 +24,9 @@ const loginTemplate = '<div class="page">' +
 
 const validateLogin = () => {
     const blocks = [...document.querySelector('.login').getElementsByClassName('input-block')];
-    blocks.reduce((result, current) => result + validateLoginInput(current), 0) && alert('authorized');
-
+    if (blocks.reduce((result, current) => result + validateLoginInput(current), 0) == blocks.length) {
+        alert('authorized');
+    }
 };
 
 const validateLoginInput = (block) => {
