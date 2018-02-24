@@ -13,7 +13,6 @@ class HtmlParser {
             Header: () => new Header(),
             MenuPoint: () => new MenuPoint(),
             Form: () => new Form(),
-            TableRow: () => new TableRow(),
             div: () => new StandartComponent(),
             a: () => new StandartComponent(),
             p: () => new StandartComponent(),
@@ -108,6 +107,7 @@ class HtmlParser {
     }
 
     getHTML(template) {
+        // debugger;
         this.stringToObject(template);
         const html = document.createElement('div');
         this.objects.forEach((item) => html.appendChild(this.getElement(item)));

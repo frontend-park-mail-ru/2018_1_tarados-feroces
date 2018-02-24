@@ -2,6 +2,8 @@
 
 const router = new Router();
 
+const context = {rows: [['Toha', 'rus', '100'], ['Sanya', 'uzb', '1']], headers: ['Name', 'Region', 'Score']};
+
 router
     .addUrl(
         '/login/',
@@ -11,6 +13,8 @@ router
         new MenuView())
     .addUrl(
         '/signup/',
-        new RegisterView());
+        new RegisterView())
+    .addUrl(/leaderboard/,
+        new LeaderboardView(context));
 
 router.go(document.location.pathname);

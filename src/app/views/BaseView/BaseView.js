@@ -2,9 +2,10 @@ class BaseView {
     constructor(template) {
         this.template = template;
         this.element = null;
+        this.context = {};
     }
 
-    render(context) {
+    render(context = this.context) {
         this.element = htmlParser.getHTML(templateManager.getHTML(context, this.template));
         return this.element;
     }
