@@ -18,7 +18,7 @@
 }
 
 .button:hover {
-    box-shadow:  0 0 3px 2px white, 0 0 5px 4px #cfccff;
+    box-shadow:  0 0 3px 2px white, 0 0 5px 4px #cc9dd3;
     background-color: #219dbe;
     outline: none;
 }
