@@ -8,10 +8,11 @@ const loginTemplate = '<div class="page">' +
     '<Header>Login</Header>' +
     '<div class="registration-block login">' +
     '<Form>' +
-    '<Input block-class="user-name" error-class="hidden" error-text="empty username" ' +
+    '<Input block-class="user-name" ' +
+    'error-class="hidden" error-text="empty username" ' +
     'label-text="Full name:" type="text" placeholder="Enter name">' +
     '</Input>' +
-    '<Input block-class="user-password" error-class="hidden" error-text="empty password" ' +
+    '<Input block-class="user-password"  error-class="hidden" error-text="empty password" ' +
     'label-text="Password:" type="password" placeholder="Enter password">' +
     '</Input>' +
     '<div class="button-container">' +
