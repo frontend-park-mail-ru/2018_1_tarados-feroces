@@ -26,7 +26,8 @@ const loginTemplate = '<div class="page">' +
 const validateLogin = () => {
     const blocks = [...document.querySelector('.login').getElementsByClassName('input-block')];
     if (blocks.reduce((result, current) => result + validateLoginInput(current), 0) == blocks.length) {
-        alert('authorized');
+        router.go('/user/', {username: document.querySelector('.login')
+                .getElementsByClassName('input-block')[0].querySelector('input').value});
     }
 };
 
