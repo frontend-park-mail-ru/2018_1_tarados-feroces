@@ -31,7 +31,7 @@ class HttpModule {
         xhr.send();
     }
 
-    goPost({url = '/', callback = () => null, data = {}} = {}) {
+    doPost({url = '/', callback = () => null, data = {}} = {}) {
         const xhr = new XMLHttpRequest();
         xhr.open('POST', url, true);
 
@@ -55,7 +55,7 @@ class HttpModule {
 
         };
 
-        xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+        xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.withCredentials = true;
 
         xhr.send(JSON.stringify(data));
