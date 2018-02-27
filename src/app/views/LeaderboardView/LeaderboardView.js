@@ -28,4 +28,5 @@ const tableTemplate = '<div class="leaderboard">' +
     '{{/each}}' +
     '</div>' +
     '<Button class="button large" click="(event){ event.preventDefault(); goBack();  }">Back</Button>' +
-    '</div>';
+    '</div>' +
+    '<Footer>Made by Tarados Feroces</Footer>';
