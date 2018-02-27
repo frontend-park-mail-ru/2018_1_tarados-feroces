@@ -10,7 +10,7 @@ class BaseComponent {
     }
 
     render(context) {
-        const div = document.createElement('table');
+        const div = document.createElement('div');
         // debugger;
         div.innerHTML = templateManager.getHTML(context, this.template);
         this._element = div.lastChild;
