@@ -2,7 +2,13 @@
 
 const router = new Router();
 
-const context = {rows: [['Toha', 'rus', '100'], ['Sanya', 'uzb', '1']], headers: ['Name', 'Region', 'Score']};
+const context = {rows: [['Toha', 'rus', '100'], ['Sanya', 'uzb', '1'], ['Danechka', 'rus', '100500'],
+        ['Dyrych', 'rus', '-100'], ['Nadya', 'japan', '300'], ['iron_man', 'usa', '10e10'],
+        ['Toha', 'rus', '100'], ['Sanya', 'uzb', '1'], ['Danechka', 'rus', '100500'],
+        ['Dyrych', 'rus', '-100'], ['Nadya', 'japan', '300'], ['iron_man', 'usa', '10e10'],
+        ['Toha', 'rus', '100'], ['Sanya', 'uzb', '1'], ['Danechka', 'rus', '100500'],
+        ['Dyrych', 'rus', '-100'], ['Nadya', 'japan', '300'], ['iron_man', 'usa', '10e10']],
+    headers: ['Name', 'Region', 'Score']};
 
 const loginCallback = () => {
     httpModule.doPost({url: 'http://deadlinez.herokuapp.com/alexalone/signup', callback: (err, data) => {

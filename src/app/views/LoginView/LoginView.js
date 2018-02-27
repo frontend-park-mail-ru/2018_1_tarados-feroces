@@ -21,7 +21,8 @@ const loginTemplate = '<div class="page">' +
     '</div>' +
     '</Form>' +
     '</div>' +
-    '</div>';
+    '</div>' +
+    '<Footer>Made by Tarados Feroces</Footer>';
 
 const validateLogin = () => {
     const blocks = [...document.querySelector('.login').getElementsByClassName('input-block')];
