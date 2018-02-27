@@ -17,9 +17,13 @@ class Router {
         return this;
     }
 
-    go(url, insertionElement = this.insertionElement) {
+    go(url, context = {}, insertionElement = this.insertionElement) {
         if (!this.urls[url]) {
             return false;
+        }
+
+        if (!context.empty) {
+            this.urls[url].context = context;
         }
 
         history.pushState({path: url}, '', url);

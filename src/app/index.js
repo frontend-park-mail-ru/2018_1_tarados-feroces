@@ -32,11 +32,18 @@ router
         loginCallback)
     .addUrl(
         '/',
-        new MenuView())
+        new MenuView()
+    )
     .addUrl(
         '/signup/',
-        new RegisterView())
+        new RegisterView()
+    )
+    .addUrl(
+        '/user/',
+        new AuthorizedView()
+    )
     .addUrl(/leaderboard/,
-        new LeaderboardView(context));
+        new LeaderboardView(context)
+    );
 
 router.go(document.location.pathname);
