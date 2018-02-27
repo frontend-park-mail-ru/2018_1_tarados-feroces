@@ -1,4 +1,5 @@
 class Form extends BaseComponent {
+
     constructor() {
         super(formTemplate);
     }

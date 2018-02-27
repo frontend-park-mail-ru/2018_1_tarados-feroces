@@ -1,4 +1,5 @@
 class AuthorizedView extends BaseView {
+
     constructor() {
         super(authorizedTemplate);
     }

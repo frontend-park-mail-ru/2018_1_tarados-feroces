@@ -1,4 +1,5 @@
 class LoginView extends BaseView {
+
     constructor() {
         super(loginTemplate);
     }

@@ -1,6 +1,7 @@
 'use strict';
 
 class TemplateManager {
+
     constructor(templateId) {
         if (!templateId) {
             return;

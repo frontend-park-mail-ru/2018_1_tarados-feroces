@@ -1,4 +1,5 @@
 class MenuView extends BaseView {
+
     constructor() {
         super(menuTemplate);
     }

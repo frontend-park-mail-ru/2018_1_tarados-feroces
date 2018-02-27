@@ -1,4 +1,5 @@
 class LeaderboardView extends BaseView {
+
     constructor(context) {
         super(tableTemplate);
         this.context = context;
