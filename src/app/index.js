@@ -4,10 +4,22 @@ const router = new Router();
 
 const context = {rows: [['Toha', 'rus', '100'], ['Sanya', 'uzb', '1']], headers: ['Name', 'Region', 'Score']};
 
+const loginCallback = () => {
+    httpModule.doGet({url: '/login/id', callback: (err, data) => {
+        if (err) {
+            alert(err);
+            return;
+        }
+
+        alert(data.text);
+        }});
+};
+
 router
     .addUrl(
         '/login/',
-        new LoginView())
+        new LoginView(),
+        loginCallback)
     .addUrl(
         '/',
         new MenuView())
