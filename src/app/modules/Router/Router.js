@@ -1,15 +1,15 @@
 class Router {
 
     constructor() {
-        this.lastComponent = null;
+        this.lastView = null;
         this.urls = {};
         this.insertionElement = document.querySelector('.root');
 
     }
 
-    addUrl(url, component, callback, context = {}) {
+    addUrl(url, view, callback, context = {}) {
         this.urls[url] = {
-            component,
+            view,
             context,
             callback,
             loaded: false,
@@ -31,13 +31,13 @@ class Router {
 
         if (!this.urls[url].loaded) {
             this.urls[url].loaded = true;
-            this.urls[url].component.render(this.urls[url].context);
-            insertionElement.appendChild(this.urls[url].component.element);
+            this.urls[url].view.__render(this.urls[url].context);
+            insertionElement.appendChild(this.urls[url].view.element);
         }
 
         this.hideLast();
 
-        this.lastComponent = this.urls[url].component;
+        this.lastComponent = this.urls[url].view;
 
         this.showPage(url);
 
@@ -47,10 +47,10 @@ class Router {
     }
 
     showPage(url) {
-        this.urls[url].component.show();
+        this.urls[url].view.show();
     }
 
     hideLast() {
-        this.lastComponent && this.lastComponent.hide();
+        this.lastView && this.lastView.hide();
     }
 }

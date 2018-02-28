@@ -3,6 +3,10 @@ class RegisterView extends BaseView {
     constructor() {
         super(registerTemplate);
     }
+
+    render() {
+
+    }
 }
 
 const registerTemplate = '<div class="page">' +
