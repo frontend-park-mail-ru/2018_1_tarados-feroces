@@ -7,10 +7,11 @@ class Router {
 
     }
 
-    addUrl(url, component, context = {}) {
+    addUrl(url, component, callback, context = {}) {
         this.urls[url] = {
             component,
             context,
+            callback,
             loaded: false,
         };
 
@@ -39,6 +40,8 @@ class Router {
         this.lastComponent = this.urls[url].component;
 
         this.showPage(url);
+
+        this.urls[url].callback();
 
         return true;
     }
