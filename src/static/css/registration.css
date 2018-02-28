@@ -1,4 +1,4 @@
-.registration-block {
+.form-block {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,36 +10,11 @@
     box-shadow: 2px 2px 10px 0px lightgray;
 }
 
-.input-block {
-    width: 100%;
-}
-
-.input-block input {
-    width: 372px;
-    display: block;
-    height: 30px;
-    font-size: 18px;
-    padding: 2px 6px;
-    border-radius: 30px;
-    border: 1px solid black;
-    outline: 0;
-}
-
-.input-block * {
-    margin: 7px;
-}
-
-.button-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.registration-block > * {
+.form-block > * {
     margin-bottom: 10px;
 }
 
-.registration-block > *:last-child {
+.form-block > *:last-child {
     margin-bottom: 0px;
 }
 

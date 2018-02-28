@@ -11,7 +11,7 @@ class RegisterView extends BaseView {
 
 const registerTemplate = '<div class="page">' +
     '<Header>Sign Up!</Header>' +
-    '<div class="registration-block registration">' +
+    '<div class="form-block registration">' +
     '<Form>' +
     '<Input block-class="user-name" error-class="hidden" error-text="empty username" ' +
     'label-text="Full name:" type="text" placeholder="Enter login" ' +

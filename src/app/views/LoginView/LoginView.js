@@ -7,7 +7,7 @@ class LoginView extends BaseView {
 
 const loginTemplate = '<div class="page">' +
     '<Header>Login</Header>' +
-    '<div class="registration-block login">' +
+    '<div class="form-block login">' +
     '<Form>' +
     '<Input block-class="user-name" ' +
     'error-class="hidden" error-text="empty username" ' +
