@@ -1,4 +1,4 @@
-.registration-block {
+.form-block {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -29,17 +29,11 @@
     margin: 7px;
 }
 
-.button-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.registration-block > * {
+.form-block > * {
     margin-bottom: 10px;
 }
 
-.registration-block > *:last-child {
+.form-block > *:last-child {
     margin-bottom: 0px;
 }
 
