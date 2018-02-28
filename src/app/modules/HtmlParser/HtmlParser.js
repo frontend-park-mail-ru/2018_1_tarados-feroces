@@ -1,6 +1,7 @@
 'use strict';
 
 class HtmlParser {
+
     constructor() {
         this.regExp = /<[a-z0-9 _\-"'=(){}\[\],;:.!?]+>|<\/[a-z0-9 _\-"'=(){}\[\],;:.!?]+>/ig;
         this.regExpBegin = /<([a-z0-9 _\-"'=(){}\[\],;:.!?]+)>/i;
@@ -26,7 +27,7 @@ class HtmlParser {
     }
 
     handleCloseTag() {
-        let obj = this.tagStack.pop();
+        const obj = this.tagStack.pop();
         if (this.tagStack.length === 0) {
             this.objects.push(obj);
             return;
@@ -36,7 +37,7 @@ class HtmlParser {
     }
 
     handleOpenTag(tag) {
-        let obj = {
+        const obj = {
             object: tag.slice(1, -1),
             children: [],
         };
@@ -45,15 +46,13 @@ class HtmlParser {
     }
 
     handleTag(tag) {
-        let result = this.regExpBegin.exec(tag);
+        const result = this.regExpBegin.exec(tag);
         result ? this.handleOpenTag(tag) : this.handleCloseTag(tag);
     }
 
     parseHtml(input) {
-        // input = input.replace('\n', '');
         let compareResult = '';
         let previousIndex = 0;
-        // debugger;
 
         while (compareResult = this.regExp.exec(input)) {
             if (previousIndex < compareResult.index) {
@@ -107,7 +106,6 @@ class HtmlParser {
     }
 
     getHTML(template) {
-        // debugger;
         this.stringToObject(template);
         const html = document.createElement('div');
         this.objects.forEach((item) => html.appendChild(this.getElement(item)));
@@ -118,14 +116,12 @@ class HtmlParser {
 
     stringToObject(input) {
         this.parseHtml(input);
-        console.log(input);
         this.objects.map((obj) => this.performObject(obj));
 
         return this.objects;
     }
 
     getElement(object) {
-        // debugger;
         const component = this.componentFactory[object.tag]();
         component.render(object.attributes);
 

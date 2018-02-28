@@ -1,4 +1,5 @@
 class Header extends BaseComponent {
+
     constructor() {
         super(headerTemplate);
     }

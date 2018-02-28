@@ -1,4 +1,5 @@
 class BaseView {
+
     constructor(template) {
         this.template = template;
         this.element = null;
@@ -21,11 +22,5 @@ class BaseView {
             this.element.classList.remove('hidden');
         }
     }
-
-    // appendChild(element) {
-    //     if (this.element) {
-    //         this.element.appendChild(element);
-    //     }
-    // }
 }
 

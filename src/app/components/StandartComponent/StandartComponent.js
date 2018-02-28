@@ -1,4 +1,5 @@
 class StandartComponent extends BaseComponent {
+
     constructor() {
         super(standartTemplate);
     }

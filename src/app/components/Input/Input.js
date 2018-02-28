@@ -1,4 +1,5 @@
 class Input extends BaseComponent {
+
     constructor() {
         super(inputTemplate);
     }
@@ -16,6 +17,11 @@ class Input extends BaseComponent {
 const inputTemplate = '<div class="input-block {{block-class}}">' +
     '<label class="{{label-class}}">{{label-text}}</label> ' +
     '<div class="error {{error-class}}">{{error-text}}</div> ' +
+<<<<<<< HEAD
+    '<input name="{{input-name}}" focus="{{focus}}" blur="{{blur}}" type={{type}} ' +
+    'class="{{input-class}}" placeholder="{{placeholder}}"/>' +
+=======
     '<input name="{{input-name}}" focus="{{focus}}" blur="{{blur}}" ' +
     'type={{type}} class="{{input-class}}" placeholder="{{placeholder}}"/>' +
+>>>>>>> origin/sandbox
     '</div>';
