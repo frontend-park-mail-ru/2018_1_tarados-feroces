@@ -18,13 +18,15 @@ class Router {
         return this;
     }
 
-    go(url, context = {}, insertionElement = this.insertionElement) {
+    go(url, insertionElement = this.insertionElement) {
         if (!this.urls[url]) {
             return false;
         }
 
-        if (Object.keys(context).length !== 0) {
-            this.urls[url].context = context;
+        const callbackResult = this.urls[url].callback();
+
+        if (callbackResult) {
+            this.urls[url].context = callbackResult;
         }
 
         history.pushState({path: url}, '', url);
@@ -40,8 +42,6 @@ class Router {
         this.lastView = this.urls[url].view;
 
         this.showPage(url);
-
-        this.urls[url].callback();
 
         return true;
     }
