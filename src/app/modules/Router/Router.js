@@ -7,7 +7,7 @@ class Router {
 
     }
 
-    addUrl(url, view, callback, context = {}) {
+    addUrl(url, view, callback = () => null, context = {}) {
         this.urls[url] = {
             view,
             context,
@@ -23,7 +23,7 @@ class Router {
             return false;
         }
 
-        if (!context.empty) {
+        if (Object.keys(context).length !== 0) {
             this.urls[url].context = context;
         }
 
@@ -37,7 +37,7 @@ class Router {
 
         this.hideLast();
 
-        this.lastComponent = this.urls[url].view;
+        this.lastView = this.urls[url].view;
 
         this.showPage(url);
 

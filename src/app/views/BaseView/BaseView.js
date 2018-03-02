@@ -5,11 +5,11 @@ class BaseView {
         this.context = {};
     }
 
-    render(context = this.context) {
+    render() {
        return '';
     }
 
-    __render() {
+    __render(context = this.context) {
         this.element = htmlParser.getHTML(templateManager.getHTML(context, this.render()));
         return this.element;
     }

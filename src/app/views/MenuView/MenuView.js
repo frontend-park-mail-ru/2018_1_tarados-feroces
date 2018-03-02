@@ -1,7 +1,7 @@
 class MenuView extends BaseView {
 
-    constructor() {
-        super(menuTemplate);
+    render() {
+        return menuTemplate;
     }
 }
 
@@ -25,7 +25,7 @@ const goToSignUp = () => {
 };
 
 const goToScore = () => {
-    router.go('/leaderboard/');
+    router.go('/leaderboard/', leaderboardContent);
 };
 
 const goBack = () => {

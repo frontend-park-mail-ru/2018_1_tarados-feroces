@@ -1,10 +1,33 @@
 class LoginView extends BaseView {
 
-    constructor() {
-        super(loginTemplate);
+    render() {
+//         const str = String.raw`<div class="page">
+// <Header>Login</Header>
+// <div class="form-block login">
+// <Form>
+// <Input block-class="user-name" error-class="hidden" error-text="empty username"
+// label-text="Full name:" type="text" placeholder="Enter name"
+// focus="() { validateFocusLoginInput(document.querySelector('.login').getElementsByClassName('input-block')[0]) }">
+// </Input>
+// <Input block-class="user-password"  error-class="hidden" error-text="empty password"
+// label-text="Password:" type="password" placeholder="Enter password"
+// focus="() { validateFocusLoginInput(document.querySelector('.login').getElementsByClassName('input-block')[1]) }"
+// blur="() { validateBlurLoginInput(document.querySelector('.login').getElementsByClassName('input-block')[1]) }">
+// </Input>
+// <div class="button-container">
+// <Button class="button large" click="() {validateLogin();}">Log In!</Button>
+// <Button class="button large" click="(event){ event.preventDefault(); goBack();  }">Back</Button>
+// </div>
+// </Form>
+// </div>
+// </div>
+// <Footer>Made by Tarados Feroces</Footer>`;
+//         debugger;
+        return loginTemplate;
+        // return loginTemplate;
     }
 }
-
+//
 const loginTemplate = '<div class="page">' +
     '<Header>Login</Header>' +
     '<div class="form-block login">' +

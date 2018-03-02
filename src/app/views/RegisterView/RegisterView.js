@@ -1,11 +1,7 @@
 class RegisterView extends BaseView {
 
-    constructor() {
-        super(registerTemplate);
-    }
-
     render() {
-
+        return registerTemplate;
     }
 }
 

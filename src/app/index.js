@@ -35,7 +35,7 @@ router
         new AuthorizedView()
     )
     .addUrl(/leaderboard/,
-        new LeaderboardView(leaderboardContent)
+        new LeaderboardView()
     );
 
 router.go(document.location.pathname);
