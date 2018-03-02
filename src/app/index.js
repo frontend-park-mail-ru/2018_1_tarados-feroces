@@ -33,8 +33,7 @@ const loginCallback = () => {
 router
     .addUrl(
         '/login/',
-        new LoginView(),
-        loginCallback
+        new LoginView()
     )
     .addUrl(
         '/',

@@ -23,6 +23,8 @@ class HttpModule {
         xhr.withCredentials = true;
 
         xhr.send(JSON.stringify(data));
+
+
     }
 
     requestDone(xhr, callback) {
