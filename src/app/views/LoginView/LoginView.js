@@ -48,8 +48,8 @@ const loginTemplate = '<div class="page">' +
     '.getElementsByClassName(\'input-block\')[1]) }"  >' +
     '</Input>' +
     '<div class="button-container">' +
-    '<Button class="button large" click="() {validateLogin();}">Log In!</Button>' +
-    '<Button class="button large" click="(event){ event.preventDefault(); goBack();  }">Back</Button>' +
+    '<Button class="button large" click="() { validateLogin();}">Log In!</Button>' +
+    '<Button class="button large" click="(event){ event.preventDefault(); goBack(); }">Back</Button>' +
     '</div>' +
     '</Form>' +
     '</div>' +
@@ -59,6 +59,7 @@ const loginTemplate = '<div class="page">' +
 const validateLogin = () => {
     const blocks = [...document.querySelector('.login').getElementsByClassName('input-block')];
     if (blocks.reduce((result, current) => result + validateLoginInput(current), 0) == blocks.length) {
+        loginCallback();
         router.go('/user/', {username: document.querySelector('.login')
                 .getElementsByClassName('input-block')[0].querySelector('input').value});
     }
