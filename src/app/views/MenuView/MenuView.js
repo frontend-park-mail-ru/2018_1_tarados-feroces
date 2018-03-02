@@ -25,7 +25,7 @@ const goToSignUp = () => {
 };
 
 const goToScore = () => {
-    router.go('/leaderboard/', leaderboardContent);
+    router.go('/leaderboard/');
 };
 
 const goBack = () => {

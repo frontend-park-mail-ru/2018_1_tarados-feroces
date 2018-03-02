@@ -49,7 +49,8 @@ router
         new AuthorizedView()
     )
     .addUrl(/leaderboard/,
-        new LeaderboardView()
+        new LeaderboardView(),
+        () => { return leaderboardContent },
     );
 
 router.go(document.location.pathname);
