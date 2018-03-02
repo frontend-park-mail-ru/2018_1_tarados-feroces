@@ -2,33 +2,48 @@
 
 const router = new Router();
 
-const loginCallback = () => {
+const signupCallback = () => {
     httpModule.doPost({url: 'http://deadlinez.herokuapp.com/alexalone/signup', callback: (err, data) => {
-        if (err) {
-            alert(err);
-            return;
-        }
+            if (err) {
+                alert(err);
+                return;
+            }
 
-        alert(data.message);
+            alert(data.message);
         }, data: {
-        name: 'Jopa',
-        email: 'lolkek',
-        password: 'pass1234',
-        login: '_turboback'}});
+            name: 'Jopa',
+            email: 'lolkek',
+            password: 'pass1234',
+            login: 'San'}});
+};
+
+const loginCallback = () => {
+    httpModule.doPost({url: 'http://deadlinez.herokuapp.com/alexalone/signin', callback: (err, data) => {
+            if (err) {
+                alert(err);
+                return;
+            }
+
+            alert(data.message);
+        }, data: {
+            password: 'pass1234',
+            login: 'San'}});
 };
 
 router
     .addUrl(
         '/login/',
         new LoginView(),
-        loginCallback)
+        loginCallback
+    )
     .addUrl(
         '/',
         new MenuView()
     )
     .addUrl(
         '/signup/',
-        new RegisterView()
+        new RegisterView(),
+        signupCallback
     )
     .addUrl(
         '/user/',
