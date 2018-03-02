@@ -1,3 +1,5 @@
+'use strict';
+
 class LeaderboardView extends BaseView {
 
     constructor(context) {

@@ -1,3 +1,5 @@
+'use strict';
+
 class RegisterView extends BaseView {
 
     render() {

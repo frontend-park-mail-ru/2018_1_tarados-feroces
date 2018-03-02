@@ -1,3 +1,5 @@
+'use strict';
+
 class StandartComponent extends BaseComponent {
 
     constructor() {

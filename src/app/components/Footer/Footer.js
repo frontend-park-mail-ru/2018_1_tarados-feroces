@@ -1,3 +1,5 @@
+'use strict';
+
 class Footer extends BaseComponent {
     constructor() {
         super(footerTemplate);
