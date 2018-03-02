@@ -1,3 +1,5 @@
+'use strict';
+
 class Button extends BaseComponent {
 
     constructor() {

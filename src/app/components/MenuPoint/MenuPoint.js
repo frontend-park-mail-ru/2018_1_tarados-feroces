@@ -1,3 +1,5 @@
+'use strict';
+
 class MenuPoint extends BaseComponent {
 
     constructor() {

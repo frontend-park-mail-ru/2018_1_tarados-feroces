@@ -1,3 +1,5 @@
+'use strict';
+
 class Form extends BaseComponent {
 
     constructor() {

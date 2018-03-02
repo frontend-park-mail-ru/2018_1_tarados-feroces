@@ -1,3 +1,5 @@
+'use strict';
+
 class Header extends BaseComponent {
 
     constructor() {
