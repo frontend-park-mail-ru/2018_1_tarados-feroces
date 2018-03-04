@@ -68,7 +68,7 @@ const validateLogin = () => {
                 password: blocks[1].querySelector('input').value,
             }).then(
             (responseText) => {
-                router.go('/user/', {username: blocks[0].querySelector('input').value});
+                router.go('/user/');
             },
             (error) => {
                 document.querySelector('.login').getElementsByClassName('input-block')[0].querySelector('.error').innerText = error;

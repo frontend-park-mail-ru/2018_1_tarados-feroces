@@ -9,11 +9,9 @@ class Router {
 
     }
 
-    addUrl(url, view, callback = () => null, context = {}) {
+    addUrl(url, view) {
         this.urls[url] = {
             view,
-            context,
-            callback,
             loaded: false,
         };
 
@@ -25,23 +23,30 @@ class Router {
             return false;
         }
 
-        const callbackResult = this.urls[url].callback();
-
-        if (callbackResult) {
-            this.urls[url].context = callbackResult;
-        }
-
         history.pushState({path: url}, '', url);
 
         if (!this.urls[url].loaded) {
             this.urls[url].loaded = true;
-            this.urls[url].view.__render(this.urls[url].context);
-            insertionElement.appendChild(this.urls[url].view.element);
+            this.urls[url].view.preRender().then(
+                (response) => {
+                    this.urls[url].view.__render();
+                    insertionElement.appendChild(this.urls[url].view.element);
+                    this.hideLast();
+
+                    this.lastView = this.urls[url].view;
+
+                    console.log(this);
+
+                    this.showPage(url);
+                }
+            );
         }
 
         this.hideLast();
 
         this.lastView = this.urls[url].view;
+
+        // console.log(this);
 
         this.showPage(url);
 

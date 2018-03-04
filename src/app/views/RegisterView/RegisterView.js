@@ -50,7 +50,20 @@ const registerTemplate = '<div class="page">' +
 const validateRegistration = () => {
     const blocks = [...document.querySelector('.registration').getElementsByClassName('input-block')];
     if (blocks.reduce((result, current) => result + validateRegistrationInput(current), 0) == blocks.length) {
-        alert('authorized');
+        httpModule.doRequest('POST', 'http://deadlinez.herokuapp.com/alexalone/signup',
+            {
+                login: blocks[0].querySelector('input').value,
+                email: blocks[1].querySelector('input').value,
+                password: blocks[2].querySelector('input').value,
+            }).then(
+            (responseText) => {
+                router.go('/user/', {username: blocks[0].querySelector('input').value});
+            },
+            (error) => {
+                document.querySelector('.registration').getElementsByClassName('input-block')[0].querySelector('.error').innerText = error;
+                document.querySelector('.registration').getElementsByClassName('input-block')[0].querySelector('.error').classList.remove('hidden');
+            }
+        );
     }
 };
 

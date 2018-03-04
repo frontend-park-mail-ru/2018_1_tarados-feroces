@@ -7,6 +7,14 @@ class LeaderboardView extends BaseView {
         this.context = context;
     }
 
+    preRender() {
+        return httpModule.doRequest('GET', 'http://deadlinez.herokuapp.com/alexalone/score').then(
+            (response) => {
+                this.context = response;
+            }
+        );
+    }
+
     render() {
         const str = `<div class="leaderboard">
                     <Header>Leaderboard</Header>
