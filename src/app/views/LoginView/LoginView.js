@@ -64,14 +64,18 @@ const validateLogin = () => {
 
         httpModule.doRequest('POST', 'http://deadlinez.herokuapp.com/alexalone/signin',
             {
-                password: 'pass1234',
-                login: 'San',
+                login: blocks[0].querySelector('input').value,
+                password: blocks[1].querySelector('input').value,
             }).then(
-            (responseText) => alert(responseText),
-            (error) => alert(error)
+            (responseText) => {
+                router.go('/user/', {username: blocks[0].querySelector('input').value});
+            },
+            (error) => {
+                document.querySelector('.login').getElementsByClassName('input-block')[0].querySelector('.error').innerText = error;
+                document.querySelector('.login').getElementsByClassName('input-block')[0].querySelector('.error').classList.remove('hidden');
+            }
             );
-        // router.go('/user/', {username: document.querySelector('.login')
-        //         .getElementsByClassName('input-block')[0].querySelector('input').value});
+
     }
 };
 
