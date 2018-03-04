@@ -61,9 +61,17 @@ const loginTemplate = '<div class="page">' +
 const validateLogin = () => {
     const blocks = [...document.querySelector('.login').getElementsByClassName('input-block')];
     if (blocks.reduce((result, current) => result + validateLoginInput(current), 0) == blocks.length) {
-        loginCallback();
-        router.go('/user/', {username: document.querySelector('.login')
-                .getElementsByClassName('input-block')[0].querySelector('input').value});
+
+        httpModule.doRequest('POST', 'http://deadlinez.herokuapp.com/alexalone/signin',
+            {
+                password: 'pass1234',
+                login: 'San',
+            }).then(
+            (responseText) => alert(responseText),
+            (error) => alert(error)
+            );
+        // router.go('/user/', {username: document.querySelector('.login')
+        //         .getElementsByClassName('input-block')[0].querySelector('input').value});
     }
 };
 

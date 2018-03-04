@@ -2,48 +2,30 @@
 
 class HttpModule {
 
-    doGet({url = '/', callback = () => null} = {}) {
-        const xhr = new XMLHttpRequest();
-        xhr.open('GET', url, true);
+    doRequest(method = 'GET', url = '/', data = null) {
+        return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
 
-        xhr.onreadystatechange = this.requestDone(xhr, callback);
+            xhr.onload = () => {
+                if (this.status === 200) {
+                    resolve(this.responseText);
+                } else {
+                    const error = new Error(this.statusText);
+                    error.code = this.status;
+                    reject(error);
+                }
+            };
 
-        xhr.withCredentials = true;
+            xhr.onerror = () => {
+                reject(new Error('Network error'));
+            };
 
-        xhr.send();
-    }
+            xhr.open(method, url, true);
+            xhr.withCredentials = true;
 
-    doPost({url = '/', callback = () => null, data = {}} = {}) {
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', url, true);
+            data ? xhr.send(JSON.stringify(data)) : xhr.send();
+        });
 
-        xhr.onreadystatechange = this.requestDone(xhr, callback);
-
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.withCredentials = true;
-
-        xhr.send(JSON.stringify(data));
-
-
-    }
-
-    requestDone(xhr, callback) {
-        if (xhr.readyState !== 4) {
-            return;
-        }
-
-        if (xhr.status < 300) {
-            const responseText = xhr.responseText;
-            try {
-                const response = JSON.parse(responseText);
-                callback(null, response);
-            } catch (err) {
-                console.log('request error: ', err);
-                callback(err);
-            }
-        } else {
-            callback(xhr);
-        }
     }
 }
 
