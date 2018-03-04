@@ -41,7 +41,7 @@ router
     )
     .addUrl(
         '/signup/',
-        new RegisterView(),
+        new RegisterView()
         // signupCallback
     )
     .addUrl(
@@ -49,7 +49,7 @@ router
         new AuthorizedView()
     )
     .addUrl(/leaderboard/,
-        new LeaderboardView(),
+        new LeaderboardView()
         // () => { return leaderboardContent },
     );
 
