@@ -1,7 +1,5 @@
 'use strict';
 
-const router = new Router();
-
 router
     .addUrl(
         '/login/',
@@ -23,5 +21,4 @@ router
         new LeaderboardView()
     );
 
-router.start();
 router.go(document.location.pathname);

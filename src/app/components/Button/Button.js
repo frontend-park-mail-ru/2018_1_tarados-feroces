@@ -1,10 +1,15 @@
 'use strict';
 
-class Button extends BaseComponent {
+(function() {
 
-    constructor() {
-        super(buttonTemplate);
+    class Button extends BaseComponent {
+
+        constructor() {
+            super(buttonTemplate);
+        }
     }
-}
 
-const buttonTemplate = '<div class="button {{class}}"><p>{{text}}</p></div>';
+    const buttonTemplate = '<div class="button {{class}}"><p>{{text}}</p></div>';
+
+    window.Button = Button;
+})();
