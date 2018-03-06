@@ -53,8 +53,7 @@ class HtmlParser {
     parseHtml(input) {
         let compareResult = '';
         let previousIndex = 0;
-        // debugger;
-        input.replace(/(\r?\n|\r| )+/g, ' ');
+        input = input.replace(/\n/g, ' ');
         while (compareResult = this.regExp.exec(input)) {
             if (previousIndex < compareResult.index) {
                 if (this.tagStack.length) {
@@ -111,7 +110,6 @@ class HtmlParser {
         const html = document.createElement('div');
         this.objects.forEach((item) => html.appendChild(this.getElement(item)));
         this.objects = [];
-        debugger;
         return html;
 
     }
