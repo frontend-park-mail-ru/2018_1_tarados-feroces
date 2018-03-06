@@ -9,10 +9,12 @@ class LeaderboardView extends BaseView {
 
     preRender() {
         return httpModule.doGet('/score').then(
-            (response) => {
-                this.context = response;
-            }
+            (response) => this.context = response
         );
+    }
+
+    update(context = {}) {
+        this.context = this.context.rows.concat(context.rows);
     }
 
     render() {
@@ -34,15 +36,19 @@ class LeaderboardView extends BaseView {
                             </div>
                             {{/each}}
                         </div>
-                        <Button class="button large" click="(event){ paginate(beginIndex)  }">Back</Button>
+                        <Button class="button large" click="(event){ paginate(indexOfLeaderboard)  }">Back</Button>
                         <Button class="button large" click="(event){ event.preventDefault(); goBack();  }">Back</Button>
                  </div>
                  <Footer>Made by Tarados Feroces</Footer>`;
-}
+    }
 }
 
-const beginIndex = 10;
+let indexOfLeaderboard = 10;
 
 const paginate = (index) => {
-    // httpModule.doRequest('POST', '/')
+    const paginationConstant = 10;
+    httpModule.doPost('/score', {index}).then(
+        (response) => router.viewUpdate(response)
+    );
+    index += paginationConstant;
 };

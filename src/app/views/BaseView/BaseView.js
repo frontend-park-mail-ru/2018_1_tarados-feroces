@@ -20,6 +20,10 @@ class BaseView {
         return this.element;
     }
 
+    update(context = {}) {
+        return null;
+    }
+
     hide() {
         if (this.element) {
             this.element.classList.add('hidden');
