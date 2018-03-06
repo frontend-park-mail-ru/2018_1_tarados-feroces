@@ -8,7 +8,7 @@ class LeaderboardView extends BaseView {
     }
 
     preRender() {
-        return httpModule.doRequest('GET', 'http://deadlinez.herokuapp.com/alexalone/score').then(
+        return httpModule.doGet('/score').then(
             (response) => {
                 this.context = response;
             }
@@ -34,8 +34,15 @@ class LeaderboardView extends BaseView {
                             </div>
                             {{/each}}
                         </div>
+                        <Button class="button large" click="(event){ paginate(beginIndex)  }">Back</Button>
                         <Button class="button large" click="(event){ event.preventDefault(); goBack();  }">Back</Button>
                  </div>
                  <Footer>Made by Tarados Feroces</Footer>`;
 }
 }
+
+const beginIndex = 10;
+
+const paginate = (index) => {
+    // httpModule.doRequest('POST', '/')
+};
