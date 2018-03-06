@@ -16,7 +16,8 @@
                 view,
                 loaded: false,
             };
-
+            return this;
+        }
 
         viewUpdate(context) {
             this.lastView.update(context);
@@ -26,8 +27,6 @@
             parent.appendChild(this.lastView.element);
             this.lastView.show();
         }
-
-
 
         pageUpdate(url) {
             this.hideLast();
@@ -86,4 +85,3 @@
     window.router = new Router();
 
 })();
-
