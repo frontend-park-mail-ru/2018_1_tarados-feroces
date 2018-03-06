@@ -3,11 +3,11 @@
 class AuthorizedView extends BaseView {
 
     preRender() {
-        httpModule.doPost('/me'.then(
+        httpModule.doGet('/me').then(
             (response) => {
                 this.context = response;
             }
-        ));
+        );
     }
 
     render() {
