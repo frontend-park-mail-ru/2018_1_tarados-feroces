@@ -7,6 +7,9 @@ class Router {
         this.urls = {};
         this.insertionElement = document.querySelector('.root');
 
+        window.addEventListener('popstate', () => {
+            this.go(document.location.pathname);
+        });
     }
 
     addUrl(url, view) {
@@ -35,8 +38,6 @@ class Router {
 
                     this.lastView = this.urls[url].view;
 
-                    console.log(this);
-
                     this.showPage(url);
                 }
             );
@@ -45,8 +46,6 @@ class Router {
         this.hideLast();
 
         this.lastView = this.urls[url].view;
-
-        // console.log(this);
 
         this.showPage(url);
 
