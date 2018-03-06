@@ -6,7 +6,6 @@ class Router {
         this.lastView = null;
         this.urls = {};
         this.insertionElement = document.querySelector('.root');
-
     }
 
     addUrl(url, view) {
@@ -18,12 +17,18 @@ class Router {
         return this;
     }
 
-    go(url, insertionElement = this.insertionElement) {
+    pageUpdate(url) {
+        this.hideLast();
+
+        this.lastView = this.urls[url].view;
+
+        this.showPage(url);
+    }
+
+    route(url, insertionElement = this.insertionElement) {
         if (!this.urls[url]) {
             return false;
         }
-
-        history.pushState({path: url}, '', url);
 
         if (!this.urls[url].loaded) {
             this.urls[url].loaded = true;
@@ -31,24 +36,22 @@ class Router {
                 (response) => {
                     this.urls[url].view.__render();
                     insertionElement.appendChild(this.urls[url].view.element);
-                    this.hideLast();
 
-                    this.lastView = this.urls[url].view;
-
-                    console.log(this);
-
-                    this.showPage(url);
+                    this.pageUpdate(url);
                 }
             );
         }
 
-        this.hideLast();
+        this.pageUpdate(url);
 
-        this.lastView = this.urls[url].view;
+        return true;
 
-        // console.log(this);
+    }
 
-        this.showPage(url);
+    go(url, insertionElement = this.insertionElement) {
+        if (this.route(url, insertionElement)) {
+            window.history.pushState({path: url}, url, url);
+        }
 
         return true;
     }
@@ -59,5 +62,11 @@ class Router {
 
     hideLast() {
         this.lastView && this.lastView.hide();
+    }
+
+    start() {
+        window.addEventListener('popstate', (event) => {
+            this.route(window.location.pathname);
+        });
     }
 }
