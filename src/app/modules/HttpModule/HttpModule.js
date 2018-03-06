@@ -2,43 +2,66 @@
 
 class HttpModule {
 
-    doRequest(method = 'GET', url = '/', data = null) {
-        return new Promise((resolve, reject) => {
-            const xhr = new XMLHttpRequest();
+    constructor() {
+        this.domen = 'http://deadlinez.herokuapp.com/alexalone';
+    }
 
-            xhr.open(method, url, true);
+    doGet(url) {
+        return new Promise((resolve, reject) => {
+            const xhr = this.doRequest('GET', url);
 
             xhr.onload = () => {
-
                 const response = JSON.parse(xhr.responseText);
                 console.log(response);
 
                 if (xhr.status === 200) {
                     resolve(response);
                 } else {
-                    // const error = new Error(response.message);
-                    // error.code = xhr.status;
-                    reject(response['message']);
+                    reject(response.message);
                 }
             };
 
             xhr.onerror = () => {
                 reject(new Error('Network error'));
-
             };
 
-            xhr.withCredentials = true;
-
-            if (method === 'POST') {
-                xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-                xhr.send(JSON.stringify(data));
-            } else {
-                xhr.send();
-            }
-
-
+            xhr.send();
         });
     }
+
+    doPost(url, data = {}) {
+        return new Promise((resolve, reject) => {
+            const xhr = this.doRequest('POST', url);
+
+            xhr.onload = () => {
+                const response = JSON.parse(xhr.responseText);
+                console.log(response);
+
+                if (xhr.status === 200) {
+                    resolve(response);
+                } else {
+                    reject(response.message);
+                }
+            };
+
+            xhr.onerror = () => {
+                reject(new Error('Network error'));
+            };
+
+            xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+
+            xhr.send(JSON.stringify(data));
+        });
+    }
+
+    doRequest(method = 'GET', url = '/') {
+        const xhr = new XMLHttpRequest();
+        xhr.open(method, `${this.domen}${url}`, true);
+        xhr.withCredentials = true;
+
+        return xhr;
+    }
+
 }
 
 const httpModule = new HttpModule();

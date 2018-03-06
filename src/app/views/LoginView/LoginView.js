@@ -31,7 +31,7 @@ const validateLogin = () => {
     const blocks = [...document.querySelector('.login').getElementsByClassName('input-block')];
     if (blocks.reduce((result, current) => result + validateLoginInput(current), 0) == blocks.length) {
 
-        httpModule.doRequest('POST', 'http://deadlinez.herokuapp.com/alexalone/signin',
+        httpModule.doPost('/signin',
             {
                 login: blocks[0].querySelector('input').value,
                 password: blocks[1].querySelector('input').value,

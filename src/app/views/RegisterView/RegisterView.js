@@ -18,12 +18,12 @@ class RegisterView extends BaseView {
                             blur="() { validateBlurRegistrationInput(document.querySelector('.registration').getElementsByClassName('input-block')[1]) }">
                             </Input>
                             <Input block-class="user-password" error-class="hidden" error-text="empty password"
-                            label-text="Password:" type="text" placeholder="Enter password"
+                            label-text="Password:" type="password" placeholder="Enter password"
                             focus="() { validateFocusRegistrationInput(document.querySelector('.registration').getElementsByClassName('input-block')[2]) }"
                             blur="() { validateBlurRegistrationInput(document.querySelector('.registration').getElementsByClassName('input-block')[2]) }">
                             </Input>
                             <Input block-class="user-repeat-password" error-class="hidden" error-text="empty password"
-                            label-text="Repeat password:" type="text" placeholder="Enter password"
+                            label-text="Repeat password:" type="password" placeholder="Enter password"
                             focus="() { validateFocusRegistrationInput(document.querySelector('.registration').getElementsByClassName('input-block')[3]) }"
                             blur="() { validateBlurRegistrationInput(document.querySelector('.registration').getElementsByClassName('input-block')[3]) }">
                             </Input>
@@ -40,7 +40,7 @@ class RegisterView extends BaseView {
 const validateRegistration = () => {
     const blocks = [...document.querySelector('.registration').getElementsByClassName('input-block')];
     if (blocks.reduce((result, current) => result + validateRegistrationInput(current), 0) == blocks.length) {
-        httpModule.doRequest('POST', 'http://deadlinez.herokuapp.com/alexalone/signup',
+        httpModule.doPost('/signup',
             {
                 login: blocks[0].querySelector('input').value,
                 email: blocks[1].querySelector('input').value,
