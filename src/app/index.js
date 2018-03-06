@@ -23,4 +23,5 @@ router
         new LeaderboardView()
     );
 
+router.start();
 router.go(document.location.pathname);
