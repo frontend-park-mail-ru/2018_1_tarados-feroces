@@ -1,6 +1,6 @@
 'use strict';
 
-(function () {
+(function() {
 
     class RegisterView extends BaseView {
 
