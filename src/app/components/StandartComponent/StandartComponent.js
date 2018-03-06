@@ -1,6 +1,8 @@
 'use strict';
 
-class StandartComponent extends BaseComponent {
+import BaseComponent from '../BaseComponent/BaseComponent.js';
+
+export default class StandartComponent extends BaseComponent {
 
     constructor() {
         super(standartTemplate);

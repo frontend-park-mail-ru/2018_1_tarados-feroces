@@ -1,6 +1,9 @@
 'use strict';
 
-class BaseComponent {
+import templateManager from '../../modules/TemplateManager/TemplateManager.js';
+import router from "../../modules/Router/Router.js";
+
+export default class BaseComponent {
 
     constructor(template) {
         this._element = null;

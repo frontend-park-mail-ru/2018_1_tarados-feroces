@@ -1,6 +1,8 @@
 'use strict';
 
-class RegisterView extends BaseView {
+import BaseView from '../BaseView/BaseView.js'
+
+export default class RegisterView extends BaseView {
 
     render() {
         return `<div class="page">

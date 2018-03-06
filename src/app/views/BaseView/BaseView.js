@@ -1,6 +1,11 @@
 'use strict';
 
-class BaseView {
+import htmlParser from '../../modules/HtmlParser/HtmlParser.js';
+import templateManager from '../../modules/TemplateManager/TemplateManager.js';
+
+
+
+export default class BaseView {
 
     constructor() {
         this.element = null;

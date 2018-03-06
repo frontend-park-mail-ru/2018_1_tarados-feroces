@@ -1,6 +1,12 @@
 'use strict';
 
-const router = new Router();
+import router from './modules/Router/Router.js';
+import LoginView from './views/LoginView/LoginView.js';
+import MenuView from './views/MenuView/MenuView.js';
+import RegisterView from './views/RegisterView/RegisterView.js';
+import AuthorizedView from './views/AuthorizedView/AuthorizedView.js';
+import LeaderboardView from './views/LeaderboardView/LeaderboardView.js';
+
 
 router
     .addUrl(
@@ -23,5 +29,4 @@ router
         new LeaderboardView()
     );
 
-router.start();
 router.go(document.location.pathname);

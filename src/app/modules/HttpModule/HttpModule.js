@@ -65,3 +65,5 @@ class HttpModule {
 }
 
 const httpModule = new HttpModule();
+
+export default httpModule;

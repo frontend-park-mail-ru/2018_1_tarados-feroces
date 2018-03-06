@@ -1,6 +1,9 @@
 'use strict';
 
-class MenuView extends BaseView {
+import BaseView from '../BaseView/BaseView.js';
+import router from '../../modules/Router/Router.js';
+
+export default class MenuView extends BaseView {
 
     render() {
         return `<div class="menu">
@@ -16,18 +19,18 @@ class MenuView extends BaseView {
     }
 }
 
-const goToLogin = () => {
+window.goToLogin = () => {
     router.go('/login/');
 };
 
-const goToSignUp = () => {
+window.goToSignUp = () => {
     router.go('/signup/');
 };
 
-const goToScore = () => {
+window.goToScore = () => {
     router.go('/leaderboard/');
 };
 
-const goBack = () => {
+window.goBack = () => {
     router.go('/');
 };

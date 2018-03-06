@@ -1,5 +1,13 @@
 'use strict';
 
+import Button from '../../components/Button/Button.js';
+import Input from '../../components/Input/Input.js';
+import Header from '../../components/Header/Header.js';
+import MenuPoint from '../../components/MenuPoint/MenuPoint.js';
+import Form from '../../components/Form/Form.js';
+import Footer from '../../components/Footer/Footer.js';
+import StandartComponent from '../../components/StandartComponent/StandartComponent.js';
+
 class HtmlParser {
 
     constructor() {
@@ -136,3 +144,5 @@ class HtmlParser {
 }
 
 const htmlParser = new HtmlParser();
+
+export default htmlParser;

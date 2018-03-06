@@ -1,6 +1,8 @@
 'use strict';
 
-class Button extends BaseComponent {
+import BaseComponent from '../BaseComponent/BaseComponent.js';
+
+export default class Button extends BaseComponent {
 
     constructor() {
         super(buttonTemplate);

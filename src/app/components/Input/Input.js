@@ -1,6 +1,8 @@
 'use strict';
 
-class Input extends BaseComponent {
+import BaseComponent from '../BaseComponent/BaseComponent.js';
+
+export default class Input extends BaseComponent {
 
     constructor() {
         super(inputTemplate);

@@ -1,6 +1,8 @@
 'use strict';
 
-class LeaderboardView extends BaseView {
+import BaseView from '../BaseView/BaseView.js'
+
+export default class LeaderboardView extends BaseView {
 
     constructor(context) {
         super();

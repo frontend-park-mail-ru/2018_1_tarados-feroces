@@ -6,6 +6,7 @@ class Router {
         this.lastView = null;
         this.urls = {};
         this.insertionElement = document.querySelector('.root');
+        this.start();
     }
 
     addUrl(url, view) {
@@ -70,3 +71,7 @@ class Router {
         });
     }
 }
+
+const router = new Router();
+
+export default router;

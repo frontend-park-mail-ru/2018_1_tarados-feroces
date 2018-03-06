@@ -1,6 +1,8 @@
 'use strict';
 
-class MenuPoint extends BaseComponent {
+import BaseComponent from '../BaseComponent/BaseComponent.js';
+
+export default class MenuPoint extends BaseComponent {
 
     constructor() {
         super(menuPointTemplate);

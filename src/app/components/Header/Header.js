@@ -1,6 +1,8 @@
 'use strict';
 
-class Header extends BaseComponent {
+import BaseComponent from '../BaseComponent/BaseComponent.js';
+
+export default class Header extends BaseComponent {
 
     constructor() {
         super(headerTemplate);

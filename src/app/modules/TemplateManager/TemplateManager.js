@@ -35,3 +35,5 @@ class TemplateManager {
 }
 
 const templateManager = new TemplateManager();
+
+export default templateManager;

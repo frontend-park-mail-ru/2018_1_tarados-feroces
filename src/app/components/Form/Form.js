@@ -1,6 +1,8 @@
 'use strict';
 
-class Form extends BaseComponent {
+import BaseComponent from '../BaseComponent/BaseComponent.js';
+
+export default class Form extends BaseComponent {
 
     constructor() {
         super(formTemplate);

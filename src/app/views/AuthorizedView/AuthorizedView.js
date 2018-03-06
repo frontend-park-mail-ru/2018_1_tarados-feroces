@@ -1,6 +1,8 @@
 'use strict';
 
-class AuthorizedView extends BaseView {
+import BaseView from '../BaseView/BaseView.js'
+
+export default class AuthorizedView extends BaseView {
 
     preRender() {
         httpModule.doGet('/me').then(
