@@ -1,33 +1,38 @@
 'use strict';
 
-class MenuView extends BaseView {
+(function() {
 
-    render() {
-        return `<div class="menu">
-                    <Header>Menu</Header>
-                    <div class="points">
-                        <ul>
-                            <MenuPoint click="(event) {event.preventDefault(); goToSignUp();}">SignUp</MenuPoint>
-                            <MenuPoint click="(event) {event.preventDefault(); goToLogin();}">SignIn</MenuPoint>
-                            <MenuPoint click="(event) {event.preventDefault(); goToScore();}">Scoreboard</MenuPoint>
-                        </ul>
-                    </div>
-                </div>`;
+    class MenuView extends BaseView {
+
+        render() {
+            return `<div class="menu">
+                        <Header>Menu</Header>
+                        <div class="points">
+                            <ul>
+                                <MenuPoint click="(event) {event.preventDefault(); goToSignUp();}">SignUp</MenuPoint>
+                                <MenuPoint click="(event) {event.preventDefault(); goToLogin();}">SignIn</MenuPoint>
+                                <MenuPoint click="(event) {event.preventDefault(); goToScore();}">Scoreboard</MenuPoint>
+                            </ul>
+                        </div>
+                    </div>`;
+        }
     }
-}
 
-const goToLogin = () => {
-    router.go('/login/');
-};
+    window.goToLogin = () => {
+        router.go('/login/');
+    };
 
-const goToSignUp = () => {
-    router.go('/signup/');
-};
+    window.goToSignUp = () => {
+        router.go('/signup/');
+    };
 
-const goToScore = () => {
-    router.go('/leaderboard/');
-};
+    window.goToScore = () => {
+        router.go('/leaderboard/');
+    };
 
-const goBack = () => {
-    router.go('/');
-};
+    window.goBack = () => {
+        router.go('/');
+    };
+
+    window.MenuView = MenuView;
+})();

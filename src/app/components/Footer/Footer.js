@@ -1,9 +1,14 @@
 'use strict';
 
-class Footer extends BaseComponent {
-    constructor() {
-        super(footerTemplate);
-    }
-}
+(function() {
 
-const footerTemplate = '<div class="footer"><p>{{text}}</p></div>';
+    class Footer extends BaseComponent {
+        constructor() {
+            super(footerTemplate);
+        }
+    }
+
+    const footerTemplate = '<div class="footer"><p>{{text}}</p></div>';
+
+    window.Footer = Footer;
+})();

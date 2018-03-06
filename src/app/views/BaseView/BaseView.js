@@ -1,35 +1,39 @@
 'use strict';
 
-class BaseView {
+(function() {
 
-    constructor() {
-        this.element = null;
-        this.context = {};
-    }
+    class BaseView {
 
-    preRender() {
-        return new Promise((resolve, reject) => resolve({}));
-    }
+        constructor() {
+            this.element = null;
+            this.context = {};
+        }
 
-    render() {
-       return '';
-    }
+        preRender() {
+            return new Promise((resolve, reject) => resolve({}));
+        }
 
-    __render() {
-        this.element = htmlParser.getHTML(templateManager.getHTML(this.context, this.render()));
-        return this.element;
-    }
+        render() {
+           return '';
+        }
 
-    hide() {
-        if (this.element) {
-            this.element.classList.add('hidden');
+        __render() {
+            this.element = htmlParser.getHTML(templateManager.getHTML(this.context, this.render()));
+            return this.element;
+        }
+
+        hide() {
+            if (this.element) {
+                this.element.classList.add('hidden');
+            }
+        }
+
+        show() {
+            if (this.element) {
+                this.element.classList.remove('hidden');
+            }
         }
     }
 
-    show() {
-        if (this.element) {
-            this.element.classList.remove('hidden');
-        }
-    }
-}
-
+    window.BaseView = BaseView;
+})();
