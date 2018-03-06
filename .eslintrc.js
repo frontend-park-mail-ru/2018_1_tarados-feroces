@@ -17,12 +17,12 @@ module.exports = {
         "padded-blocks": "off",
         "operator-assignment": ["error", "always"],
         "require-jsdoc": ["error", {
-        "require": {
-            "FunctionDeclaration": false,
-            "MethodDefinition": false,
-            "ClassDeclaration": false,
-            "ArrowFunctionExpression": false,
-            "FunctionExpression": false
+            "require": {
+                "FunctionDeclaration": false,
+                "MethodDefinition": false,
+                "ClassDeclaration": false,
+                "ArrowFunctionExpression": false,
+                "FunctionExpression": false
             }
         }],
         "max-len": ["error", {"code": 160}]

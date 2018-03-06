@@ -8,6 +8,10 @@
             super();
             this.context = context;
         }
+      
+        update(context = {}) {
+            this.context = this.context.rows.concat(context.rows);
+        }
 
         preRender() {
             return httpModule.doGet('/score').then(
@@ -36,17 +40,23 @@
                                 </div>
                                 {{/each}}
                             </div>
-                            <Button class="button large" click="(event){ paginate(beginIndex)  }">Back</Button>
-                            <Button class="button large" click="(event){ event.preventDefault(); goBack();  }">Back</Button>
-                     </div>
-                     <Footer>Made by Tarados Feroces</Footer>`;
+                            {{/each}}
+                        </div>
+                        <Button class="button large" click="(event){ paginate(indexOfLeaderboard)  }">Back</Button>
+                        <Button class="button large" click="(event){ event.preventDefault(); goBack();  }">Back</Button>
+                 </div>
+                 <Footer>Made by Tarados Feroces</Footer>`;
         }
     }
 
-    const beginIndex = 10;
+    let indexOfLeaderboard = 10;
 
     const paginate = (index) => {
-        // httpModule.doRequest('POST', '/')
+        const paginationConstant = 10;
+        httpModule.doPost('/score', {index}).then(
+            (response) => router.viewUpdate(response)
+        );
+        index += paginationConstant;
     };
 
     window.LeaderboardView = LeaderboardView;

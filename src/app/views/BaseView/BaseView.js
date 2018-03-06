@@ -17,6 +17,10 @@
            return '';
         }
 
+        update(context = {}) {
+            return null;
+        }
+      
         __render() {
             this.element = htmlParser.getHTML(templateManager.getHTML(this.context, this.render()));
             return this.element;

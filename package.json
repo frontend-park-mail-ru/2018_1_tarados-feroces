@@ -7,7 +7,6 @@
     "test": "echo 'hello'",
     "eslint": "./node_modules/.bin/eslint ./src/",
     "flint": "./node_modules/.bin/eslint --fix ./src/"
-
   },
   "repository": {
     "type": "git",
@@ -20,12 +19,9 @@
   },
   "homepage": "https://github.com/tarados-feroces/frontend#readme",
   "devDependencies": {
-    "eslint": "^4.17.0",
+    "eslint": "^4.18.2",
     "eslint-config-google": "^0.9.1",
-
     "express": "^4.16.2"
   },
   "dependencies": {}
 }
-
-

@@ -17,8 +17,17 @@
                 loaded: false,
             };
 
-            return this;
+
+        viewUpdate(context) {
+            this.lastView.update(context);
+            const parent = this.lastView.element.parentNode;
+            parent.removeChild(this.lastView.element);
+            this.lastView.__render();
+            parent.appendChild(this.lastView.element);
+            this.lastView.show();
         }
+
+
 
         pageUpdate(url) {
             this.hideLast();
