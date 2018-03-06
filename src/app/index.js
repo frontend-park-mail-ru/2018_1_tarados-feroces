@@ -50,7 +50,6 @@ router
     )
     .addUrl(/leaderboard/,
         new LeaderboardView()
-        // () => { return leaderboardContent },
     );
 
 router.go(document.location.pathname);

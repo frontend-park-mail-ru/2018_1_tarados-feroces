@@ -16,17 +16,6 @@ class MenuView extends BaseView {
     }
 }
 
-// const menuTemplate = '<div class="menu">' +
-//     '<Header>Menu</Header>' +
-//     '<div class="points">' +
-//     '<ul>' +
-//     '<MenuPoint click="(event) {event.preventDefault(); goToSignUp();}">SignUp</MenuPoint>' +
-//     '<MenuPoint click="(event) {event.preventDefault(); goToLogin();}">SignIn</MenuPoint>' +
-//     '<MenuPoint click="(event) {event.preventDefault(); goToScore();}">Scoreboard</MenuPoint>' +
-//     '</ul>' +
-//     '</div>' +
-//     '</div>';
-
 const goToLogin = () => {
     router.go('/login/');
 };
