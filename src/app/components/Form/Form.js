@@ -1,12 +1,15 @@
 'use strict';
 
-import BaseComponent from '../BaseComponent/BaseComponent.js';
+(function() {
 
-export default class Form extends BaseComponent {
+    class Form extends BaseComponent {
 
-    constructor() {
-        super(formTemplate);
+        constructor() {
+            super(formTemplate);
+        }
     }
-}
 
-const formTemplate = '<form method="{{method}}"></form>';
+    const formTemplate = '<form method="{{method}}"></form>';
+
+    window.Form = Form;
+})();

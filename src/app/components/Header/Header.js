@@ -1,14 +1,17 @@
 'use strict';
 
-import BaseComponent from '../BaseComponent/BaseComponent.js';
+(function() {
 
-export default class Header extends BaseComponent {
+    class Header extends BaseComponent {
 
-    constructor() {
-        super(headerTemplate);
+        constructor() {
+            super(headerTemplate);
+        }
     }
-}
 
-const headerTemplate = '<div class="header {{class}}">' +
-    '<h1>{{text}}</h1>' +
-    '</div>';
+    const headerTemplate = '<div class="header {{class}}">' +
+        '<h1>{{text}}</h1>' +
+        '</div>';
+
+    window.Header = Header;
+})();

@@ -1,50 +1,53 @@
 'use strict';
 
-import BaseView from '../BaseView/BaseView.js'
+(function() {
 
-export default class LeaderboardView extends BaseView {
+    class LeaderboardView extends BaseView {
 
-    constructor(context) {
-        super();
-        this.context = context;
-    }
+        constructor(context) {
+            super();
+            this.context = context;
+        }
 
-    preRender() {
-        return httpModule.doGet('/score').then(
-            (response) => {
-                this.context = response;
-            }
-        );
-    }
+        preRender() {
+            return httpModule.doGet('/score').then(
+                (response) => {
+                    this.context = response;
+                }
+            );
+        }
 
-    render() {
-        return `<div class="leaderboard">
-                        <Header>Leaderboard</Header>
-                        <div class="table">
-                            <div class="table-row">
-                                {{#each headers}}
-                                <div class="table-data table-header">{{this}}</div>
+        render() {
+            return `<div class="leaderboard">
+                            <Header>Leaderboard</Header>
+                            <div class="table">
+                                <div class="table-row">
+                                    {{#each headers}}
+                                    <div class="table-data table-header">{{this}}</div>
+                                    {{/each}}
+                                </div>
+                                {{#each rows}}
+                                <div class="table-row">
+                                {{#each this}}  
+                                    <div class="table-data">
+                                    {{this}}
+                                    </div>
+                                {{/each}}
+                                </div>
                                 {{/each}}
                             </div>
-                            {{#each rows}}
-                            <div class="table-row">
-                            {{#each this}}  
-                                <div class="table-data">
-                                {{this}}
-                                </div>
-                            {{/each}}
-                            </div>
-                            {{/each}}
-                        </div>
-                        <Button class="button large" click="(event){ paginate(beginIndex)  }">Back</Button>
-                        <Button class="button large" click="(event){ event.preventDefault(); goBack();  }">Back</Button>
-                 </div>
-                 <Footer>Made by Tarados Feroces</Footer>`;
-}
-}
+                            <Button class="button large" click="(event){ paginate(beginIndex)  }">Back</Button>
+                            <Button class="button large" click="(event){ event.preventDefault(); goBack();  }">Back</Button>
+                     </div>
+                     <Footer>Made by Tarados Feroces</Footer>`;
+        }
+    }
 
-const beginIndex = 10;
+    const beginIndex = 10;
 
-const paginate = (index) => {
-    // httpModule.doRequest('POST', '/')
-};
+    const paginate = (index) => {
+        // httpModule.doRequest('POST', '/')
+    };
+
+    window.LeaderboardView = LeaderboardView;
+})();

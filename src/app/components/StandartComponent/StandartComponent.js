@@ -1,14 +1,17 @@
 'use strict';
 
-import BaseComponent from '../BaseComponent/BaseComponent.js';
+(function() {
 
-export default class StandartComponent extends BaseComponent {
+    class StandartComponent extends BaseComponent {
 
-    constructor() {
-        super(standartTemplate);
+        constructor() {
+            super(standartTemplate);
+        }
     }
-}
 
-const standartTemplate = '<{{tag}} class="{{class}}">' +
-    '{{text}}' +
-    '</{{tag}}>';
+    const standartTemplate = '<{{tag}} class="{{class}}">' +
+        '{{text}}' +
+        '</{{tag}}>';
+
+    window.StandartComponent = StandartComponent;
+})();

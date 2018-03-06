@@ -1,36 +1,38 @@
 'use strict';
 
-import BaseView from '../BaseView/BaseView.js';
-import router from '../../modules/Router/Router.js';
+(function() {
 
-export default class MenuView extends BaseView {
+    class MenuView extends BaseView {
 
-    render() {
-        return `<div class="menu">
-                    <Header>Menu</Header>
-                    <div class="points">
-                        <ul>
-                            <MenuPoint click="(event) {event.preventDefault(); goToSignUp();}">SignUp</MenuPoint>
-                            <MenuPoint click="(event) {event.preventDefault(); goToLogin();}">SignIn</MenuPoint>
-                            <MenuPoint click="(event) {event.preventDefault(); goToScore();}">Scoreboard</MenuPoint>
-                        </ul>
-                    </div>
-                </div>`;
+        render() {
+            return `<div class="menu">
+                        <Header>Menu</Header>
+                        <div class="points">
+                            <ul>
+                                <MenuPoint click="(event) {event.preventDefault(); goToSignUp();}">SignUp</MenuPoint>
+                                <MenuPoint click="(event) {event.preventDefault(); goToLogin();}">SignIn</MenuPoint>
+                                <MenuPoint click="(event) {event.preventDefault(); goToScore();}">Scoreboard</MenuPoint>
+                            </ul>
+                        </div>
+                    </div>`;
+        }
     }
-}
 
-window.goToLogin = () => {
-    router.go('/login/');
-};
+    window.goToLogin = () => {
+        router.go('/login/');
+    };
 
-window.goToSignUp = () => {
-    router.go('/signup/');
-};
+    window.goToSignUp = () => {
+        router.go('/signup/');
+    };
 
-window.goToScore = () => {
-    router.go('/leaderboard/');
-};
+    window.goToScore = () => {
+        router.go('/leaderboard/');
+    };
 
-window.goBack = () => {
-    router.go('/');
-};
+    window.goBack = () => {
+        router.go('/');
+    };
+
+    window.MenuView = MenuView;
+})();

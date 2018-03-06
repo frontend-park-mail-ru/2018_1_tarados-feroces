@@ -1,39 +1,41 @@
 'use strict';
 
-class TemplateManager {
+(function() {
 
-    constructor(templateId) {
-        if (!templateId) {
-            return;
-        }
+    class TemplateManager {
 
-        this.changeTemplate(templateId);
-    }
+        constructor(templateId) {
+            if (!templateId) {
+                return;
+            }
 
-    getElement(context, templateId) {
-        if (templateId) {
             this.changeTemplate(templateId);
         }
-        const html = this.template(context);
-        const element = document.createElement('div');
 
-        element.innerHTML = html;
+        getElement(context, templateId) {
+            if (templateId) {
+                this.changeTemplate(templateId);
+            }
+            const html = this.template(context);
+            const element = document.createElement('div');
 
-        return element;
-    };
+            element.innerHTML = html;
 
-    getHTML(context, templateId) {
-        if (templateId) {
-            this.changeTemplate(templateId);
+            return element;
+        };
+
+        getHTML(context, templateId) {
+            if (templateId) {
+                this.changeTemplate(templateId);
+            }
+            return this.template(context);
         }
-        return this.template(context);
+
+        changeTemplate(templateId) {
+            this.template = Handlebars.compile(templateId);
+        }
     }
 
-    changeTemplate(templateId) {
-        this.template = Handlebars.compile(templateId);
-    }
-}
+    window.templateManager = new TemplateManager();
 
-const templateManager = new TemplateManager();
-
-export default templateManager;
+})();

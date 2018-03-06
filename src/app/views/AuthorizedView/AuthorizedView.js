@@ -1,19 +1,23 @@
 'use strict';
 
-import BaseView from '../BaseView/BaseView.js'
+(function() {
 
-export default class AuthorizedView extends BaseView {
+    class AuthorizedView extends BaseView {
 
-    preRender() {
-        httpModule.doGet('/me').then(
-            (response) => {
-                this.context = response;
-            }
-        );
+        preRender() {
+            httpModule.doGet('/me').then(
+                (response) => {
+                    this.context = response;
+                }
+            );
+        }
+
+        render() {
+            return '<Header>Hello, {{username}}</Header>' +
+                    '<Button class="button large" click="(event){ event.preventDefault(); goBack();  }">Back</Button>';
+        }
     }
 
-    render() {
-        return '<Header>Hello, {{username}}</Header>' +
-                '<Button class="button large" click="(event){ event.preventDefault(); goBack();  }">Back</Button>';
-    }
-}
+    window.AuthorizedView = AuthorizedView;
+})();
+

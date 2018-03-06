@@ -1,12 +1,15 @@
 'use strict';
 
-import BaseComponent from '../BaseComponent/BaseComponent.js';
+(function() {
 
-export default class Button extends BaseComponent {
+    class Button extends BaseComponent {
 
-    constructor() {
-        super(buttonTemplate);
+        constructor() {
+            super(buttonTemplate);
+        }
     }
-}
 
-const buttonTemplate = '<div class="button {{class}}"><p>{{text}}</p></div>';
+    const buttonTemplate = '<div class="button {{class}}"><p>{{text}}</p></div>';
+
+    window.Button = Button;
+})();

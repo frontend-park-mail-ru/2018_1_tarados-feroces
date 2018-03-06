@@ -1,12 +1,15 @@
 'use strict';
 
-import BaseComponent from '../BaseComponent/BaseComponent.js';
+(function() {
 
-export default class MenuPoint extends BaseComponent {
+    class MenuPoint extends BaseComponent {
 
-    constructor() {
-        super(menuPointTemplate);
+        constructor() {
+            super(menuPointTemplate);
+        }
     }
-}
 
-const menuPointTemplate = '<li><a href="{{href}}">{{text}}</a></li>';
+    const menuPointTemplate = '<li><a href="{{href}}">{{text}}</a></li>';
+
+    window.MenuPoint = MenuPoint;
+})();
