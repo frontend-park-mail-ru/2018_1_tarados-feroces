@@ -11,7 +11,7 @@
             return this.doRequest('GET', url);
         }
 
-        doPost(url, data = {}) {
+        doPost(url, data = null) {
             return this.doRequest('POST', url, data);
         }
 
@@ -20,7 +20,7 @@
                 const xhr = new XMLHttpRequest();
                 xhr.open(method, `${this.domen}${url}`, true);
 
-                xhr.onload = () => {
+                xhr.addEventListener('load', () => {
                     const response = JSON.parse(xhr.responseText);
                     console.log(response);
 
@@ -29,21 +29,16 @@
                     } else {
                         reject(response.message);
                     }
-                };
+                });
 
-                xhr.onerror = () => {
+                xhr.addEventListener('error', () => {
                     reject(new Error('Network error'));
-                };
+                });
 
                 xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
                 xhr.withCredentials = true;
 
-                if (data) {
-                    xhr.send(JSON.stringify(data));
-                } else {
-                    xhr.send();
-                }
-
+                data ? xhr.send(JSON.stringify(data)) : xhr.send();
             });
         }
 
