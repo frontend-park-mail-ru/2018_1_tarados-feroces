@@ -9,6 +9,7 @@ app.use('/login', express.static(path.join('src')));
 app.use('/signup', express.static(path.join('src')));
 app.use('/test', express.static(path.join('src')));
 app.use('/leaderboard', express.static(path.join('src')));
+app.use('/settings', express.static(path.join('src')));
 
 app.get('/login/id', function(req, res) {
     res.status(200).json({text: 'hello world'});

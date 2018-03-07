@@ -34,7 +34,8 @@
                                 </div>
                             </Form>
                         </div>
-                    </div>`;
+                    </div>
+                    <Footer>Made by Tarados Feroces</Footer>\;`;
         }
     }
 

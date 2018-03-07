@@ -16,9 +16,11 @@
                 MenuPoint: () => new MenuPoint(),
                 Form: () => new Form(),
                 Footer: () => new Footer(),
+                Image: () => new Image(),
                 div: () => new StandartComponent(),
                 a: () => new StandartComponent(),
                 p: () => new StandartComponent(),
+                img: () => new StandartComponent(),
                 ul: () => new StandartComponent(),
                 table: () => new StandartComponent(),
                 tr: () => new StandartComponent(),
@@ -100,6 +102,7 @@
             if (!object || !object.object) {
                 return object;
             }
+            debugger;
 
             this.setObjectAttributes(object);
 
@@ -112,6 +115,7 @@
 
         getHTML(template) {
             this.stringToObject(template);
+            debugger;
             const html = document.createElement('div');
             this.objects.forEach((item) => html.appendChild(this.getElement(item)));
             this.objects = [];

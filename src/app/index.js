@@ -19,6 +19,8 @@ router
     )
     .addUrl(/leaderboard/,
         new LeaderboardView()
-    );
+    )
+    .addUrl(/settings/,
+        new SettingsView());
 
 router.go(document.location.pathname);
