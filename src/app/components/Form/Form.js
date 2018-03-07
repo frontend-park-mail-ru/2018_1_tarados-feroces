@@ -1,6 +1,5 @@
-'use strict';
-
 (function() {
+    'use strict';
 
     class Form extends BaseComponent {
 

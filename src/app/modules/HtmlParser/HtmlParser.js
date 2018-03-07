@@ -1,6 +1,5 @@
-'use strict';
-
 (function() {
+    'use strict';
 
     class HtmlParser {
 
@@ -69,11 +68,7 @@
             }
         }
 
-        performObject(object) {
-            if (!object || !object.object) {
-                return object;
-            }
-
+        setObjectAttributes(object) {
             const str = object.object.split(' ');
             object.tag = str[0];
             object.attributes = {};
@@ -99,6 +94,14 @@
 
                 object.attributes[currentPropName] = currentPropValue.slice(1, -1);
             }
+        }
+
+        performObject(object) {
+            if (!object || !object.object) {
+                return object;
+            }
+
+            this.setObjectAttributes(object);
 
             if (!object.children.length) {
                 return object;

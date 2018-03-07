@@ -1,6 +1,5 @@
-'use strict';
-
 (function() {
+    'use strict';
 
     class MenuPoint extends BaseComponent {
 
