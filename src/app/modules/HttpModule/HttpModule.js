@@ -8,31 +8,17 @@
         }
 
         doGet(url) {
-            return new Promise((resolve, reject) => {
-                const xhr = this.doRequest('GET', url);
-
-                xhr.onload = () => {
-                    const response = JSON.parse(xhr.responseText);
-                    console.log(response);
-
-                    if (xhr.status === 200) {
-                        resolve(response);
-                    } else {
-                        reject(response.message);
-                    }
-                };
-
-                xhr.onerror = () => {
-                    reject(new Error('Network error'));
-                };
-
-                xhr.send();
-            });
+            return this.doRequest('GET', url);
         }
 
         doPost(url, data = {}) {
+            return this.doRequest('POST', url, data);
+        }
+
+        doRequest(method = 'GET', url = '/', data = null) {
             return new Promise((resolve, reject) => {
-                const xhr = this.doRequest('POST', url);
+                const xhr = new XMLHttpRequest();
+                xhr.open(method, `${this.domen}${url}`, true);
 
                 xhr.onload = () => {
                     const response = JSON.parse(xhr.responseText);
@@ -50,17 +36,15 @@
                 };
 
                 xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+                xhr.withCredentials = true;
 
-                xhr.send(JSON.stringify(data));
+                if (data) {
+                    xhr.send(JSON.stringify(data));
+                } else {
+                    xhr.send();
+                }
+
             });
-        }
-
-        doRequest(method = 'GET', url = '/') {
-            const xhr = new XMLHttpRequest();
-            xhr.open(method, `${this.domen}${url}`, true);
-            xhr.withCredentials = true;
-
-            return xhr;
         }
 
     }
