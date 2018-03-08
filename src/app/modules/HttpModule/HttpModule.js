@@ -24,7 +24,7 @@
                     const response = JSON.parse(xhr.responseText);
                     console.log(response);
 
-                    if (xhr.status === 200) {
+                    if (xhr.status < 300) {
                         resolve(response);
                     } else {
                         reject(response.message);
