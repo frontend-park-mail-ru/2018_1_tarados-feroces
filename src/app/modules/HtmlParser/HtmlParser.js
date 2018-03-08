@@ -4,8 +4,8 @@
     class HtmlParser {
 
         constructor() {
-            this.regExp = /<[a-z0-9 _\-"'=(){}\[\],;:.!?]+>|<\/[a-z0-9 _\-"'=(){}\[\],;:.!?]+>/ig;
-            this.regExpBegin = /<([a-z0-9 _\-"'=(){}\[\],;:.!?]+)>/i;
+            this.regExp = /<[a-z0-9 _\-"'=(){}\[\],;:.!?\/]+>|<\/[a-z0-9 _\-"'=(){}\[\],;:.!?]+>/ig;
+            this.regExpEnd = /<\/[a-z0-9 _\-"'=(){}\[\],;:.!?]+>/i;
             this.objects = [];
             this.tagStack = [];
 
@@ -16,9 +16,11 @@
                 MenuPoint: () => new MenuPoint(),
                 Form: () => new Form(),
                 Footer: () => new Footer(),
+                Image: () => new Image(),
                 div: () => new StandartComponent(),
                 a: () => new StandartComponent(),
                 p: () => new StandartComponent(),
+                img: () => new StandartComponent(),
                 ul: () => new StandartComponent(),
                 table: () => new StandartComponent(),
                 tr: () => new StandartComponent(),
@@ -47,8 +49,8 @@
         }
 
         handleTag(tag) {
-            const result = this.regExpBegin.exec(tag);
-            result ? this.handleOpenTag(tag) : this.handleCloseTag(tag);
+            const result = this.regExpEnd.exec(tag);
+            result ? this.handleCloseTag(tag) : this.handleOpenTag(tag);
         }
 
         parseHtml(input) {
@@ -100,6 +102,8 @@
             if (!object || !object.object) {
                 return object;
             }
+            debugger;
+            console.log('LOL');
 
             this.setObjectAttributes(object);
 
