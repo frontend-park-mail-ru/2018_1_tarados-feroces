@@ -8,7 +8,7 @@
         }
     }
 
-    const imageTemplate = '<img class="{{class}}" src="{{source}}"></img>';
+    const imageTemplate = '<img class="{{class}}" src="{{src}}">';
 
     window.Image = Image;
 })();

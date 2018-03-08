@@ -4,8 +4,8 @@
     class HtmlParser {
 
         constructor() {
-            this.regExp = /<[a-z0-9 _\-"'=(){}\[\],;:.!?]+>|<\/[a-z0-9 _\-"'=(){}\[\],;:.!?]+>/ig;
-            this.regExpBegin = /<([a-z0-9 _\-"'=(){}\[\],;:.!?]+)>/i;
+            this.regExp = /<[a-z0-9 _\-"'=(){}\[\],;:.!?\/]+>|<\/[a-z0-9 _\-"'=(){}\[\],;:.!?]+>/ig;
+            this.regExpEnd = /<\/[a-z0-9 _\-"'=(){}\[\],;:.!?]+>/i;
             this.objects = [];
             this.tagStack = [];
 
@@ -49,8 +49,8 @@
         }
 
         handleTag(tag) {
-            const result = this.regExpBegin.exec(tag);
-            result ? this.handleOpenTag(tag) : this.handleCloseTag(tag);
+            const result = this.regExpEnd.exec(tag);
+            result ? this.handleCloseTag(tag) : this.handleOpenTag(tag);
         }
 
         parseHtml(input) {
@@ -103,6 +103,7 @@
                 return object;
             }
             debugger;
+            console.log('LOL');
 
             this.setObjectAttributes(object);
 
@@ -115,7 +116,6 @@
 
         getHTML(template) {
             this.stringToObject(template);
-            debugger;
             const html = document.createElement('div');
             this.objects.forEach((item) => html.appendChild(this.getElement(item)));
             this.objects = [];
