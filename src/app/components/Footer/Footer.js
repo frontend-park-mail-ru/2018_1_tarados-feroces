@@ -3,12 +3,11 @@
 
     class Footer extends BaseComponent {
 
-        constructor() {
-            super(footerTemplate);
+        render(context) {
+            this.template = `<div class="footer"><p>{{text}}</p></div>`;
+            super.render(context);
         }
     }
-
-    const footerTemplate = '<div class="footer"><p>{{text}}</p></div>';
 
     window.Footer = Footer;
 })();
