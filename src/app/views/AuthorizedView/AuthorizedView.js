@@ -28,7 +28,10 @@
 
     window.signOut = () => {
         httpModule.doPost('/signout').then(
-            (response) => router.go('/')
+            (response) => {
+                router.isAuth = false;
+                router.go('/');
+            }
         );
     };
 
