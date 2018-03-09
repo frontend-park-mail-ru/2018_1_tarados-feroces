@@ -133,7 +133,6 @@
         }
 
         getElement(object) {
-            debugger;
             const component = this.componentFactory[object.tag]();
             component.render(object.attributes);
 

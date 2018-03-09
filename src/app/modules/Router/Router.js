@@ -7,6 +7,11 @@
             this.lastView = null;
             this.urls = {};
             this.insertionElement = document.querySelector('.root');
+            this.isAuth = false;
+            httpModule.doGet('/me').then(
+                (response) => this.isAuth = true,
+                (reject) => this.isAuth = false
+            );
             this.start();
         }
 
@@ -36,29 +41,19 @@
         }
 
         checkAuth(url) {
-            let isAuth = false;
+            if (this.urls[url].view.needAuthorization() && !this.isAuth) {
+                return '/';
+            } else if (!this.urls[url].view.needAuthorization() && this.isAuth) {
+                return '/user/';
+            }
 
-            return httpModule.doGet('/me').then(
-                        (response) => isAuth = true,
-                        (reject) => isAuth = false
-                   ).then(
-                        (response) => {
-                            if (this.urls[url].view.needAuthorization() && !isAuth) {
-                                return '/';
-                            } else if (!this.urls[url].view.needAuthorization() && isAuth) {
-                                return '/user/';
-                            }
-                            return url;
-                        },
-                        (reject) => {
-                            if (this.urls[url].view.needAuthorization() && !isAuth) {
-                                return '/';
-                            } else if (!this.urls[url].view.needAuthorization() && isAuth) {
-                                return '/user/';
-                            }
-                            return url;
-                        }
-                   );
+            if (this.urls[url].view.needAuthorization() && !this.isAuth) {
+                return '/';
+            } else if (!this.urls[url].view.needAuthorization() && this.isAuth) {
+                return '/user/';
+            }
+
+            return url;
         }
 
         route(url, insertionElement = this.insertionElement) {
@@ -83,12 +78,9 @@
                 return false;
             }
 
-            this.checkAuth(url).then(
-                (url) => {
-                    this.route(url, insertionElement);
-                    window.history.pushState({path: url}, url, url);
-                }
-            );
+            url = this.checkAuth(url);
+            this.route(url, insertionElement);
+            window.history.pushState({path: url}, url, url);
         }
 
         showPage(url) {
