@@ -4,8 +4,8 @@
     class HtmlParser {
 
         constructor() {
-            this.regExp = /<[a-z0-9 _\-"'=(){}\[\],;:.!?\/]+>|<\/[a-z0-9 _\-"'=(){}\[\],;:.!?]+>/ig;
-            this.regExpEnd = /<\/[a-z0-9 _\-"'=(){}\[\],;:.!?]+>/i;
+            this.regExp = /<[a-z0-9 _\-"'=(){}\[\],;:.@!?\/]+>|<\/[a-z0-9 _\-"'=(){}\[\],;:.@!?]+>/ig;
+            this.regExpEnd = /<\/[a-z0-9 _\-"'=(){}\[\],;:.@!?]+>/i;
             this.objects = [];
             this.tagStack = [];
 
@@ -115,7 +115,11 @@
         getHTML(template) {
             this.stringToObject(template);
             const html = document.createElement('div');
-            this.objects.forEach((item) => html.appendChild(this.getElement(item)));
+            this.objects.forEach((item) => {
+                if (item) {
+                    html.appendChild(this.getElement(item));
+                }
+            });
             this.objects = [];
             return html;
 
@@ -129,14 +133,11 @@
         }
 
         getElement(object) {
+            debugger;
             const component = this.componentFactory[object.tag]();
             component.render(object.attributes);
 
-            object.children.forEach((item) => {
-                if (item) {
-                    component.appendChild(this.getElement(item));
-                }
-            });
+            object.children.forEach((item) => component.appendChild(this.getElement(item)));
 
             return component.element();
         }
