@@ -47,12 +47,6 @@
                 return '/user/';
             }
 
-            if (this.urls[url].view.needAuthorization() && !this.isAuth) {
-                return '/';
-            } else if (!this.urls[url].view.needAuthorization() && this.isAuth) {
-                return '/user/';
-            }
-
             return url;
         }
 
