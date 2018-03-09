@@ -22,7 +22,6 @@
                         newRow.push(response.data[row].login);
                         newRow.push(response.data[row].points);
 
-
                         this.context.rows.push(newRow);
                     }
                 }

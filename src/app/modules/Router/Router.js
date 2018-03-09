@@ -38,29 +38,27 @@
         checkAuth(url) {
             let isAuth = false;
 
-            httpModule.doGet('/me').then(
-                (response) => isAuth = true,
-                (reject) => isAuth = false
-            ).then(
-                (response) => {
-                    if ((this.urls[url].view.needAuthorization() && isAuth) || (!this.urls[url].view.needAuthorization() && !isAuth)) {
-                        return url;
-                    } else if (this.urls[url].view.needAuthorization() && !isAuth) {
-                        return '/';
-                    } else {
-                        return '/user/';
-                    }
-                },
-                (reject) => {
-                    if ((this.urls[url].view.needAuthorization() && isAuth) || (!this.urls[url].view.needAuthorization() && !isAuth)) {
-                        return url;
-                    } else if (this.urls[url].view.needAuthorization() && !isAuth) {
-                        return '/';
-                    } else {
-                        return '/user/';
-                    }
-                }
-            );
+            return httpModule.doGet('/me').then(
+                        (response) => isAuth = true,
+                        (reject) => isAuth = false
+                   ).then(
+                        (response) => {
+                            if (this.urls[url].view.needAuthorization() && !isAuth) {
+                                return '/';
+                            } else if (!this.urls[url].view.needAuthorization() && isAuth) {
+                                return '/user/';
+                            }
+                            return url;
+                        },
+                        (reject) => {
+                            if (this.urls[url].view.needAuthorization() && !isAuth) {
+                                return '/';
+                            } else if (!this.urls[url].view.needAuthorization() && isAuth) {
+                                return '/user/';
+                            }
+                            return url;
+                        }
+                   );
         }
 
         route(url, insertionElement = this.insertionElement) {
@@ -85,11 +83,12 @@
                 return false;
             }
 
-            // url = this.checkAuth(url);
-            this.route(url, insertionElement);
-            window.history.pushState({path: url}, url, url);
-
-            return true;
+            this.checkAuth(url).then(
+                (url) => {
+                    this.route(url, insertionElement);
+                    window.history.pushState({path: url}, url, url);
+                }
+            );
         }
 
         showPage(url) {
