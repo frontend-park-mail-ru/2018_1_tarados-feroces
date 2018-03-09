@@ -4,7 +4,7 @@
     class HttpModule {
 
         constructor() {
-            this.domen = 'http://deadlinez.herokuapp.com/alexalone';
+            this.domen = httpDomen;
         }
 
         doGet(url) {
@@ -35,7 +35,7 @@
                     reject(new Error('Network error'));
                 });
 
-                xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+                xhr.setRequestHeader('Content-Type', contentType);
                 xhr.withCredentials = true;
 
                 data ? xhr.send(JSON.stringify(data)) : xhr.send();
