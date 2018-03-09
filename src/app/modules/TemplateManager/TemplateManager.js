@@ -36,5 +36,4 @@
     }
 
     window.templateManager = new TemplateManager();
-
 })();
