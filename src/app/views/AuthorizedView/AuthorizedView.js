@@ -17,19 +17,21 @@
                         <Image class="main-avatar" src="../../static/images/1.jpg"></Image>
                         <div class="button-container">
                             <Button class="button large" click="(event){ event.preventDefault(); goToSettings();  }">Settings</Button>
+                            <Button class="button large" click="(event){ event.preventDefault(); goToScore();  }">Leaderboard</Button>
                             <Button class="button large" click="(event){ event.preventDefault(); signOut();  }">Sign out</Button>
-                            <Button class="button large" click="(event){ event.preventDefault(); goBack();  }">Back</Button>
                         </div>
                     </div>`;
         }
     }
 
     window.goToSettings = () => router.go('/settings/');
+
     window.signOut = () => {
         httpModule.doPost('/signout').then(
-            (resolve) => router.go('/')
+            (response) => router.go('/')
         );
     };
+
     window.AuthorizedView = AuthorizedView;
 })();
 

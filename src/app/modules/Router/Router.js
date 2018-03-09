@@ -35,10 +35,35 @@
             this.showPage(url);
         }
 
+        checkAuth(url) {
+            let isAuth = false;
+
+            httpModule.doGet('/me').then(
+                (response) => isAuth = true,
+                (reject) => isAuth = false
+            ).then(
+                (response) => {
+                    if ((this.urls[url].view.needAuthorization() && isAuth) || (!this.urls[url].view.needAuthorization() && !isAuth)) {
+                        return url;
+                    } else if (this.urls[url].view.needAuthorization() && !isAuth) {
+                        return '/';
+                    } else {
+                        return '/user/';
+                    }
+                },
+                (reject) => {
+                    if ((this.urls[url].view.needAuthorization() && isAuth) || (!this.urls[url].view.needAuthorization() && !isAuth)) {
+                        return url;
+                    } else if (this.urls[url].view.needAuthorization() && !isAuth) {
+                        return '/';
+                    } else {
+                        return '/user/';
+                    }
+                }
+            );
+        }
+
         route(url, insertionElement = this.insertionElement) {
-            if (!this.urls[url]) {
-                return false;
-            }
 
             if (!this.urls[url].loaded) {
                 this.urls[url].loaded = true;
@@ -53,15 +78,16 @@
             }
 
             this.pageUpdate(url);
-
-            return true;
-
         }
 
         go(url, insertionElement = this.insertionElement) {
-            if (this.route(url, insertionElement)) {
-                window.history.pushState({path: url}, url, url);
+            if (!this.urls[url]) {
+                return false;
             }
+
+            // url = this.checkAuth(url);
+            this.route(url, insertionElement);
+            window.history.pushState({path: url}, url, url);
 
             return true;
         }

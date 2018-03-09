@@ -16,6 +16,10 @@
            return '';
         }
 
+        needAuthorization() {
+            return true;
+        }
+
         update(context = {}) {
             return null;
         }

@@ -10,10 +10,13 @@
                             <ul>
                                 <MenuPoint click="(event) {event.preventDefault(); goToSignUp();}">SignUp</MenuPoint>
                                 <MenuPoint click="(event) {event.preventDefault(); goToLogin();}">SignIn</MenuPoint>
-                                <MenuPoint click="(event) {event.preventDefault(); goToScore();}">Scoreboard</MenuPoint>
                             </ul>
                         </div>
                     </div>`;
+        }
+
+        needAuthorization() {
+            return false;
         }
     }
 

@@ -26,6 +26,10 @@
                         </div>
                         <Footer>Made by Tarados Feroces</Footer>`;
         }
+
+        needAuthorization() {
+            return false;
+        }
     }
 
     window.validateLogin = () => {
