@@ -25,6 +25,9 @@
     }
 
     window.goToSettings = () => router.go('/settings/');
+    window.signOut = () => {
+        httpModule.doPost('/signout');
+    };
 
     window.AuthorizedView = AuthorizedView;
 })();
