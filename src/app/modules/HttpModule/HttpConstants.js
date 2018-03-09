@@ -1,4 +1,6 @@
 'use strict';
 
-const httpDomen = 'http://deadlinez.herokuapp.com/alexalone';
-const contentType = 'application/json;charset=UTF-8';
+(function() {
+window.httpDomen = 'http://deadlinez.herokuapp.com/alexalone';
+window.contentType = 'application/json;charset=UTF-8';
+})();
