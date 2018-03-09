@@ -8,9 +8,9 @@
         }
     }
 
-    const headerTemplate = '<div class="header {{class}}">' +
-        '<h1>{{text}}</h1>' +
-        '</div>';
+    const headerTemplate = `<div class="header {{class}}">
+        <h1>{{text}}</h1>
+        </div>`;
 
     window.Header = Header;
 })();
