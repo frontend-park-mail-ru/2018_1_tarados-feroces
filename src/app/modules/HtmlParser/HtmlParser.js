@@ -124,7 +124,6 @@
         stringToObject(input) {
             this.parseHtml(input);
             this.objects.map((obj) => this.performObject(obj));
-            debugger;
 
             return this.objects;
         }
