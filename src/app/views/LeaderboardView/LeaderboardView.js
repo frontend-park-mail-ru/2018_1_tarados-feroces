@@ -3,19 +3,28 @@
 
     class LeaderboardView extends BaseView {
 
-        constructor(context) {
-            super();
-            this.context = context;
-        }
-      
         update(context = {}) {
-            this.context = this.context.rows.concat(context.rows);
+            for (const row in Object.keys(context.data)) {
+                const newRow = [];
+                newRow.push(context.data[row].login);
+                newRow.push(context.data[row].points);
+                this.context.rows.push(newRow);
+            }
         }
 
         preRender() {
-            return httpModule.doGet('/score').then(
+            return httpModule.doPost('/score', {position: 0, count: 5}).then(
                 (response) => {
-                    this.context = response;
+                    this.context.rows = [];
+                    this.context.headers = ['Login', 'Points'];
+                    for (const row in Object.keys(response.data)) {
+                        const newRow = [];
+                        newRow.push(response.data[row].login);
+                        newRow.push(response.data[row].points);
+
+
+                        this.context.rows.push(newRow);
+                    }
                 }
             );
         }
@@ -39,23 +48,23 @@
                                 </div>
                                 {{/each}}
                             </div>
-                            {{/each}}
-                        </div>
-                        <Button class="button large" click="(event){ paginate(indexOfLeaderboard)  }">Back</Button>
-                        <Button class="button large" click="(event){ event.preventDefault(); goBack();  }">Back</Button>
-                 </div>
-                 <Footer>Made by Tarados Feroces</Footer>`;
+                    </div>
+                    <div class="button-container">
+                        <Button class="button large" click="(event){ paginate(currentPosition) }">More</Button>
+                        <Button class="button large" click="(event){ event.preventDefault(); goBack(); }">Back</Button>
+                    </div>
+                    <Footer>Made by Tarados Feroces</Footer>`;
         }
     }
 
-    let indexOfLeaderboard = 10;
+    window.currentPosition = 5;
 
-    const paginate = (index) => {
-        const paginationConstant = 10;
-        httpModule.doPost('/score', {index}).then(
+    window.paginate = (index) => {
+        const paginationConstant = 5;
+        httpModule.doPost('/score', {position: index, count: paginationConstant + index}).then(
             (response) => router.viewUpdate(response)
         );
-        index += paginationConstant;
+        window.currentPosition += paginationConstant;
     };
 
     window.LeaderboardView = LeaderboardView;

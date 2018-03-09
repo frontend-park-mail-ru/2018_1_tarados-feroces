@@ -82,5 +82,4 @@
     }
 
     window.router = new Router();
-
 })();

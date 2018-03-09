@@ -102,8 +102,6 @@
             if (!object || !object.object) {
                 return object;
             }
-            debugger;
-            console.log('LOL');
 
             this.setObjectAttributes(object);
 
