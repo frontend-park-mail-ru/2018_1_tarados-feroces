@@ -3,12 +3,11 @@
 
     class Button extends BaseComponent {
 
-        constructor() {
-            super(buttonTemplate);
+        render(context) {
+            this.template = `<div class="button {{class}}"><p>{{text}}</p></div>`;
+            super.render(context);
         }
     }
-
-    const buttonTemplate = '<div class="button {{class}}"><p>{{text}}</p></div>';
 
     window.Button = Button;
 })();

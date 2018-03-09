@@ -3,14 +3,11 @@
 
     class StandartComponent extends BaseComponent {
 
-        constructor() {
-            super(standartTemplate);
+        render(context) {
+            this.template = `<{{tag}} class="{{class}}">{{text}}</{{tag}}>`;
+            super.render(context);
         }
     }
-
-    const standartTemplate = '<{{tag}} class="{{class}}">' +
-        '{{text}}' +
-        '</{{tag}}>';
 
     window.StandartComponent = StandartComponent;
 })();

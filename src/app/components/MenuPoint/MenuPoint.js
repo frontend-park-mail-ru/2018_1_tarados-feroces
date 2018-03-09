@@ -3,12 +3,11 @@
 
     class MenuPoint extends BaseComponent {
 
-        constructor() {
-            super(menuPointTemplate);
+        render(context) {
+            this.template = `<li><a href="{{href}}">{{text}}</a></li>`;
+            super.render(context);
         }
     }
-
-    const menuPointTemplate = '<li><a href="{{href}}">{{text}}</a></li>';
 
     window.MenuPoint = MenuPoint;
 })();

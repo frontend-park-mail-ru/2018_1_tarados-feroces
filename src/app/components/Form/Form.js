@@ -3,12 +3,11 @@
 
     class Form extends BaseComponent {
 
-        constructor() {
-            super(formTemplate);
+        render(context) {
+            this.template = `<form method="{{method}}"></form>`;
+            super.render(context);
         }
     }
-
-    const formTemplate = '<form method="{{method}}"></form>';
 
     window.Form = Form;
 })();

@@ -3,12 +3,11 @@
 
     class Image extends BaseComponent {
 
-        constructor() {
-            super(imageTemplate);
+        render(context) {
+            this.template = `<img class="{{class}}" src="{{src}}">`;
+            super.render(context);
         }
     }
-
-    const imageTemplate = '<img class="{{class}}" src="{{src}}">';
 
     window.Image = Image;
 })();
