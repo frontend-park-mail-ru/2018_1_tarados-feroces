@@ -2,6 +2,7 @@
     'use strict';
 
     class UserService {
+
         checkSession() {
             return httpModule.doGet('/me').then(
                 (response) => this.isAuthorized = true,
