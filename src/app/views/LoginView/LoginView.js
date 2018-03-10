@@ -9,8 +9,9 @@
                             <div class="form-block login">
                                 <Form>
                                     <Input block-class="user-name" error-class="hidden" error-text="empty username"
-                                    label-text="Full name:" type="text" placeholder="Enter name"
-                                    focus="() { validateFocusLoginInput(document.querySelector('.login').getElementsByClassName('input-block')[0]) }">
+                                    label-text="Enter login:" type="text" placeholder="Enter login"
+                                    focus="() { validateFocusLoginInput(document.querySelector('.login').getElementsByClassName('input-block')[0]) }"
+                                    blur="() { validateBlurLoginInput(document.querySelector('.login').getElementsByClassName('input-block')[0]) }">
                                     </Input>
                                     <Input block-class="user-password"  error-class="hidden" error-text="empty password"
                                     label-text="Password:" type="password" placeholder="Enter password"
