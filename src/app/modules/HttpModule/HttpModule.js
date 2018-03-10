@@ -8,14 +8,14 @@
         }
 
         doGet(url) {
-            return this.doRequest('GET', url);
+            return this.doRequest(GET, url);
         }
 
         doPost(url, data = null) {
-            return this.doRequest('POST', url, data);
+            return this.doRequest(POST, url, data);
         }
 
-        doRequest(method = 'GET', url = '/', data = null) {
+        doRequest(method = GET, url = '/', data = null) {
             return new Promise((resolve, reject) => {
                 const xhr = new XMLHttpRequest();
                 xhr.open(method, `${this.domen}${url}`, true);
@@ -35,7 +35,7 @@
                     reject(new Error('Network error'));
                 });
 
-                xhr.setRequestHeader('Content-Type', contentType);
+                xhr.setRequestHeader(HEADER_CONTENT_TYPE, JSON_CONTENT_TYPE);
                 xhr.withCredentials = true;
 
                 data ? xhr.send(JSON.stringify(data)) : xhr.send();

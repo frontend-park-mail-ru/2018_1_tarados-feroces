@@ -2,5 +2,8 @@
     'use strict';
     
     window.httpDomen = 'http://deadlinez.herokuapp.com/alexalone';
-    window.contentType = 'application/json;charset=UTF-8';
+    window.POST = 'POST';
+    window.GET = 'GET';
+    window.HEADER_CONTENT_TYPE = 'Content-Type';
+    window.JSON_CONTENT_TYPE = 'application/json;charset=UTF-8';
 })();
