@@ -22,10 +22,6 @@
                 p: () => new StandartComponent(),
                 img: () => new StandartComponent(),
                 ul: () => new StandartComponent(),
-                table: () => new StandartComponent(),
-                tr: () => new StandartComponent(),
-                th: ()=> new StandartComponent(),
-                td: ()=> new StandartComponent(),
             };
         }
 
@@ -82,7 +78,10 @@
                     continue;
                 }
 
-                let [currentPropName, currentPropValue] = str[i].split('=');
+                const currentProp = str[i].split('=');
+                const currentPropName = currentProp[0];
+                let currentPropValue = currentProp.slice(1, currentProp.length);
+
                 let currentPos = i;
 
                 while (str[currentPos][str[currentPos].length - 1] !== '"') {
