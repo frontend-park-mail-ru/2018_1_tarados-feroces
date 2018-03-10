@@ -20,7 +20,7 @@
 
         viewUpdate(context) {
             this.lastView.update(context);
-            this.deleteLast();
+            const parent = this.deleteLast();
             this.lastView.__render();
             parent.appendChild(this.lastView.element);
             this.lastView.show();
@@ -70,6 +70,7 @@
         deleteLast() {
             const parent = this.lastView.element.parentNode;
             parent.removeChild(this.lastView.element);
+            return parent;
         }
 
         checkAuth(url) {
