@@ -29,7 +29,7 @@
     window.signOut = () => {
         httpModule.doPost('/signout').then(
             (response) => {
-                router.isAuth = false;
+                userService.userLogout();
                 router.go('/');
             }
         );

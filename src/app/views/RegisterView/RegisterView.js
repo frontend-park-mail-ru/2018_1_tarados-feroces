@@ -53,7 +53,7 @@
                     password: blocks[2].querySelector('input').value,
                 }).then(
                 (responseText) => {
-                    router.isAuth = true;
+                    userService.userLogout();
                     router.go('/user/');
                 },
                 (error) => {
