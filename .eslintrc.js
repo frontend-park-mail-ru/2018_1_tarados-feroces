@@ -26,10 +26,10 @@ module.exports = {
             }
         }],
         "max-len": ["error", {"code": 160}],
-
         "prefer-const": ["error", {
             "destructuring": "any",
             "ignoreReadBeforeAssign": false
         }],
+        "no-multiple-empty-lines": ["error", {"max": 1, "maxEOF": 1}]
     }
 };
