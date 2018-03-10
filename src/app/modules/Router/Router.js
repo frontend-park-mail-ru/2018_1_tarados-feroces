@@ -39,9 +39,9 @@
                         this.pageUpdate(url);
                     }
                 );
+            } else {
+                this.pageUpdate(url);
             }
-
-            this.pageUpdate(url);
         }
 
         go(url, insertionElement = this.insertionElement) {
