@@ -69,9 +69,9 @@
         }
 
         checkAuth(url) {
-            if (this.urls[url].view.needAuthorization() && !this.isAuth) {
+            if (this.urls[url].view.needAuthorization() && !userService.isAuthorized) {
                 return '/';
-            } else if (!this.urls[url].view.needAuthorization() && this.isAuth) {
+            } else if (!this.urls[url].view.needAuthorization() && userService.isAuthorized) {
                 return '/user/';
             }
 
