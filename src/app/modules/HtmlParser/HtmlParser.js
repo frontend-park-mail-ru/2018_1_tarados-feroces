@@ -22,11 +22,20 @@
                 p: () => new StandartComponent(),
                 img: () => new StandartComponent(),
                 ul: () => new StandartComponent(),
-                table: () => new StandartComponent(),
-                tr: () => new StandartComponent(),
-                th: ()=> new StandartComponent(),
-                td: ()=> new StandartComponent(),
             };
+        }
+
+        getHTML(template) {
+            this.stringToObject(template);
+            const html = document.createElement('div');
+            this.objects.forEach((item) => {
+                if (item) {
+                    html.appendChild(this.getElement(item));
+                }
+            });
+            this.objects = [];
+            return html;
+
         }
 
         handleCloseTag() {
@@ -82,7 +91,10 @@
                     continue;
                 }
 
-                let [currentPropName, currentPropValue] = str[i].split('=');
+                const currentProp = str[i].split('=');
+                const currentPropName = currentProp[0];
+                let currentPropValue = currentProp.slice(1, currentProp.length);
+
                 let currentPos = i;
 
                 while (str[currentPos][str[currentPos].length - 1] !== '"') {
@@ -110,19 +122,6 @@
             }
 
             object.children.forEach((obj) => this.performObject(obj));
-        }
-
-        getHTML(template) {
-            this.stringToObject(template);
-            const html = document.createElement('div');
-            this.objects.forEach((item) => {
-                if (item) {
-                    html.appendChild(this.getElement(item));
-                }
-            });
-            this.objects = [];
-            return html;
-
         }
 
         stringToObject(input) {

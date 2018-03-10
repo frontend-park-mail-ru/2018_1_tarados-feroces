@@ -7,10 +7,6 @@
             this.lastView = null;
             this.urls = {};
             this.insertionElement = document.querySelector('.root');
-            httpModule.doGet('/me').then(
-                (response) => this.isAuth = true,
-                (reject) => this.isAuth = false
-            );
             this.start();
         }
 
@@ -29,24 +25,6 @@
             this.lastView.__render();
             parent.appendChild(this.lastView.element);
             this.lastView.show();
-        }
-
-        pageUpdate(url) {
-            this.hideLast();
-
-            this.lastView = this.urls[url].view;
-
-            this.showPage(url);
-        }
-
-        checkAuth(url) {
-            if (this.urls[url].view.needAuthorization() && !this.isAuth) {
-                return '/';
-            } else if (!this.urls[url].view.needAuthorization() && this.isAuth) {
-                return '/user/';
-            }
-
-            return url;
         }
 
         route(url, insertionElement = this.insertionElement) {
@@ -76,6 +54,12 @@
             window.history.pushState({path: url}, url, url);
         }
 
+        start() {
+            window.addEventListener('popstate', (event) => {
+                this.route(window.location.pathname);
+            });
+        }
+
         showPage(url) {
             this.urls[url].view.show();
         }
@@ -84,10 +68,22 @@
             this.lastView && this.lastView.hide();
         }
 
-        start() {
-            window.addEventListener('popstate', (event) => {
-                this.route(window.location.pathname);
-            });
+        checkAuth(url) {
+            if (this.urls[url].view.needAuthorization() && !this.isAuth) {
+                return '/';
+            } else if (!this.urls[url].view.needAuthorization() && this.isAuth) {
+                return '/user/';
+            }
+
+            return url;
+        }
+
+        pageUpdate(url) {
+            this.hideLast();
+
+            this.lastView = this.urls[url].view;
+
+            this.showPage(url);
         }
     }
 
