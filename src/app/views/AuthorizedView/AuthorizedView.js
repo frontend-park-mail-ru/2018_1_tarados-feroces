@@ -14,7 +14,7 @@
         render() {
             return `<div class="page">
                         <Header>Hello, {{login}}</Header>
-                        <Image class="main-avatar" src="../../static/images/1.jpg"></Image>
+                        <Image class="main-avatar" src="../../static/images/mainAvatar.jpg"></Image>
                         <div class="button-container">
                             <Button class="button large" click="(event){ event.preventDefault(); goToSettings();  }">Settings</Button>
                             <Button class="button large" click="(event){ event.preventDefault(); goToScore();  }">Leaderboard</Button>
@@ -30,6 +30,7 @@
         httpModule.doPost('/signout').then(
             (response) => {
                 userService.userLogout();
+                router.deleteLast();
                 router.urls['/user/'].loaded = false;
                 router.go('/');
             }
