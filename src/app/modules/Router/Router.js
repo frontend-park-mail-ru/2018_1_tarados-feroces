@@ -27,24 +27,6 @@
             this.lastView.show();
         }
 
-        pageUpdate(url) {
-            this.hideLast();
-
-            this.lastView = this.urls[url].view;
-
-            this.showPage(url);
-        }
-
-        checkAuth(url) {
-            if (this.urls[url].view.needAuthorization() && !this.isAuth) {
-                return '/';
-            } else if (!this.urls[url].view.needAuthorization() && this.isAuth) {
-                return '/user/';
-            }
-
-            return url;
-        }
-
         route(url, insertionElement = this.insertionElement) {
 
             if (!this.urls[url].loaded) {
@@ -72,6 +54,12 @@
             window.history.pushState({path: url}, url, url);
         }
 
+        start() {
+            window.addEventListener('popstate', (event) => {
+                this.route(window.location.pathname);
+            });
+        }
+
         showPage(url) {
             this.urls[url].view.show();
         }
@@ -80,10 +68,22 @@
             this.lastView && this.lastView.hide();
         }
 
-        start() {
-            window.addEventListener('popstate', (event) => {
-                this.route(window.location.pathname);
-            });
+        checkAuth(url) {
+            if (this.urls[url].view.needAuthorization() && !this.isAuth) {
+                return '/';
+            } else if (!this.urls[url].view.needAuthorization() && this.isAuth) {
+                return '/user/';
+            }
+
+            return url;
+        }
+
+        pageUpdate(url) {
+            this.hideLast();
+
+            this.lastView = this.urls[url].view;
+
+            this.showPage(url);
         }
     }
 

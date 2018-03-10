@@ -25,6 +25,19 @@
             };
         }
 
+        getHTML(template) {
+            this.stringToObject(template);
+            const html = document.createElement('div');
+            this.objects.forEach((item) => {
+                if (item) {
+                    html.appendChild(this.getElement(item));
+                }
+            });
+            this.objects = [];
+            return html;
+
+        }
+
         handleCloseTag() {
             const obj = this.tagStack.pop();
             if (this.tagStack.length === 0) {
@@ -109,19 +122,6 @@
             }
 
             object.children.forEach((obj) => this.performObject(obj));
-        }
-
-        getHTML(template) {
-            this.stringToObject(template);
-            const html = document.createElement('div');
-            this.objects.forEach((item) => {
-                if (item) {
-                    html.appendChild(this.getElement(item));
-                }
-            });
-            this.objects = [];
-            return html;
-
         }
 
         stringToObject(input) {

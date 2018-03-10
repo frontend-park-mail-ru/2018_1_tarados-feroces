@@ -23,11 +23,6 @@
         update(context = {}) {
             return null;
         }
-      
-        __render() {
-            this.element = htmlParser.getHTML(templateManager.getHTML(this.context, this.render()));
-            return this.element;
-        }
 
         hide() {
             if (this.element) {
@@ -39,6 +34,11 @@
             if (this.element) {
                 this.element.classList.remove('hidden');
             }
+        }
+
+        __render() {
+            this.element = htmlParser.getHTML(templateManager.getHTML(this.context, this.render()));
+            return this.element;
         }
     }
 
