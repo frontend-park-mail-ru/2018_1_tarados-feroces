@@ -7,7 +7,6 @@
             this.lastView = null;
             this.urls = {};
             this.insertionElement = document.querySelector('.root');
-            this.isAuth = false;
             httpModule.doGet('/me').then(
                 (response) => this.isAuth = true,
                 (reject) => this.isAuth = false
