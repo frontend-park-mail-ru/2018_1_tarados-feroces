@@ -23,4 +23,15 @@ router
     .addUrl(/settings/,
         new SettingsView());
 
-router.go(document.location.pathname);
+if (router.isAuth === undefined) {
+    httpModule.doGet('/me').then(
+        (response) => router.isAuth = true,
+        (reject) => router.isAuth = false
+    ).then(
+        (response) => router.go(document.location.pathname),
+        (reject) => router.go(document.location.pathname)
+    );
+} else {
+    router.go(document.location.pathname);
+}
+

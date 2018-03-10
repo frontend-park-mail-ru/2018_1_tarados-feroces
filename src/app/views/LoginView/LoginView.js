@@ -47,8 +47,7 @@
                     router.go('/user/');
                 },
                 (error) => {
-                    document.querySelector('.login').getElementsByClassName('input-block')[0].querySelector('.error').innerText = error;
-                    document.querySelector('.login').getElementsByClassName('input-block')[0].querySelector('.error').classList.remove('hidden');
+                    alert(error);
                 }
                 );
 
