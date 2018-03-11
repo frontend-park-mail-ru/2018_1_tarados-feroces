@@ -30,8 +30,13 @@
         httpModule.doPost('/signout').then(
             (response) => {
                 userService.userLogout();
-                router.deleteLast();
+                router.urls['/user/'].view.deleteElement();
                 router.urls['/user/'].loaded = false;
+                if (router.urls['/settings/'].loaded) {
+                    router.urls['/settings/'].view.deleteElement();
+                    console.log('deleted settings');
+                    router.urls['/settings/'].loaded = false;
+                }
                 router.go('/');
             }
         );
