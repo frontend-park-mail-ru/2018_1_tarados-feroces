@@ -38,7 +38,7 @@ const header = new Header(); //<div class="{{class}}"><h1>{{text}}</h1></div>
 Вьюшки - сущности, состоящие из компонент.
 ```javascript
 const myView = new MyView();
-loginView.render();
+myView.render();
 /* 
    <div class="{{main-class}}">
    <Header>{{login}}</Header>
