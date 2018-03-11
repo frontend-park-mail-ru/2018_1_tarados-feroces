@@ -89,9 +89,6 @@ node server/
   - Node JS
   - Express
   
-### Other
-  - CI (Travis)
-  
 ## Команда
 
 ### Frontend
