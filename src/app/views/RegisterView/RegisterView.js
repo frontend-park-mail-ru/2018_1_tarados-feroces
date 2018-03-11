@@ -9,7 +9,7 @@
                         <div class="form-block registration">
                             <Form>
                                 <Input block-class="user-name" error-class="hidden" error-text="empty username"
-                                label-text="Full name:" type="text" placeholder="Enter login"
+                                label-text="Login:" type="text" placeholder="Enter login"
                                 focus="() { validateFocusRegistrationInput(document.querySelector('.registration').getElementsByClassName('input-block')[0]) }"
                                 blur="() { validateBlurRegistrationInput(document.querySelector('.registration').getElementsByClassName('input-block')[0]) }">
                                 </Input>
