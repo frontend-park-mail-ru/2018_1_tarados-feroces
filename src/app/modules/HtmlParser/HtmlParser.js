@@ -1,8 +1,14 @@
 (function() {
     'use strict';
 
+    /** Класс для парсинга html тэгов
+     * @module HtmlParser
+     */
     class HtmlParser {
 
+        /**
+         * @constructor
+         */
         constructor() {
             this.regExp = /<[a-z0-9 _\-"'=(){}\[\],;:.@!?\/]+>|<\/[a-z0-9 _\-"'=(){}\[\],;:.@!?]+>/ig;
             this.regExpEnd = /<\/[a-z0-9 _\-"'=(){}\[\],;:.@!?]+>/i;
@@ -25,6 +31,11 @@
             };
         }
 
+        /**
+         * Возвращает отрендеренный HTMLElement
+         * @param {string} template - шаблон для парсинга
+         * @return {HTMLDivElement}
+         */
         getHTML(template) {
             this.stringToObject(template);
             const html = document.createElement('div');
@@ -38,6 +49,9 @@
 
         }
 
+        /**
+         * Обрабатывает закрывающие тэги
+         */
         handleCloseTag() {
             const obj = this.tagStack.pop();
             if (this.tagStack.length === 0) {
@@ -48,6 +62,10 @@
             this.tagStack[this.tagStack.length - 1].children.push(obj);
         }
 
+        /**
+         * Обрабатывает открывающий тэг
+         * @param {string} tag - входной тэг
+         */
         handleOpenTag(tag) {
             const obj = {
                 object: tag.slice(1, -1),
@@ -57,11 +75,19 @@
             this.tagStack.push(obj);
         }
 
+        /**
+         * Обрабатывает тэг
+         * @param {string} tag - входной тэг
+         */
         handleTag(tag) {
             const result = this.regExpEnd.exec(tag);
             result ? this.handleCloseTag(tag) : this.handleOpenTag(tag);
         }
 
+        /**
+         * Парсит строку шаблона по руглярным выражениям
+         * @param {string} input - входной шаблон
+         */
         parseHtml(input) {
             let compareResult = '';
             let previousIndex = 0;
@@ -79,6 +105,10 @@
             }
         }
 
+        /**
+         * Добавляет свойства элементу объекта после парснга
+         * @param {object} object - объект после парсинга
+         */
         setObjectAttributes(object) {
             const str = object.object.split(' ');
             object.tag = str[0];
@@ -110,6 +140,11 @@
             }
         }
 
+        /**
+         * Обрабатывает объект после парсинга
+         * @param {object} object - объект после парсинга
+         * @return {object}
+         */
         performObject(object) {
             if (!object || !object.object) {
                 return object;
@@ -124,6 +159,11 @@
             object.children.forEach((obj) => this.performObject(obj));
         }
 
+        /**
+         * Парсит и возвращает готовый массив элементов
+         * @param {string} input - входной шаблон
+         * @return {Array}
+         */
         stringToObject(input) {
             this.parseHtml(input);
             this.objects.map((obj) => this.performObject(obj));
@@ -131,6 +171,11 @@
             return this.objects;
         }
 
+        /**
+         * Возвращает элемент компоненты по тэгу
+         * @param {object} object
+         * @return {HTMLElement}
+         */
         getElement(object) {
             const component = this.componentFactory[object.tag]();
             component.render(object.attributes);
