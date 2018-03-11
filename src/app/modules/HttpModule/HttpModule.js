@@ -1,20 +1,46 @@
 (function() {
     'use strict';
 
+    /**
+     * Класс, отвечающий за отправку запросов на сервер
+     * @module HttpModule
+     */
     class HttpModule {
 
+        /**
+         * @constructor
+         */
         constructor() {
             this.domen = httpDomen;
         }
 
+        /**
+         * Делает GET-запрос
+         * @param {string} url
+         * @return {Promise<any>}
+         */
         doGet(url) {
             return this.doRequest(GET, url);
         }
 
+        /**
+         * Делает POST-запрос
+         * @param {string} url
+         * @param {Object} data
+         * @return {Promise<any>}
+         */
         doPost(url, data = null) {
             return this.doRequest(POST, url, data);
         }
 
+        /**
+         * Отправляет запрос указанного типа
+         * @param {string} method
+         * @param {string} url
+         * @param {Object} data
+         * @return {Promise<any>}
+         * @private
+         */
         doRequest(method = GET, url = '/', data = null) {
             return new Promise((resolve, reject) => {
                 const xhr = new XMLHttpRequest();
