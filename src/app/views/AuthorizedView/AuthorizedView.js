@@ -30,8 +30,8 @@
         httpModule.doPost('/signout').then(
             (response) => {
                 userService.userLogout();
-                router.deleteLast();
-                router.urls['/user/'].loaded = false;
+
+
                 router.go('/');
             }
         );

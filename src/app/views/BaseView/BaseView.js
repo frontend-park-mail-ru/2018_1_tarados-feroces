@@ -16,6 +16,12 @@
            return '';
         }
 
+        deleteElement() {
+            const parent = this.element.parentNode;
+            parent.removeChild(this.element);
+            return parent;
+        }
+
         needAuthorization() {
             return true;
         }
