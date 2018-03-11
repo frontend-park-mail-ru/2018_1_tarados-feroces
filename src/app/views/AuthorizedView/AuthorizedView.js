@@ -14,7 +14,7 @@
         render() {
             return `<div class="page">
                         <Header>Hello, {{login}}</Header>
-                        <Image class="main-avatar" src="data:image/gif;base64,{{avatar}}"></Image>
+                        <Image class="main-avatar" src="{{avatar}}"></Image>
                         <div class="button-container">
                             <Button class="button large" click="(event){ event.preventDefault(); goToSettings();  }">Settings</Button>
                             <Button class="button large" click="(event){ event.preventDefault(); goToScore();  }">Leaderboard</Button>

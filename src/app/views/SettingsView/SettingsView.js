@@ -15,7 +15,7 @@
             return `<div class="page">
                         <Header>Settings</Header>
                         <div class="form-block settings">
-                            <Image class="main-avatar" src="../../static/images/mainAvatar.jpg"></Image>
+                            <Image class="main-avatar" src="{{avatar}}"></Image>
                             <Form>
                                 <Input block-class="user-name" error-class="hidden" error-text="empty username"
                                 label-text="Login:" type="text" value="{{login}}"
@@ -41,16 +41,19 @@
 
     }
 
-    const settings = (file) => {
+    const settings = () => {
         const blocks = [...document.querySelector('.settings').getElementsByClassName('input-block')];
-        console.log(file.currentTarget.result);
         httpModule.doPost('/user/update',
             {
                 login: blocks[0].querySelector('input').value,
                 email: blocks[1].querySelector('input').value,
-                avatar: file.currentTarget.result,
+                avatar: reader.result,
             }).then(
             (responseText) => {
+                router.urls['/user/'].loaded = false;
+                router.urls['/user/'].view.deleteElement();
+                router.urls['/settings/'].loaded = false;
+                router.urls['/settings/'].view.deleteElement();
                 router.go('/user/');
                 blocks.forEach((item) => item.querySelector('input').value = '');
             },
@@ -61,21 +64,21 @@
         );
     };
 
-    const test = (event) => {
-        let file = event.currentTarget.result;
-        file = btoa((encodeURIComponent(file)));
-        const img = document.createElement('img');
-        img.src = `data:image/gif;base64,${file}`;
-        document.body.appendChild(img);
-    };
+    // const test = () => {
+    //     const file = reader.result;
+    //     const img = document.createElement('img');
+    //     img.src = `data:image/gif;base64,${file}`;
+    //     document.body.appendChild(img);
+    // };
 
     window.validateSettings = () => {
         const blocks = [...document.querySelector('.settings').getElementsByClassName('input-block')];
-        const reader = new FileReader();
+        window.reader = new FileReader();
         if (blocks.reduce((result, current) => result + validateSettingsInput(current), 0) == blocks.length) {
             const file = blocks[2].querySelector('input').files[0];
+            reader.readAsDataURL(file);
             reader.onload = settings;
-            reader.readAsText(file);
+
         }
     };
 
