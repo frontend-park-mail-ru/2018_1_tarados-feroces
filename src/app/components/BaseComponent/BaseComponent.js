@@ -1,8 +1,15 @@
 (function() {
     'use strict';
 
+    /** Базовый класс компоненты
+     * @module BaseComponent
+     */
     class BaseComponent {
 
+        /**
+         * @param {string} [template] - шаблон компоненты
+         * @constructor
+         */
         constructor(template) {
             this._element = null;
             this.template = template;
@@ -10,22 +17,37 @@
             this.functionExp = /\s*\(([\w, ]*)\)\n*\t*\s*{(.*)}/i;
         }
 
+        /**
+         * Создание элемента по шаблона с контекстом
+         * @param {object} context - контекст шаблона
+         */
         render(context) {
             const div = document.createElement('div');
             div.innerHTML = templateManager.getHTML(context, this.template);
             this._element = div.lastChild;
             this.addListeners(context);
-            return this._element;
         }
 
+        /**
+         * Добавление дочерней компоненты
+         * @param {BaseComponent} component
+         */
         appendChild(component) {
             this._element.appendChild(component);
         }
 
+        /**
+         * Возращает элемент компоненты
+         * @return {HTMLElement}
+         */
         element() {
             return this._element;
         }
 
+        /**
+         * Добавление обработчиков событий
+         * @param {object} context
+         */
         addListeners(context) {
             this.events.forEach((item) => {
                 if (context[item]) {
