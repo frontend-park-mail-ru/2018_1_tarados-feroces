@@ -1,5 +1,8 @@
 # Deadlines
 
+## Status
+[!Bulid Status[https://travis-ci.org/frontend-park-mail-ru/2018_1_tarados-feroces.png]https://travis-ci.org/frontend-park-mail-ru/2018_1_tarados-feroces]
+
 ## Ссылка
 
 [Deadlines!](http://tf-sand-server.herokuapp.com)
