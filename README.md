@@ -29,13 +29,19 @@ router.go('/login/');
 #### Components
 Компоненты - элементарные единицы структуры.
 ```javascript
-const header = new Header();
+const header = new Header(); //<div class="{{class}}"><h1>{{text}}</h1></div>
 ```
 #### Views
 Вьюшки - сущности, состоящие из компонент.
 ```javascript
-const loginView = new LoginView();
-loginView.__render();
+const myView = new MyView();
+loginView.render();
+/* 
+   <div class="{{main-class}}">
+   <Header>{{login}}</Header>
+   <Button class="button" click="(){alert(42);}"></Button>
+   </div>
+*/
 ```
 
 #### Html Parser
