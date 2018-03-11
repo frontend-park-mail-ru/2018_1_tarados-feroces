@@ -20,19 +20,20 @@ router.addUrl(
         '/login/',
         new LoginView()
     );
+router.go('/login/');
 ```
 
 #### Template Manager
 Для упрощения и оптимизации работы был использован шаблонизатор Handlebars, для которого был написан класс-обертка [TemplateManager](https://goo.gl/QSYNDJ).
 
-##### Components
+#### Components
 Компоненты - элементарные единицы структуры.
-```javasctipt
+```javascript
 const btn = new Header();
 ```
-##### Views
+#### Views
 Вьюшки - сущности, состоящие из компонент.
-```javasctipt
+```javascript
 const loginView = new LoginView();
 loginView.__render();
 ```
@@ -40,7 +41,7 @@ loginView.__render();
 #### Html Parser
 Для работы с компонентами был разработан фреймворк, позволяющий создавать собственные html-теги, и затем вставлять их в шаблоны. В связи с этим появилось строгое разделение сущностей на два понятия - компоненты и вьюшки. Подразумевается, что вьюшки не могут содержать другие вьюшки, что, в будущем, будет дорабатываться.
 Для удобного написания html страниц был создан парсер, позволяющий преобразовывать все в обычный html.
-```javasctipt
+```javascript
 const htmlParser = new HtmlParser();
 const template = `<Header>{{login}}</Header>`;
 const context = {login: 'FirstUser'};
@@ -49,7 +50,7 @@ htmlParser.getHTML(templateManager.getHTML(context, template)); //<div><h1>First
 
 #### Http Module
 Для работы с http-запросами был создан класс-обертка [HttpModule](https://goo.gl/iDx7Ne), при запросе возвращающий объект Promise, что позволяет хорошо наладить работу с асинхронными запросами.
-```javasctipt
+```javascript
 const httpModule = new HttpModule();
 const context = {};
 httpModule.doGet('/me').then(
