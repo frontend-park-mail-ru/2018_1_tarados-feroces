@@ -30,8 +30,6 @@
         httpModule.doPost('/signout').then(
             (response) => {
                 userService.userLogout();
-
-
                 router.go('/');
             }
         );
