@@ -1,7 +1,7 @@
 # Deadlines
 
 ## Status
-[!Bulid Status[https://travis-ci.org/frontend-park-mail-ru/2018_1_tarados-feroces.png]https://travis-ci.org/frontend-park-mail-ru/2018_1_tarados-feroces]
+[![Bulid Status](https://travis-ci.org/frontend-park-mail-ru/2018_1_tarados-feroces.png)](https://travis-ci.org/frontend-park-mail-ru/2018_1_tarados-feroces)
 
 ## Ссылка
 
