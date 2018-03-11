@@ -45,6 +45,7 @@
                 (responseText) => {
                     userService.userLogin();
                     router.go('/user/');
+                    blocks.forEach((item) => item.querySelector('input').value = '');
                 },
                 (error) => {
                     alert(error);

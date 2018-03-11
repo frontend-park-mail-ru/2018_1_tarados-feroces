@@ -55,6 +55,7 @@
                 (responseText) => {
                     userService.userLogin();
                     router.go('/user/');
+                    blocks.forEach((item) => item.querySelector('input').value = '');
                 },
                 (error) => {
                     document.querySelector('.registration').getElementsByClassName('input-block')[0].querySelector('.error').innerText = error;

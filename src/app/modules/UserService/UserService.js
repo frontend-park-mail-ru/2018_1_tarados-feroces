@@ -15,6 +15,12 @@
 
         userLogout() {
             this.isAuthorized = false;
+            router.urls['/user/'].view.deleteElement();
+            router.urls['/user/'].loaded = false;
+            if (router.urls['/settings/'].loaded) {
+                router.urls['/settings/'].view.deleteElement();
+                router.urls['/settings/'].loaded = false;
+            }
         }
     }
 
