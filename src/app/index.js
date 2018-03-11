@@ -1,13 +1,35 @@
 'use strict';
 
-const router = new Router();
-
 router
     .addUrl(
         '/login/',
-        new BaseComponent('div', templateManager.getHTML({}, loginTemplate)))
+        new LoginView()
+    )
     .addUrl(
-        '/auth/',
-        new BaseComponent('div', templateManager.getHTML({}, authorizedTemplate)));
+        '/',
+        new MenuView()
+    )
+    .addUrl(
+        '/signup/',
+        new RegisterView()
+    )
+    .addUrl(
+        '/user/',
+        new AuthorizedView()
+    )
+    .addUrl(/leaderboard/,
+        new LeaderboardView()
+    )
+    .addUrl(/settings/,
+        new SettingsView());
 
-router.go(document.location.pathname);
+if (userService.isAuthorized === undefined) {
+    userService.checkSession()
+    .then(
+        (response) => router.go(document.location.pathname),
+        (reject) => router.go(document.location.pathname)
+    );
+} else {
+    router.go(document.location.pathname);
+}
+

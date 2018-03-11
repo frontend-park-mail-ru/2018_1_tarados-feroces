@@ -1,33 +1,62 @@
-'use strict';
+(function() {
+    'use strict';
 
-class BaseComponent {
-    constructor(tagName, data) {
-        this._component = document.createElement(tagName);
-        this._component.innerHTML = data;
+    /** Базовый класс компоненты
+     * @module BaseComponent
+     */
+    class BaseComponent {
+
+        /**
+         * @param {string} [template] - шаблон компоненты
+         * @constructor
+         */
+        constructor(template) {
+            this._element = null;
+            this.template = template;
+            this.events = ['click', 'focus', 'blur'];
+            this.functionExp = /\s*\(([\w, ]*)\)\n*\t*\s*{(.*)}/i;
+        }
+
+        /**
+         * Создание элемента по шаблона с контекстом
+         * @param {object} context - контекст шаблона
+         */
+        render(context) {
+            const div = document.createElement('div');
+            div.innerHTML = templateManager.getHTML(context, this.template);
+            this._element = div.lastChild;
+            this.addListeners(context);
+        }
+
+        /**
+         * Добавление дочерней компоненты
+         * @param {BaseComponent} component
+         */
+        appendChild(component) {
+            this._element.appendChild(component);
+        }
+
+        /**
+         * Возращает элемент компоненты
+         * @return {HTMLElement}
+         */
+        element() {
+            return this._element;
+        }
+
+        /**
+         * Добавление обработчиков событий
+         * @param {object} context
+         */
+        addListeners(context) {
+            this.events.forEach((item) => {
+                if (context[item]) {
+                    const func = context[item].match(this.functionExp);
+                    this._element.addEventListener(item, new Function(func[1], func[2]));
+                }
+            });
+        }
     }
 
-    hide() {
-        this._component.classList.add('hidden');
-    }
-
-    makeVisible() {
-        this._component.classList.remove('hidden');
-    }
-
-    addChild(childNode) {
-        this._component.appendChild(childNode);
-    }
-
-    addClass(className) {
-        this._component.classList.add(className);
-    }
-
-    remove() {
-        this._component.children.clear();
-        document.removeChild(this._component);
-    }
-
-    removeChild(childNode) {
-        this._component.removeChild(childNode);
-    }
-}
+    window.BaseComponent = BaseComponent;
+})();

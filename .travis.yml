@@ -6,7 +6,7 @@ node_js:
 branches:
   only:
   - develop
-  - feature-add-lint-to-travis
+  - sandbox
 
 cache:
   directories:
@@ -15,15 +15,12 @@ cache:
 deploy:
   provider: heroku
   api_key:
-    secure: $HEROCU_KEY
-  app: tf-develop-server
+    secure: $HEROKU_KEY
+  app: tf-sand-server
   on:
-    repo: tarados-feroces/frontend
-    branch: develop
+    repo: frontend-park-mail-ru/2018_1_tarados-feroces
+    branch: sandbox
   skip_cleanup: true
-
-before_script:
-  - npm install
 
 script:
   - npm run eslint
