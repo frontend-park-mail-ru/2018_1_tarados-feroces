@@ -41,24 +41,33 @@
 
     }
 
+    window.settings = (file) => {
+        const blocks = [...document.querySelector('.settings').getElementsByClassName('input-block')];
+        console.log(file.currentTarget.result);
+        httpModule.doPost('/signin',
+            {
+                login: blocks[0].querySelector('input').value,
+                email: blocks[1].querySelector('input').value,
+                avatar: file.currentTarget.result,
+            }).then(
+            (responseText) => {
+                router.go('/user/');
+                blocks.forEach((item) => item.querySelector('input').value = '');
+            },
+            (error) => {
+                document.querySelector('.settings').getElementsByClassName('input-block')[0].querySelector('.error').innerText = error;
+                document.querySelector('.settings').getElementsByClassName('input-block')[0].querySelector('.error').classList.remove('hidden');
+            }
+        );
+    };
+
     window.validateSettings = () => {
         const blocks = [...document.querySelector('.settings').getElementsByClassName('input-block')];
+        const reader = new FileReader();
         if (blocks.reduce((result, current) => result + validateSettingsInput(current), 0) == blocks.length) {
-            httpModule.doPost('/settings',
-                {
-                    login: blocks[0].querySelector('input').value,
-                    email: blocks[1].querySelector('input').value,
-                    avatar: blocks[2].querySelector('input').value,
-                }).then(
-                (responseText) => {
-                    router.go('/user/');
-                    blocks.forEach((item) => item.querySelector('input').value = '');
-                },
-                (error) => {
-                    document.querySelector('.settings').getElementsByClassName('input-block')[0].querySelector('.error').innerText = error;
-                    document.querySelector('.settings').getElementsByClassName('input-block')[0].querySelector('.error').classList.remove('hidden');
-                }
-            );
+            const file = blocks[2].querySelector('input').files[0];
+            reader.onload = settings;
+            reader.readAsText(file);
         }
     };
 
