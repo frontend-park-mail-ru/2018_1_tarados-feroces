@@ -41,10 +41,10 @@
 
     }
 
-    window.settings = (file) => {
+    const settings = (file) => {
         const blocks = [...document.querySelector('.settings').getElementsByClassName('input-block')];
         console.log(file.currentTarget.result);
-        httpModule.doPost('/signin',
+        httpModule.doPost('/user/update',
             {
                 login: blocks[0].querySelector('input').value,
                 email: blocks[1].querySelector('input').value,
@@ -59,6 +59,14 @@
                 document.querySelector('.settings').getElementsByClassName('input-block')[0].querySelector('.error').classList.remove('hidden');
             }
         );
+    };
+
+    const test = (event) => {
+        let file = event.currentTarget.result;
+        file = btoa((encodeURIComponent(file)));
+        const img = document.createElement('img');
+        img.src = `data:image/gif;base64,${file}`;
+        document.body.appendChild(img);
     };
 
     window.validateSettings = () => {
