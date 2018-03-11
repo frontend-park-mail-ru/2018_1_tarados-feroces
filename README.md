@@ -29,7 +29,7 @@ router.go('/login/');
 #### Components
 Компоненты - элементарные единицы структуры.
 ```javascript
-const btn = new Header();
+const header = new Header();
 ```
 #### Views
 Вьюшки - сущности, состоящие из компонент.
@@ -69,8 +69,9 @@ npm run eslint
 #### Тестирование
 
 Для проверки на локальной машине нужно перейти в папку с проектом и ввести команду 
-
-  - node server/
+```
+node server/
+```
 
 #### Клиент
   - Javascript
