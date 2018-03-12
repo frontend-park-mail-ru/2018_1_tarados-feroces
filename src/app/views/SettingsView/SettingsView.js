@@ -15,7 +15,7 @@
             return `<div class="page">
                         <Header>Settings</Header>
                         <div class="form-block settings">
-                            <Image class="main-avatar" src="{{avatar}}"></Image>
+                            <Image class="main-avatar" src="{{{avatar}}}"></Image>
                             <Form>
                                 <Input block-class="user-name" error-class="hidden" error-text="empty username"
                                 label-text="Login:" type="text" value="{{login}}"

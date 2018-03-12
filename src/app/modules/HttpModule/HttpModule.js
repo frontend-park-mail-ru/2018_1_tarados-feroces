@@ -51,7 +51,6 @@
 
                 xhr.addEventListener('load', () => {
                     const response = JSON.parse(xhr.responseText);
-                    console.log(response);
 
                     if (xhr.status < 300) {
                         resolve(response);
