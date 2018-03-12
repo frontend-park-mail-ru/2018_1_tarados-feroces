@@ -36,7 +36,6 @@
     window.validateLogin = () => {
         const blocks = [...document.querySelector('.login').getElementsByClassName('input-block')];
         if (blocks.reduce((result, current) => result + validateLoginInput(current), 0) == blocks.length) {
-
             httpModule.doPost('/signin',
                 {
                     login: blocks[0].querySelector('input').value,
@@ -51,7 +50,6 @@
                     alert(error);
                 }
                 );
-
         }
     };
 

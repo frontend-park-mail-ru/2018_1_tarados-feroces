@@ -68,13 +68,6 @@
         );
     };
 
-    // const test = () => {
-    //     const file = reader.result;
-    //     const img = document.createElement('img');
-    //     img.src = `data:image/gif;base64,${file}`;
-    //     document.body.appendChild(img);
-    // };
-
     window.validateSettings = () => {
         const blocks = [...document.querySelector('.settings').getElementsByClassName('input-block')];
         window.reader = new FileReader();
