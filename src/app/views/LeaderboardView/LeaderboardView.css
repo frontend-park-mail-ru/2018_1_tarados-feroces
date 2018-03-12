@@ -1,0 +1,10 @@
+.leaderboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #81495a;
+    padding: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+    min-width: 700px;
+}
