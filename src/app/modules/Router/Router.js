@@ -14,6 +14,9 @@
             this.lastView = null;
             this.urls = {};
             this.insertionElement = document.querySelector('.root');
+            this.loadingElement = new LoadingView().__render();
+            this.loadingElement.classList.add('hidden');
+            this.insertionElement.appendChild(this.loadingElement);
             this.start();
         }
 
@@ -54,6 +57,7 @@
                 return false;
             }
 
+            this.showLoading();
             url = this.checkAuth(url);
             this.route(url, insertionElement);
             window.history.pushState({path: url}, url, url);
@@ -115,9 +119,11 @@
          * @private
          */
         deleteLast() {
-            const parent = this.lastView.element.parentNode;
-            parent.removeChild(this.lastView.element);
-            return parent;
+            if (this.lastView.element) {
+                const parent = this.lastView.element.parentNode;
+                parent.removeChild(this.lastView.element);
+                return parent;
+            }
         }
 
         /**
@@ -142,9 +148,22 @@
          * @private
          */
         pageUpdate(url) {
-            this.hideLast();
+            // this.hideLast();
+            this.hideLoading();
             this.lastView = this.urls[url].view;
             this.showPage(url);
+        }
+
+        /**
+         * Отображает вью загрузки
+         */
+        showLoading() {
+            this.hideLast();
+            this.loadingElement.classList.remove('hidden');
+        }
+
+        hideLoading() {
+            this.loadingElement.classList.add('hidden');
         }
     }
 
