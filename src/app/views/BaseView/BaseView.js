@@ -36,9 +36,11 @@
          * @return {Node}
          */
         deleteElement() {
-            const parent = this.element.parentNode;
-            parent.removeChild(this.element);
-            return parent;
+            if (this.element) {
+                const parent = this.element.parentNode;
+                parent.removeChild(this.element);
+                return parent;
+            }
         }
 
         /**
