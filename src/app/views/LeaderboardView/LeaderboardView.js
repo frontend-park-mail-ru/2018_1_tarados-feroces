@@ -60,7 +60,7 @@
 
     window.paginate = (index) => {
         const paginationConstant = 5;
-        httpModule.doPost('/score', {position: index, count: paginationConstant + index}).then(
+        httpModule.doPost('/score', {position: index, count: paginationConstant}).then(
             (response) => router.viewUpdate(response)
         );
         window.currentPosition += paginationConstant;
