@@ -10,7 +10,7 @@
          * @constructor
          */
         constructor() {
-            this.regExp = /<[a-z0-9 _\-"'=(){}\[\],;:.@!?\/]+>|<\/[a-z0-9 _\-"'=(){}\[\],;:.@!?]+>/ig;
+            this.regExp = /<[a-z0-9 _\-"'=(){}\[\],;:.@!?\/+]+>|<\/[a-z0-9 _\-"'=(){}\[\],;:.@!?]+>/ig;
             this.regExpEnd = /<\/[a-z0-9 _\-"'=(){}\[\],;:.@!?]+>/i;
             this.objects = [];
             this.tagStack = [];
@@ -116,27 +116,10 @@
             object.attributes.text = object.text;
             object.attributes.tag = object.tag;
 
-            for (let i = 1; i < str.length; ++i) {
-                if (!str[i].length) {
-                    continue;
-                }
-
-                const currentProp = str[i].split('=');
-                const currentPropName = currentProp[0];
-                let currentPropValue = currentProp.slice(1, currentProp.length);
-
-                let currentPos = i;
-
-                while (str[currentPos][str[currentPos].length - 1] !== '"') {
-                    currentPos++;
-                }
-
-                const newValues = str.slice(i + 1, currentPos + 1);
-                const spaceBetween = newValues.length ? ' ' : '';
-                currentPropValue += spaceBetween + newValues.join(' ');
-                i = currentPos;
-
-                object.attributes[currentPropName] = currentPropValue.slice(1, -1);
+            let currentProp = '';
+            const propExp = /([\w-_]+)="([^"]*)"/gi;
+            while (currentProp = propExp.exec(object.object)) {
+                object.attributes[currentProp[1]] = currentProp[2];
             }
         }
 
