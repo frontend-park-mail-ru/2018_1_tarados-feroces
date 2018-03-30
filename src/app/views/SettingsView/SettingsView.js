@@ -47,6 +47,7 @@
 
     const settings = () => {
         const blocks = [...document.querySelector('.settings').getElementsByClassName('input-block')];
+        router.showLoading();
         httpModule.doPost('/user/update',
             {
                 login: blocks[0].querySelector('input').value,
@@ -58,6 +59,7 @@
                 router.urls['/user/'].view.deleteElement();
                 router.urls['/settings/'].loaded = false;
                 router.urls['/settings/'].view.deleteElement();
+                router.hideLoading();
                 router.go('/user/');
                 blocks.forEach((item) => item.querySelector('input').value = '');
             },
