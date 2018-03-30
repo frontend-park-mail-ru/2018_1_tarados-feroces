@@ -18,6 +18,5 @@ app.get('/login/id', function(req, res) {
 
 app.listen(process.env.PORT || 8080, () => console.log('Example app listening on port 8080!'));
 
-
 //    "watch:lint": "node node_modules/eslint-watch/bin/esw -w --fix"
 //    "eslint-watch": "^3.1.3",
