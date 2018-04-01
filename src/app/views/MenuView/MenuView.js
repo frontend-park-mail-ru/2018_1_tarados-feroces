@@ -1,40 +1,37 @@
-(function() {
-    'use strict';
+import BaseView from '../BaseView/BaseView'
+import router from '../../modules/Router/Router'
 
-    class MenuView extends BaseView {
+export default class MenuView extends BaseView {
 
-        render() {
-            return `<div class="menu">
-                        <Header>Menu</Header>
-                        <div class="points">
-                            <ul>
-                                <MenuPoint click="(event) {event.preventDefault(); goToSignUp();}">SignUp</MenuPoint>
-                                <MenuPoint click="(event) {event.preventDefault(); goToLogin();}">SignIn</MenuPoint>
-                            </ul>
-                        </div>
-                    </div>`;
-        }
-
-        needAuthorization() {
-            return false;
-        }
+    render() {
+        return `<div class="menu">
+                    <Header>Menu</Header>
+                    <div class="points">
+                        <ul>
+                            <MenuPoint click="(event) {event.preventDefault(); goToSignUp();}">SignUp</MenuPoint>
+                            <MenuPoint click="(event) {event.preventDefault(); goToLogin();}">SignIn</MenuPoint>
+                        </ul>
+                    </div>
+                </div>`;
     }
 
-    window.goToLogin = () => {
-        router.go('/login/');
-    };
+    needAuthorization() {
+        return false;
+    }
+}
 
-    window.goToSignUp = () => {
-        router.go('/signup/');
-    };
+window.goToLogin = () => {
+    router.go('/login/');
+};
 
-    window.goToScore = () => {
-        router.go('/leaderboard/');
-    };
+window.goToSignUp = () => {
+    router.go('/signup/');
+};
 
-    window.goBack = () => {
-        router.go('/');
-    };
+window.goToScore = () => {
+    router.go('/leaderboard/');
+};
 
-    window.MenuView = MenuView;
-})();
+window.goBack = () => {
+    router.go('/');
+};

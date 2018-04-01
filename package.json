@@ -8,7 +8,8 @@
     "eslint": "./node_modules/.bin/eslint ./src/",
     "flint": "./node_modules/.bin/eslint --fix ./src/",
     "server": "node ./server",
-    "sass": "node-sass --watch src -o src/static/css"
+    "sass": "node-sass --watch src -o src/static/css",
+    "webpack": "./node_modules/.bin/webpack -p --config webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -24,7 +25,8 @@
     "eslint": "^4.18.2",
     "eslint-config-google": "^0.9.1",
     "express": "^4.16.2",
-    "gulp-sass": "^3.1.0"
+    "gulp-sass": "^3.1.0",
+    "webpack-cli": "^2.0.13"
   },
   "dependencies": {
     "copy-webpack-plugin": "^4.5.1",

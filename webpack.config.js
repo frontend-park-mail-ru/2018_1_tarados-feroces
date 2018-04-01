@@ -6,19 +6,16 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const outPath = path.join('/dist');
-const sourcePath = path.join('/src');
 
 module.exports = {
     watch: true,
     devtool: 'source-map',
-
-    context: sourcePath,
     entry: {
-        main: 'app/index.js',
+        main: './src/app/index.js',
     },
     output: {
-        path: outPath,
-        publicPath: '/',
+        // path: outPath,
+        // publicPath: '/',
         filename: 'bundle.js',
     },
 
@@ -57,32 +54,31 @@ module.exports = {
         ]
     },
 
-    plugins: [
-        new ExtractTextPlugin({
-            filename: 'style.css',
-            allChunks: true
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor',
-            filename: 'vendor.bundle.js',
-            minChunks: Infinity
-        }),
-        new webpack.optimize.AggressiveMergingPlugin(),
-        new ExtractTextPlugin({
-            filename: 'styles.css',
-        }),
-        new HtmlWebpackPlugin({
-            template: 'index.html'
-        }),
-        new CopyWebpackPlugin([
-            {
-                from: 'static/images',
-                to: 'static/images'
-            }
-        ])
-    ],
+    // plugins: [
+        // new ExtractTextPlugin({
+        //     filename: 'style.css',
+        //     allChunks: true
+        // }),
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     name: 'vendor',
+        //     filename: 'vendor.bundle.js',
+        //     minChunks: Infinity
+        // }),
+        // new ExtractTextPlugin({
+        //     filename: 'styles.css',
+        // }),
+        // new HtmlWebpackPlugin({
+        //     template: 'index.html'
+        // }),
+        // new CopyWebpackPlugin([
+        //     {
+        //         from: 'static/images',
+        //         to: 'static/images'
+        //     }
+        // ])
+    // ],
     devServer: {
-        contentBase: sourcePath,
+        contentBase: './',
         hot: true,
         stats: {
             warnings: false

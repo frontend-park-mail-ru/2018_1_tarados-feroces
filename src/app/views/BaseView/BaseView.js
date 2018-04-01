@@ -1,92 +1,89 @@
-(function() {
-    'use strict';
+import htmlParser from '../../modules/HtmlParser/HtmlParser'
+import templateManager from '../../modules/TemplateManager/TemplateManager'
+
+/**
+ * Базовый класс вьюх
+ * @module BaseView
+ */
+export default class BaseView {
 
     /**
-     * Базовый класс вьюх
-     * @module BaseView
+     * @constructor
      */
-    class BaseView {
+    constructor() {
+        this.element = null;
+        this.context = {};
+    }
 
-        /**
-         * @constructor
-         */
-        constructor() {
-            this.element = null;
-            this.context = {};
-        }
+    /**
+     * Получает параметры шаблона для вьюхи
+     * @return {Promise<any>}
+     */
+    preRender() {
+        return new Promise((resolve, reject) => resolve({}));
+    }
 
-        /**
-         * Получает параметры шаблона для вьюхи
-         * @return {Promise<any>}
-         */
-        preRender() {
-            return new Promise((resolve, reject) => resolve({}));
-        }
+    /**
+     * Возвращает шаблон вьюхи
+     * @return {string}
+     */
+    render() {
+       return '';
+    }
 
-        /**
-         * Возвращает шаблон вьюхи
-         * @return {string}
-         */
-        render() {
-           return '';
-        }
-
-        /**
-         * Удаляет элемент вьюхи из DOM
-         * @return {Node}
-         */
-        deleteElement() {
-            if (this.element) {
-                const parent = this.element.parentNode;
-                parent.removeChild(this.element);
-                return parent;
-            }
-        }
-
-        /**
-         * Сообщает, нужна ли авторизация для отрисовки вьюхи
-         * @return {boolean}
-         */
-        needAuthorization() {
-            return true;
-        }
-
-        /**
-         * Обновляет контекст вьюхи согласно новому контескту
-         * @param {Object} context
-         * @return {null}
-         */
-        update(context = {}) {
-            return null;
-        }
-
-        /**
-         * Скрывает элемент вью
-         */
-        hide() {
-            if (this.element) {
-                this.element.classList.add('hidden');
-            }
-        }
-
-        /**
-         * Показывает элемент вью
-         */
-        show() {
-            if (this.element) {
-                this.element.classList.remove('hidden');
-            }
-        }
-
-        /**
-         * Получает DOM-элемент вью
-         * @return {Node}
-         */
-        __render() {
-            this.element = htmlParser.getHTML(templateManager.getHTML(this.context, this.render()));
-            return this.element;
+    /**
+     * Удаляет элемент вьюхи из DOM
+     * @return {Node}
+     */
+    deleteElement() {
+        if (this.element) {
+            const parent = this.element.parentNode;
+            parent.removeChild(this.element);
+            return parent;
         }
     }
 
-    window.BaseView = BaseView;
-})();
+    /**
+     * Сообщает, нужна ли авторизация для отрисовки вьюхи
+     * @return {boolean}
+     */
+    needAuthorization() {
+        return true;
+    }
+
+    /**
+     * Обновляет контекст вьюхи согласно новому контескту
+     * @param {Object} context
+     * @return {null}
+     */
+    update(context = {}) {
+        return null;
+    }
+
+    /**
+     * Скрывает элемент вью
+     */
+    hide() {
+        if (this.element) {
+            this.element.classList.add('hidden');
+        }
+    }
+
+    /**
+     * Показывает элемент вью
+     */
+    show() {
+        if (this.element) {
+            this.element.classList.remove('hidden');
+        }
+    }
+
+    /**
+     * Получает DOM-элемент вью
+     * @return {Node}
+     */
+    __render() {
+        this.element = htmlParser.getHTML(templateManager.getHTML(this.context, this.render()));
+        return this.element;
+    }
+}

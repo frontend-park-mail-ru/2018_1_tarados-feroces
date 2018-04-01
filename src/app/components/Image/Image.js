@@ -1,13 +1,10 @@
-(function() {
-    'use strict';
+import BaseComponent from '../BaseComponent/BaseComponent'
 
-    class Image extends BaseComponent {
 
-        render(context) {
-            this.template = `<img class="{{class}}" src="{{src}}">`;
-            super.render(context);
-        }
+export default class Image extends BaseComponent {
+
+    render(context) {
+        this.template = `<img class="{{class}}" src="{{src}}">`;
+        super.render(context);
     }
-
-    window.Image = Image;
-})();
+}
