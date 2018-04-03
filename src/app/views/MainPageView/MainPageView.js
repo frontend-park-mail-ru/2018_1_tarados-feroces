@@ -18,7 +18,7 @@ export default class MainPageView extends BaseView {
                                 <MenuPoint>Sign Up</MenuPoint>
                             </Menu>
                             <div class="scroll">
-                                <img class="scroll-icon" src="../src/static/images/back.png"></img>
+                                <div class="scroll-icon"></div>
                             </div>
                         </div>
                        <div class="main-page__content-row main-page__content-row_low-height">
@@ -36,6 +36,11 @@ export default class MainPageView extends BaseView {
                                     </p>
                                 </div>
                             </div>
+                       </div>
+                       <div class="main-page__content-row"
+                           <div class="main-page__content-trailer">
+                                <Trailer src="https://www.youtube.com/embed/L3Mg6lk6yyA" frameborder="0" allow="autoplay; encrypted-media"></Trailer>
+                           </div>
                        </div>
                     </div>
                 </div>`;

@@ -48,13 +48,13 @@ module.exports = {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader']
             },
-
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
-                loader: 'url-loader?limit=10000',
-                // loader: 'url-loader?limit=10000!img-loader?progressive=true'
-            },
+                use: [
+                    {loader: 'url-loader?limit=10000'}
+                ]
 
+            },
             {
                 test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
                 loader: 'file-loader?name=fonts/[name].[ext]'
@@ -70,7 +70,10 @@ module.exports = {
         new UglifyJsPlugin({
             parallel: 4,
             sourceMap: true,
-        })
+        }),
+        new CopyWebpackPlugin([
+            {from: path.join(__dirname, 'src/static/images'), to: path.join(outPath, 'images')}
+        ])
     ],
     devServer: {
         contentBase: './',
