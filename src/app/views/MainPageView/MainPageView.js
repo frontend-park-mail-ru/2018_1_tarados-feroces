@@ -13,9 +13,9 @@ export default class MainPageView extends BaseView {
                     <div class="main-page__content">
                         <div class="main-page__content-row">
                             <Menu>
-                                <MenuPoint>Play</MenuPoint>
-                                <MenuPoint>Sign In</MenuPoint>
-                                <MenuPoint>Sign Up</MenuPoint>
+                                <MenuPoint click="(){}">Play</MenuPoint>
+                                <MenuPoint click="(){ goToLogin(); }">Sign In</MenuPoint>
+                                <MenuPoint click="(){ goToSignUp(); }">Sign Up</MenuPoint>
                             </Menu>
                             <div class="scroll">
                                 <div class="scroll-icon"></div>

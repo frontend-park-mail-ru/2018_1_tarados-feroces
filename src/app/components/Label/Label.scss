@@ -1,0 +1,15 @@
+.label {
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  margin-bottom: 40px;
+  margin-top: 10px;
+}
+
+
+.label-text {
+  align-self: center;
+  font-size: 50px;
+  font-family: $main-font;
+  color: $blocks-text-color;
+}

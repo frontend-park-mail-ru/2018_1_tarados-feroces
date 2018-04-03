@@ -67,10 +67,10 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'src/index.html')
         }),
-        new UglifyJsPlugin({
-            parallel: 4,
-            sourceMap: true,
-        }),
+        // new UglifyJsPlugin({
+        //     parallel: 4,
+        //     sourceMap: true,
+        // }),
         new CopyWebpackPlugin([
             {from: path.join(__dirname, 'src/static/images'), to: path.join(outPath, 'images')}
         ])

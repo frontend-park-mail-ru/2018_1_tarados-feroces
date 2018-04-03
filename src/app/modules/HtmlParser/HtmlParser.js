@@ -7,7 +7,9 @@ import Form from '../../components/Form/Form'
 import Footer from '../../components/Footer/Footer'
 import Image from '../../components/Image/Image'
 import Trailer from '../../components/Trailer/Trailer'
+import Label from '../../components/Label/Label'
 import StandartComponent from '../../components/StandartComponent/StandartComponent'
+
 
 /** Класс для парсинга html тэгов
  * @module HtmlParser
@@ -33,6 +35,7 @@ class HtmlParser {
             Footer: () => new Footer(),
             Image: () => new Image(),
             Trailer: () => new Trailer(),
+            Label: () => new Label(),
             div: () => new StandartComponent(),
             a: () => new StandartComponent(),
             p: () => new StandartComponent(),

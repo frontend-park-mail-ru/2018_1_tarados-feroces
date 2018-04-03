@@ -6,28 +6,45 @@ import httpModule from "../../modules/HttpModule/HttpModule";
 export default class LoginView extends BaseView {
 
     render() {
-        return `<div class="page">
-                        <Header>Login</Header>
+        return `<div class="main-page">
+                        <Header class="main-page__header">
+                            <div class="header-logo">
+                                <div class="header-logo-content"></div>
+                            </div>
+                        </Header>
+                        
                         <div class="form-block login">
-                            <Form>
-                                <Input block-class="user-name" error-class="hidden" error-text="empty username"
-                                label-text="Enter login:" type="text" placeholder="Enter login"
-                                focus="() { validateFocusLoginInput(document.querySelector('.login').getElementsByClassName('input-block')[0]) }"
-                                blur="() { validateBlurLoginInput(document.querySelector('.login').getElementsByClassName('input-block')[0]) }">
-                                </Input>
-                                <Input block-class="user-password"  error-class="hidden" error-text="empty password"
-                                label-text="Password:" type="password" placeholder="Enter password"
-                                focus="() { validateFocusLoginInput(document.querySelector('.login').getElementsByClassName('input-block')[1]) }"
-                                blur="() { validateBlurLoginInput(document.querySelector('.login').getElementsByClassName('input-block')[1]) }">
-                                </Input>
-                                <div class="button-container">
-                                    <Button class="button large" click="() {validateLogin();}">Log In!</Button>
-                                    <Button class="button large" click="(event){ event.preventDefault(); goBack();  }">Back</Button>
+                            <div class="form-block-content">
+                                <div click="(event){ event.preventDefault(); goBack();  }" class="form-block-content__back">
+                                    <Image class="form-block-content__back-icon" src="images/back.png"></Image>
                                 </div>
-                            </Form>
+                                <Form>
+                                    <Label>Sign In</Label>
+                                    <div class="form-block-content-inputs">
+                                        <Input 
+                                            block-class="user-name"
+                                            type="text" 
+                                            placeholder="Login"
+                                            focus="() { validateFocusLoginInput(document.querySelector('.login').getElementsByClassName('input-block')[0]) }"
+                                            blur="() { validateBlurLoginInput(document.querySelector('.login').getElementsByClassName('input-block')[0]) }">
+                                        </Input>
+                                        <Input 
+                                            block-class="user-password" 
+                                            type="password" 
+                                            placeholder="Password"
+                                            focus="() { validateFocusLoginInput(document.querySelector('.login').getElementsByClassName('input-block')[1]) }"
+                                            blur="() { validateBlurLoginInput(document.querySelector('.login').getElementsByClassName('input-block')[1]) }">
+                                        </Input>
+                                        <Button 
+                                        click="(){ validateLogin(); }"
+                                        class="login-button">
+                                        Sign In
+                                        </Button>
+                                     </div>
+                                </Form>
+                            </div>
                         </div>
-                    </div>
-                    <Footer>Made by Tarados Feroces</Footer>`;
+                    </div>`;
     }
 
     needAuthorization() {
@@ -37,7 +54,7 @@ export default class LoginView extends BaseView {
 
 window.validateLogin = () => {
     const blocks = [...document.querySelector('.login').getElementsByClassName('input-block')];
-    if (blocks.reduce((result, current) => result + validateLoginInput(current), 0) == blocks.length) {
+    if (blocks.reduce((result, current) => result + validateLoginInput(current), 0) === blocks.length) {
         httpModule.doPost('/signin',
             {
                 login: blocks[0].querySelector('input').value,
@@ -57,30 +74,22 @@ window.validateLogin = () => {
 
 window.validateLoginInput = (block) => {
     const input = block.querySelector('input');
-    const error = block.querySelector('.error');
 
     if (input.value === '') {
-        input.classList.add('input-error');
-        error.classList.remove('hidden');
+        input.classList.add('input-block__input_error');
         return false;
     } else {
-        input.classList.remove('input-error');
-        error.classList.add('hidden');
+        input.classList.remove('input-block__input_error');
         return true;
     }
 };
 
-window.validateFocusLoginInput = (block) => {
-    block.querySelector('input').classList.remove('input-error');
-    block.querySelector('.error').classList.add('hidden');
-};
+window.validateFocusLoginInput = (block) => block.querySelector('input').classList.remove('input-block__input_error');
 
 window.validateBlurLoginInput = (block) => {
     const input = block.querySelector('input');
-    const error = block.querySelector('.error');
 
     if (input.value === '') {
-        input.classList.add('input-error');
-        error.classList.remove('hidden');
+        input.classList.add('input-block__input_error');
     }
 };
