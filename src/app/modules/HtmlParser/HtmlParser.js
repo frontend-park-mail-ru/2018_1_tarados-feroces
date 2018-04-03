@@ -2,9 +2,11 @@ import Button from '../../components/Button/Button'
 import Input from '../../components/Input/Input'
 import Header from '../../components/Header/Header'
 import MenuPoint from '../../components/MenuPoint/MenuPoint'
+import Menu from '../../components/Menu/Menu'
 import Form from '../../components/Form/Form'
 import Footer from '../../components/Footer/Footer'
 import Image from '../../components/Image/Image'
+import Trailer from '../../components/Trailer/Trailer'
 import StandartComponent from '../../components/StandartComponent/StandartComponent'
 
 /** Класс для парсинга html тэгов
@@ -26,9 +28,11 @@ class HtmlParser {
             Input: () => new Input(),
             Header: () => new Header(),
             MenuPoint: () => new MenuPoint(),
+            Menu: () => new Menu(),
             Form: () => new Form(),
             Footer: () => new Footer(),
             Image: () => new Image(),
+            Trailer: () => new Trailer(),
             div: () => new StandartComponent(),
             a: () => new StandartComponent(),
             p: () => new StandartComponent(),
@@ -95,6 +99,7 @@ class HtmlParser {
      * @param {string} input - входной шаблон
      */
     parseHtml(input) {
+        // debugger;
         let compareResult = '';
         let previousIndex = 0;
         input = input.replace(/\n/g, ' ');

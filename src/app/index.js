@@ -2,7 +2,7 @@
 import userService from './modules/UserService/UserService'
 import router from './modules/Router/Router'
 import LoginView from './views/LoginView/LoginView'
-import MenuView from './views/MenuView/MenuView'
+import MainPageView from './views/MainPageView/MainPageView'
 import RegisterView from './views/RegisterView/RegisterView'
 import AuthorizedView from './views/AuthorizedView/AuthorizedView'
 import SettingsView from './views/SettingsView/SettingsView'
@@ -15,7 +15,7 @@ router
     )
     .addUrl(
         '/',
-        new MenuView()
+        new MainPageView()
     )
     .addUrl(
         '/signup/',
@@ -31,7 +31,10 @@ router
     .addUrl(/settings/,
         new SettingsView());
 
+debugger;
+
 if (userService.isAuthorized === undefined) {
+
     userService.checkSession()
     .then(
         (response) => router.go(document.location.pathname),
