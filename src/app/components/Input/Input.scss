@@ -1,0 +1,93 @@
+$headers-font: 'Nunito', sans-serif;
+$header-background: #0f255d;
+$header-text-color: #e7bb41;
+
+$main-font: 'Antic Slab', serif;
+$blocks-background: #143f6b;
+$blocks-text-color: #e5f4e3;
+
+.input-block {
+  width: 400px;
+  height: 60px;
+  display: flex;
+  &_avatar {
+    display: flex;
+    flex-direction: column;
+    //justify-content: space-around;
+    height: 200px;
+    width: 180px;
+
+    & .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 15px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 20px;
+    }
+
+    & .file-upload {
+      display: flex;
+      overflow: hidden;
+      background-color: #0e6ba8;
+      box-shadow: 4px 4px 10px 2px #00072d;
+      border-radius: 10px;
+      width: 100%;
+      height: 40px;
+      color: #fff;
+      text-align: center;
+      &:hover {
+        background: #355fad;
+        animation: button-shining 1.15s ease infinite;
+        box-shadow: aqua;
+      }
+      &:active {
+        background-color: #131b44;
+        animation: none;
+        box-shadow: 0 0 10px 2px aqua;
+      }
+      & input[type="file"]{
+        display: none;
+      }
+      &-label {
+        display: flex;
+        margin: auto;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        & span {
+          font-size: 20px;
+          margin: auto;
+          font-family: $main-font;
+
+        }
+      }
+
+    }
+  }
+  &__input {
+    //margin-top: 10px;
+    font-size: 20px;
+    font-family: $main-font;
+    margin: auto;
+    //color: $blocks-text-color;
+    width: 100%;
+    height: 30px;
+    padding: 5px;
+    border-radius: 10px;
+    border: thin black solid;
+    box-shadow: 4px 4px 10px 2px #00072d;
+    background-color: #d9eaff;
+    outline: 0;
+    &_error {
+      box-shadow: 0px 0px 6px 2px red;
+    }
+    &:hover {
+      box-shadow: 0px 0px 6px 3px #bcdafb;
+    }
+    &:focus {
+      box-shadow: 0px 0px 6px 3px #bcdafb;
+    }
+  }
+}
+

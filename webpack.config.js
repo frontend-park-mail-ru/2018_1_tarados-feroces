@@ -18,7 +18,7 @@ module.exports = {
     entry: {
         main: [
             './src/app/index.js',
-            './src/static/css/test.scss'
+            './src/static/css/main.scss'
         ]
 
     },
@@ -42,12 +42,6 @@ module.exports = {
                         {loader: 'css-loader'},
                         {loader: 'sass-loader'}
                     ]
-                    // loaders: [
-                    //     'style-loader',
-                    //     'css-loader',
-                    //     'resolve-url-loader',
-                    //     'sass-loader',
-                    // ],
                 })
             },
             {
@@ -69,12 +63,6 @@ module.exports = {
 
     plugins: [
         extractSass,
-
-        // new webpack.optimize.CommonsChunkPlugin({
-        //     name: 'vendor',
-        //     filename: 'vendor.bundle.js',
-        //     minChunks: Infinity
-        // }),
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'src/index.html')
         }),
@@ -82,12 +70,6 @@ module.exports = {
             parallel: 4,
             sourceMap: true,
         })
-        // new CopyWebpackPlugin([
-        //     {
-        //         from: 'static/images',
-        //         to: 'static/images'
-        //     }
-        // ])
     ],
     devServer: {
         contentBase: './',
