@@ -16,10 +16,10 @@ deploy:
   provider: heroku
   api_key:
     secure: $HEROKU_KEY
-  app: tf-sand-server
+  app: tf-dev-server
   on:
     repo: frontend-park-mail-ru/2018_1_tarados-feroces
-    branch: sandbox
+    branch: develop
   skip_cleanup: true
 
 script:

@@ -5,6 +5,7 @@ module.exports = {
         "browser": true
     },
     "rules": {
+        "comma-dangle": "off",
         "no-lonely-if": "off",
         "guard-for-in": "off",
         "no-console": "off",
@@ -25,7 +26,7 @@ module.exports = {
                 "FunctionExpression": false
             }
         }],
-        "max-len": ["error", {"code": 160}],
+        "max-len": ["error", {"code": 120}],
         "prefer-const": ["error", {
             "destructuring": "any",
             "ignoreReadBeforeAssign": false

@@ -1,12 +1,8 @@
-(function() {
-    'use strict';
+import BaseView from '../BaseView/BaseView'
 
-    class LoadingView extends BaseView {
+export default class LoadingView extends BaseView {
 
-        render() {
-            return `<Header>Loading...</Header>`;
-        }
+    render() {
+        return `<Header>Loading...</Header>`;
     }
-
-    window.LoadingView = LoadingView;
-})();
+}

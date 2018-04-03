@@ -1,9 +1,5 @@
-(function() {
-    'use strict';
-    
-    window.httpDomen = 'http://deadlinez.herokuapp.com/alexalone';
-    window.POST = 'POST';
-    window.GET = 'GET';
-    window.HEADER_CONTENT_TYPE = 'Content-Type';
-    window.JSON_CONTENT_TYPE = 'application/json;charset=UTF-8';
-})();
+export const httpDomen = 'http://deadlinez.herokuapp.com/alexalone';
+export const POST = 'POST';
+export const GET = 'GET';
+export const HEADER_CONTENT_TYPE = 'Content-Type';
+export const JSON_CONTENT_TYPE = 'application/json;charset=UTF-8';
