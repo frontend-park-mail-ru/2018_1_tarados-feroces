@@ -1,7 +1,7 @@
 import BaseView from '../BaseView/BaseView'
 import router from '../../modules/Router/Router'
 
-export default class MenuView extends BaseView {
+export default class MainPageView extends BaseView {
 
     render() {
         return `<div class="menu">
