@@ -4,18 +4,26 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-const outPath = path.join('/dist');
+const outPath = path.join(__dirname, '/dist');
+
+const extractSass = new ExtractTextPlugin({
+    filename: 'style.css'
+});
 
 module.exports = {
     watch: true,
     devtool: 'source-map',
     entry: {
-        main: './src/app/index.js',
+        main: [
+            './src/app/index.js',
+            './src/static/css/test.scss'
+        ]
+
     },
     output: {
-        // path: outPath,
-        // publicPath: '/',
+        path: outPath,
         filename: 'bundle.js',
     },
 
@@ -29,14 +37,19 @@ module.exports = {
         rules: [
             {
                 test: /\.scss$/,
-                loaders: [
-                    'style-loader',
-                    'css-loader',
-                    'resolve-url-loader',
-                    'sass-loader',
-                ],
+                use: extractSass.extract({
+                    use: [
+                        {loader: 'css-loader'},
+                        {loader: 'sass-loader'}
+                    ]
+                    // loaders: [
+                    //     'style-loader',
+                    //     'css-loader',
+                    //     'resolve-url-loader',
+                    //     'sass-loader',
+                    // ],
+                })
             },
-
             {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader']
@@ -54,29 +67,28 @@ module.exports = {
         ]
     },
 
-    // plugins: [
-        // new ExtractTextPlugin({
-        //     filename: 'style.css',
-        //     allChunks: true
-        // }),
+    plugins: [
+        extractSass,
+
         // new webpack.optimize.CommonsChunkPlugin({
         //     name: 'vendor',
         //     filename: 'vendor.bundle.js',
         //     minChunks: Infinity
         // }),
-        // new ExtractTextPlugin({
-        //     filename: 'styles.css',
-        // }),
-        // new HtmlWebpackPlugin({
-        //     template: 'index.html'
-        // }),
+        new HtmlWebpackPlugin({
+            template: path.join(__dirname, 'src/index.html')
+        }),
+        new UglifyJsPlugin({
+            parallel: 4,
+            sourceMap: true,
+        })
         // new CopyWebpackPlugin([
         //     {
         //         from: 'static/images',
         //         to: 'static/images'
         //     }
         // ])
-    // ],
+    ],
     devServer: {
         contentBase: './',
         hot: true,

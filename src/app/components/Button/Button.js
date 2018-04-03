@@ -1,5 +1,6 @@
 import BaseComponent from '../BaseComponent/BaseComponent'
 
+
 export default class Button extends BaseComponent {
 
     render(context) {

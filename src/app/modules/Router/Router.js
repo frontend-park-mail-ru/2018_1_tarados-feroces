@@ -1,5 +1,5 @@
-import userService from '../UserService/UserService'
-import LoadingView from '../../views/LoadingView/LoadingView'
+import userService from '../UserService/UserService';
+import LoadingView from '../../views/LoadingView/LoadingView';
 
 /**
  * Класс, отвечающий за переход по url
