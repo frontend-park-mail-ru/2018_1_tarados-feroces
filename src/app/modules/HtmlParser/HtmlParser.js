@@ -97,6 +97,7 @@ class HtmlParser {
      * @param {string} input - входной шаблон
      */
     parseHtml(input) {
+        // debugger;
         let compareResult = '';
         let previousIndex = 0;
         input = input.replace(/\n/g, ' ');

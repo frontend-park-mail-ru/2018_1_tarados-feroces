@@ -24,7 +24,7 @@ body {
     align-self: center;
     align-items: center;
     justify-content: space-around;
-    background-image: url(../src/static/images/snowflake.png), url(../src/static/images/snowflake3.png);
+    background-image: url(../images/snowflake.png), url(../images/snowflake3.png);
     animation: snow 1.5s linear infinite;
 
     &-row {

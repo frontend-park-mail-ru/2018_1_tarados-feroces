@@ -31,7 +31,10 @@ router
     .addUrl(/settings/,
         new SettingsView());
 
+debugger;
+
 if (userService.isAuthorized === undefined) {
+
     userService.checkSession()
     .then(
         (response) => router.go(document.location.pathname),

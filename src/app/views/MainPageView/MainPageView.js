@@ -7,23 +7,21 @@ export default class MainPageView extends BaseView {
         return `<div class="main-page">
                     <Header class="main-page__header">
                         <div class="header-logo">
-                            <img class="header-logo-content" src="../src/static/images/Deadlinez.png">
+                            <div class="header-logo-content"></div>
                         </div>
-                    </Header>
-                                    
+                    </Header>   
                     <div class="main-page__content">
                         <div class="main-page__content-row">
                             <Menu>
-                                <MenuPoint class="try">Play</MenuPoint>
-                                <MenuPoint class="signin">Sign in</MenuPoint>
-                                <MenuPoint class="signup">Sign up</MenuPoint>
+                                <MenuPoint>Play</MenuPoint>
+                                <MenuPoint>Sign In</MenuPoint>
+                                <MenuPoint>Sign Up</MenuPoint>
                             </Menu>
                             <div class="scroll">
-                                <img class="scroll-icon" src="../back.png">
+                                <img class="scroll-icon" src="../src/static/images/back.png"></img>
                             </div>
                         </div>
-            
-                        <div class="main-page__content-row main-page__content-row_low-height">
+                       <div class="main-page__content-row main-page__content-row_low-height">
                             <div class="main-page__content-description">
                                 <div class="text">
                                     <p class="text__data">
@@ -35,19 +33,11 @@ export default class MainPageView extends BaseView {
                                         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                         exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                                         dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                        </p>
+                                    </p>
                                 </div>
-            
                             </div>
-                        </div>
-            
-                        <div class="main-page__content-row main-page__content-row_low-height">
-                            <div class="main-page__content-trailer">
-                                <iframe src="https://www.youtube.com/embed/L3Mg6lk6yyA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                            </div>
-                        </div>
+                       </div>
                     </div>
-            
                 </div>`;
     }
 
