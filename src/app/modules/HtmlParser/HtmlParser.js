@@ -2,6 +2,7 @@ import Button from '../../components/Button/Button'
 import Input from '../../components/Input/Input'
 import Header from '../../components/Header/Header'
 import MenuPoint from '../../components/MenuPoint/MenuPoint'
+import Menu from '../../components/Menu/Menu'
 import Form from '../../components/Form/Form'
 import Footer from '../../components/Footer/Footer'
 import Image from '../../components/Image/Image'
@@ -26,6 +27,7 @@ class HtmlParser {
             Input: () => new Input(),
             Header: () => new Header(),
             MenuPoint: () => new MenuPoint(),
+            Menu: () => new Menu(),
             Form: () => new Form(),
             Footer: () => new Footer(),
             Image: () => new Image(),
