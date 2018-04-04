@@ -63,7 +63,7 @@ class HtmlParser {
     /**
      * Возвращает отрендеренный HTMLElement
      * @param {string} template - шаблон для парсинга
-     * @return {HTMLDivElement}
+     * @return {Node}
      */
     getHTML(template) {
         this.stringToObject(template);
@@ -73,8 +73,9 @@ class HtmlParser {
                 html.appendChild(this.getElement(item));
             }
         });
+        console.log(this.objects.length);
         this.objects = [];
-        return html;
+        return html.firstChild;
 
     }
 

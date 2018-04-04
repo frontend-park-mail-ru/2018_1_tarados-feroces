@@ -72,8 +72,7 @@ class Router {
 
     /**
      * Отрисовывает привязанную к url вью
-     * @param {string} url
-     * @param {Node} insertionElement
+     * @param {object} urlObject
      * @private
      */
     route(urlObject) {
