@@ -131,11 +131,10 @@ window.showFriendActions = (event) => {
 };
 
 window.goToScore = () => {
-    // const points = [...document.getElementsByClassName('modal-header__point')];
-    // points.forEach((item) => {
-    //     item.classList.remove('modal-header__point_active');
-    // });
-    // const score = document.querySelector('.leaderboard');
-    // score.classList.add('modal-header__point_active');
+    const score = document.querySelector('.leaderboard');
+    if (score.classList.contains('modal-header__point_active')) {
+        return;
+    }
+
     router.go('/leaderboard/');
 };
