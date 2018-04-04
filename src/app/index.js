@@ -31,7 +31,7 @@ router
     .addUrl(/settings/,
         new SettingsView());
 
-debugger;
+// debugger;
 
 if (userService.isAuthorized === undefined) {
 
