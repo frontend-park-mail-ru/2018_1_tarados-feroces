@@ -8,6 +8,14 @@ import Footer from '../../components/Footer/Footer'
 import Image from '../../components/Image/Image'
 import Trailer from '../../components/Trailer/Trailer'
 import Label from '../../components/Label/Label'
+import Friend from '../../components/Friend/Friend'
+import FriendAction from '../../components/FriendAction/FriendAction'
+import HideFriendsButton from '../../components/HideFriendsButton/HideFriendsButton'
+import UserInfo from '../../components/UserInfo/UserInfo'
+import SettingsButton from '../../components/SettingsButton/SettingsButton'
+import SignoutButton from '../../components/SignoutButton/SignoutButton'
+import AuthContent from '../../components/AuthContent/AuthContent'
+import AuthHeaderPoint from '../../components/AuthHeaderPoint/AuthHeaderPoint'
 import StandartComponent from '../../components/StandartComponent/StandartComponent'
 
 
@@ -36,6 +44,14 @@ class HtmlParser {
             Image: () => new Image(),
             Trailer: () => new Trailer(),
             Label: () => new Label(),
+            Friend: () => new Friend(),
+            FriendAction: () => new FriendAction(),
+            HideFriendsButton: () => new HideFriendsButton(),
+            UserInfo: () => new UserInfo(),
+            SettingsButton: () => new SettingsButton(),
+            SignoutButton: () => new SignoutButton(),
+            AuthContent: () => new AuthContent(),
+            AuthHeaderPoint: () => new AuthHeaderPoint(),
             div: () => new StandartComponent(),
             a: () => new StandartComponent(),
             p: () => new StandartComponent(),

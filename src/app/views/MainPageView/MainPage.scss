@@ -1,18 +1,10 @@
-body {
-  overflow-x: hidden;
-  margin: 0;
-  cursor: default;
-  user-select: none;
-  height: 100vh;
-}
+@import "config";
 
 .main-page {
   display: flex;
   min-width: 1400px;
   max-width: 1920px;
   flex-direction: column;
-  background-image: url("../images/snowflake.png"), url("../images/snowflake3.png");
-  animation: fadeIn 1.5s, snow 1.5s linear infinite;
 
   &__header {
     justify-content: center;
