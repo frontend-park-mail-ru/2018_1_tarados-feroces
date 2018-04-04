@@ -284,6 +284,23 @@ $blocks-text-color: #e5f4e3;
   }
 }
 
+.scoreboard {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  &__pagination {
+    margin-top: 25px;
+    width: 450px;
+    display: flex;
+    align-self: center;
+    justify-content: space-around;
+    &-go-button {
+    }
+  }
+}
+
 .rotate-open {
   animation: rotation-open 0.5s;
 }
