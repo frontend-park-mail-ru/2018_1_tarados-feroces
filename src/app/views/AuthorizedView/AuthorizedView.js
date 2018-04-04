@@ -39,7 +39,40 @@ export default class AuthorizedView extends BaseView {
                         <AuthHeaderPoint click="">Scoreboard</AuthHeaderPoint>
                         <AuthHeaderPoint click="">About</AuthHeaderPoint>
                     </div>
-                    <AuthContent></AuthContent>
+                    <AuthContent>
+                    <!--<div class="scoreboard">-->
+                    <!--<div class="table">-->
+                        <!--<div class="table__header-row">-->
+                            <!---->
+                            <!--<div class="table__header">Name</div>-->
+                            <!--<div class="table__header">Score</div>-->
+                            <!---->
+                        <!--</div>-->
+                        <!---->
+                        <!--<div class="table__row">-->
+                            <!--<div class="table__data">toha</div>-->
+                            <!--<div class="table__data">500</div>-->
+                        <!--</div>-->
+                        <!--<div class="table__row">-->
+                            <!--<div class="table__data">toha</div>-->
+                            <!--<div class="table__data">500</div>-->
+                        <!--</div>-->
+                        <!--<div class="table__row">-->
+                            <!--<div class="table__data">toha</div>-->
+                            <!--<div class="table__data">500</div>-->
+                        <!--</div>-->
+                        <!---->
+                    <!--</div>-->
+                    <!--<div class="scoreboard__pagination">-->
+                        <!--<div class="back button button_no-animation">-->
+                            <!--<p class="button__value">Back</p>-->
+                        <!--</div>-->
+                        <!--<div class="next button button_no-animation">-->
+                            <!--<p class="button__value">Next</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+</AuthContent>
                 </div>
             </div>
 

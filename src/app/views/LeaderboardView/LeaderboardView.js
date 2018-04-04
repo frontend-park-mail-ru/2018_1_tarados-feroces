@@ -30,30 +30,30 @@ export default class LeaderboardView extends BaseView {
     }
 
     render() {
-        return `<div class="leaderboard">
-                        <Header>Leaderboard</Header>
-                        <div class="table">
-                            <div class="table-row">
-                                {{#each headers}}
-                                <div class="table-data table-header">{{this}}</div>
-                                {{/each}}
-                            </div>
-                            {{#each rows}}
-                            <div class="table-row">
-                            {{#each this}}  
-                                <div class="table-data">
-                                {{this}}
-                                </div>
-                            {{/each}}
-                            </div>
+        return `<div class="scoreboard">
+                    <div class="table">
+                        <div class="table__header-row">
+                            {{#each headers}}
+                            <div class="table__header">{{this}}</div>
                             {{/each}}
                         </div>
-                </div>
-                <div class="button-container">
-                    <Button class="button large" click="(event){ paginate(currentPosition) }">More</Button>
-                    <Button class="button large" click="(event){ event.preventDefault(); goBack(); }">Back</Button>
-                </div>
-                <Footer>Made by Tarados Feroces</Footer>`;
+                        {{#each rows}}
+                        <div class="table__row">
+                            {{#each this}}
+                            <div class="table__data">{{this}}</div>
+                            {{/each}}
+                        </div>
+                        {{/each}}
+                    </div>
+                    <div class="scoreboard__pagination">
+                        <div class="back button button_no-animation">
+                            <p class="button__value">Back</p>
+                        </div>
+                        <div class="next button button_no-animation">
+                            <p class="button__value">Next</p>
+                        </div>
+                    </div>
+                </div>`;
     }
 }
 
