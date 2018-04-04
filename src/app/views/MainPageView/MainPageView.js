@@ -59,10 +59,6 @@ window.goToSignUp = () => {
     router.go('/signup/');
 };
 
-window.goToScore = () => {
-    router.go('/leaderboard/');
-};
-
 window.goBack = () => {
     router.go('/');
 };

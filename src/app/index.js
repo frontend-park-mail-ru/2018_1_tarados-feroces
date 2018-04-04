@@ -26,10 +26,12 @@ router
         new AuthorizedView()
     )
     .addUrl(/leaderboard/,
-        new LeaderboardView()
+        new LeaderboardView(),
+        'modal-data'
     )
     .addUrl(/settings/,
-        new SettingsView());
+        new SettingsView()
+    );
 
 // debugger;
 

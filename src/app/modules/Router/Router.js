@@ -56,10 +56,17 @@ class Router {
             return false;
         }
 
-        // this.showLoading();
         url = this.checkAuth(url);
         const urlObject = this.urls[url];
-        this.route(urlObject);
+        if (urlObject.insertElemId !== 'root' && !this.urls['/user/'].loaded) {
+            this.route(this.urls['/user/']).then(
+                (response) => {
+                    this.route(urlObject);
+                }
+            );
+        } else {
+            this.route(urlObject);
+        }
         window.history.pushState({path: url}, url, url);
     }
 
@@ -71,9 +78,10 @@ class Router {
      */
     route(urlObject) {
         const insertionElement = document.getElementById(urlObject.insertElemId);
+
         if (!urlObject.loaded) {
             urlObject.loaded = true;
-            urlObject.view.preRender().then(
+            return urlObject.view.preRender().then(
                 (response) => {
                     urlObject.view.__render();
                     insertionElement.appendChild(urlObject.view.element);
@@ -108,6 +116,13 @@ class Router {
         }
     }
 
+    clearUrlElement(url) {
+        if (router.urls[url].loaded) {
+            router.urls[url].view.deleteElement();
+            router.urls[url].loaded = false;
+        }
+    }
+
     /**
      * Преобразует url к нужному, согласно текущей сессии
      * @param {string} url
@@ -116,8 +131,10 @@ class Router {
      */
     checkAuth(url) {
         if (this.urls[url].view.needAuthorization() && !userService.isAuthorized) {
+            this.lastView = {};
             return '/';
         } else if (!this.urls[url].view.needAuthorization() && userService.isAuthorized) {
+            this.lastView = {};
             return '/user/';
         }
 
