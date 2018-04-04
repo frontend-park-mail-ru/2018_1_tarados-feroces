@@ -13,6 +13,10 @@ export default class LeaderboardView extends BaseView {
         }
     }
 
+    needUpdate() {
+        return true;
+    }
+
     preRender() {
         const points = [...document.getElementsByClassName('modal-header__point')];
         points.forEach((item) => {

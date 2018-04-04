@@ -56,26 +56,30 @@ class Router {
         }
 
         url = this.checkAuth(url);
-        const urlObject = this.urls[url];
-        if (urlObject.insertElemId !== 'root' && !this.urls['/user/'].loaded) {
+        if (this.urls[url].insertElemId !== 'root' && !this.urls['/user/'].loaded) {
             this.route(this.urls['/user/']).then(
                 (response) => {
-                    this.route(urlObject);
+                    this.route(url);
                 }
             );
         } else {
-            this.route(urlObject);
+            this.route(url);
         }
         window.history.pushState({path: url}, url, url);
     }
 
     /**
      * Отрисовывает привязанную к url вью
-     * @param {Object} urlObject
+     * @param {string} url
      * @private
      */
-    route(urlObject) {
+    route(url) {
+        const urlObject = this.urls[url];
         const insertionElement = document.getElementById(urlObject.insertElemId);
+
+        if (urlObject.view.needUpdate()) {
+            this.clearUrlElement(url);
+        }
 
         if (!urlObject.loaded) {
             urlObject.loaded = true;

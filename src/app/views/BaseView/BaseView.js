@@ -51,6 +51,10 @@ export default class BaseView {
         return true;
     }
 
+    needUpdate() {
+        return false;
+    }
+
     /**
      * Обновляет контекст вьюхи согласно новому контескту
      * @param {Object} context
