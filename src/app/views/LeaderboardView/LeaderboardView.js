@@ -20,6 +20,7 @@ export default class LeaderboardView extends BaseView {
         });
         const score = document.querySelector('.leaderboard');
         score.classList.add('modal-header__point_active');
+
         return httpModule.doPost('/score', {position: 0, count: 5}).then(
             (response) => {
                 this.context.rows = [];

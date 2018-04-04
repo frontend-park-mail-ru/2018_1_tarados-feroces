@@ -48,7 +48,6 @@ class Router {
     /**
      * Переходит на новый url
      * @param {string} url
-     * @param {Node} insertionElement
      * @return {boolean}
      */
     go(url) {
@@ -72,8 +71,7 @@ class Router {
 
     /**
      * Отрисовывает привязанную к url вью
-     * @param {string} url
-     * @param {Node} insertionElement
+     * @param {Object} urlObject
      * @private
      */
     route(urlObject) {
@@ -148,7 +146,6 @@ class Router {
      */
     pageUpdate(urlObject) {
         this.hideLast(urlObject);
-        // this.hideLoading();
         this.lastView[urlObject.insertElemId] = urlObject.view;
         this.showPage(urlObject);
     }
