@@ -11,12 +11,10 @@ class Router {
      * @constructor
      */
     constructor() {
-        this.lastView = null;
+        this.lastView = {};
         this.urls = {};
-        this.insertionElement = document.querySelector('.root');
-        this.loadingElement = new LoadingView().__render();
-        this.loadingElement.classList.add('hidden');
-        this.insertionElement.appendChild(this.loadingElement);
+        // this.loadingElement = new LoadingView().__render();
+        // this.loadingElement.classList.add('hidden');
         this.start();
     }
 
@@ -26,9 +24,10 @@ class Router {
      * @param {BaseView} view
      * @return {Router}
      */
-    addUrl(url, view) {
+    addUrl(url, view, id = 'root') {
         this.urls[url] = {
             view,
+            insertElemId: id,
             loaded: false,
         };
         return this;
@@ -52,14 +51,15 @@ class Router {
      * @param {Node} insertionElement
      * @return {boolean}
      */
-    go(url, insertionElement = this.insertionElement) {
+    go(url) {
         if (!this.urls[url]) {
             return false;
         }
 
-        this.showLoading();
+        // this.showLoading();
         url = this.checkAuth(url);
-        this.route(url, insertionElement);
+        const urlObject = this.urls[url];
+        this.route(urlObject);
         window.history.pushState({path: url}, url, url);
     }
 
@@ -69,20 +69,19 @@ class Router {
      * @param {Node} insertionElement
      * @private
      */
-    route(url, insertionElement = this.insertionElement) {
-
-        if (!this.urls[url].loaded) {
-            this.urls[url].loaded = true;
-            this.urls[url].view.preRender().then(
+    route(urlObject) {
+        const insertionElement = document.getElementById(urlObject.insertElemId);
+        if (!urlObject.loaded) {
+            urlObject.loaded = true;
+            urlObject.view.preRender().then(
                 (response) => {
-                    this.urls[url].view.__render();
-                    insertionElement.appendChild(this.urls[url].view.element);
-
-                    this.pageUpdate(url);
+                    urlObject.view.__render();
+                    insertionElement.appendChild(urlObject.view.element);
+                    this.pageUpdate(urlObject);
                 }
             );
         } else {
-            this.pageUpdate(url);
+            this.pageUpdate(urlObject);
         }
     }
 
@@ -97,31 +96,14 @@ class Router {
     }
 
     /**
-     * Показывает текущую вью
-     * @param {string} url
-     * @private
-     */
-    showPage(url) {
-        this.urls[url].view.show();
-    }
-
-    /**
-     * Скрывает предыдущую вью
-     * @private
-     */
-    hideLast() {
-        this.lastView && this.lastView.hide();
-    }
-
-    /**
      * Удаляет последнюю вью из DOM
      * @return {Node}
      * @private
      */
-    deleteLast() {
-        if (this.lastView.element) {
-            const parent = this.lastView.element.parentNode;
-            parent.removeChild(this.lastView.element);
+    deleteLast(urlObject) {
+        if (this.lastView[urlObject.insertElemId].element) {
+            const parent = this.lastView[urlObject.insertElemId].element.parentNode;
+            parent.removeChild(this.lastView[urlObject.insertElemId].element);
             return parent;
         }
     }
@@ -147,23 +129,40 @@ class Router {
      * @param {string} url
      * @private
      */
-    pageUpdate(url) {
-        // this.hideLast();
-        this.hideLoading();
-        this.lastView = this.urls[url].view;
-        this.showPage(url);
+    pageUpdate(urlObject) {
+        this.hideLast(urlObject);
+        // this.hideLoading();
+        this.lastView[urlObject.insertElemId] = urlObject.view;
+        this.showPage(urlObject);
+    }
+
+    /**
+     * Показывает текущую вью
+     * @param {string} url
+     * @private
+     */
+    showPage(urlObject) {
+        urlObject.view.show();
+    }
+
+    /**
+     * Скрывает предыдущую вью
+     * @private
+     */
+    hideLast(urlObject) {
+        this.lastView[urlObject.insertElemId] && this.lastView[urlObject.insertElemId].hide();
     }
 
     /**
      * Отображает вью загрузки
      */
     showLoading() {
-        this.hideLast();
-        this.loadingElement.classList.remove('hidden');
+        // this.hideLast();
+        // this.loadingElement.classList.remove('hidden');
     }
 
     hideLoading() {
-        this.loadingElement.classList.add('hidden');
+        // this.loadingElement.classList.add('hidden');
     }
 }
 
