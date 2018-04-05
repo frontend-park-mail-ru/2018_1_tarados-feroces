@@ -1,4 +1,4 @@
-export const httpDomen = 'http://deadlinez.herokuapp.com/alexalone';
+export const httpDomen = 'http://deadlinez.herokuapp.com/api';
 export const POST = 'POST';
 export const GET = 'GET';
 export const HEADER_CONTENT_TYPE = 'Content-Type';

@@ -13,8 +13,8 @@ class Router {
     constructor() {
         this.lastView = {};
         this.urls = {};
-        // this.loadingElement = new LoadingView().__render();
-        // this.loadingElement.classList.add('hidden');
+        this.loadingElement = new LoadingView().__render();
+        this.loadingElement.classList.add('hidden');
         this.start();
     }
 
@@ -74,6 +74,7 @@ class Router {
      * @private
      */
     route(url) {
+        this.loadingElement.classList.remove('hidden');
         const urlObject = this.urls[url];
         const insertionElement = document.getElementById(urlObject.insertElemId);
 
@@ -149,6 +150,7 @@ class Router {
      * @private
      */
     pageUpdate(urlObject) {
+        this.loadingElement.classList.add('hidden');
         this.hideLast(urlObject);
         this.lastView[urlObject.insertElemId] = urlObject.view;
         this.showPage(urlObject);
