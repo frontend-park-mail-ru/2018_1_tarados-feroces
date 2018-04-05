@@ -22,7 +22,7 @@ export default class BaseComponent {
      */
     render(context) {
         const div = document.createElement('div');
-        div.innerHTML = templateManager.getHTML(context, this.template);
+        div.innerHTML = this.template(context);
         this._element = div.lastChild;
         this.addListeners(context);
     }
