@@ -15,6 +15,8 @@ class Router {
         this.urls = {};
         this.loadingElement = new LoadingView().__render();
         this.loadingElement.classList.add('hidden');
+        const root = document.getElementById('root');
+        root.appendChild(this.loadingElement);
         this.start();
     }
 
@@ -54,7 +56,7 @@ class Router {
         if (!this.urls[url]) {
             return false;
         }
-
+        this.showLoading();
         url = this.checkAuth(url);
         if (this.urls[url].insertElemId !== 'root' && !this.urls['/user/'].loaded) {
             this.route(this.urls['/user/']).then(
@@ -74,7 +76,6 @@ class Router {
      * @private
      */
     route(url) {
-        this.loadingElement.classList.remove('hidden');
         const urlObject = this.urls[url];
         const insertionElement = document.getElementById(urlObject.insertElemId);
 
@@ -150,7 +151,7 @@ class Router {
      * @private
      */
     pageUpdate(urlObject) {
-        this.loadingElement.classList.add('hidden');
+        // this.hideLoading();
         this.hideLast(urlObject);
         this.lastView[urlObject.insertElemId] = urlObject.view;
         this.showPage(urlObject);
@@ -178,11 +179,11 @@ class Router {
      */
     showLoading() {
         // this.hideLast();
-        // this.loadingElement.classList.remove('hidden');
+        this.loadingElement.classList.remove('hidden');
     }
 
     hideLoading() {
-        // this.loadingElement.classList.add('hidden');
+        this.loadingElement.classList.add('hidden');
     }
 }
 
