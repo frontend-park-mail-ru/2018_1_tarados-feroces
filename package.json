@@ -33,6 +33,8 @@
     "css-loader": "^0.28.11",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.11",
+    "handlebars": "^4.0.11",
+    "handlebars-webpack-plugin": "^1.4.1",
     "html-webpack-plugin": "^3.1.0",
     "resolve-url-loader": "^2.3.0",
     "sass-loader": "^6.0.7",
