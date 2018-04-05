@@ -5,7 +5,6 @@ export default class MainPageView extends BaseView {
 
     render() {
         this.template = require('./MainPageView.handlebars');
-        super.render();
     }
 
     needAuthorization() {

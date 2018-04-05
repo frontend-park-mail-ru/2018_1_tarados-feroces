@@ -17,7 +17,6 @@ export default class SettingsView extends BaseView {
 
     render() {
         this.template = require('./SettingsView.handlebars');
-        super.render();
     }
 
 }

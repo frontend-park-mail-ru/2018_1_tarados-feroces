@@ -7,7 +7,6 @@ export default class RegisterView extends BaseView {
 
     render() {
         this.template = require('./RegisterView.handlebars');
-        super.render();
     }
 
     needAuthorization() {

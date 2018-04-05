@@ -41,8 +41,8 @@ export default class LeaderboardView extends BaseView {
     }
 
     render() {
-        this.template = require('./LeaderboardView.handlebars');
-        super.render();
+        return this.template = require('./LeaderboardView.handlebars');
+
     }
 }
 

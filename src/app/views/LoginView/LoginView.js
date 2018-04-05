@@ -7,7 +7,6 @@ export default class LoginView extends BaseView {
 
     render() {
         this.template = require('./LoginView.handlebars');
-        super.render();
     }
 
     needAuthorization() {

@@ -18,7 +18,6 @@ export default class AuthorizedView extends BaseView {
 
     render() {
         this.template = require('./AuthorizedView.handlebars');
-        super.render();
     }
 }
 
