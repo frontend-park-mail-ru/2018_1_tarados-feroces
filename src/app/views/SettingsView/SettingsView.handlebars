@@ -6,7 +6,7 @@
         <div class="button button-play">
             <p class="button-play__value">PLAY</p>
         </div>
-        <UserInfo login="{{login}}" coins="645" points="1080" avatar="{{avatar}}">
+        <UserInfo login="{{login}}" coins="645" points="1080" avatar="{{{avatar}}}">
             <SettingsButton click="(){goToSettings();}"></SettingsButton>
             <SignoutButton click="(){signOut();}"></SignoutButton>
         </UserInfo>
@@ -21,7 +21,7 @@
                 <Label>Settings</Label>
                 <div class="settings">
                     <div class="settings-avatar">
-                        <Image class="settings-avatar__user-avatar" src="{{avatar}}"></Image>
+                        <Image class="settings-avatar__user-avatar" src="{{{avatar}}}"></Image>
                     </div>
 
                     <div class="form-block-content-inputs">
