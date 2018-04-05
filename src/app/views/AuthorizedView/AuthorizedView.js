@@ -9,7 +9,7 @@ export default class AuthorizedView extends BaseView {
         return httpModule.doGet('/me').then(
             (response) => {
                 this.context = response;
-                if (this.context.avatar === null) {
+                if (!this.context.avatar.length) {
                     this.context.avatar = '../images/user-logo.jpg'
                 }
             }
@@ -88,7 +88,9 @@ export default class AuthorizedView extends BaseView {
     }
 }
 
-window.goToSettings = () => router.go('/settings/');
+window.goToSettings = () => {
+    router.go('/settings/');
+};
 
 window.signOut = () => {
     httpModule.doPost('/signout').then(
@@ -135,6 +137,5 @@ window.goToScore = () => {
     if (score.classList.contains('modal-header__point_active')) {
         return;
     }
-
     router.go('/leaderboard/');
 };

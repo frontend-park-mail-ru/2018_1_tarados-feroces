@@ -1,5 +1,6 @@
 import Button from '../../components/Button/Button'
 import Input from '../../components/Input/Input'
+import InputFile from '../../components/InputFile/InputFile'
 import Header from '../../components/Header/Header'
 import MenuPoint from '../../components/MenuPoint/MenuPoint'
 import Menu from '../../components/Menu/Menu'
@@ -36,6 +37,7 @@ class HtmlParser {
         this.componentFactory = {
             Button: () => new Button(),
             Input: () => new Input(),
+            InputFile: () => new InputFile(),
             Header: () => new Header(),
             MenuPoint: () => new MenuPoint(),
             Menu: () => new Menu(),

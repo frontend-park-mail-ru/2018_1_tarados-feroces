@@ -12,7 +12,7 @@ export default class BaseComponent {
     constructor(template) {
         this._element = null;
         this.template = template;
-        this.events = ['click', 'focus', 'blur'];
+        this.events = ['click', 'focus', 'blur', 'change'];
         this.functionExp = /\s*\(([\w, ]*)\)\n*\t*\s*{(.*)}/i;
     }
 
