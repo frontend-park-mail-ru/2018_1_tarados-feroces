@@ -25,10 +25,10 @@ export default class BaseView {
 
     /**
      * Возвращает шаблон вьюхи
-     * @return {string}
+     * @return {template}
      */
     render() {
-       return '';
+       return this.template(this.context);
     }
 
     /**
@@ -87,7 +87,7 @@ export default class BaseView {
      * @return {Node}
      */
     __render() {
-        this.element = htmlParser.getHTML(templateManager.getHTML(this.context, this.render()));
+        this.element = htmlParser.getHTML(this.render());
         return this.element;
     }
 }
