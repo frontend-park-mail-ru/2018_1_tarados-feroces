@@ -3,7 +3,7 @@ import BaseComponent from '../BaseComponent/BaseComponent'
 export default class StandartComponent extends BaseComponent {
 
     render(context) {
-        this.template = `<{{tag}} class="{{class}}">{{text}}</{{tag}}>`;
+        this.template = require('./StandartComponent.handlebars');
         super.render(context);
     }
 }
