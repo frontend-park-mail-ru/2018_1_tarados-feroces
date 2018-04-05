@@ -5,7 +5,7 @@ import router from '../../modules/Router/Router'
 export default class SettingsView extends BaseView {
 
     preRender() {
-        return httpModule.doGet('/me').then(
+        return httpModule.doGet('/user').then(
             (response) => {
                 this.context = response;
                 if (!this.context.avatar.length) {
