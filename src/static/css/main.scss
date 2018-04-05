@@ -3,6 +3,7 @@
 @import "../../app/components/Button/Button";
 @import "../../app/components/Header/Header";
 @import "../../app/components/Input/Input";
+@import "../../app/components/InputFile/InputFile";
 @import "../../app/components/Menu/Menu";
 @import "../../app/components/MenuPoint/MenuPoint";
 @import "../../app/components/Form/Form";
@@ -12,6 +13,7 @@
 
 @import "../../app/views/MainPageView/MainPage";
 @import "../../app/views/AuthorizedView/AuthorizedView";
+@import "../../app/views/SettingsView/SettingsView";
 
 body {
   overflow-x: hidden;
