@@ -89,22 +89,18 @@ const changeImage = () => {
     field.src = reader.result;
 };
 
-const settings = (notAvatar = false) => {
+const settings = (notAvatar = true) => {
     const blocks = [...document.querySelector('.settings').getElementsByClassName('input-block')];
-    const oldLogin = document.querySelector('.header__user-info-data-block-login-value').textContent;
     const data = {
         login: blocks[0].querySelector('input').value,
         email: blocks[1].querySelector('input').value
     };
-    if (!notAvatar) {
+    if (notAvatar) {
         data.avatar = reader.result;
     }
 
-    httpModule.doPost('/user/update',
-        {
-            login: oldLogin,
-            data: data
-        }).then(
+    httpModule.doPost('/user/update', data)
+        .then(
         (responseText) => {
             router.clearUrlElement('/user/');
             router.clearUrlElement('/settings/');
@@ -123,7 +119,7 @@ window.validateSettings = () => {
         const files = document.querySelector('.file-avatar').files;
         const file = files[files.length - 1];
         if (!file) {
-            settings(true);
+            settings(false);
         }
         reader.readAsDataURL(file);
         reader.onload = settings;
