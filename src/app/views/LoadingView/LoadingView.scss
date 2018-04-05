@@ -1,0 +1,16 @@
+@import "config";
+
+.loading {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+
+  &__data {
+    margin: auto;
+
+    &-value {
+      font-family: $main-font;
+      font-size: 70px;
+    }
+  }
+}
