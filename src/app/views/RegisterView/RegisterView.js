@@ -6,59 +6,8 @@ import httpModule from "../../modules/HttpModule/HttpModule";
 export default class RegisterView extends BaseView {
 
     render() {
-        return `<div class="main-page">
-                        <Header class="main-page__header">
-                            <div class="header-logo">
-                                <div class="header-logo-content"></div>
-                            </div>
-                        </Header>
-                        
-                        <div class="form-block registration">
-                            <div class="form-block-content">
-                                <div click="(event){ event.preventDefault(); goBack();  }" class="form-block-content__back">
-                                    <Image class="form-block-content__back-icon" src="images/back.png"></Image>
-                                </div>
-                                <Form>
-                                    <Label>Sign Up</Label>
-                                    <div class="form-block-content-inputs">
-                                        <Input 
-                                            block-class="user-name"
-                                            type="text" 
-                                            placeholder="Login"
-                                            focus="() { validateFocusRegistrationInput(document.querySelector('.registration').getElementsByClassName('input-block')[0]) }"
-                                            blur="() { validateBlurRegistrationInput(document.querySelector('.registration').getElementsByClassName('input-block')[0]) }">
-                                        </Input>
-                                        <Input 
-                                            block-class="user-email" 
-                                            type="password" 
-                                            placeholder="E-mail"
-                                            focus="() { validateFocusRegistrationInput(document.querySelector('.registration').getElementsByClassName('input-block')[1]) }"
-                                            blur="() { validateBlurRegistrationInput(document.querySelector('.registration').getElementsByClassName('input-block')[1]) }">
-                                        </Input>
-                                        <Input 
-                                            block-class="user-password" 
-                                            type="password" 
-                                            placeholder="Password"
-                                            focus="() { validateFocusRegistrationInput(document.querySelector('.registration').getElementsByClassName('input-block')[2]) }"
-                                            blur="() { validateBlurRegistrationInput(document.querySelector('.registration').getElementsByClassName('input-block')[2]) }">
-                                        </Input>
-                                        <Input 
-                                            block-class="user-repeat-password" 
-                                            type="password" 
-                                            placeholder="Repeat password"
-                                            focus="() { validateFocusRegistrationInput(document.querySelector('.registration').getElementsByClassName('input-block')[3]) }"
-                                            blur="() { validateBlurRegistrationInput(document.querySelector('.registration').getElementsByClassName('input-block')[3]) }">
-                                        </Input>
-                                        <Button 
-                                        click="(){ validateRegistration(); }"
-                                        class="signup-button">
-                                        Sign Up
-                                        </Button>
-                                     </div>
-                                </Form>
-                            </div>
-                        </div>
-                    </div>`;
+        this.template = require('./RegisterView.handlebars');
+        super.render();
     }
 
     needAuthorization() {

@@ -6,45 +6,8 @@ import httpModule from "../../modules/HttpModule/HttpModule";
 export default class LoginView extends BaseView {
 
     render() {
-        return `<div class="main-page">
-                        <Header class="main-page__header">
-                            <div class="header-logo">
-                                <div class="header-logo-content"></div>
-                            </div>
-                        </Header>
-                        
-                        <div class="form-block login">
-                            <div class="form-block-content">
-                                <div click="(event){ event.preventDefault(); goBack();  }" class="form-block-content__back">
-                                    <Image class="form-block-content__back-icon" src="images/back.png"></Image>
-                                </div>
-                                <Form>
-                                    <Label>Sign In</Label>
-                                    <div class="form-block-content-inputs">
-                                        <Input 
-                                            block-class="user-name"
-                                            type="text" 
-                                            placeholder="Login"
-                                            focus="() { validateFocusLoginInput(document.querySelector('.login').getElementsByClassName('input-block')[0]) }"
-                                            blur="() { validateBlurLoginInput(document.querySelector('.login').getElementsByClassName('input-block')[0]) }">
-                                        </Input>
-                                        <Input 
-                                            block-class="user-password" 
-                                            type="password" 
-                                            placeholder="Password"
-                                            focus="() { validateFocusLoginInput(document.querySelector('.login').getElementsByClassName('input-block')[1]) }"
-                                            blur="() { validateBlurLoginInput(document.querySelector('.login').getElementsByClassName('input-block')[1]) }">
-                                        </Input>
-                                        <Button 
-                                        click="(){ validateLogin(); }"
-                                        class="login-button">
-                                        Sign In
-                                        </Button>
-                                     </div>
-                                </Form>
-                            </div>
-                        </div>
-                    </div>`;
+        this.template = require('./LoginView.handlebars');
+        super.render();
     }
 
     needAuthorization() {
