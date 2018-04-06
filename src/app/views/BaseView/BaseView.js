@@ -1,5 +1,4 @@
-import htmlParser from '../../modules/HtmlParser/HtmlParser'
-import templateManager from '../../modules/TemplateManager/TemplateManager'
+import htmlParser from '../../modules/HtmlParser/HtmlParser';
 
 /**
  * Базовый класс вьюх

@@ -1,4 +1,4 @@
-import BaseComponent from '../BaseComponent/BaseComponent'
+import BaseComponent from '../BaseComponent/BaseComponent';
 
 export default class MenuPoint extends BaseComponent {
 

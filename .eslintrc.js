@@ -31,6 +31,10 @@ module.exports = {
             "destructuring": "any",
             "ignoreReadBeforeAssign": false
         }],
-        "no-multiple-empty-lines": ["error", {"max": 1, "maxEOF": 1}]
+        "no-multiple-empty-lines": ["error", {"max": 1, "maxEOF": 1}],
+
+    },
+    "parserOptions": {
+        "sourceType": "module",
     }
 };

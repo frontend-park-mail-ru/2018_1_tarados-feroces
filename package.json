@@ -8,8 +8,8 @@
     "eslint": "./node_modules/.bin/eslint ./src/",
     "flint": "./node_modules/.bin/eslint --fix ./src/",
     "server": "node ./server",
-    "webpack": "./node_modules/.bin/webpack -p --config webpack.config.dev.js",
-    "webpack-prod": "./node_modules/.bin/webpack -p --config webpack.config.prod.js"
+    "webpack": "./node_modules/.bin/webpack --config webpack.config.dev.js",
+    "webpack-prod": "./node_modules/.bin/webpack --config webpack.config.prod.js"
   },
   "repository": {
     "type": "git",
@@ -29,8 +29,10 @@
     "webpack-cli": "^2.0.13"
   },
   "dependencies": {
+    "babel": "^6.23.0",
     "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^0.28.11",
+    "eslint-plugin-import": "^2.10.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.11",
     "handlebars": "^4.0.11",

@@ -1,5 +1,4 @@
-import BaseComponent from '../BaseComponent/BaseComponent'
-
+import BaseComponent from '../BaseComponent/BaseComponent';
 
 export default class Friend extends BaseComponent {
 

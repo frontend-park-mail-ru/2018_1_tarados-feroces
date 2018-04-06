@@ -1,4 +1,4 @@
-import BaseView from '../BaseView/BaseView'
+import BaseView from '../BaseView/BaseView';
 
 export default class LoadingView extends BaseView {
 

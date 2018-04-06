@@ -1,5 +1,5 @@
-import BaseView from '../BaseView/BaseView'
-import router from '../../modules/Router/Router'
+import BaseView from '../BaseView/BaseView';
+import router from '../../modules/Router/Router';
 
 export default class MainPageView extends BaseView {
 

@@ -1,24 +1,23 @@
-import Button from '../../components/Button/Button'
-import Input from '../../components/Input/Input'
-import InputFile from '../../components/InputFile/InputFile'
-import Header from '../../components/Header/Header'
-import MenuPoint from '../../components/MenuPoint/MenuPoint'
-import Menu from '../../components/Menu/Menu'
-import Form from '../../components/Form/Form'
-import Footer from '../../components/Footer/Footer'
-import Image from '../../components/Image/Image'
-import Trailer from '../../components/Trailer/Trailer'
-import Label from '../../components/Label/Label'
-import Friend from '../../components/Friend/Friend'
-import FriendAction from '../../components/FriendAction/FriendAction'
-import HideFriendsButton from '../../components/HideFriendsButton/HideFriendsButton'
-import UserInfo from '../../components/UserInfo/UserInfo'
-import SettingsButton from '../../components/SettingsButton/SettingsButton'
-import SignoutButton from '../../components/SignoutButton/SignoutButton'
-import AuthContent from '../../components/AuthContent/AuthContent'
-import AuthHeaderPoint from '../../components/AuthHeaderPoint/AuthHeaderPoint'
-import StandartComponent from '../../components/StandartComponent/StandartComponent'
-
+import Button from '../../components/Button/Button';
+import Input from '../../components/Input/Input';
+import InputFile from '../../components/InputFile/InputFile';
+import Header from '../../components/Header/Header';
+import MenuPoint from '../../components/MenuPoint/MenuPoint';
+import Menu from '../../components/Menu/Menu';
+import Form from '../../components/Form/Form';
+import Footer from '../../components/Footer/Footer';
+import Image from '../../components/Image/Image';
+import Trailer from '../../components/Trailer/Trailer';
+import Label from '../../components/Label/Label';
+import Friend from '../../components/Friend/Friend';
+import FriendAction from '../../components/FriendAction/FriendAction';
+import HideFriendsButton from '../../components/HideFriendsButton/HideFriendsButton';
+import UserInfo from '../../components/UserInfo/UserInfo';
+import SettingsButton from '../../components/SettingsButton/SettingsButton';
+import SignoutButton from '../../components/SignoutButton/SignoutButton';
+import AuthContent from '../../components/AuthContent/AuthContent';
+import AuthHeaderPoint from '../../components/AuthHeaderPoint/AuthHeaderPoint';
+import StandartComponent from '../../components/StandartComponent/StandartComponent';
 
 /** Класс для парсинга html тэгов
  * @module HtmlParser

@@ -1,7 +1,7 @@
-import BaseView from '../BaseView/BaseView'
-import router from "../../modules/Router/Router";
-import userService from "../../modules/UserService/UserService";
-import httpModule from "../../modules/HttpModule/HttpModule";
+import BaseView from '../BaseView/BaseView';
+import router from '../../modules/Router/Router';
+import userService from '../../modules/UserService/UserService';
+import httpModule from '../../modules/HttpModule/HttpModule';
 
 export default class LoginView extends BaseView {
 

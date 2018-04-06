@@ -1,5 +1,5 @@
-import httpModule from '../HttpModule/HttpModule'
-import router from '../Router/Router'
+import httpModule from '../HttpModule/HttpModule';
+import router from '../Router/Router';
 
 /**
  * Класс для работы с сессией пользователя

@@ -1,6 +1,6 @@
-import BaseView from '../BaseView/BaseView'
-import httpModule from '../../modules/HttpModule/HttpModule'
-import router from '../../modules/Router/Router'
+import BaseView from '../BaseView/BaseView';
+import httpModule from '../../modules/HttpModule/HttpModule';
+import router from '../../modules/Router/Router';
 
 export default class SettingsView extends BaseView {
 
@@ -9,7 +9,7 @@ export default class SettingsView extends BaseView {
             (response) => {
                 this.context = response;
                 if (!this.context.avatar.length) {
-                    this.context.avatar = '../images/user-logo.jpg'
+                    this.context.avatar = '../images/user-logo.jpg';
                 }
             }
         );
@@ -58,7 +58,6 @@ const settings = (notAvatar = true) => {
     );
 };
 
-
 window.validateSettings = () => {
     const blocks = [...document.querySelector('.settings').getElementsByClassName('input-block')];
     if (blocks.reduce((result, current) => result + validateSettingsInput(current), 0) === blocks.length) {
@@ -84,7 +83,8 @@ window.validateSettingsInput = (block) => {
     }
 };
 
-window.validateFocusSettingsInput = (block) => block.querySelector('input').classList.remove('input-block__input_error');
+window.validateFocusSettingsInput = (block) => block.querySelector('input')
+    .classList.remove('input-block__input_error');
 
 window.validateBlurSettingsInput = (block) => {
     const input = block.querySelector('input');

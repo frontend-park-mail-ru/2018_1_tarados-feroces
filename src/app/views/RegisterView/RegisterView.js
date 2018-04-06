@@ -1,7 +1,7 @@
-import BaseView from '../BaseView/BaseView'
-import router from "../../modules/Router/Router";
-import userService from "../../modules/UserService/UserService";
-import httpModule from "../../modules/HttpModule/HttpModule";
+import BaseView from '../BaseView/BaseView';
+import router from '../../modules/Router/Router';
+import userService from '../../modules/UserService/UserService';
+import httpModule from '../../modules/HttpModule/HttpModule';
 
 export default class RegisterView extends BaseView {
 
@@ -16,7 +16,7 @@ export default class RegisterView extends BaseView {
 
 window.validateRegistration = () => {
     const blocks = [...document.querySelector('.registration').getElementsByClassName('input-block')];
-    if (blocks.reduce((result, current) => result + validateRegistrationInput(current), 0) == blocks.length) {
+    if (blocks.reduce((result, current) => result + validateRegistrationInput(current), 0) === blocks.length) {
         httpModule.doPost('/signup',
             {
                 login: blocks[0].querySelector('input').value,
@@ -29,8 +29,10 @@ window.validateRegistration = () => {
                 blocks.forEach((item) => item.querySelector('input').value = '');
             },
             (error) => {
-                document.querySelector('.registration').getElementsByClassName('input-block')[0].querySelector('.error').innerText = error;
-                document.querySelector('.registration').getElementsByClassName('input-block')[0].querySelector('.error').classList.remove('hidden');
+                document.querySelector('.registration').getElementsByClassName('input-block')[0]
+                    .querySelector('.error').innerText = error;
+                document.querySelector('.registration').getElementsByClassName('input-block')[0]
+                    .querySelector('.error').classList.remove('hidden');
             }
         );
     }
@@ -48,7 +50,8 @@ window.validateRegistrationInput = (block) => {
     }
 };
 
-window.validateFocusRegistrationInput = (block) => block.querySelector('input').classList.remove('input-block__input_error');
+window.validateFocusRegistrationInput = (block) => block.querySelector('input')
+    .classList.remove('input-block__input_error');
 
 window.validateBlurRegistrationInput = (block) => {
     const input = block.querySelector('input');

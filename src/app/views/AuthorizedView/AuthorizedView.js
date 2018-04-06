@@ -1,7 +1,7 @@
-import BaseView from '../BaseView/BaseView'
-import httpModule from '../../modules/HttpModule/HttpModule'
-import userService from '../../modules/UserService/UserService'
-import router from '../../modules/Router/Router'
+import BaseView from '../BaseView/BaseView';
+import httpModule from '../../modules/HttpModule/HttpModule';
+import userService from '../../modules/UserService/UserService';
+import router from '../../modules/Router/Router';
 
 export default class AuthorizedView extends BaseView {
 
@@ -10,7 +10,7 @@ export default class AuthorizedView extends BaseView {
             (response) => {
                 this.context = response;
                 if (!this.context.avatar.length) {
-                    this.context.avatar = '../images/user-logo.jpg'
+                    this.context.avatar = '../images/user-logo.jpg';
                 }
             }
         );
@@ -34,7 +34,6 @@ window.signOut = () => {
     );
 };
 
-
 window.hideFriends = () => {
     const hideValue = document.querySelector('.auth-page__content-right-friends-icon-value');
 
@@ -50,8 +49,6 @@ window.hideFriends = () => {
     }
     document.querySelector('.content-right-party').classList.toggle('hidden');
 };
-
-
 
 window.showFriendActions = (event) => {
     const modal = document.querySelector('.friends-modal');

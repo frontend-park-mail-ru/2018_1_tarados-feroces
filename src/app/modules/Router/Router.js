@@ -1,6 +1,6 @@
 import userService from '../UserService/UserService';
 import LoadingView from '../../views/LoadingView/LoadingView';
-import _404View from '../../views/404View/404View'
+import _404View from '../../views/404View/404View';
 
 /**
  * Класс, отвечающий за переход по url
@@ -27,6 +27,7 @@ class Router {
      * Регистрирует url в роутере
      * @param {string} url
      * @param {BaseView} view
+     * @param {string} id
      * @return {Router}
      */
     addUrl(url, view, id = 'root') {
@@ -42,7 +43,7 @@ class Router {
      * Обновляет и перерисовывает вью в DOM
      * @param {Object} context
      */
-    //TODO
+    // TODO
     viewUpdate(url, context) {
         this.urls[url].view.update(context);
         const parent = this.deleteLast(this.urls[url]);
@@ -54,7 +55,6 @@ class Router {
     /**
      * Переходит на новый url
      * @param {string} url
-     * @return {boolean}
      */
     go(url) {
         if (!this.urls[url]) {
@@ -80,6 +80,7 @@ class Router {
      * Отрисовывает привязанную к url вью
      * @param {string} url
      * @private
+     * @return {Promise}
      */
     route(url) {
         const urlObject = this.urls[url];
@@ -115,6 +116,7 @@ class Router {
 
     /**
      * Удаляет последнюю вью из DOM
+     * @param {object} urlObject
      * @return {Node}
      * @private
      */
@@ -153,7 +155,7 @@ class Router {
 
     /**
      * Скрывает последнюю вью и выводит текущую
-     * @param {string} url
+     * @param {object} urlObject
      * @private
      */
     pageUpdate(urlObject) {
@@ -165,7 +167,7 @@ class Router {
 
     /**
      * Показывает текущую вью
-     * @param {string} url
+     * @param {object} urlObject
      * @private
      */
     showPage(urlObject) {
@@ -174,6 +176,7 @@ class Router {
 
     /**
      * Скрывает предыдущую вью
+     * @param {object} urlObject
      * @private
      */
     hideLast(urlObject) {

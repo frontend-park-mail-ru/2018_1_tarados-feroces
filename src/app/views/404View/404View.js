@@ -1,5 +1,4 @@
-import BaseView from '../BaseView/BaseView'
-
+import BaseView from '../BaseView/BaseView';
 
 export default class _404View extends BaseView {
     render() {

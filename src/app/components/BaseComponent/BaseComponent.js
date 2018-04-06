@@ -1,10 +1,7 @@
-import templateManager from '../../modules/TemplateManager/TemplateManager';
-
 /** Базовый класс компоненты
  * @module BaseComponent
  */
 export default class BaseComponent {
-
     /**
      * @param {string} [template] - шаблон компоненты
      * @constructor
@@ -56,4 +53,3 @@ export default class BaseComponent {
         });
     }
 }
-

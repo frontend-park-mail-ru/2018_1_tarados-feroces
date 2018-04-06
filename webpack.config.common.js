@@ -70,7 +70,8 @@ module.exports = {
         }),
         new CopyWebpackPlugin([
             {from: path.join(__dirname, 'src/static/images'), to: path.join(outPath, 'images')}
-        ])
+        ]),
+        new webpack.optimize.AggressiveMergingPlugin()
     ],
     devServer: {
         contentBase: './',
