@@ -37,10 +37,17 @@ router
 
 if (userService.isAuthorized === undefined) {
 
+    router.showLoading();
     userService.checkSession()
     .then(
-        (response) => router.go(document.location.pathname),
-        (reject) => router.go(document.location.pathname)
+        (response) => {
+            router.go(document.location.pathname);
+            router.hideLoading();
+        },
+        (reject) => {
+            router.go(document.location.pathname);
+            router.hideLoading();
+            }
     );
 } else {
     router.go(document.location.pathname);

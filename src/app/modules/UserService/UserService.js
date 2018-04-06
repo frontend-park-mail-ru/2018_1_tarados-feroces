@@ -12,9 +12,10 @@ class UserService {
      * @return {PromiseLike<boolean> | Promise<boolean>}
      */
     checkSession() {
-        return httpModule.doGet('/user').then(
-            (response) => this.isAuthorized = true,
-            (reject) => this.isAuthorized = false);
+        return httpModule.doGet('/isauthorized').then(
+            (response) => {
+                this.isAuthorized = response.is_authorized;
+            });
     }
 
     /**

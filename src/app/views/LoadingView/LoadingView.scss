@@ -38,6 +38,7 @@
       &:nth-child(#{$i + 1}) {
         filter: blur(0px);
         animation: blur-text 1.5s infinite linear alternate;
+        animation-delay: #{($i + 1) / 5}s;
       }
     }
   }
