@@ -42,12 +42,13 @@ class Router {
      * Обновляет и перерисовывает вью в DOM
      * @param {Object} context
      */
-    viewUpdate(context) {
-        this.lastView.update(context);
-        const parent = this.deleteLast();
-        this.lastView.__render();
-        parent.appendChild(this.lastView.element);
-        this.lastView.show();
+    //TODO
+    viewUpdate(url, context) {
+        this.urls[url].view.update(context);
+        const parent = this.deleteLast(this.urls[url]);
+        this.urls[url].view.__render();
+        parent.appendChild(this.urls[url].view.element);
+        this.urls[url].view.show();
     }
 
     /**
@@ -64,7 +65,7 @@ class Router {
         this.showLoading();
         url = this.checkAuth(url);
         if (this.urls[url].insertElemId !== 'root' && !this.urls['/user/'].loaded) {
-            this.route(this.urls['/user/']).then(
+            this.route('/user/').then(
                 (response) => {
                     this.route(url);
                 }
@@ -126,9 +127,9 @@ class Router {
     }
 
     clearUrlElement(url) {
-        if (router.urls[url].loaded) {
-            router.urls[url].view.deleteElement();
-            router.urls[url].loaded = false;
+        if (this.urls[url].loaded) {
+            this.urls[url].view.deleteElement();
+            this.urls[url].loaded = false;
         }
     }
 

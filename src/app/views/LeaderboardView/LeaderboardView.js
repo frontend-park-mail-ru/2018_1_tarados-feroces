@@ -11,6 +11,7 @@ export default class LeaderboardView extends BaseView {
             newRow.push(context.data[row].score.points);
             this.context.rows.push(newRow);
         }
+        return null;
     }
 
     needUpdate() {
@@ -25,7 +26,7 @@ export default class LeaderboardView extends BaseView {
         const score = document.querySelector('.leaderboard');
         score.classList.add('modal-header__point_active');
 
-        return httpModule.doPost('/leaderboard', {position: 0, count: 5}).then(
+        return httpModule.doPost('/leaderboard', {position: 0, count: 10}).then(
             (response) => {
                 this.context.rows = [];
                 this.context.headers = ['Login', 'Points'];
@@ -46,12 +47,12 @@ export default class LeaderboardView extends BaseView {
     }
 }
 
-window.currentPosition = 5;
+window.currentPosition = 10;
 
 window.paginate = (index) => {
-    const paginationConstant = 5;
+    const paginationConstant = 10;
     httpModule.doPost('/leaderboard', {position: index, count: paginationConstant}).then(
-        (response) => router.viewUpdate(response)
+        (response) => router.viewUpdate('/leaderboard/', response)
     );
     window.currentPosition += paginationConstant;
 };

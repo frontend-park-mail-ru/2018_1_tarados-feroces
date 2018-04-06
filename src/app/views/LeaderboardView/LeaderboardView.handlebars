@@ -6,7 +6,7 @@
             {{/each}}
         </div>
         {{#each rows}}
-            <div class="table__row">
+            <div class="table__row scoreboard__row">
                 {{#each this}}
                     <div class="table__data">{{this}}</div>
                 {{/each}}
@@ -14,11 +14,6 @@
         {{/each}}
     </div>
     <div class="scoreboard__pagination">
-        <div class="back button button_no-animation">
-            <p class="button__value">Back</p>
-        </div>
-        <div class="next button button_no-animation">
-            <p class="button__value">Next</p>
-        </div>
+        <Button class="back button_no-animation" click="(){paginate();}">More</Button>
     </div>
 </div>
