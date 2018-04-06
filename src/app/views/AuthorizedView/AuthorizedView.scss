@@ -15,8 +15,6 @@ $blocks-text-color: #e5f4e3;
   &__content {
     width: 100%;
     display: flex;
-    //justify-content: space-around;
-    //align-items: flex-start;
     margin-top: 150px;
 
     &-left {
@@ -28,7 +26,6 @@ $blocks-text-color: #e5f4e3;
       flex-basis: 100%;
       margin-right: 100px;
       margin-left: 30px;
-      //overflow: auto;
 
       &-modal {
         background-color: $blocks-background;
@@ -169,7 +166,6 @@ $blocks-text-color: #e5f4e3;
         background-color: $blocks-background;
         display: flex;
         flex-direction: column;
-        //border-radius: 25px;
         &-label {
           display: flex;
           height: 40px;
@@ -179,7 +175,6 @@ $blocks-text-color: #e5f4e3;
 
           &-value {
             font-size: 40px;
-            //margin: auto;
             color: $blocks-text-color;
             font-family: $main-font;
             user-select: none;
@@ -191,7 +186,6 @@ $blocks-text-color: #e5f4e3;
           display: flex;
           justify-content: space-around;
           background-color: $blocks-background;
-          //border-radius: 5px;
           border-bottom: thin solid black;
           &-avatar {
             width: 60px;

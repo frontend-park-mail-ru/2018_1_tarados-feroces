@@ -1,5 +1,6 @@
 import userService from '../UserService/UserService';
 import LoadingView from '../../views/LoadingView/LoadingView';
+import _404View from '../../views/404View/404View'
 
 /**
  * Класс, отвечающий за переход по url
@@ -15,6 +16,8 @@ class Router {
         this.urls = {};
         this.loadingElement = new LoadingView().__render();
         this.loadingElement.classList.add('hidden');
+        this._404Element = new _404View().__render();
+        this._404Element.classList.add('hidden');
         const body = document.getElementsByTagName('body')[0];
         body.appendChild(this.loadingElement);
         this.start();
@@ -55,8 +58,10 @@ class Router {
      */
     go(url) {
         if (!this.urls[url]) {
-            return false;
+            this.show404();
         }
+        this.hide404();
+
         this.showLoading();
         url = this.checkAuth(url);
         if (this.urls[url].insertElemId !== 'root' && !this.urls['/user/'].loaded) {
@@ -179,12 +184,21 @@ class Router {
      * Отображает вью загрузки
      */
     showLoading() {
-        // this.hideLast();
         this.loadingElement.classList.remove('hidden');
     }
 
     hideLoading() {
         this.loadingElement.classList.add('hidden');
+    }
+
+    show404() {
+        this._404Element.classList.remove('hidden');
+    }
+
+    hide404() {
+        if (!this._404Element.classList.contains('hidden')) {
+            this._404Element.classList.add('hidden');
+        }
     }
 }
 

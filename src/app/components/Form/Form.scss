@@ -7,8 +7,7 @@
   opacity: 0.95;
   border-radius: 15px;
   box-shadow: 4px 4px 10px 2px #00072d;
-  animation: fadeIn 1.5s;
-  animation: form-block-shining 1.15s ease infinite;
+  animation: form-block-shining 1.5s linear infinite;
 
   &_no-border {
     animation: none;
