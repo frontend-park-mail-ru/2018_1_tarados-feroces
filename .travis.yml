@@ -24,3 +24,4 @@ deploy:
 
 script:
   - npm run eslint
+  - npm run webpack-prod

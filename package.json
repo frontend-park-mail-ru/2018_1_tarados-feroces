@@ -8,19 +8,19 @@
     "eslint": "./node_modules/.bin/eslint ./src/",
     "flint": "./node_modules/.bin/eslint --fix ./src/",
     "server": "node ./server",
-    "sass": "node-sass --watch src -o src/static/css",
-    "webpack": "./node_modules/.bin/webpack -p --config webpack.config.js"
+    "webpack": "./node_modules/.bin/webpack -p --config webpack.config.dev.js",
+    "webpack-prod": "./node_modules/.bin/webpack -p --config webpack.config.prod.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tarados-feroces/frontend.git"
+    "url": "git+https://github.com/frontend-park-mail-ru/2018_1_tarados-feroces.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tarados-feroces/frontend/issues"
+    "url": "https://github.com/frontend-park-mail-ru/2018_1_tarados-feroces/issues"
   },
-  "homepage": "https://github.com/tarados-feroces/frontend#readme",
+  "homepage": "https://github.com/frontend-park-mail-ru/2018_1_tarados-feroces#readme",
   "devDependencies": {
     "eslint": "^4.18.2",
     "eslint-config-google": "^0.9.1",

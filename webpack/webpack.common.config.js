@@ -4,7 +4,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const outPath = path.join(__dirname, '/dist');
 
@@ -13,8 +12,6 @@ const extractSass = new ExtractTextPlugin({
 });
 
 module.exports = {
-    watch: true,
-    devtool: 'source-map',
     entry: {
         main: [
             './src/app/index.js',
@@ -71,10 +68,6 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'src/index.html')
         }),
-        // new UglifyJsPlugin({
-        //     parallel: 4,
-        //     sourceMap: true,
-        // }),
         new CopyWebpackPlugin([
             {from: path.join(__dirname, 'src/static/images'), to: path.join(outPath, 'images')}
         ])
@@ -85,7 +78,6 @@ module.exports = {
         stats: {
             warnings: false
         }
-        // TODO: proxy
     },
     node: {
         fs: 'empty',
