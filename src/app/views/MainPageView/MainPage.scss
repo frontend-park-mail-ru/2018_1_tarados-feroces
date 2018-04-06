@@ -85,3 +85,28 @@
   0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
   100% {background-position: 500px 1000px, 400px 400px, 300px 300px;}
 }
+
+.rotate-scroll-open {
+  animation: rotation-scroll-open 0.5s;
+}
+
+.rotate-scroll-close {
+  animation: rotation-scroll-close 0.5s;
+}
+
+@keyframes rotation-scroll-open {
+  0% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(90deg);
+  }
+}
+@keyframes rotation-scroll-close {
+  0% {
+    transform: rotate(90deg);
+  }
+  100% {
+    transform: rotate(270deg);
+  }
+}
