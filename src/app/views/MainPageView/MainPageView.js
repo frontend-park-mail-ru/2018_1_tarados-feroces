@@ -12,6 +12,11 @@ export default class MainPageView extends BaseView {
     }
 }
 
+window.scrollToContent = () => {
+    const a = document.querySelector('.scroll');
+    window.scrollTo(0, a.getBoundingClientRect().top + window.scrollY - a.getBoundingClientRect().height);
+};
+
 window.goToLogin = () => {
     router.go('/login/');
 };
