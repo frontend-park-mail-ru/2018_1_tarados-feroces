@@ -53,18 +53,18 @@ $blocks-text-color: #e5f4e3;
           &::-webkit-scrollbar-track
           {
             -webkit-box-shadow: inset 0 0 6px rgba(223, 231, 15, 0.3);
-            background-color: #F5F5F5;
+            background-color: #9ac9f5;
           }
 
           &::-webkit-scrollbar
           {
             width: 10px;
-            background-color: #F5F5F5;
+            background-color: #9ac9f5;
           }
 
           &::-webkit-scrollbar-thumb
           {
-            background-color: #000a57;
+            background-color: #121e57;
             //border: 1px solid #555555;
           }
         }
