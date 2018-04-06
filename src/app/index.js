@@ -42,11 +42,11 @@ if (userService.isAuthorized === undefined) {
     .then(
         (response) => {
             router.go(document.location.pathname);
-            router.hideLoading();
+            // router.hideLoading();
         },
         (reject) => {
             router.go(document.location.pathname);
-            router.hideLoading();
+            // router.hideLoading();
             }
     );
 } else {

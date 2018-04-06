@@ -159,10 +159,10 @@ class Router {
      * @private
      */
     pageUpdate(urlObject) {
-        this.hideLoading();
         this.hideLast(urlObject);
         this.lastView[urlObject.insertElemId] = urlObject.view;
         this.showPage(urlObject);
+        this.hideLoading();
     }
 
     /**
