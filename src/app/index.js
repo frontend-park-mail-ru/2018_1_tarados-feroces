@@ -1,12 +1,16 @@
 'use strict';
 import userService from './modules/UserService/UserService';
 import router from './modules/Router/Router';
+import serviceWorkerRegistrate from './modules/ServiceWorker/ServiceWorker';
+
 import LoginView from './views/LoginView/LoginView';
 import MainPageView from './views/MainPageView/MainPageView';
 import RegisterView from './views/RegisterView/RegisterView';
 import AuthorizedView from './views/AuthorizedView/AuthorizedView';
 import SettingsView from './views/SettingsView/SettingsView';
 import LeaderboardView from './views/LeaderboardView/LeaderboardView';
+
+serviceWorkerRegistrate();
 
 router
     .addUrl(
