@@ -188,7 +188,7 @@ class Router {
     }
 
     hideLoading() {
-        this.loadingElement.classList.add('hidden');
+        setTimeout(()=>this.loadingElement.classList.add('hidden'), 500);
     }
 
     show404() {
