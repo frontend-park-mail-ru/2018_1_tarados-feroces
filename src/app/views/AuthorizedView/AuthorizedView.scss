@@ -22,36 +22,58 @@ $blocks-text-color: #e5f4e3;
     &-left {
       min-width: 60%;
       //max-width: 100%;
-      height: 100%;
+      height: 70vh;
       min-height: 820px;
       display: flex;
       flex-basis: 100%;
       margin-right: 100px;
       margin-left: 30px;
-      //width: auto;
+      //overflow: auto;
 
       &-modal {
         background-color: $blocks-background;
         width: 100%;
-        height: 100%;
-        min-height: 700px;
+        //height: 100%;
+        min-height: 70vh;
         border-radius: 15px;
         box-shadow: 4px 4px 10px 2px #00072d;
         opacity: 0.95;
         display: flex;
-        flex-direction: column;
-        overflow: auto;
+        flex-flow: column nowrap;
+        align-items: flex-start;
 
         &-data {
+          flex: 1;
           align-self: center;
-          display: flex;
-          width: 100%;
+          //display: flex;
+          //flex-direction: column;
+          width: 60%;
           min-height: 780px;
-          height: 90%;
-          justify-content: center;
+          //height: 90%;
+          //justify-content: flex-start;
+          //align-items: center;
+          overflow-y: auto;
+          &::-webkit-scrollbar-track
+          {
+            -webkit-box-shadow: inset 0 0 6px rgba(223, 231, 15, 0.3);
+            background-color: #F5F5F5;
+          }
+
+          &::-webkit-scrollbar
+          {
+            width: 10px;
+            background-color: #F5F5F5;
+          }
+
+          &::-webkit-scrollbar-thumb
+          {
+            background-color: #000a57;
+            //border: 1px solid #555555;
+          }
         }
 
         .modal-header {
+          flex: 1;
           width: 100%;
           height: 40px;
           background-color: $header-background;
@@ -59,7 +81,7 @@ $blocks-text-color: #e5f4e3;
           display: flex;
           justify-content: space-between;
           &__point {
-            //height: 100%;
+            height: 100%;
             flex-grow: 1;
             flex-basis: 300px;
             display: flex;
@@ -142,7 +164,7 @@ $blocks-text-color: #e5f4e3;
         }
       }
       .friends {
-        //width: 300px;
+        width: 280px;
         height: 700px;
         background-color: $blocks-background;
         display: flex;
@@ -153,13 +175,15 @@ $blocks-text-color: #e5f4e3;
           height: 40px;
           border-bottom: black solid thin;
           background-color: $header-background;
+          justify-content: center;
 
           &-value {
             font-size: 40px;
-            margin: auto;
+            //margin: auto;
             color: $blocks-text-color;
             font-family: $main-font;
             user-select: none;
+            align-self: center;
           }
         }
         &-item {
@@ -237,25 +261,6 @@ $blocks-text-color: #e5f4e3;
   }
 }
 
-.scoreboard {
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-self: center;
-  &__pagination {
-    margin-top: 25px;
-    width: 450px;
-    display: flex;
-    align-self: center;
-    justify-content: space-around;
-    &-go-button {
-
-    }
-
-  }
-}
-
 .about-block {
   width: 80%;
   display: flex;
@@ -279,23 +284,6 @@ $blocks-text-color: #e5f4e3;
     & iframe {
       width: 100%;
       height: 100%;
-    }
-  }
-}
-
-.scoreboard {
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-self: center;
-  &__pagination {
-    margin-top: 25px;
-    width: 450px;
-    display: flex;
-    align-self: center;
-    justify-content: space-around;
-    &-go-button {
     }
   }
 }
