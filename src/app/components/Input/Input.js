@@ -3,16 +3,7 @@ import BaseComponent from '../BaseComponent/BaseComponent'
 export default class Input extends BaseComponent {
 
     render(context) {
-        this.template = `<div class="input-block {{block-class}}">
-                            <input 
-                            name="{{input-name}}" 
-                            focus="{{focus}}" 
-                            blur="{{blur}}" 
-                            type={{type}} 
-                            class="input-block__input {{input-class}}" 
-                            placeholder="{{placeholder}}" 
-                            value="{{value}}"/>
-                         </div>`;
+        this.template = require('./Input.handlebars');
         super.render(context);
     }
 

@@ -18,13 +18,23 @@ $blocks-text-color: #e5f4e3;
   box-shadow: 0 0 19px 6px #00071e;
   z-index: 9999;
   &-logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
     font-family: $headers-font;
     width: 450px;
     cursor: pointer;
+
+    &-content {
+      width: 400px;
+      height: 100px;
+      background-image: url("../images/Deadlinez.png");
+      background-repeat: no-repeat;
+    }
   }
   &__user-info {
     width: 450px;
-    background-color: #6d9dc5;
+    background-color: #6c58c5;
     display: flex;
     flex-flow: row;
     justify-content: space-around;

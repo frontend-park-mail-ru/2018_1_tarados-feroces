@@ -12,9 +12,10 @@ class UserService {
      * @return {PromiseLike<boolean> | Promise<boolean>}
      */
     checkSession() {
-        return httpModule.doGet('/me').then(
-            (response) => this.isAuthorized = true,
-            (reject) => this.isAuthorized = false);
+        return httpModule.doGet('/isauthorized').then(
+            (response) => {
+                this.isAuthorized = response.is_authorized;
+            });
     }
 
     /**
@@ -30,12 +31,9 @@ class UserService {
      */
     userLogout() {
         this.isAuthorized = false;
-        router.urls['/user/'].view.deleteElement();
-        router.urls['/user/'].loaded = false;
-        if (router.urls['/settings/'].loaded) {
-            router.urls['/settings/'].view.deleteElement();
-            router.urls['/settings/'].loaded = false;
-        }
+        router.clearUrlElement('/user/');
+        router.clearUrlElement('/leaderboard/');
+        router.clearUrlElement('/settings/');
     }
 }
 

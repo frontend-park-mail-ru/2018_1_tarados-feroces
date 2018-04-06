@@ -1,10 +1,4 @@
-$headers-font: 'Nunito', sans-serif;
-$header-background: #0f255d;
-$header-text-color: #e7bb41;
-
-$main-font: 'Antic Slab', serif;
-$blocks-background: #143f6b;
-$blocks-text-color: #e5f4e3;
+@import "config";
 
 .input-block {
   width: 400px;
@@ -13,7 +7,6 @@ $blocks-text-color: #e5f4e3;
   &_avatar {
     display: flex;
     flex-direction: column;
-    //justify-content: space-around;
     height: 200px;
     width: 180px;
 
@@ -26,44 +19,6 @@ $blocks-text-color: #e5f4e3;
       margin-bottom: 20px;
     }
 
-    & .file-upload {
-      display: flex;
-      overflow: hidden;
-      background-color: #0e6ba8;
-      box-shadow: 4px 4px 10px 2px #00072d;
-      border-radius: 10px;
-      width: 100%;
-      height: 40px;
-      color: #fff;
-      text-align: center;
-      &:hover {
-        background: #355fad;
-        animation: button-shining 1.15s ease infinite;
-        box-shadow: aqua;
-      }
-      &:active {
-        background-color: #131b44;
-        animation: none;
-        box-shadow: 0 0 10px 2px aqua;
-      }
-      & input[type="file"]{
-        display: none;
-      }
-      &-label {
-        display: flex;
-        margin: auto;
-        width: 100%;
-        height: 100%;
-        cursor: pointer;
-        & span {
-          font-size: 20px;
-          margin: auto;
-          font-family: $main-font;
-
-        }
-      }
-
-    }
   }
   &__input {
     //margin-top: 10px;
@@ -76,7 +31,7 @@ $blocks-text-color: #e5f4e3;
     padding: 5px;
     border-radius: 10px;
     border: thin black solid;
-    box-shadow: 4px 4px 10px 2px #00072d;
+    box-shadow: 2px 2px 4px 1px #00072d;
     background-color: #d9eaff;
     outline: 0;
     &_error {

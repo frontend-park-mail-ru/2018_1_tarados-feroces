@@ -7,21 +7,33 @@ export default class LeaderboardView extends BaseView {
     update(context = {}) {
         for (const row in Object.keys(context.data)) {
             const newRow = [];
-            newRow.push(context.data[row].login);
-            newRow.push(context.data[row].points);
+            newRow.push(context.data[row].user.login);
+            newRow.push(context.data[row].score.points);
             this.context.rows.push(newRow);
         }
+        return null;
+    }
+
+    needUpdate() {
+        return true;
     }
 
     preRender() {
-        return httpModule.doPost('/score', {position: 0, count: 5}).then(
+        const points = [...document.getElementsByClassName('modal-header__point')];
+        points.forEach((item) => {
+            item.classList.remove('modal-header__point_active');
+        });
+        const score = document.querySelector('.leaderboard');
+        score.classList.add('modal-header__point_active');
+
+        return httpModule.doPost('/leaderboard', {position: 0, count: 10}).then(
             (response) => {
                 this.context.rows = [];
                 this.context.headers = ['Login', 'Points'];
                 for (const row in Object.keys(response.data)) {
                     const newRow = [];
-                    newRow.push(response.data[row].login);
-                    newRow.push(response.data[row].points);
+                    newRow.push(response.data[row].user.login);
+                    newRow.push(response.data[row].score.points);
 
                     this.context.rows.push(newRow);
                 }
@@ -30,39 +42,17 @@ export default class LeaderboardView extends BaseView {
     }
 
     render() {
-        return `<div class="leaderboard">
-                        <Header>Leaderboard</Header>
-                        <div class="table">
-                            <div class="table-row">
-                                {{#each headers}}
-                                <div class="table-data table-header">{{this}}</div>
-                                {{/each}}
-                            </div>
-                            {{#each rows}}
-                            <div class="table-row">
-                            {{#each this}}  
-                                <div class="table-data">
-                                {{this}}
-                                </div>
-                            {{/each}}
-                            </div>
-                            {{/each}}
-                        </div>
-                </div>
-                <div class="button-container">
-                    <Button class="button large" click="(event){ paginate(currentPosition) }">More</Button>
-                    <Button class="button large" click="(event){ event.preventDefault(); goBack(); }">Back</Button>
-                </div>
-                <Footer>Made by Tarados Feroces</Footer>`;
+        return this.template = require('./LeaderboardView.handlebars');
+
     }
 }
 
-window.currentPosition = 5;
+window.currentPosition = 10;
 
 window.paginate = (index) => {
-    const paginationConstant = 5;
-    httpModule.doPost('/score', {position: index, count: paginationConstant}).then(
-        (response) => router.viewUpdate(response)
+    const paginationConstant = 10;
+    httpModule.doPost('/leaderboard', {position: index, count: paginationConstant}).then(
+        (response) => router.viewUpdate('/leaderboard/', response)
     );
     window.currentPosition += paginationConstant;
 };

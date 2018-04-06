@@ -12,7 +12,7 @@ export default class BaseComponent {
     constructor(template) {
         this._element = null;
         this.template = template;
-        this.events = ['click', 'focus', 'blur'];
+        this.events = ['click', 'focus', 'blur', 'change'];
         this.functionExp = /\s*\(([\w, ]*)\)\n*\t*\s*{(.*)}/i;
     }
 
@@ -22,7 +22,7 @@ export default class BaseComponent {
      */
     render(context) {
         const div = document.createElement('div');
-        div.innerHTML = templateManager.getHTML(context, this.template);
+        div.innerHTML = this.template(context);
         this._element = div.lastChild;
         this.addListeners(context);
     }

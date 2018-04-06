@@ -1,7 +1,94 @@
+@import "config";
+
 @import "../../app/components/Button/Button";
 @import "../../app/components/Header/Header";
 @import "../../app/components/Input/Input";
+@import "../../app/components/InputFile/InputFile";
+@import "../../app/components/Menu/Menu";
+@import "../../app/components/MenuPoint/MenuPoint";
+@import "../../app/components/Form/Form";
+@import "../../app/components/Label/Label";
+@import "../../app/components/FriendAction/FriendAction";
+@import "table";
+
+@import "../../app/views/MainPageView/MainPage";
+@import "../../app/views/AuthorizedView/AuthorizedView";
+@import "../../app/views/LoadingView/LoadingView";
+@import "../../app/views/SettingsView/SettingsView";
+@import "../../app/views/LeaderboardView/LeaderboardView";
+
+body {
+  overflow-x: hidden;
+  margin: 0;
+  cursor: default;
+  user-select: none;
+  //height: 100vh;
+}
+
+.background {
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-image: url('../images/background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: brightness(50%);
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  transform: scale(1.1);
+}
+
+.logo {
+  display: inline-block;
+  &__text {
+    opacity: 1;
+    font-size: 60px;
+    font-family: $main-font;
+  }
+}
+
+.snow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background-image: url("../images/snowflake.png"), url("../images/snowflake3.png");
+  animation: fadeIn 1.5s, snow 1.5s linear infinite;
+}
 
 .hidden {
   display: none !important;
+}
+
+@keyframes shining {
+  0% {
+    box-shadow: 0px 0px 10px 6px #c7fbff;
+  }
+  50% {
+    box-shadow: 0px 0px 10px 10px #c7fbff;
+  }
+  100% {
+    box-shadow: 0px 0px 10px 6px #c7fbff;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.text {
+  color: $blocks-text-color;
+  &__data {
+    font-family: $main-font;
+    line-height: 1.5;
+    font-size: 32px;
+  }
 }

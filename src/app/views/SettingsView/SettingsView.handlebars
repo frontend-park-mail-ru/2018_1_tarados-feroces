@@ -1,0 +1,55 @@
+<div class="main-page">
+    <Header class="auth-page__header header">
+        <div class="header-logo">
+            <Image class="header-logo-content" src="../images/Deadlinez.png"></Image>
+        </div>
+        <div class="button button-play">
+            <p class="button-play__value">PLAY</p>
+        </div>
+        <UserInfo login="{{login}}" coins="645" points="1080" avatar="{{{avatar}}}">
+            <SettingsButton click="(){goToSettings();}"></SettingsButton>
+            <SignoutButton click="(){signOut();}"></SignoutButton>
+        </UserInfo>
+    </Header>
+
+    <div class="form-block login">
+        <div class="form-block-content">
+            <div click="(event){ event.preventDefault(); goToUser(); }" class="form-block-content__back">
+                <Image class="form-block-content__back-icon" src="images/back.png"></Image>
+            </div>
+            <Form>
+                <Label>Settings</Label>
+                <div class="settings">
+                    <div class="settings-avatar">
+                        <Image class="settings-avatar__user-avatar" src="{{{avatar}}}"></Image>
+                    </div>
+
+                    <div class="form-block-content-inputs">
+                        <InputFile change="(){ changeAvatar(); }" file-class="file-avatar"></InputFile>
+                        <Input
+                                block-class="user-name"
+                                type="text"
+                                placeholder="Login"
+                                value="{{login}}"
+                                focus="() { validateFocusSettingsInput(document.querySelector('.settings').getElementsByClassName('input-block')[0]) }"
+                                blur="() { validateBlurSettingsInput(document.querySelector('.settings').getElementsByClassName('input-block')[0]) }">
+                        </Input>
+                        <Input
+                                block-class="user-email"
+                                type="text"
+                                placeholder="E-mail"
+                                value="{{email}}"
+                                focus="() { validateFocusSettingsInput(document.querySelector('.settings').getElementsByClassName('input-block')[1]) }"
+                                blur="() { validateBlurSettingsInput(document.querySelector('.settings').getElementsByClassName('input-block')[1]) }">
+                        </Input>
+                        <Button
+                                click="(){ validateSettings(); }"
+                                class="login-button">
+                            Save
+                        </Button>
+                    </div>
+                </div>
+            </Form>
+        </div>
+    </div>
+</div>
