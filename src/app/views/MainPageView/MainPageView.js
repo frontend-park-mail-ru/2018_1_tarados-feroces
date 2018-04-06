@@ -13,8 +13,21 @@ export default class MainPageView extends BaseView {
 }
 
 window.scrollToContent = () => {
-    const a = document.querySelector('.scroll');
-    window.scrollTo(0, a.getBoundingClientRect().top + window.scrollY - a.getBoundingClientRect().height);
+    const icon = document.querySelector('.scroll');
+    const iconValue = document.querySelector('.scroll-icon');
+    const header = document.querySelector('.main-page__header');
+
+    if (iconValue.classList.contains('rotate-scroll-close')) {
+        window.scrollTo(0, icon.getBoundingClientRect().top + window.scrollY - header.getBoundingClientRect().height);
+        iconValue.classList.add('rotate-scroll-open');
+        iconValue.style.transform = 'rotate(90deg)';
+        iconValue.classList.remove('rotate-scroll-close');
+    } else {
+        window.scrollTo(0, 0);
+        iconValue.classList.add('rotate-scroll-close');
+        iconValue.style.transform = 'rotate(270deg)';
+        iconValue.classList.remove('rotate-scroll-open');
+    }
 };
 
 window.goToLogin = () => {
