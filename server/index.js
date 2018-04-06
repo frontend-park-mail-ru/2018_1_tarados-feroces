@@ -11,6 +11,7 @@ app.use('/test', express.static(path.join('dist')));
 app.use('/leaderboard', express.static(path.join('dist')));
 app.use('/settings', express.static(path.join('dist')));
 app.use('/user', express.static(path.join('dist')));
+app.use(/\/.+/gi, express.static(path.join('dist')));
 
 app.get('/login/id', function(req, res) {
     res.status(200).json({text: 'hello world'});
