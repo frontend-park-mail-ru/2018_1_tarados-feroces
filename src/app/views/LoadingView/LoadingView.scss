@@ -37,8 +37,8 @@
     @for $i from 0 through 6 {
       &:nth-child(#{$i + 1}) {
         filter: blur(0px);
-        animation: blur-text 1.5s infinite linear alternate;
-        animation-delay: #{($i + 1) / 5}s;
+        animation: blur-text 1s infinite linear alternate;
+        animation-delay: #{$i / 5}s;
       }
     }
   }
