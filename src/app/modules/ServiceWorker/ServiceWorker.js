@@ -1,6 +1,7 @@
-export default function serviceWorkerRegistrate() {
+export default function serviceWorkerRegister() {
     if (!Object.is(navigator.serviceWorker, undefined)) {
-        navigator.serviceWorker.register('/ServiceWorker.js', {scope: '/'})
+        console.log('SW not found. Trying to install...');
+        navigator.serviceWorker.register('sw.js', {scope: '/'})
             .then((registration) => {
                 console.log('success register of SW: ', registration);
             })
@@ -8,4 +9,4 @@ export default function serviceWorkerRegistrate() {
                 console.log('Registration FAILED: ', error);
             });
     }
-}
+};

@@ -14,7 +14,7 @@ const extractSass = new ExtractTextPlugin({
 module.exports = {
     entry: {
         main: [
-            './src/app/index.js',
+            './src/index.js',
             './src/static/css/main.scss'
         ]
 
@@ -32,6 +32,15 @@ module.exports = {
 
     module: {
         rules: [
+            {
+                test: /\.js$/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['env']
+                    }
+                }
+            },
             {
                 test: /\.scss$/,
                 use: extractSass.extract({
