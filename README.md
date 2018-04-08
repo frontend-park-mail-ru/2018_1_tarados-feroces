@@ -29,6 +29,7 @@ router.go('/login/');
 #### Template Manager
 Для упрощения и оптимизации работы был использован шаблонизатор Handlebars, для которого был написан класс-обертка [TemplateManager](https://goo.gl/QSYNDJ).
 
+
 #### Components
 Компоненты - элементарные единицы структуры.
 ```javascript
