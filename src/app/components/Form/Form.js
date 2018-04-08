@@ -1,3 +1,4 @@
+import './Form.scss';
 import BaseComponent from '../BaseComponent/BaseComponent';
 
 export default class Form extends BaseComponent {

@@ -1,3 +1,4 @@
+import './MainPage.scss';
 import BaseView from '../BaseView/BaseView';
 import router from '../../modules/Router/Router';
 

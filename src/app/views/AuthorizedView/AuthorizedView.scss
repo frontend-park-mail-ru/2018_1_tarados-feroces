@@ -1,9 +1,4 @@
-$headers-font: 'Nunito', sans-serif;
-$header-background: #0f255d;
-
-$main-font: 'Antic Slab', serif;
-$blocks-background: #143f6b;
-$blocks-text-color: #e5f4e3;
+@import "../../../static/css/config";
 
 .auth-page {
   min-width: 1400px;
@@ -82,6 +77,8 @@ $blocks-text-color: #e5f4e3;
             flex-grow: 1;
             flex-basis: 300px;
             display: flex;
+            flex-direction: row;
+            justify-content: space-around;
             user-select: none;
             background-color: $header-background;
             cursor: pointer;
@@ -106,8 +103,9 @@ $blocks-text-color: #e5f4e3;
               border-right: none;
             }
             &-value {
+              display: flex;
               font-size: 35px;
-              margin: auto;
+              align-self: center;
               color: $blocks-text-color;
               font-family: $main-font;
             }

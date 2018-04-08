@@ -1,4 +1,4 @@
-@import "config";
+@import "../../../static/css/config";
 
 .main-page {
   display: flex;
@@ -44,7 +44,7 @@
           height: 32px;
           margin: auto;
           transform: rotate(270deg);
-          background-image: url("../images/back.png");
+          background-image: url("../../../static/images/back.png");
           background-repeat: no-repeat;
           background-position: 50% 50%;
         }

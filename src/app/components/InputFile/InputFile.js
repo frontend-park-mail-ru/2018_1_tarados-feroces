@@ -1,3 +1,4 @@
+import './InputFile.scss';
 import BaseComponent from '../BaseComponent/BaseComponent';
 
 export default class InputFile extends BaseComponent {

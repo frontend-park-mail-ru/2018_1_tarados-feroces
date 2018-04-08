@@ -1,3 +1,4 @@
+import './Menu.scss';
 import BaseComponent from '../BaseComponent/BaseComponent';
 
 export default class Menu extends BaseComponent {

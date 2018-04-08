@@ -1,3 +1,4 @@
+import './404View.scss';
 import BaseView from '../BaseView/BaseView';
 
 export default class _404View extends BaseView {

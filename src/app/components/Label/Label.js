@@ -1,3 +1,4 @@
+import './Label.scss';
 import BaseComponent from '../BaseComponent/BaseComponent';
 
 export default class Label extends BaseComponent {

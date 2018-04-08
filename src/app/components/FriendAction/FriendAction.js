@@ -1,3 +1,4 @@
+import './FriendAction.scss';
 import BaseComponent from '../BaseComponent/BaseComponent';
 
 export default class FriendAction extends BaseComponent {

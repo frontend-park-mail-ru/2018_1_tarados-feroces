@@ -1,6 +1,4 @@
-$main-font: 'Antic Slab', serif;
-$blocks-background: #143f6b;
-$blocks-text-color: #e5f4e3;
+@import "../../../static/css/config";
 
 .button {
   width: 200px;
@@ -12,6 +10,7 @@ $blocks-text-color: #e5f4e3;
   box-shadow: 2px 2px 4px 1px #00072d;
   margin-top: 10px;
   cursor: pointer;
+  font-family: $main-font;
   animation: button-shining 1.3s linear infinite;
 
   &_no-animation {
