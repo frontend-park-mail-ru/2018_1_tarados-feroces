@@ -1,10 +1,4 @@
-$headers-font: 'Nunito', sans-serif;
-$header-background: #0f255d;
-$header-text-color: #e7bb41;
-
-$main-font: 'Antic Slab', serif;
-$blocks-background: #143f6b;
-$blocks-text-color: #e5f4e3;
+@import "../../../static/css/config";
 
 .header {
   position: fixed;
@@ -28,7 +22,7 @@ $blocks-text-color: #e5f4e3;
     &-content {
       width: 400px;
       height: 100px;
-      background-image: url("../images/Deadlinez.png");
+      background-image: url("../../../static/images/Deadlinez.png");
       background-repeat: no-repeat;
     }
   }

@@ -1,9 +1,11 @@
+@import "../../../static/css/config";
+
 .form-block-content {
   margin: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  background-color: #143f6b;
+  background-color: $blocks-background;
   opacity: 0.95;
   border-radius: 15px;
   box-shadow: 4px 4px 10px 2px #00072d;

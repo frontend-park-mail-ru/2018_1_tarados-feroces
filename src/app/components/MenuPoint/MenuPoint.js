@@ -1,3 +1,4 @@
+import './MenuPoint.scss';
 import BaseComponent from '../BaseComponent/BaseComponent';
 
 export default class MenuPoint extends BaseComponent {

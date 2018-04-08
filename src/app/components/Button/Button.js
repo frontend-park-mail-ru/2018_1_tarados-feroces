@@ -1,3 +1,4 @@
+import './Button.scss';
 import BaseComponent from '../BaseComponent/BaseComponent';
 
 export default class Button extends BaseComponent {

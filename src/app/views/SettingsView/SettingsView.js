@@ -1,3 +1,4 @@
+import './SettingsView.scss';
 import BaseView from '../BaseView/BaseView';
 import httpModule from '../../modules/HttpModule/HttpModule';
 import router from '../../modules/Router/Router';

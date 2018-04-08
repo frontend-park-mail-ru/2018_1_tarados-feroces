@@ -26,7 +26,7 @@ module.exports = {
 
     target: 'web',
     resolve: {
-        extensions: ['.js', '.ts', '.tsx'],
+        extensions: ['.js'],
         mainFields: ['browser', 'main'],
     },
 
@@ -73,13 +73,6 @@ module.exports = {
         ]),
         new webpack.optimize.AggressiveMergingPlugin()
     ],
-    devServer: {
-        contentBase: './',
-        hot: true,
-        stats: {
-            warnings: false
-        }
-    },
     node: {
         fs: 'empty',
         net: 'empty'
