@@ -29,9 +29,9 @@ this.addEventListener('install', (event) => {
     console.log('SW installed');
     event.waitUntil(
         caches.open('DEADLINEZ_CACHE')
-        .then((event) => {
+        .then((cache) => {
             console.log('Adding urls...');
-            return caches.addAll(urls);
+            return cache.addAll(urls);
         })
         .catch((error) => {
             console.log(error);
