@@ -1,4 +1,5 @@
 import GameCore from './index';
+import
 
 export default class OfflineGame extends GameCore {
     constructor(controller, scene) {
@@ -12,26 +13,7 @@ export default class OfflineGame extends GameCore {
 
     start() {
         super.start();
-        this.state = {
-            bullets: [],
-            me: {
-                coll: 2
-            }
-        };
 
-        this.state.items = Array.from(new Array(3 * 5), function (_, position) {
-            return {
-                coll: position % 5,
-                row: position < 5 ? 0 : (position / 5) | 0,
-                dead: false,
-                fadeSpeed: 0,
-                fadeLevel: 0
-            };
-        });
-
-        setTimeout(function() {
-            bus.emit(events.START_GAME, this.state);
-        }.bind(this));
     }
 
     gameloop() {
