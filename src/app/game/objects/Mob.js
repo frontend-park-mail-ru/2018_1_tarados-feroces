@@ -7,18 +7,16 @@ export default class Mob extends MovableObject {
         this.radius = radius;
         this.speed = speed;
         this.speedDirections = {
-            right: [this.speed, 0],
-            left: [-this.speed, 0],
-            up: [0, -this.speed],
-            down: [0, this.speed]
+            0: [this.speed, 0],
+            2: [-this.speed, 0],
+            3: [0, -this.speed],
+            1: [0, this.speed]
         };
-        this.isActive = true;
         this.timeout = timeout;
     }
 
     draw() {
         this.ctx.beginPath();
-        // this.ctx.globalCompositeOperation = 'source-over';
         this.ctx.arc(this.x, this.y, this.radius, 0, 360, false);
         this.ctx.fillStyle = this.color;
         this.ctx.fill();
@@ -30,6 +28,11 @@ export default class Mob extends MovableObject {
     }
 
     movement() {
-        this.move(this.speedDirections[this.direction][0], this.speedDirections[this.direction][1]);
+        setTimeout(() => {
+            this.move(this.speedDirections[this.direction][0], this.speedDirections[this.direction][1]);
+            if ()
+            },
+            this.timeout
+        );
     }
 }

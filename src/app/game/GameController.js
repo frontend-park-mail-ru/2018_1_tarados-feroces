@@ -28,10 +28,12 @@ class GameController {
     };
 
     checkBorderCollision(player, arena) {
-        if (player.x - player.radius <= arena.x + player.speed || player.x + player.radius >= arena.x + arena.width - player.speed) {
+        if (player.x - player.radius <= arena.x + player.speed ||
+            player.x + player.radius >= arena.x + arena.width - player.speed) {
             return false;
         }
-        if (player.y - player.radius <= arena.y + player.speed || player.y + player.radius >= arena.y + arena.height - player.speed) {
+        if (player.y - player.radius <= arena.y + player.speed ||
+            player.y + player.radius >= arena.y + arena.height - player.speed) {
             return false;
         }
         return true;
