@@ -1,13 +1,10 @@
 export default class Arena {
     constructor(ctx) {
-        this.x = 0;
-        this.y = 0;
-        this.width = window.innerWidth;
-        this.height = window.innerHeight;
-        this.fieldX = 400;
-        this.fieldY = 200;
-        this.fieldWidth = this.width - 800;
-        this.fieldHeight = this.height - 400;
+        const arena = document.querySelector('.game__arena');
+        this.x = arena.x;
+        this.y = arena.y;
+        this.width = arena.width;
+        this.height = arena.height;
         this.ctx = ctx;
     }
 

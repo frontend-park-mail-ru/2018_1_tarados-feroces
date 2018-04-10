@@ -3,23 +3,32 @@ import GameCore from './index';
 export default class OfflineGame extends GameCore {
     constructor(controller, scene) {
         super(controller, scene);
-        let currentRound = null;
+        this.rounds = [];
+        this.currentRound = 0;
     }
 
     start() {
         super.start();
+        this.scene.initPlayer();
         this.gameloop();
     }
 
-    nextRound(round) {
-        this.currentRound = round;
-        this.gameloop();
+    saveRounds(rounds) {
+        this.rounds = rounds;
+    }
+
+    nextRound() {
+        if (this.rounds.length < this.currentRound) {
+            return false;
+        }
+        this.scene.initRound(this.rounds[this.currentRound]);
+        this.currentRound += 1;
+        return true;
     }
 
     gameloop() {
         const animation = requestAnimationFrame(this.gameLoop);
-        arena.clear();
-        arena.draw();
+
         if (!movementControl(player)) {
             cancelAnimationFrame(animation);
             const anotherGame = confirm('You died!!! Do you want to play again?');
