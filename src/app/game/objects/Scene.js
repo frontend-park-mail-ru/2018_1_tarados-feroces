@@ -8,11 +8,12 @@ export default class Scene {
         this.y = 0;
         this.width = canvas.innerWidth;
         this.height = canvas.innerHeight;
-        this.arena = new Arena(this.ctx);
+        const ctx = this.ctx;
+        this.arena = new Arena(ctx);
     }
 
     initPlayer() {
-        this.player = new Player(this.ctx, 200, 200);
+        this.player = new Player(this.ctx, this.arena.x + this.arena.width / 2, this.arena.y + this.arena.height / 2);
         this.player.draw();
     }
 

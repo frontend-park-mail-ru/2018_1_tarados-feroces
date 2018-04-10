@@ -35,6 +35,7 @@ class Router {
             view,
             insertElemId: id,
             loaded: false,
+            url: url
         };
         return this;
     }
@@ -42,6 +43,7 @@ class Router {
     /**
      * Обновляет и перерисовывает вью в DOM
      * @param {Object} context
+     * @param {string} url
      */
     // TODO
     viewUpdate(url, context) {
@@ -74,6 +76,7 @@ class Router {
             this.route(url);
         }
         window.history.pushState({path: url}, url, url);
+
     }
 
     /**
@@ -163,6 +166,9 @@ class Router {
         this.lastView[urlObject.insertElemId] = urlObject.view;
         this.showPage(urlObject);
         this.hideLoading();
+        if (urlObject.url === '/game/') {
+            urlObject.view.create();
+        }
     }
 
     /**

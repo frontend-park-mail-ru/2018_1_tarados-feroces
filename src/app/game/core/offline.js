@@ -1,16 +1,20 @@
 import GameCore from './index';
+import gameController from '../GameController';
+import router from '../../modules/Router/Router';
 
 export default class OfflineGame extends GameCore {
     constructor(controller, scene) {
         super(controller, scene);
         this.rounds = [];
         this.currentRound = 0;
+        this.gameLoop = this.gameLoop.bind(this);
+        this.start = this.start.bind(this);
     }
 
     start() {
         super.start();
         this.scene.initPlayer();
-        // this.gameloop();
+        this.gameLoop();
     }
 
     // saveRounds(rounds) {
@@ -26,43 +30,44 @@ export default class OfflineGame extends GameCore {
     //     return true;
     // }
     //
-    // gameloop() {
-    //     const animation = requestAnimationFrame(this.gameLoop);
-    //
-    //     if (!movementControl(player)) {
-    //         cancelAnimationFrame(animation);
-    //         const anotherGame = confirm('You died!!! Do you want to play again?');
-    //         anotherGame ? window.location.reload() : window.location.href = '../main-page/main-page.html';
-    //     }
-    //
-    //     round.bots.forEach((bot) => {
-    //         if (bot.isActive) {
-    //             bot.movement();
-    //         }
-    //
-    //     });
-    //     round.checkBots();
-    //     if (round.bots.length === 0) {
-    //         if (!round.initWave()) {
-    //             cancelAnimationFrame(animation);
-    //             const anotherGame = confirm('You won!!! Do you want to play again?');
-    //             anotherGame ? window.location.reload() : window.location.href = '../main-page/main-page.html';
-    //         }
-    //     }
-    // }
-    //
-    //
-    // onGameStarted(evt) {
-    //     this.controller.start();
-    //     this.scene.init(evt);
-    //     this.scene.start();
-    //
-    //     this.lastFrame = performance.now();
-    //     this.gameloopRequestId = requestAnimationFrame(this.gameloop);
-    // }
-    //
-    // onGameFinished(evt) {
-    //     cancelAnimationFrame(this.gameloopRequestId);
-    //     bus.emit('CLOSE_GAME');
-    // }
+    gameLoop() {
+        const animation = requestAnimationFrame(this.gameLoop);
+
+        if (!gameController.movementControl(this.scene.player, this.scene.arena)) {
+            cancelAnimationFrame(animation);
+            const anotherGame = confirm('You died!!! Do you want to play again?');
+            anotherGame ? router.go('/game/') : router.go('/');
+        }
+
+        //     round.bots.forEach((bot) => {
+        //         if (bot.isActive) {
+        //             bot.movement();
+        //         }
+        //
+        //     });
+        //     round.checkBots();
+        //     if (round.bots.length === 0) {
+        //         if (!round.initWave()) {
+        //             cancelAnimationFrame(animation);
+        //             const anotherGame = confirm('You won!!! Do you want to play again?');
+        //             anotherGame ? window.location.reload() : window.location.href = '../main-page/main-page.html';
+        //         }
+        //     }
+        // }
+        //
+        //
+        // onGameStarted(evt) {
+        //     this.controller.start();
+        //     this.scene.init(evt);
+        //     this.scene.start();
+        //
+        //     this.lastFrame = performance.now();
+        //     this.gameloopRequestId = requestAnimationFrame(this.gameloop);
+        // }
+        //
+        // onGameFinished(evt) {
+        //     cancelAnimationFrame(this.gameloopRequestId);
+        //     bus.emit('CLOSE_GAME');
+        // }
+    }
 };

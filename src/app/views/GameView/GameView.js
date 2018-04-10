@@ -1,10 +1,30 @@
 import './GameView.scss';
 import BaseView from '../BaseView/BaseView';
 import Game from '../../game/core/offline';
-import Controller from '../../game/controllers';
+import gameController from '../../game/GameController';
 import Scene from '../../game/objects/Scene';
 
 export default class GameView extends BaseView {
+
+    constructor() {
+        super();
+        this.game = null;
+        this.canvas = null;
+    }
+
+    create() {
+        this.canvas = document.querySelector('.game__battleground-canvas');
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+        this.doGame();
+    }
+
+    doGame() {
+        const scene = new Scene(this.canvas);
+        gameController.start();
+        this.game = new Game(gameController, scene);
+        this.game.start();
+    }
 
     needUpdate() {
         return true;
@@ -19,12 +39,3 @@ export default class GameView extends BaseView {
     }
 }
 
-window.initGame = () => {
-    const canvas = document.querySelector('.game__battleground-canvas');
-    const controller = new Controller();
-    const scene = new Scene(canvas);
-    window.game = new Game(scene, controller);
-    game.start();
-    const button = document.querySelector('.init-button');
-    button.classList.add('hidden');
-};

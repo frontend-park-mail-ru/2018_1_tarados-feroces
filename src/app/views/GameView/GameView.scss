@@ -17,7 +17,7 @@
     //background-repeat: no-repeat;
 
     &-canvas {
-      z-index: 9999;
+      z-index: 99999;
       width: 100%;
       height: 100%;
       position: absolute;
@@ -38,9 +38,4 @@
   &__notes {
     display: none;
   }
-}
-
-.init-button {
-  //z-index: 9999;
-  //position: absolute;
 }
