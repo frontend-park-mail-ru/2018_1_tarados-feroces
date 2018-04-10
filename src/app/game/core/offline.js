@@ -1,28 +1,47 @@
 import GameCore from './index';
-import
 
 export default class OfflineGame extends GameCore {
     constructor(controller, scene) {
         super(controller, scene);
-
-        this.state = {};
-        this.gameloop = this.gameloop.bind(this);
-        this.gameloopRequestId = null;
-        this.lastFrame = 0;
+        let currentRound = null;
     }
 
     start() {
         super.start();
+        this.gameloop();
+    }
 
+    nextRound(round) {
+        this.currentRound = round;
+        this.gameloop();
     }
 
     gameloop() {
+        const animation = requestAnimationFrame(this.gameLoop);
+        arena.clear();
+        arena.draw();
+        if (!movementControl(player)) {
+            cancelAnimationFrame(animation);
+            const anotherGame = confirm('You died!!! Do you want to play again?');
+            anotherGame ? window.location.reload() : window.location.href = '../main-page/main-page.html';
+        }
 
+        round.bots.forEach((bot) => {
+            if (bot.isActive) {
+                bot.movement();
+            }
+
+        });
+        round.checkBots();
+        if (round.bots.length === 0) {
+            if (!round.initWave()) {
+                cancelAnimationFrame(animation);
+                const anotherGame = confirm('You won!!! Do you want to play again?');
+                anotherGame ? window.location.reload() : window.location.href = '../main-page/main-page.html';
+            }
+        }
     }
 
-    onControllsPressed(evt) {
-
-    }
 
     onGameStarted(evt) {
         this.controller.start();
@@ -35,11 +54,6 @@ export default class OfflineGame extends GameCore {
 
     onGameFinished(evt) {
         cancelAnimationFrame(this.gameloopRequestId);
-
         bus.emit('CLOSE_GAME');
-    }
-
-    onGameStateChanged(evt) {
-        this.scene.setState(evt);
     }
 };

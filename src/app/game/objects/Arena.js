@@ -11,15 +11,6 @@ export default class Arena {
         this.ctx = ctx;
     }
 
-    draw(ctx = this.ctx) {
-        ctx.beginPath();
-        ctx.fillStyle = '#000a57';
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-        ctx.fillStyle = '#1956a8';
-        ctx.fillRect(this.fieldX, this.fieldY, this.fieldWidth, this.fieldHeight);
-        ctx.closePath();
-    }
-
     clear() {
         this.ctx.clearRect(this.x, this.y, this.width, this.height);
     }

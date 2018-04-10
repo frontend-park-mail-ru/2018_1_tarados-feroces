@@ -10,7 +10,6 @@ export default class BaseObject {
     }
 
     draw() {
-
         this.ctx.beginPath();
         this.ctx.globalCompositeOperation = 'source-over';
         this.ctx.arc(this.x, this.y, this.radius, 0, 360, false);
