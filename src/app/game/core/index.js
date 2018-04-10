@@ -17,6 +17,8 @@ export default class GameCore {
         bus.on('START_GAME', this.onGameStarted);
         bus.on('FINISH_GAME', this.onGameFinished);
         bus.on('CONTROLS_PRESSED', this.onControlsPressed);
+        bus.on('WAVE_COMPLETED', this.onWaveCompleted);
+        bus.on('ROUND_COMPLETED', this.onRoundCompleted);
     }
 
     destoy() {
@@ -29,9 +31,15 @@ export default class GameCore {
 
     onControlsPressed() {}
 
+    onGameStateChanged() {}
+
     onGameStarted() {}
 
     onGameFinished() {}
+
+    onWaveCompleted() {}
+
+    onRoundCompleted() {}
 
     _pressed(name, data) {
         return KEYS[name].some((key) => data[key]);

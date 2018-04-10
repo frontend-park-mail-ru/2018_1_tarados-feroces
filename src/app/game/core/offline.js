@@ -1,28 +1,56 @@
 import GameCore from './index';
-import
 
 export default class OfflineGame extends GameCore {
     constructor(controller, scene) {
         super(controller, scene);
-
-        this.state = {};
-        this.gameloop = this.gameloop.bind(this);
-        this.gameloopRequestId = null;
-        this.lastFrame = 0;
+        this.rounds = [];
+        this.currentRound = 0;
     }
 
     start() {
         super.start();
+        this.scene.initPlayer();
+        this.gameloop();
+    }
 
+    saveRounds(rounds) {
+        this.rounds = rounds;
+    }
+
+    nextRound() {
+        if (this.rounds.length < this.currentRound) {
+            return false;
+        }
+        this.scene.initRound(this.rounds[this.currentRound]);
+        this.currentRound += 1;
+        return true;
     }
 
     gameloop() {
+        const animation = requestAnimationFrame(this.gameLoop);
 
+        if (!movementControl(player)) {
+            cancelAnimationFrame(animation);
+            const anotherGame = confirm('You died!!! Do you want to play again?');
+            anotherGame ? window.location.reload() : window.location.href = '../main-page/main-page.html';
+        }
+
+        round.bots.forEach((bot) => {
+            if (bot.isActive) {
+                bot.movement();
+            }
+
+        });
+        round.checkBots();
+        if (round.bots.length === 0) {
+            if (!round.initWave()) {
+                cancelAnimationFrame(animation);
+                const anotherGame = confirm('You won!!! Do you want to play again?');
+                anotherGame ? window.location.reload() : window.location.href = '../main-page/main-page.html';
+            }
+        }
     }
 
-    onControllsPressed(evt) {
-
-    }
 
     onGameStarted(evt) {
         this.controller.start();
@@ -35,11 +63,6 @@ export default class OfflineGame extends GameCore {
 
     onGameFinished(evt) {
         cancelAnimationFrame(this.gameloopRequestId);
-
         bus.emit('CLOSE_GAME');
-    }
-
-    onGameStateChanged(evt) {
-        this.scene.setState(evt);
     }
 };

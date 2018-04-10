@@ -1,3 +1,6 @@
+const canvas = document.querySelector('game__battleground-canvas');
+const ctx = canvas.getContext('2d');
+
 const arena = new Arena(ctx);
 arena.draw();
 
