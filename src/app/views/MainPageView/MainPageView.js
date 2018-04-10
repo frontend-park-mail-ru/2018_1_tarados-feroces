@@ -1,6 +1,9 @@
 import './MainPage.scss';
 import BaseView from '../BaseView/BaseView';
 import router from '../../modules/Router/Router';
+import Game from '../../game/core/offline';
+import Controller from "../../game/controllers";
+import Scene from "../../game/objects/Scene";
 
 export default class MainPageView extends BaseView {
 

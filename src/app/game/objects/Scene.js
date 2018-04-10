@@ -2,13 +2,13 @@ import Arena from './Arena';
 import Player from './Player';
 
 export default class Scene {
-    constructor(canvas, ctx) {
+    constructor(canvas) {
+        this.ctx = canvas.getContext('2d');
         this.x = 0;
         this.y = 0;
         this.width = canvas.innerWidth;
         this.height = canvas.innerHeight;
-        this.ctx = ctx;
-        this.arena = new Arena(ctx);
+        this.arena = new Arena(this.ctx);
     }
 
     initPlayer() {
