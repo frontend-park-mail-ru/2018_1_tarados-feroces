@@ -1,13 +1,9 @@
+@import "../../../static/css/config";
+
 .game {
   width: 100vw;
   height: 100vh;
   position: relative;
-
-  &-canvas {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-  }
 
   &__battleground {
     display: flex;
@@ -15,18 +11,31 @@
     justify-content: space-around;
     width: 100%;
     height: 100%;
-    background-image: url("../../../static/images/sneg-22.jpg");
-    background-size: cover;
+    background-color: $header-background;
+    //background-image: url("../../../static/images/grass.jpg");
+    //background-size: cover;
     //background-repeat: no-repeat;
+
+    &-canvas {
+      z-index: 9999;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
   }
 
   &__arena {
     display: flex;
     align-self: center;
-    width: 70%;
+    width: 60%;
     height: 70%;
-    background-image: url("../../../static/images/mood.jpg");
-    background-size: cover;
+    background-color: $blocks-background;
+    //background-image: url("../../../static/images/mood.jpg");
+    //background-size: cover;
     //background-repeat: no-repeat;
+  }
+
+  &__notes {
+    display: none;
   }
 }

@@ -35,6 +35,10 @@ window.goToLogin = () => {
     router.go('/login/');
 };
 
+window.goToGame = () => {
+    router.go('/game/');
+};
+
 window.goToSignUp = () => {
     router.go('/signup/');
 };
