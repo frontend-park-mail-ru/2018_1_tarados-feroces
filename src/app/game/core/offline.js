@@ -14,22 +14,23 @@ export default class OfflineGame extends GameCore {
     start() {
         super.start();
         this.scene.initPlayer();
+        this.nextRound();
         this.gameLoop();
     }
 
-    // saveRounds(rounds) {
-    //     this.rounds = rounds;
-    // }
-    //
-    // nextRound() {
-    //     if (this.rounds.length < this.currentRound) {
-    //         return false;
-    //     }
-    //     this.scene.initRound(this.rounds[this.currentRound]);
-    //     this.currentRound += 1;
-    //     return true;
-    // }
-    //
+    saveRounds(rounds) {
+        this.rounds = rounds;
+    }
+
+    nextRound() {
+        if (this.rounds.length <= this.currentRound) {
+            return false;
+        }
+        this.scene.initRound(this.rounds[this.currentRound]);
+        this.currentRound += 1;
+        return true;
+    }
+
     gameLoop() {
         const animation = requestAnimationFrame(this.gameLoop);
 
@@ -39,35 +40,14 @@ export default class OfflineGame extends GameCore {
             anotherGame ? router.go('/game/') : router.go('/');
         }
 
-        //     round.bots.forEach((bot) => {
-        //         if (bot.isActive) {
-        //             bot.movement();
-        //         }
-        //
-        //     });
-        //     round.checkBots();
-        //     if (round.bots.length === 0) {
-        //         if (!round.initWave()) {
-        //             cancelAnimationFrame(animation);
-        //             const anotherGame = confirm('You won!!! Do you want to play again?');
-        //             anotherGame ? window.location.reload() : window.location.href = '../main-page/main-page.html';
-        //         }
-        //     }
-        // }
-        //
-        //
-        // onGameStarted(evt) {
-        //     this.controller.start();
-        //     this.scene.init(evt);
-        //     this.scene.start();
-        //
-        //     this.lastFrame = performance.now();
-        //     this.gameloopRequestId = requestAnimationFrame(this.gameloop);
-        // }
-        //
-        // onGameFinished(evt) {
-        //     cancelAnimationFrame(this.gameloopRequestId);
-        //     bus.emit('CLOSE_GAME');
-        // }
+        if (!this.scene.round.iterateWave()) {
+            if (!this.scene.round.nextWave()) {
+                if (!this.nextRound()) {
+                    cancelAnimationFrame(animation);
+                    const anotherGame = confirm('You won!!! Do you want to play again?');
+                    anotherGame ? router.go('/game/') : router.go('/');
+                }
+            }
+        }
     }
 };

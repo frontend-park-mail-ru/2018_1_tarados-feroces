@@ -3,10 +3,12 @@ import gameController from '../GameController';
 
 export default class Wave {
 
-    constructor(scene, ctx, mobs) {
+    constructor(ctx, scene, mobs) {
         this.mobs = [];
+        console.log(mobs);
+        this.scene = scene;
         mobs.forEach((item) => {
-            const [x, y] = this.countCoords(scene, scene.arena.width, scene.arena.height, item[0], item[1]);
+            const [x, y] = this.countCoords(scene.arena.width, scene.arena.height, item[0], item[1]);
             const mob = new Mob(ctx, x, y, item[1], item[2]);
             this.mobs.push(mob);
         });
@@ -16,12 +18,15 @@ export default class Wave {
         this.mobs.forEach((item) => {
             item.movement();
         });
+        // console.log(this.che);
+        return !this.checkEnd();
     }
 
     checkEnd() {
-        this.mobs.forEach((item) => {
-            if (gameController.checkBorderCollision(item, scene));
-        });
+        return this.mobs.reduce(
+            (result, curr) => result && !gameController.checkBorderCollision(curr, this.scene),
+            true
+        );
     }
 
     countCoords(width, heigth, coord, direction) {
@@ -33,5 +38,6 @@ export default class Wave {
             case 2: return [width, coord * vh]; // right
             case 3: return [coord * vw, heigth]; // bottom
         }
+        return [0, 0];
     }
 }

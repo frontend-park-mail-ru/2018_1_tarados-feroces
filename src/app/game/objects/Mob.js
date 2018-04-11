@@ -16,21 +16,22 @@ export default class Mob extends MovableObject {
     }
 
     draw() {
-        this.ctx.beginPath();
-        this.ctx.arc(this.x, this.y, this.radius, 0, 360, false);
-        this.ctx.fillStyle = this.color;
-        this.ctx.fill();
-        this.ctx.closePath();
+        const ctx = this.ctx;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, 360, false);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        ctx.closePath();
     }
 
     clear() {
-        this.ctx.clearRect(this.x - this.radius, this.y - this.radius, this.radius * 2 + 2, this.radius * 2 + 2);
+        const ctx = this.ctx;
+        ctx.clearRect(this.x - this.radius - 1, this.y - this.radius - 1, this.radius * 2 + 1, this.radius * 2 + 1);
     }
 
     movement() {
         setTimeout(() => {
             this.move(this.speedDirections[this.direction][0], this.speedDirections[this.direction][1]);
-            if ()
             },
             this.timeout
         );

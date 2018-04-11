@@ -27,16 +27,15 @@ class GameController {
         this.keyMap[direction] = (event.type === 'keypress' || event.type === 'keydown');
     };
 
-    checkBorderCollision(player, arena) {
-        if (player.x - player.radius <= arena.x + player.speed ||
-            player.x + player.radius >= arena.x + arena.width - player.speed) {
-            return false;
-        }
-        if (player.y - player.radius <= arena.y + player.speed ||
-            player.y + player.radius >= arena.y + arena.height - player.speed) {
-            return false;
-        }
-        return true;
+    checkBorderCollision(object, field) {
+        // console.log('object: ', object);
+        // console.log('scene: ', field);
+        return !(
+            object.x - object.radius <= field.x ||
+            object.x + object.radius >= field.x + field.width ||
+            object.y - object.radius <= field.y ||
+            object.y + object.radius >= field.y + field.height
+        );
     };
 
     checkBotCollision(player) {
