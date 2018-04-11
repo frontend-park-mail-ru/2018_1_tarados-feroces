@@ -1,12 +1,9 @@
-(function() {
-    'use strict';
+import './LoadingView.scss';
+import BaseView from '../BaseView/BaseView';
 
-    class LoadingView extends BaseView {
+export default class LoadingView extends BaseView {
 
-        render() {
-            return `<Header>Loading...</Header>`;
-        }
+    render() {
+        this.template = require('./LoadingView.handlebars');
     }
-
-    window.LoadingView = LoadingView;
-})();
+}

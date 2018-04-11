@@ -7,22 +7,46 @@
     "test": "echo 'hello'",
     "eslint": "./node_modules/.bin/eslint ./src/",
     "flint": "./node_modules/.bin/eslint --fix ./src/",
-    "server": "node ./server"
+    "server": "node ./server",
+    "webpack": "./node_modules/.bin/webpack --config webpack.config.dev.js",
+    "webpack-prod": "./node_modules/.bin/webpack --config webpack.config.prod.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tarados-feroces/frontend.git"
+    "url": "git+https://github.com/frontend-park-mail-ru/2018_1_tarados-feroces.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tarados-feroces/frontend/issues"
+    "url": "https://github.com/frontend-park-mail-ru/2018_1_tarados-feroces/issues"
   },
-  "homepage": "https://github.com/tarados-feroces/frontend#readme",
+  "homepage": "https://github.com/frontend-park-mail-ru/2018_1_tarados-feroces#readme",
   "devDependencies": {
     "eslint": "^4.18.2",
     "eslint-config-google": "^0.9.1",
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "gulp-sass": "^3.1.0",
+    "webpack-cli": "^2.0.13"
   },
-  "dependencies": {}
+  "dependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "copy-webpack-plugin": "^4.5.1",
+    "css-loader": "^0.28.11",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.11",
+    "handlebars": "^4.0.11",
+    "handlebars-loader": "^1.7.0",
+    "html-webpack-plugin": "^3.1.0",
+    "resolve-url-loader": "^2.3.0",
+    "sass-loader": "^6.0.7",
+    "style-loader": "^0.20.3",
+    "uglifyjs-webpack-plugin": "^1.2.4",
+    "url-loader": "^1.0.1",
+    "webpack": "^3.11.0",
+    "webpack-merge": "^4.1.2"
+  }
 }

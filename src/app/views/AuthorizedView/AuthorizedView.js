@@ -1,43 +1,72 @@
-(function() {
-    'use strict';
+import './AuthorizedView.scss';
+import BaseView from '../BaseView/BaseView';
+import httpModule from '../../modules/HttpModule/HttpModule';
+import userService from '../../modules/UserService/UserService';
+import router from '../../modules/Router/Router';
 
-    class AuthorizedView extends BaseView {
+export default class AuthorizedView extends BaseView {
 
-        preRender() {
-            return httpModule.doGet('/me').then(
-                (response) => {
-                    this.context = response;
-                }
-            );
-        }
-
-        render() {
-            return `<div class="page">
-                        <Header>Hello, {{login}}</Header>
-                        {{#if avatar}}
-                            <Image class="main-avatar" src="{{{avatar}}}"></Image>
-                        {{else}}
-                            <Image class="main-avatar" src="../../static/images/mainAvatar.jpg"></Image>
-                        {{/if}}    
-                        <div class="button-container">
-                            <Button class="button large" click="(event){ event.preventDefault(); goToSettings();  }">Settings</Button>
-                            <Button class="button large" click="(event){ event.preventDefault(); goToScore();  }">Leaderboard</Button>
-                            <Button class="button large" click="(event){ event.preventDefault(); signOut();  }">Sign out</Button>
-                        </div>
-                    </div>`;
-        }
-    }
-
-    window.goToSettings = () => router.go('/settings/');
-
-    window.signOut = () => {
-        httpModule.doPost('/signout').then(
+    preRender() {
+        return httpModule.doGet('/user').then(
             (response) => {
-                userService.userLogout();
-                router.go('/');
+                this.context = response;
+                if (!this.context.avatar.length) {
+                    this.context.avatar = '../images/user-logo.jpg';
+                }
             }
         );
-    };
+    }
 
-    window.AuthorizedView = AuthorizedView;
-})();
+    render() {
+        this.template = require('./AuthorizedView.handlebars');
+    }
+}
+
+window.goToSettings = () => {
+    router.go('/settings/');
+};
+
+window.signOut = () => {
+    httpModule.doPost('/signout').then(
+        (response) => {
+            userService.userLogout();
+            router.go('/');
+        }
+    );
+};
+
+window.hideFriends = () => {
+    const hideValue = document.querySelector('.auth-page__content-right-friends-icon-value');
+
+    document.querySelector('.friends').classList.toggle('hidden');
+    if (hideValue.classList.contains('rotate-close')) {
+        hideValue.classList.add('rotate-open');
+        hideValue.style.transform = 'rotate(180deg)';
+        hideValue.classList.remove('rotate-close');
+    } else {
+        hideValue.classList.add('rotate-close');
+        hideValue.style.transform = 'rotate(0deg)';
+        hideValue.classList.remove('rotate-open');
+    }
+    document.querySelector('.content-right-party').classList.toggle('hidden');
+};
+
+window.showFriendActions = (event) => {
+    const modal = document.querySelector('.friends-modal');
+    const icon = event.currentTarget;
+    console.log(modal);
+    console.log(icon);
+    const x = icon.x - 200;
+    console.log(icon.left);
+    modal.style.left = `${x}px`;
+    modal.style.top = `${icon.y}px`;
+    modal.classList.toggle('hidden');
+};
+
+window.goToScore = () => {
+    const score = document.querySelector('.leaderboard');
+    if (score.classList.contains('modal-header__point_active')) {
+        return;
+    }
+    router.go('/leaderboard/');
+};

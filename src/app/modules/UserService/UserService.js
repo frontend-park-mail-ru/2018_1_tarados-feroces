@@ -1,43 +1,46 @@
-(function() {
-    'use strict';
+import httpModule from '../HttpModule/HttpModule';
+import router from '../Router/Router';
+
+/**
+ * Класс для работы с сессией пользователя
+ * @module UserService
+ */
+class UserService {
 
     /**
-     * Класс для работы с сессией пользователя
-     * @module UserService
+     * Проверка авторизации пользователя
+     * @return {PromiseLike<boolean> | Promise<boolean>}
      */
-    class UserService {
-
-        /**
-         * Проверка авторизации пользователя
-         * @return {PromiseLike<boolean> | Promise<boolean>}
-         */
-        checkSession() {
-            return httpModule.doGet('/me').then(
-                (response) => this.isAuthorized = true,
-                (reject) => this.isAuthorized = false);
-        }
-
-        /**
-         * Установка флага авторизованного пользователя
-         */
-        userLogin() {
-            this.isAuthorized = true;
-        }
-
-        /**
-         * Сброс флага авторизованного пользователя
-         * Удаление отрендеренных вью пользователя
-         */
-        userLogout() {
-            this.isAuthorized = false;
-            router.urls['/user/'].view.deleteElement();
-            router.urls['/user/'].loaded = false;
-            if (router.urls['/settings/'].loaded) {
-                router.urls['/settings/'].view.deleteElement();
-                router.urls['/settings/'].loaded = false;
-            }
+    checkSession() {
+        if (this.isAuthorized === undefined) {
+            router.showLoading();
+            return httpModule.doGet('/isauthorized').then(
+                        (response) => {
+                            this.isAuthorized = response.is_authorized;
+                        });
+        } else {
+            return new Promise((resolve) => resolve());
         }
     }
 
-    window.userService = new UserService();
-})();
+    /**
+     * Установка флага авторизованного пользователя
+     */
+    userLogin() {
+        this.isAuthorized = true;
+    }
+
+    /**
+     * Сброс флага авторизованного пользователя
+     * Удаление отрендеренных вью пользователя
+     */
+    userLogout() {
+        this.isAuthorized = false;
+        router.clearUrlElement('/user/');
+        router.clearUrlElement('/leaderboard/');
+        router.clearUrlElement('/settings/');
+    }
+}
+
+const userService = new UserService();
+export default userService;
