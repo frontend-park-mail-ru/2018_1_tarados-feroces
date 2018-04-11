@@ -1,7 +1,7 @@
 import MovableObject from './MovableObject';
 
 export default class Mob extends MovableObject {
-    constructor(ctx, x, y, direction, timeout = 0, speed = 5, radius = 30, color = 'black') {
+    constructor(ctx, x, y, direction, timeout = 0, speed = 9, radius = 30, color = 'black') {
         super(ctx, x, y, color);
         this.direction = direction;
         this.radius = radius;
@@ -17,6 +17,7 @@ export default class Mob extends MovableObject {
 
     draw() {
         const ctx = this.ctx;
+        this.ctx.globalCompositeOperation = 'source-over';
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, 360, false);
         ctx.fillStyle = this.color;
@@ -26,7 +27,13 @@ export default class Mob extends MovableObject {
 
     clear() {
         const ctx = this.ctx;
-        ctx.clearRect(this.x - this.radius - 1, this.y - this.radius - 1, this.radius * 2 + 1, this.radius * 2 + 1);
+        this.ctx.globalCompositeOperation = 'destination-out';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius + 2, 0, 360, false);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        ctx.closePath();
+        // ctx.clearRect(this.x - this.radius, this.y - this.radius, this.radius * 2 + 10, this.radius * 2 + 10);
     }
 
     movement() {

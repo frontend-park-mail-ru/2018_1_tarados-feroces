@@ -18,6 +18,10 @@ export default class OfflineGame extends GameCore {
         this.gameLoop();
     }
 
+    stop() {
+        super.stop();
+    }
+
     saveRounds(rounds) {
         this.rounds = rounds;
     }
@@ -34,16 +38,21 @@ export default class OfflineGame extends GameCore {
     gameLoop() {
         const animation = requestAnimationFrame(this.gameLoop);
 
-        if (!gameController.movementControl(this.scene.player, this.scene.arena)) {
+        debugger;
+        const currentWave = this.scene.round.waves[this.scene.round.waveCounter];
+        if (!gameController.movementControl(this.scene.player, this.scene.arena, currentWave)) {
             cancelAnimationFrame(animation);
+            this.stop();
             const anotherGame = confirm('You died!!! Do you want to play again?');
             anotherGame ? router.go('/game/') : router.go('/');
         }
 
         if (!this.scene.round.iterateWave()) {
+            currentWave.clearWave();
             if (!this.scene.round.nextWave()) {
                 if (!this.nextRound()) {
                     cancelAnimationFrame(animation);
+                    this.stop();
                     const anotherGame = confirm('You won!!! Do you want to play again?');
                     anotherGame ? router.go('/game/') : router.go('/');
                 }

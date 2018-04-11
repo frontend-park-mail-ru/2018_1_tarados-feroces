@@ -2,7 +2,7 @@ import MovableObject from './MovableObject';
 
 export default class Player extends MovableObject {
 
-    constructor(ctx, x, y, speed = 5, radius = 20, color = 'red') {
+    constructor(ctx, x, y, speed = 8, radius = 20, color = 'red') {
         super(ctx, x, y, color);
         this.radius = radius;
         this.speed = speed;

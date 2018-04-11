@@ -18,29 +18,41 @@ class GameController {
     checkKeys(event) {
         let direction = '';
 
-        for (let key in Object.keys(window.KEYS)) {
+        for (const key in Object.keys(window.KEYS)) {
             if (window.KEYS[Object.keys(window.KEYS)[key]].includes(event.keyCode)) {
                 direction = Object.keys(window.KEYS)[key];
                 break;
             }
         }
         this.keyMap[direction] = (event.type === 'keypress' || event.type === 'keydown');
-    };
+    }
 
     checkBorderCollision(object, field) {
-        // console.log('object: ', object);
-        // console.log('scene: ', field);
         return !(
             object.x - object.radius <= field.x ||
             object.x + object.radius >= field.x + field.width ||
             object.y - object.radius <= field.y ||
             object.y + object.radius >= field.y + field.height
         );
-    };
+    }
 
-    checkBotCollision(player) {
+    checkMobOutOfBorder(object, field) {
+        const result = !(
+            object.x + object.radius <= field.x ||
+            object.x - object.radius >= field.x + field.width ||
+            object.y + object.radius <= field.y ||
+            object.y - object.radius >= field.y + field.height
+        );
+
+        if (!result) {
+            object.clear();
+        }
+        return result;
+    }
+
+    checkBotCollision(player, wave) {
         let result = true;
-        round.bots.forEach((item) => {
+        wave.mobs.forEach((item) => {
             const dx = item.x - player.x;
             const dy = item.y - player.y;
             const dist = Math.sqrt(dx * dx + dy * dy);
@@ -50,9 +62,9 @@ class GameController {
         });
 
         return result;
-    };
+    }
 
-    movementControl(player, arena) {
+    movementControl(player, arena, wave) {
         let x = 0;
         let y = 0;
         if (this.keyMap['RIGHT']) {
@@ -68,16 +80,22 @@ class GameController {
             y -= player.speed;
         }
 
-        if (!this.checkBorderCollision(player, arena)) {
-            player.move(-x, -y);
+        player.x += x;
+        player.y += y;
 
-            return true;
+        const collision = !this.checkBorderCollision(player, arena);
+
+        player.x -= x;
+        player.y -= y;
+
+        if (collision) {
+            player.move(-x, -y);
+        } else {
+            player.move(x, y);
         }
 
-        player.move(x, y);
-        // return checkBotCollision(player);
-        return true;
-    };
+        return this.checkBotCollision(player, wave);
+    }
 
     stop() {
         window.removeEventListener('keypress', this.checkKeys);

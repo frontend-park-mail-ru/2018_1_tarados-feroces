@@ -25,7 +25,12 @@ export default class GameView extends BaseView {
         this.game = new Game(gameController, scene);
 
         // 0 - transform, 1 - direction, 2 - timeout
-        const rounds = [[[[25, 0, 0]]]];
+        const rounds = [
+            [
+                [[25, 0, 0], [55, 1, 200], [55, 2, 0], [55, 3, 400]],
+                [[25, 0, 0], [55, 1, 200], [55, 2, 0], [55, 3, 400]]
+            ]
+        ];
         this.game.saveRounds(rounds);
         // setTimeout(() => this.game.)
 
