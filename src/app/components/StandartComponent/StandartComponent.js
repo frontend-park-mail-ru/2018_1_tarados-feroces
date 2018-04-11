@@ -1,13 +1,9 @@
-(function() {
-    'use strict';
+import BaseComponent from '../BaseComponent/BaseComponent';
 
-    class StandartComponent extends BaseComponent {
+export default class StandartComponent extends BaseComponent {
 
-        render(context) {
-            this.template = `<{{tag}} class="{{class}}">{{text}}</{{tag}}>`;
-            super.render(context);
-        }
+    render(context) {
+        this.template = require('./StandartComponent.handlebars');
+        super.render(context);
     }
-
-    window.StandartComponent = StandartComponent;
-})();
+}

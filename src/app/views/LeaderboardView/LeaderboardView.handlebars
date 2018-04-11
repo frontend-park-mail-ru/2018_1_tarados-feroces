@@ -1,0 +1,19 @@
+<div class="scoreboard">
+    <div class="table">
+        <div class="table__header-row">
+            {{#each headers}}
+                <div class="table__header">{{this}}</div>
+            {{/each}}
+        </div>
+        {{#each rows}}
+            <div class="table__row scoreboard__row">
+                {{#each this}}
+                    <div class="table__data">{{this}}</div>
+                {{/each}}
+            </div>
+        {{/each}}
+    </div>
+    <div class="scoreboard__pagination">
+        <Button class="back button_no-animation" click="(){paginate();}">More</Button>
+    </div>
+</div>

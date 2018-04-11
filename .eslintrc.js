@@ -5,8 +5,10 @@ module.exports = {
         "browser": true
     },
     "rules": {
+        "comma-dangle": "off",
         "no-lonely-if": "off",
         "guard-for-in": "off",
+        "no-invalid-this": "off",
         "no-console": "off",
         "quotes": ["error", "single", {"allowTemplateLiterals": true}],
         "prefer-template": "error",
@@ -25,11 +27,15 @@ module.exports = {
                 "FunctionExpression": false
             }
         }],
-        "max-len": ["error", {"code": 160}],
+        "max-len": ["error", {"code": 120}],
         "prefer-const": ["error", {
             "destructuring": "any",
             "ignoreReadBeforeAssign": false
         }],
-        "no-multiple-empty-lines": ["error", {"max": 1, "maxEOF": 1}]
+        "no-multiple-empty-lines": ["error", {"max": 1, "maxEOF": 1}],
+
+    },
+    "parserOptions": {
+        "sourceType": "module",
     }
 };

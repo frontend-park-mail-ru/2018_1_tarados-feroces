@@ -1,13 +1,10 @@
-(function() {
-    'use strict';
+import './MenuPoint.scss';
+import BaseComponent from '../BaseComponent/BaseComponent';
 
-    class MenuPoint extends BaseComponent {
+export default class MenuPoint extends BaseComponent {
 
-        render(context) {
-            this.template = `<li><a href="{{href}}">{{text}}</a></li>`;
-            super.render(context);
-        }
+    render(context) {
+        this.template = require('./MenuPoint.handlebars');
+        super.render(context);
     }
-
-    window.MenuPoint = MenuPoint;
-})();
+}
