@@ -5,6 +5,7 @@ import serviceWorkerRegister from './app/modules/ServiceWorker/ServiceWorker';
 
 import LoginView from './app/views/LoginView/LoginView';
 import MainPageView from './app/views/MainPageView/MainPageView';
+import GameView from './app/views/GameView/GameView';
 import RegisterView from './app/views/RegisterView/RegisterView';
 import AuthorizedView from './app/views/AuthorizedView/AuthorizedView';
 import SettingsView from './app/views/SettingsView/SettingsView';
@@ -29,11 +30,17 @@ router
         '/user/',
         new AuthorizedView()
     )
-    .addUrl(/leaderboard/,
+    .addUrl(
+        '/game/',
+        new GameView()
+    )
+    .addUrl(
+        '/leaderboard/',
         new LeaderboardView(),
         'modal-data'
     )
-    .addUrl(/settings/,
+    .addUrl(
+        '/settings/',
         new SettingsView()
     );
 

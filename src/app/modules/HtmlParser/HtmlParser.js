@@ -59,6 +59,7 @@ class HtmlParser {
             img: () => new StandartComponent(),
             ul: () => new StandartComponent(),
             span: () => new StandartComponent(),
+            canvas: () => new StandartComponent(),
         };
     }
 
