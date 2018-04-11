@@ -145,11 +145,15 @@ class Router {
      * @private
      */
     checkAuth(url) {
+        if (url === '/game/') {
+            return '/game/';
+        }
+
         if (this.urls[url].view.needAuthorization() && !userService.isAuthorized) {
-            this.lastView = {};
+            // this.lastView = {};
             return '/';
         } else if (!this.urls[url].view.needAuthorization() && userService.isAuthorized) {
-            this.lastView = {};
+            // this.lastView = {};
             return '/user/';
         }
 
@@ -162,6 +166,7 @@ class Router {
      * @private
      */
     pageUpdate(urlObject) {
+        debugger;
         this.hideLast(urlObject);
         this.lastView[urlObject.insertElemId] = urlObject.view;
         this.showPage(urlObject);
