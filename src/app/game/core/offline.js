@@ -26,34 +26,50 @@ export default class OfflineGame extends GameCore {
         this.rounds = rounds;
     }
 
-    nextRound() {
+    checkEndOfRounds() {
         if (this.rounds.length <= this.currentRound) {
             return false;
         }
-        this.scene.initRound(this.rounds[this.currentRound]);
-        this.currentRound += 1;
         return true;
     }
 
+    nextRound() {
+        document.querySelector('.game__title-text')
+            .querySelector('.label-text').textContent = `round ${this.currentRound}`;
+        setTimeout(() => {
+            this.scene.initRound(this.rounds[this.currentRound]);
+            this.currentRound += 1;
+        }, 2000);
+    }
+
+    gamePaused(message) {
+        document.querySelector('.game__pause-notes').querySelector('.label-text').textContent = message;
+        const pause = document.querySelector('.game__pause');
+        pause.classList.remove('hidden');
+    }
+
     gameLoop() {
-        const animation = requestAnimationFrame(this.gameLoop);
+        let animation = requestAnimationFrame(this.gameLoop);
+
         const currentWave = this.scene.round.waves[this.scene.round.waveCounter];
         if (!gameController.movementControl(this.scene.player, this.scene.arena, currentWave)) {
             cancelAnimationFrame(animation);
             this.stop();
-            const anotherGame = confirm('You died!!! Do you want to play again?');
-            anotherGame ? router.go('/game/') : router.go('/');
+            this.gamePaused('GAME OVER');
         }
 
         if (!this.scene.round.iterateWave()) {
             currentWave.clearWave();
             if (!this.scene.round.nextWave()) {
-                if (!this.nextRound()) {
+                if (!this.checkEndOfRounds()) {
                     cancelAnimationFrame(animation);
                     this.stop();
-                    const anotherGame = confirm('You won!!! Do you want to play again?');
-                    anotherGame ? router.go('/game/') : router.go('/');
+                    this.gamePaused('VICTORY');
+
                 }
+                cancelAnimationFrame(animation);
+                this.nextRound();
+                animation = requestAnimationFrame(this.gameLoop);
             }
         }
     }

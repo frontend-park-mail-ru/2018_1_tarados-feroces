@@ -8,6 +8,7 @@ module.exports = {
         "comma-dangle": "off",
         "no-lonely-if": "off",
         "guard-for-in": "off",
+        "no-invalid-this": "off",
         "no-console": "off",
         "quotes": ["error", "single", {"allowTemplateLiterals": true}],
         "prefer-template": "error",

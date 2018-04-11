@@ -1,5 +1,16 @@
 <div class="game">
-    <Label class="game__notes"></Label>
+    <div class="game__title">
+        <Label class="game__title-text"></Label>
+    </div>
+    <div class="game__pause">
+        <div class="game__pause-data">
+            <Label class="game__pause-notes"></Label>
+            <div class="game__pause-buttons">
+                <Button class="game__exit button" click="(){exitGame();}">Go back</Button>
+                <Button class="game__repeat button" click="(){goToGame();}">Play again</Button>
+            </div>
+        </div>
+    </div>
     <div class="game__battleground">
         <canvas class="game__battleground-canvas"></canvas>
         <div class="game__arena"></div>
