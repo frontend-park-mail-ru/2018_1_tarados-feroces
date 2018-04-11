@@ -50,7 +50,6 @@ export default class LeaderboardView extends BaseView {
 
 window.currentPosition = 9;
 
-
 window.paginate = (index) => {
     const paginationConstant = 9;
     httpModule.doPost('/leaderboard', {position: index, count: paginationConstant}).then(

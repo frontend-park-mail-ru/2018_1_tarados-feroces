@@ -3,6 +3,7 @@ import BaseView from '../BaseView/BaseView';
 import Game from '../../game/core/offline';
 import gameController from '../../game/GameController';
 import Scene from '../../game/objects/Scene';
+import router from '../../modules/Router/Router';
 
 export default class GameView extends BaseView {
 
@@ -16,12 +17,16 @@ export default class GameView extends BaseView {
         this.canvas = document.querySelector('.game__battleground-canvas');
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight;
+
+        const pause = document.querySelector('.game__pause');
+        pause.classList.add('hidden');
+
         this.doGame();
     }
 
     doGame() {
         const scene = new Scene(this.canvas);
-        gameController.start();
+        // gameController.start();
         this.game = new Game(gameController, scene);
 
         // 0 - transform, 1 - direction, 2 - timeout
@@ -29,10 +34,13 @@ export default class GameView extends BaseView {
             [
                 [[25, 0, 0], [55, 1, 200], [55, 2, 0], [55, 3, 400]],
                 [[25, 0, 0], [55, 1, 200], [55, 2, 0], [55, 3, 400]]
+            ],
+            [
+                [[25, 0, 0], [55, 1, 200], [55, 2, 0], [55, 3, 400]],
+                [[25, 0, 0], [55, 1, 200], [55, 2, 0], [55, 3, 400]]
             ]
         ];
         this.game.saveRounds(rounds);
-        // setTimeout(() => this.game.)
 
         this.game.start();
     }
@@ -50,3 +58,6 @@ export default class GameView extends BaseView {
     }
 }
 
+window.exitGame = () => {
+    router.go('/');
+};
