@@ -45,11 +45,11 @@ export default class LeaderboardView extends BaseView {
 
     render() {
         return this.template = require('./LeaderboardView.handlebars');
-
     }
 }
 
 window.currentPosition = 9;
+
 
 window.paginate = (index) => {
     const paginationConstant = 9;
