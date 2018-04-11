@@ -12,6 +12,7 @@
   cursor: pointer;
   font-family: $main-font;
   animation: button-shining 1.3s linear infinite;
+  opacity: 1 !important;
 
   &_no-animation {
     animation: none;
