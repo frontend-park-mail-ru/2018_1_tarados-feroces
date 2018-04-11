@@ -37,8 +37,6 @@ export default class OfflineGame extends GameCore {
 
     gameLoop() {
         const animation = requestAnimationFrame(this.gameLoop);
-
-        debugger;
         const currentWave = this.scene.round.waves[this.scene.round.waveCounter];
         if (!gameController.movementControl(this.scene.player, this.scene.arena, currentWave)) {
             cancelAnimationFrame(animation);
