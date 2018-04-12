@@ -78,7 +78,8 @@ module.exports = {
             template: path.join(__dirname, 'src/index.html')
         }),
         new CopyWebpackPlugin([
-            {from: path.join(__dirname, 'src/static/images'), to: path.join(outPath, 'images')}
+            {from: path.join(__dirname, 'src/static/images'), to: path.join(outPath, 'images')},
+            {from: path.join(__dirname, 'src/sw.js'), to: path.join(outPath, 'sw.js')}
         ]),
         new webpack.optimize.AggressiveMergingPlugin()
     ],
