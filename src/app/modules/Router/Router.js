@@ -166,7 +166,6 @@ class Router {
      * @private
      */
     pageUpdate(urlObject) {
-        debugger;
         this.hideLast(urlObject);
         this.lastView[urlObject.insertElemId] = urlObject.view;
         this.showPage(urlObject);
