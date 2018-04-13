@@ -1,4 +1,5 @@
 @import "config";
+@import "_reset";
 
 //@import "../../app/components/Button/Button";
 //@import "../../app/components/Header/Header";
@@ -74,6 +75,19 @@ body {
     box-shadow: 0px 0px 10px 6px #c7fbff;
   }
 }
+
+@keyframes small-shining {
+  0% {
+    box-shadow: 0px 0px 10px 2px #c7fbff;
+  }
+  50% {
+    box-shadow: 0px 0px 10px 4px #c7fbff;
+  }
+  100% {
+    box-shadow: 0px 0px 10px 2px #c7fbff;
+  }
+}
+
 
 @keyframes fadeIn {
   0% {

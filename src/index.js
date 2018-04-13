@@ -10,6 +10,7 @@ import RegisterView from './app/views/RegisterView/RegisterView';
 import AuthorizedView from './app/views/AuthorizedView/AuthorizedView';
 import SettingsView from './app/views/SettingsView/SettingsView';
 import LeaderboardView from './app/views/LeaderboardView/LeaderboardView';
+import NewsView from './app/views/NewsView/NewsView';
 
 serviceWorkerRegister();
 
@@ -31,8 +32,9 @@ router
         new AuthorizedView()
     )
     .addUrl(
-        '/game/',
-        new GameView()
+        '/news/',
+        new NewsView(),
+        'modal-data'
     )
     .addUrl(
         '/leaderboard/',
@@ -40,11 +42,22 @@ router
         'modal-data'
     )
     .addUrl(
+        '/game/',
+        new GameView()
+    )
+    .addUrl(
         '/settings/',
         new SettingsView()
     );
 
 userService.checkSession()
-.then(
-    () => router.go(document.location.pathname)
-);
+    .then(
+        (resolve) => {
+            router.go(document.location.pathname);
+        },
+        (reject) => {
+            console.log('error');
+            router.go(document.location.pathname);
+        }
+    );
+

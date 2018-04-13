@@ -2,29 +2,36 @@ class GameController {
 
     constructor() {
         this.keyMap = {};
-        window.KEYS = {
-            LEFT: [65],
-            RIGHT: [68],
-            UP: [87],
-            DOWN: [83]
+        this.KEYS = {
+            LEFT: [65, 37],
+            RIGHT: [68, 39],
+            UP: [87, 38],
+            DOWN: [83, 40]
         };
-    }
-
-    start() {
         window.addEventListener('keypress', (event) => this.checkKeys(event));
+        window.addEventListener('keydown', (event) => this.checkKeys(event));
         window.addEventListener('keyup', (event) => this.checkKeys(event));
     }
+
+    // start() {
+    //     window.addEventListener('keypress', (event) => this.checkKeys(event));
+    //     window.addEventListener('keyup', (event) => this.checkKeys(event));
+    // }
 
     checkKeys(event) {
         let direction = '';
 
-        for (const key in Object.keys(window.KEYS)) {
-            if (window.KEYS[Object.keys(window.KEYS)[key]].includes(event.keyCode)) {
-                direction = Object.keys(window.KEYS)[key];
+        console.log(event.type, '-->', event.keyCode);
+
+        for (const key in this.KEYS) {
+            if (this.KEYS[key].includes(event.keyCode)) {
+                direction = key;
                 break;
             }
         }
-        this.keyMap[direction] = (event.type === 'keypress' || event.type === 'keydown');
+        if (direction) {
+            this.keyMap[direction] = (event.type === 'keypress' || event.type === 'keydown');
+        }
     }
 
     checkBorderCollision(object, field) {
@@ -78,6 +85,11 @@ class GameController {
         }
         if (this.keyMap['UP']) {
             y -= player.speed;
+        }
+
+        if (x !== 0 && y !== 0) {
+            x *= Math.sqrt(2) / 2;
+            y *= Math.sqrt(2) / 2;
         }
 
         player.x += x;

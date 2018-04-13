@@ -1,0 +1,15 @@
+<div class="news">
+    <div class="posts">
+        {{#each news}}
+            <Post
+                title="{{this.title}}"
+                datetime="{{this.datetime}}"
+                body="{{this.body}}"
+            >
+            </Post>
+        {{/each}}
+    </div>
+    <div class="news__pagination">
+        <Button class="back button_no-animation" click=" (){ newsPaginate(); }">More</Button>
+    </div>
+</div>
