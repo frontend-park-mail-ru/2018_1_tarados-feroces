@@ -1,13 +1,9 @@
-(function() {
-    'use strict';
+import BaseComponent from '../BaseComponent/BaseComponent';
 
-    class Footer extends BaseComponent {
+export default class Footer extends BaseComponent {
 
-        render(context) {
-            this.template = `<div class="footer"><p>{{text}}</p></div>`;
-            super.render(context);
-        }
+    render(context) {
+        this.template = `<div class="footer"><p>{{text}}</p></div>`;
+        super.render(context);
     }
-
-    window.Footer = Footer;
-})();
+}

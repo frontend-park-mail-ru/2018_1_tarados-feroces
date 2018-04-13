@@ -1,0 +1,14 @@
+@import "../../../static/css/config";
+
+.settings-avatar {
+  display: flex;
+  justify-content: center;
+  &__user-avatar {
+    margin-bottom: 20px;
+    width: 100px;
+    height: 100px;
+    //align-self: center;
+    opacity: 1;
+    border-radius: 15px;
+  }
+}

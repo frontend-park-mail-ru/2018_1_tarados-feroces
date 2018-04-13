@@ -1,13 +1,11 @@
-(function() {
-    'use strict';
+import './Form.scss';
+import BaseComponent from '../BaseComponent/BaseComponent';
 
-    class Form extends BaseComponent {
+export default class Form extends BaseComponent {
 
-        render(context) {
-            this.template = `<form method="{{method}}"></form>`;
-            super.render(context);
-        }
+    render(context) {
+        this.template = require('./Form.handlebars');
+        super.render(context);
     }
+}
 
-    window.Form = Form;
-})();

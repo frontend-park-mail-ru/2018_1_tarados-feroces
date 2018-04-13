@@ -1,13 +1,11 @@
-(function() {
-    'use strict';
+import './Button.scss';
+import BaseComponent from '../BaseComponent/BaseComponent';
 
-    class Button extends BaseComponent {
+export default class Button extends BaseComponent {
 
-        render(context) {
-            this.template = `<div class="button {{class}}"><p>{{text}}</p></div>`;
-            super.render(context);
-        }
+    render(context) {
+        this.template = require('./Button.handlebars');
+        super.render(context);
     }
+}
 
-    window.Button = Button;
-})();

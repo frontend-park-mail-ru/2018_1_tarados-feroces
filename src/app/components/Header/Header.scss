@@ -1,0 +1,99 @@
+@import "../../../static/css/config";
+
+.header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  width: 100%;
+  height: 100px;
+  background-color: $header-background;
+  color: $header-text-color;
+  box-shadow: 0 0 19px 6px #00071e;
+  z-index: 9999;
+  &-logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-family: $headers-font;
+    width: 450px;
+    cursor: pointer;
+
+    &-content {
+      width: 400px;
+      height: 100px;
+      background-image: url("../../../static/images/Deadlinez.png");
+      background-repeat: no-repeat;
+    }
+  }
+  &__user-info {
+    width: 450px;
+    background-color: #6c58c5;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    border-radius: 5px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+
+    &-avatar {
+      width: 80px;
+      height: 80px;
+      align-self: center;
+      opacity: 1;
+      border-radius: 15px;
+    }
+
+    &-data-block {
+      display: flex;
+      flex-flow: row wrap;
+      width: 200px;
+      justify-content: space-around;
+      &-login {
+        display: flex;
+        flex-basis: 100%;
+        justify-content: center;
+        border-bottom: black thin solid;
+        &-value {
+          margin: 0;
+          font-size: 30px;
+          color: $blocks-text-color;
+          align-self: center;
+          font-family: $main-font;
+        }
+      }
+      &-score {
+        width: 90px;
+        margin-bottom: 5px;
+        display: flex;
+        justify-content: space-around;
+
+        &-image {
+          align-self: center;
+          width: 30px;
+          height: 30px;
+        }
+        &-number {
+          display: flex;
+          &-value {
+            margin: auto;
+            font-size: 20px;
+            color: white;
+            font-family: $main-font;
+
+          }
+        }
+      }
+    }
+    &-settings {
+      display: flex;
+      &-value {
+        cursor: pointer;
+        width: 50px;
+        height: 50px;
+        margin: auto;
+      }
+    }
+
+  }
+}
