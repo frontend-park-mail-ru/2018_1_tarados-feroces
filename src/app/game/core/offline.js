@@ -9,6 +9,7 @@ export default class OfflineGame extends GameCore {
         this.currentRound = 0;
         this.gameLoop = this.gameLoop.bind(this);
         this.start = this.start.bind(this);
+        this.gameLoopId = null;
     }
 
     start() {
@@ -49,28 +50,29 @@ export default class OfflineGame extends GameCore {
     }
 
     gameLoop() {
-        let animation = requestAnimationFrame(this.gameLoop);
+        this.gameLoopId = requestAnimationFrame(this.gameLoop);
 
         const currentWave = this.scene.round.waves[this.scene.round.waveCounter];
         if (!gameController.movementControl(this.scene.player, this.scene.arena, currentWave)) {
-            cancelAnimationFrame(animation);
+            cancelAnimationFrame(this.gameLoopId);
             this.stop();
             this.gamePaused('GAME OVER');
+            return;
         }
 
         if (!this.scene.round.iterateWave()) {
             currentWave.clearWave();
             if (!this.scene.round.nextWave()) {
                 if (!this.checkEndOfRounds()) {
-                    cancelAnimationFrame(animation);
+                    cancelAnimationFrame(this.gameLoopId);
                     this.stop();
                     this.gamePaused('VICTORY');
+                    return;
 
                 }
-                cancelAnimationFrame(animation);
                 this.nextRound();
-                animation = requestAnimationFrame(this.gameLoop);
             }
         }
+
     }
 };

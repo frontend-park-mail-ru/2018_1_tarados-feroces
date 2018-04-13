@@ -13,10 +13,10 @@ class GameController {
         window.addEventListener('keyup', (event) => this.checkKeys(event));
     }
 
-    start() {
-        window.addEventListener('keypress', (event) => this.checkKeys(event));
-        window.addEventListener('keyup', (event) => this.checkKeys(event));
-    }
+    // start() {
+    //     window.addEventListener('keypress', (event) => this.checkKeys(event));
+    //     window.addEventListener('keyup', (event) => this.checkKeys(event));
+    // }
 
     checkKeys(event) {
         let direction = '';
