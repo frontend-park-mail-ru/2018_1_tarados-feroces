@@ -16,11 +16,12 @@ export default class OfflineGame extends GameCore {
         super.start();
         this.scene.initPlayer();
         this.nextRound();
-        this.gameLoop();
+        this.gameLoopId = requestAnimationFrame(this.gameLoop);
     }
 
     stop() {
         super.stop();
+        cancelAnimationFrame(this.gameLoopId);
     }
 
     saveRounds(rounds) {
@@ -54,9 +55,9 @@ export default class OfflineGame extends GameCore {
 
         const currentWave = this.scene.round.waves[this.scene.round.waveCounter];
         if (!gameController.movementControl(this.scene.player, this.scene.arena, currentWave)) {
-            cancelAnimationFrame(this.gameLoopId);
             this.stop();
             this.gamePaused('GAME OVER');
+            this.gameLoopId = null;
             return;
         }
 
@@ -64,9 +65,9 @@ export default class OfflineGame extends GameCore {
             currentWave.clearWave();
             if (!this.scene.round.nextWave()) {
                 if (!this.checkEndOfRounds()) {
-                    cancelAnimationFrame(this.gameLoopId);
                     this.stop();
                     this.gamePaused('VICTORY');
+                    this.gameLoopId = null;
                     return;
 
                 }
