@@ -52,15 +52,15 @@ this.addEventListener('fetch', (event) => {
     }
 
     event.respondWith(
-        caches.match(event.request)
-            .then((cache) => {
-                if (cache) {
-                    return cache;
-                }
+            caches.match(event.request)
+                .then((cache) => {
+                    if (cache) {
+                        return cache;
+                    }
 
-                return fetch(event.request);
+                    return fetch(event.request);
 
-            })
-            .catch((error) => console.log(error))
-    );
+                })
+                .catch((error) => console.log('WTF', error)));
+
 });

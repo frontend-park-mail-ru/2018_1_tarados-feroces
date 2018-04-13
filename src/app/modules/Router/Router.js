@@ -59,6 +59,11 @@ class Router {
      * @param {string} url
      */
     go(url) {
+        if (navigator.onLine) {
+            console.log('ONLINE');
+        } else {
+            console.log('OFFLINE');
+        }
         if (!this.urls[url]) {
             this.show404();
         }

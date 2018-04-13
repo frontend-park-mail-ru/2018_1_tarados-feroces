@@ -45,6 +45,13 @@ router
     );
 
 userService.checkSession()
-.then(
-    () => router.go(document.location.pathname)
-);
+    .then(
+        (resolve) => {
+            router.go(document.location.pathname);
+        },
+        (reject) => {
+            console.log('error');
+            router.go(document.location.pathname);
+        }
+    );
+
