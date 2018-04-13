@@ -51,7 +51,7 @@ class GameController {
     }
 
     checkBotCollision(player, wave) {
-        let result = true;
+        const result = true;
 
 //         wave.mobs.forEach((item) => {
 //             result = result && 
