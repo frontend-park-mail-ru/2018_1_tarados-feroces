@@ -35,8 +35,7 @@ class GameController {
     }
 
     checkBorderCollision(object, field) {
-        return
-            object.x - object.radius > field.x &&
+        return object.x - object.radius > field.x &&
             object.x + object.radius < field.x + field.width &&
             object.y - object.radius > field.y &&
             object.y + object.radius < field.y + field.height;
