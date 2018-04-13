@@ -1,13 +1,13 @@
 @import "../../../static/css/config";
 
 .news {
-  //display: flex;
-  //flex-direction: column;
-  //justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  //justify-content: space-around;
   //align-content: center;
   width: 80%;
   margin: 5% 10% 5% 10%;
-  background-color: #5d7dba;
+  //background-color: #5d7dba;
   border-radius: 10px;
 
   &__pagination {
@@ -22,4 +22,10 @@
     }
 
   }
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }

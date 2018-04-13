@@ -72,8 +72,8 @@ window.goToScore = () => {
 };
 
 window.goToNews = () => {
-    const score = document.querySelector('.news');
-    if (score.classList.contains('modal-header__point_active')) {
+    const news = document.querySelector('.news-header');
+    if (news.classList.contains('modal-header__point_active')) {
         return;
     }
     router.go('/news/');

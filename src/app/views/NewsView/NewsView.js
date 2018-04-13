@@ -19,24 +19,33 @@ export default class NewsView extends BaseView {
         points.forEach((item) => {
             item.classList.remove('modal-header__point_active');
         });
-        const score = document.querySelector('.news');
+        const score = document.querySelector('.news-header');
         score.classList.add('modal-header__point_active');
 
         const news = [
             {
             title: 'Kek Kek Kek Kek Kek',
             datetime: '20.04.2018',
-            body: 'Kek Kek Kek Kek Kek Kek Kek Kek Kek Kekv Kek v v Kek v vv  KekKek Kek ',
+            body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\n' +
+            '                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud\n' +
+            '                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure\n' +
+            '                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
             },
             {
                 title: 'Kek Kek Kek Kek Kek',
                 datetime: '20.04.2018',
-                body: 'Kek Kek Kek Kek Kek Kek Kek Kek Kek Kekv Kek v v Kek v vv  KekKek Kek ',
+                body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\n' +
+                '                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud\n' +
+                '                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure\n' +
+                '                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
             },
             {
                 title: 'Kek Kek Kek Kek Kek',
                 datetime: '20.04.2018',
-                body: 'Kek Kek Kek Kek Kek Kek Kek Kek Kek Kekv Kek v v Kek v vv  KekKek Kek ',
+                body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\n' +
+                '                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud\n' +
+                '                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure\n' +
+                '                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
             }];
 
         this.context.news = news;
