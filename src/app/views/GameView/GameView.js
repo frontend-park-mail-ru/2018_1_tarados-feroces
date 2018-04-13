@@ -26,7 +26,6 @@ export default class GameView extends BaseView {
 
     doGame() {
         const scene = new Scene(this.canvas);
-        // gameController.start();
         this.game = new Game(gameController, scene);
 
         // 0 - transform, 1 - direction, 2 - timeout
