@@ -17,6 +17,9 @@ class UserService {
             return httpModule.doGet('/isauthorized').then(
                         (response) => {
                             this.isAuthorized = response.is_authorized;
+                        },
+                        (reject) => {
+                            this.isAuthorized = false;
                         });
         } else {
             return new Promise((resolve) => resolve());

@@ -59,6 +59,7 @@ class Router {
      * @param {string} url
      */
     go(url) {
+
         if (!this.urls[url]) {
             this.show404();
         }
@@ -145,11 +146,15 @@ class Router {
      * @private
      */
     checkAuth(url) {
+        if (url === '/game/') {
+            return '/game/';
+        }
+
         if (this.urls[url].view.needAuthorization() && !userService.isAuthorized) {
-            this.lastView = {};
+            // this.lastView = {};
             return '/';
         } else if (!this.urls[url].view.needAuthorization() && userService.isAuthorized) {
-            this.lastView = {};
+            // this.lastView = {};
             return '/user/';
         }
 

@@ -70,3 +70,11 @@ window.goToScore = () => {
     }
     router.go('/leaderboard/');
 };
+
+window.goToNews = () => {
+    const news = document.querySelector('.news-header');
+    if (news.classList.contains('modal-header__point_active')) {
+        return;
+    }
+    router.go('/news/');
+};

@@ -3,7 +3,7 @@
         <div class="header-logo">
             <Image class="header-logo-content" src="../images/Deadlinez.png"></Image>
         </div>
-        <div class="button button-play">
+        <div class="button button-play" click="(){goToGame();}">
             <p class="button-play__value">PLAY</p>
         </div>
         <UserInfo login="{{login}}" coins="645" points="1080" avatar="{{{avatar}}}">
@@ -16,9 +16,8 @@
         <div class="auth-page__content-left">
             <div class="auth-page__content-left-modal">
                 <div class="auth-page__content-left-modal-header modal-header">
-                    <AuthHeaderPoint click="">News</AuthHeaderPoint>
+                    <AuthHeaderPoint class="news-header" click="(){goToNews();}">News</AuthHeaderPoint>
                     <AuthHeaderPoint class="leaderboard" click="(){ goToScore(); }">Scoreboard</AuthHeaderPoint>
-                    <AuthHeaderPoint click="">About</AuthHeaderPoint>
                 </div>
                 <AuthContent id="modal-data"></AuthContent>
             </div>

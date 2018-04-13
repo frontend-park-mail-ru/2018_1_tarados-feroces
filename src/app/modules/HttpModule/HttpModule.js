@@ -59,7 +59,7 @@ class HttpModule {
             });
 
             xhr.addEventListener('error', () => {
-                reject(new Error('Network error'));
+                reject('Network error');
             });
 
             headers.forEach((current) => xhr.setRequestHeader(current.name, current.value));

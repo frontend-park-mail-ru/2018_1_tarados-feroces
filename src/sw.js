@@ -1,28 +1,35 @@
+
 const urls = [
     '/',
+    '/login/',
+    '/signup/',
+    '/user/',
+    '/game/',
+    '/leaderboard/',
+    '/settings/',
 
-    '/dist/bundle.js',
-    '/dist/style.css',
+    '/bundle.js',
+    '/style.css',
 
-    '/dist/9b3c39fc3d8868e0498c2d59c06bc6b2.png',
-    '/dist/b889a0c49f306abc0bf115bc6a640c1b.jpg',
-    '/dist/images/add.png',
-    '/dist/images/back.png',
-    '/dist/images/background.jpg',
-    '/dist/images/coins.png',
-    '/dist/images/Deadlinez.png',
-    '/dist/images/dragon.jpg',
-    '/dist/images/friend-action.png',
-    '/dist/images/logout.png',
-    '/dist/images/mainAvatar.jpg',
-    '/dist/images/menu.png',
-    '/dist/images/money.png',
-    '/dist/images/party-plus.png',
-    '/dist/images/points.png',
-    '/dist/images/settings.svg',
-    '/dist/images/snowflake.png',
-    '/dist/images/snowflake3.png',
-    '/dist/images/user-logo.jpg'
+    '9b3c39fc3d8868e0498c2d59c06bc6b2.png',
+    'b889a0c49f306abc0bf115bc6a640c1b.jpg',
+    'images/add.png',
+    'images/back.png',
+    'images/background.jpg',
+    'images/coins.png',
+    'images/Deadlinez.png',
+    'images/dragon.jpg',
+    'images/friend-action.png',
+    'images/logout.png',
+    'images/mainAvatar.jpg',
+    'images/menu.png',
+    'images/money.png',
+    'images/party-plus.png',
+    'images/points.png',
+    'images/settings.svg',
+    'images/snowflake.png',
+    'images/snowflake3.png',
+    'images/user-logo.jpg'
 ];
 
 this.addEventListener('install', (event) => {
@@ -40,13 +47,20 @@ this.addEventListener('install', (event) => {
 });
 
 this.addEventListener('fetch', (event) => {
-    event.respondWith(caches.match(event.request)
-        .then((cache) => {
-            if (cache) {
-                return cache;
-            }
+    if (navigator.onLine) {
+        return fetch(event.request);
+    }
 
-            return fetch(event.request);
+    event.respondWith(
+            caches.match(event.request)
+                .then((cache) => {
+                    if (cache) {
+                        return cache;
+                    }
 
-        }));
+                    return fetch(event.request);
+
+                })
+                .catch((error) => console.log('WTF', error)));
+
 });
