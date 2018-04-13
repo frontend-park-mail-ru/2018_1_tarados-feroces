@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo 'hello'",
-    "eslint": "./node_modules/.bin/eslint ./src/",
-    "flint": "./node_modules/.bin/eslint --fix ./src/",
+    "eslint": "eslint ./src/",
+    "flint": "eslint --fix ./src/",
     "server": "node ./server",
-    "webpack": "./node_modules/.bin/webpack --config webpack.config.dev.js",
-    "webpack-prod": "./node_modules/.bin/webpack --config webpack.config.prod.js"
+    "webpack": "webpack --config webpack.config.dev.js",
+    "webpack-prod": "webpack --config webpack.config.prod.js"
   },
   "repository": {
     "type": "git",

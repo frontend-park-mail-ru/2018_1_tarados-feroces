@@ -61,19 +61,22 @@ export default class OfflineGame extends GameCore {
             return;
         }
 
-        if (!this.scene.round.iterateWave()) {
-            currentWave.clearWave();
-            if (!this.scene.round.nextWave()) {
-                if (!this.checkEndOfRounds()) {
-                    this.stop();
-                    this.gamePaused('VICTORY');
-                    this.gameLoopId = null;
-                    return;
-
-                }
-                this.nextRound();
-            }
+        if (this.scene.round.iterateWave()) {
+            return;
         }
+        currentWave.clearWave();
+
+        if (this.scene.round.nextWave()) {
+            return;
+        }
+        if (!this.checkEndOfRounds()) {
+            this.stop();
+            this.gamePaused('VICTORY');
+            this.gameLoopId = null;
+            return;
+
+        }
+        this.nextRound();
 
     }
 };
