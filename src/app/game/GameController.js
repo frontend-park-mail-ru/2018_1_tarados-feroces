@@ -55,7 +55,8 @@ class GameController {
         let result = true;
 
         wave.mobs.forEach((item) => {
-            result = result && ((item.x - player.x) ** 2 + (item.y - player.y) ** 2 >= (item.radius + player.radius) ** 2)
+            result = result && 
+                (Math.pow((item.x - player.x), 2) + Math.pow((item.y - player.y), 2) >= Math.pow((item.radius + player.radius), 2));
         });
 
         return result;
