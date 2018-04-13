@@ -39,7 +39,7 @@ class GameController {
             object.x - object.radius > field.x &&
             object.x + object.radius < field.x + field.width &&
             object.y - object.radius > field.y &&
-            object.y + object.radius < field.y + field.height
+            object.y + object.radius < field.y + field.height;
     }
 
     checkMobOutOfBorder(object, field) {
@@ -56,7 +56,8 @@ class GameController {
 
         wave.mobs.forEach((item) => {
             result = result && 
-                (Math.pow((item.x - player.x), 2) + Math.pow((item.y - player.y), 2) >= Math.pow((item.radius + player.radius), 2));
+                (Math.pow((item.x - player.x), 2) + 
+                 Math.pow((item.y - player.y), 2) >= Math.pow((item.radius + player.radius), 2));
         });
 
         return result;
