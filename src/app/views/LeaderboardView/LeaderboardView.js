@@ -48,12 +48,12 @@ export default class LeaderboardView extends BaseView {
     }
 }
 
-window.currentPosition = 9;
+window.currentScorePosition = 9;
 
-window.paginate = (index) => {
+window.scoreboardPaginate = (index) => {
     const paginationConstant = 9;
     httpModule.doPost('/leaderboard', {position: index, count: paginationConstant}).then(
         (response) => router.viewUpdate('/leaderboard/', response)
     );
-    window.currentPosition += paginationConstant;
+    window.currentScorePosition += paginationConstant;
 };
