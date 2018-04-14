@@ -37,7 +37,7 @@ export default class OfflineGame extends GameCore {
 
     nextRound() {
         document.querySelector('.game__title-text')
-            .querySelector('.label-text').textContent = `round ${this.currentRound}`;
+            .querySelector('.label-text').textContent = `Round ${this.currentRound}`;
         setTimeout(() => {
             this.scene.initRound(this.rounds[this.currentRound]);
             this.currentRound += 1;

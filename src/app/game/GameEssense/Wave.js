@@ -15,9 +15,12 @@ export default class Wave {
     }
 
     moveBots() {
+        // this.scene.clear();
         this.mobs.forEach((item) => {
             item.movement();
+            // item.draw();
         });
+        // this.scene.player.draw();
         // console.log(this.che);
         return !this.checkEnd();
     }
