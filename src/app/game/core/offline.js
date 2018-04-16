@@ -54,6 +54,7 @@ export default class OfflineGame extends GameCore {
         this.gameLoopId = requestAnimationFrame(this.gameLoop);
 
         const currentWave = this.scene.round.waves[this.scene.round.waveCounter];
+
         if (!gameController.movementControl(this.scene.player, this.scene.arena, currentWave)) {
             this.stop();
             this.gamePaused('GAME OVER');
@@ -77,6 +78,5 @@ export default class OfflineGame extends GameCore {
 
         }
         this.nextRound();
-
     }
 };
