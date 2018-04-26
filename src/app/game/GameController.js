@@ -8,15 +8,14 @@ class GameController {
             UP: [87, 38],
             DOWN: [83, 40]
         };
+
+    }
+
+    start() {
         window.addEventListener('keypress', (event) => this.checkKeys(event));
         window.addEventListener('keydown', (event) => this.checkKeys(event));
         window.addEventListener('keyup', (event) => this.checkKeys(event));
     }
-
-    // start() {
-    //     window.addEventListener('keypress', (event) => this.checkKeys(event));
-    //     window.addEventListener('keyup', (event) => this.checkKeys(event));
-    // }
 
     checkKeys(event) {
         let direction = '';

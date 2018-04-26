@@ -8,6 +8,12 @@ export default class Player extends MovableObject {
         this.speed = speed;
     }
 
+    setCoords(x, y) {
+        this.x = x;
+        this.y = y;
+        return this;
+    }
+
     draw() {
         const ctx = this.ctx;
         this.ctx.globalCompositeOperation = 'source-over';
