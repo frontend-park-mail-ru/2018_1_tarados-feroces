@@ -14,6 +14,7 @@ export default class OfflineGame extends GameCore {
 
     start() {
         super.start();
+        this.controller.start();
         this.scene.initPlayer();
         this.nextRound();
         this.gameLoopId = requestAnimationFrame(this.gameLoop);
@@ -21,6 +22,7 @@ export default class OfflineGame extends GameCore {
 
     stop() {
         super.stop();
+        this.controller.stop();
         cancelAnimationFrame(this.gameLoopId);
     }
 
