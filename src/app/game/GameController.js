@@ -8,15 +8,14 @@ class GameController {
             UP: [87, 38],
             DOWN: [83, 40]
         };
+
+    }
+
+    start() {
         window.addEventListener('keypress', (event) => this.checkKeys(event));
         window.addEventListener('keydown', (event) => this.checkKeys(event));
         window.addEventListener('keyup', (event) => this.checkKeys(event));
     }
-
-    // start() {
-    //     window.addEventListener('keypress', (event) => this.checkKeys(event));
-    //     window.addEventListener('keyup', (event) => this.checkKeys(event));
-    // }
 
     checkKeys(event) {
         let direction = '';
@@ -35,21 +34,14 @@ class GameController {
     }
 
     checkBorderCollision(object, field) {
-        return !(
-            object.x - object.radius <= field.x ||
-            object.x + object.radius >= field.x + field.width ||
-            object.y - object.radius <= field.y ||
-            object.y + object.radius >= field.y + field.height
-        );
+        return object.x - object.radius > field.x &&
+            object.x + object.radius < field.x + field.width &&
+            object.y - object.radius > field.y &&
+            object.y + object.radius < field.y + field.height;
     }
 
     checkMobOutOfBorder(object, field) {
-        const result = !(
-            object.x + object.radius <= field.x ||
-            object.x - object.radius >= field.x + field.width ||
-            object.y + object.radius <= field.y ||
-            object.y - object.radius >= field.y + field.height
-        );
+        const result = this.checkBorderCollision(object, field);
 
         if (!result) {
             object.clear();
@@ -59,13 +51,11 @@ class GameController {
 
     checkBotCollision(player, wave) {
         let result = true;
+
         wave.mobs.forEach((item) => {
-            const dx = item.x - player.x;
-            const dy = item.y - player.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if ( dist < (item.radius + player.radius) ) {
-                result = false;
-            }
+            result = result &&
+                (Math.pow((item.x - player.x), 2) +
+                 Math.pow((item.y - player.y), 2) >= Math.pow((item.radius + player.radius), 2));
         });
 
         return result;
@@ -88,8 +78,8 @@ class GameController {
         }
 
         if (x !== 0 && y !== 0) {
-            x *= Math.sqrt(2) / 2;
-            y *= Math.sqrt(2) / 2;
+            x *= Math.SQRT1_2; // It is real JS const!
+            y *= Math.SQRT1_2;
         }
 
         player.x += x;

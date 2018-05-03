@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo 'hello'",
-    "eslint": "./node_modules/.bin/eslint ./src/",
-    "flint": "./node_modules/.bin/eslint --fix ./src/",
+    "eslint": "eslint ./src/",
+    "flint": "eslint --fix ./src/",
     "server": "node ./server",
-    "webpack": "./node_modules/.bin/webpack --config webpack.config.dev.js",
-    "webpack-prod": "./node_modules/.bin/webpack --config webpack.config.prod.js"
+    "webpack": "webpack --config webpack.config.dev.js",
+    "webpack-prod": "webpack --config webpack.config.prod.js"
   },
   "repository": {
     "type": "git",
@@ -47,6 +47,7 @@
     "uglifyjs-webpack-plugin": "^1.2.4",
     "url-loader": "^1.0.1",
     "webpack": "^3.11.0",
-    "webpack-merge": "^4.1.2"
+    "webpack-merge": "^4.1.2",
+    "ws": "^5.1.1"
   }
 }

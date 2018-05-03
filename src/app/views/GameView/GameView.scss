@@ -59,8 +59,8 @@
     filter: brightness(150%);
 
     background-image: url("../../../static/images/arena-back.png");
-    //background-size: cover;
-    //background-repeat: no-repeat;
+    background-size: cover;
+    background-repeat: no-repeat;
 
     &-canvas {
       z-index: 9998;

@@ -14,33 +14,38 @@ export default class GameCore {
     }
 
     start() {
-        // bus.on('START_GAME', this.onGameStarted);
-        // bus.on('FINISH_GAME', this.onGameFinished);
-        // bus.on('CONTROLS_PRESSED', this.onControlsPressed);
+        bus.on('START_GAME', this.onGameStarted);
+        bus.on('FINISH_GAME', this.onGameFinished);
+        bus.on('CONTROLS_PRESSED', this.onControlsPressed);
+        bus.on('GAME_STATE_CHANGED', this.onGameStateChanged);
         // bus.on('WAVE_COMPLETED', this.onWaveCompleted);
-        // bus.on('ROUND_COMPLETED', this.onRoundCompleted);
+        bus.on('ROUND_COMPLETED', this.onRoundCompleted);
     }
 
     stop() {
-        this.controller.stop();
-        // bus.off('START_GAME', this.onGameStarted);
-        // bus.off('FINISH_GAME', this.onGameFinished);
-        // bus.off('CONTROLS_PRESSED', this.onControlsPressed);
+        bus.off('START_GAME', this.onGameStarted);
+        bus.off('FINISH_GAME', this.onGameFinished);
+        bus.off('CONTROLS_PRESSED', this.onControlsPressed);
+        bus.off('GAME_STATE_CHANGED', this.onGameStateChanged);
+        // bus.off('WAVE_COMPLETED', this.onWaveCompleted);
+        bus.off('ROUND_COMPLETED', this.onRoundCompleted);
     }
 
-    onControlsPressed() {}
+    onControlsPressed(event) {
+    }
 
-    onGameStateChanged() {}
+    onGameStateChanged(event) {
+    }
 
-    onGameStarted() {}
+    onGameStarted(event) {
+    }
 
-    onGameFinished() {}
+    onGameFinished(event) {
+    }
 
-    onWaveCompleted() {}
+    // onWaveCompleted() {
+    // }
 
-    onRoundCompleted() {}
-
-    _pressed(name, data) {
-        return KEYS[name].some((key) => data[key]);
+    onRoundCompleted(event) {
     }
 }

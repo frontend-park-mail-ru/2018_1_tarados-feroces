@@ -36,11 +36,9 @@ export default class Mob extends MovableObject {
         // ctx.clearRect(this.x - this.radius, this.y - this.radius, this.radius * 2 + 10, this.radius * 2 + 10);
     }
 
-    movement() {
-        setTimeout(() => {
+    movement(timestamp) {
+        if (timestamp + this.timeout + 500 < Date.now()) {
             this.move(this.speedDirections[this.direction][0], this.speedDirections[this.direction][1]);
-            },
-            this.timeout
-        );
+        }
     }
 }
