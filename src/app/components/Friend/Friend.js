@@ -1,3 +1,4 @@
+import './Friend.scss';
 import BaseComponent from '../BaseComponent/BaseComponent';
 
 export default class Friend extends BaseComponent {
