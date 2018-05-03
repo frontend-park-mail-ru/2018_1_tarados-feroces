@@ -1,0 +1,25 @@
+.friend {
+  height: 100px;
+  display: flex;
+  justify-content: space-around;
+  background-color: $blocks-background;
+  border-bottom: thin solid black;
+  &__avatar {
+    width: 60px;
+    height: 60px;
+    align-self: center;
+    opacity: 1;
+    border-radius: 15px;
+  }
+  &__login {
+    display: flex;
+    width: 80%;
+    &-value {
+      margin: auto;
+      font-size: 30px;
+      font-family: $main-font;
+      color: $blocks-text-color;
+      user-select: none;
+    }
+  }
+}
