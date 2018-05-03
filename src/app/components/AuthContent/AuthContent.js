@@ -1,10 +1,10 @@
-import BaseComponent from '../BaseComponent/BaseComponent';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-export default class AuthContent extends BaseComponent {
-
-    render(context) {
-        this.template = require('./AuthContent.handlebars');
-        super.render(context);
+export default class AuthContent extends React.Component {
+    render() {
+        return <div id="{{id}}" class="auth-page__content-left-modal-data">
+        </div>;
     }
 }
 
