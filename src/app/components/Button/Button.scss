@@ -3,6 +3,12 @@
 .button {
   width: 200px;
   height: 70px;
+  @media all and (max-width : 1000px) {
+    width: 350px;
+    height: 120px;
+    font-size: 65px;
+
+  }
   background-color: #0e6ba8;
   border-radius: 10px;
   display: flex;
@@ -33,6 +39,9 @@
   &__value {
     color: white;
     font-size: 30px;
+    @media all and (max-width : 1000px) {
+      font-size: 45px;
+    }
     align-self: center;
     user-select: none;
   }
@@ -54,6 +63,9 @@
     &__value {
       color: white;
       font-size: 45px;
+      @media all and (max-width : 1000px) {
+        font-size: 65px;
+      }
       align-self: center;
       user-select: none;
       font-family: $main-font;

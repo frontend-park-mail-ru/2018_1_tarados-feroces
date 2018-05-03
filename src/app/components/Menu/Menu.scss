@@ -1,5 +1,6 @@
 @import "../../../static/css/config";
 
+
 .menu {
   opacity: 0.9;
   width: 400px;
@@ -8,4 +9,10 @@
   border-radius: 25px;
   box-shadow: 4px 4px 10px 2px #00072d;
   animation: shining 1.5s linear infinite;
+}
+
+@media all and (max-width : 1000px) {
+  .menu {
+    width: 600px;
+  }
 }
