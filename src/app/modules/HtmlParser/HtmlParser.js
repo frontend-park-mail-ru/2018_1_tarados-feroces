@@ -18,6 +18,7 @@ import SignoutButton from '../../components/SignoutButton/SignoutButton';
 import AuthContent from '../../components/AuthContent/AuthContent';
 import AuthHeaderPoint from '../../components/AuthHeaderPoint/AuthHeaderPoint';
 import Post from '../../components/Post/Post';
+import Party from '../../components/Party/Party';
 import StandartComponent from '../../components/StandartComponent/StandartComponent';
 
 /** Класс для парсинга html тэгов
@@ -55,6 +56,7 @@ class HtmlParser {
             AuthContent: () => new AuthContent(),
             AuthHeaderPoint: () => new AuthHeaderPoint(),
             Post: () => new Post(),
+            Party: () => new Party(),
             div: () => new StandartComponent(),
             a: () => new StandartComponent(),
             p: () => new StandartComponent(),
