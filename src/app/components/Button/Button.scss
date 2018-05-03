@@ -70,7 +70,11 @@
       user-select: none;
       font-family: $main-font;
     }
+    @media all and (max-width : 1000px) {
+      display: none;
+    }
   }
+
 }
 
 @keyframes button-shining {

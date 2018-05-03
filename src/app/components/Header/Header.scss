@@ -32,7 +32,7 @@
   }
   &__user-info {
     width: 450px;
-    background-color: #6c58c5;
+    background-color: #105C7F;
     display: flex;
     flex-flow: row;
     justify-content: space-around;
@@ -100,4 +100,54 @@
     }
 
   }
+  @media all and (max-width : 1000px) {
+    &__user-info {
+      width: 180px;
+      background-color: #105C7F;
+      display: flex;
+      flex-flow: row;
+      justify-content: space-around;
+      border-radius: 5px;
+      margin-top: 3px;
+      margin-bottom: 3px;
+
+      &-avatar {
+        width: 130px;
+        height: 130px;
+        align-self: center;
+        opacity: 1;
+        border-radius: 15px;
+      }
+      &-data-block {
+        display: none;
+        &-login {
+          display: none;
+          &-value {
+            display: none;
+          }
+        }
+        &-score {
+          display: none;
+
+          &-image {
+            display: none;
+          }
+          &-number {
+            display: none;
+            &-value {
+              display: none;
+
+            }
+          }
+        }
+      }
+      &-settings {
+        display: none;
+        &-value {
+          display: none;
+        }
+      }
+    }
+  }
+
 }
