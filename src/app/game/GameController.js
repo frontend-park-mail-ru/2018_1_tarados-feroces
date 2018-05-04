@@ -8,15 +8,52 @@ class GameController {
             UP: [87, 38],
             DOWN: [83, 40]
         };
+
+    }
+
+    start() {
         window.addEventListener('keypress', (event) => this.checkKeys(event));
         window.addEventListener('keydown', (event) => this.checkKeys(event));
         window.addEventListener('keyup', (event) => this.checkKeys(event));
+        const controls = [...document.getElementsByClassName('controllers')];
+        controls.forEach((item) => {
+            item.addEventListener('touchstart', () => {
+                const className = item.classList[1];
+                console.log(className);
+                let keycode = 10;
+                switch (className) {
+                    case 'controllers__right':
+                        keycode = 68;
+                        break;
+                    case 'controllers__top':
+                        keycode = 87;
+                        break;
+                    case 'controllers__bottom':
+                        keycode = 83;
+                        break;
+                    case 'controllers__left':
+                        keycode = 65;
+                        break;
+                }
+                const keyboardEvent = document.createEvent('KeyboardEvent');
+                const initMethod =
+                    typeof keyboardEvent.initKeyboardEvent !== 'undefined' ? 'initKeyboardEvent' : 'initKeyEvent';
+                keyboardEvent[initMethod](
+                    'keydown', // event type : keydown, keyup, keypress
+                    true, // bubbles
+                    true, // cancelable
+                    window, // viewArg: should be window
+                    false, // ctrlKeyArg
+                    false, // altKeyArg
+                    false, // shiftKeyArg
+                    false, // metaKeyArg
+                    keycode, // keyCodeArg : unsigned long the virtual key code, else 0
+                    0 // charCodeArgs : unsigned long the Unicode character associated with the depressed key, else 0
+                );
+                document.dispatchEvent(keyboardEvent);
+            });
+        });
     }
-
-    // start() {
-    //     window.addEventListener('keypress', (event) => this.checkKeys(event));
-    //     window.addEventListener('keyup', (event) => this.checkKeys(event));
-    // }
 
     checkKeys(event) {
         let direction = '';
@@ -35,21 +72,14 @@ class GameController {
     }
 
     checkBorderCollision(object, field) {
-        return !(
-            object.x - object.radius <= field.x ||
-            object.x + object.radius >= field.x + field.width ||
-            object.y - object.radius <= field.y ||
-            object.y + object.radius >= field.y + field.height
-        );
+        return object.x - object.radius > field.x &&
+            object.x + object.radius < field.x + field.width &&
+            object.y - object.radius > field.y &&
+            object.y + object.radius < field.y + field.height;
     }
 
     checkMobOutOfBorder(object, field) {
-        const result = !(
-            object.x + object.radius <= field.x ||
-            object.x - object.radius >= field.x + field.width ||
-            object.y + object.radius <= field.y ||
-            object.y - object.radius >= field.y + field.height
-        );
+        const result = this.checkBorderCollision(object, field);
 
         if (!result) {
             object.clear();
@@ -59,13 +89,11 @@ class GameController {
 
     checkBotCollision(player, wave) {
         let result = true;
+
         wave.mobs.forEach((item) => {
-            const dx = item.x - player.x;
-            const dy = item.y - player.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if ( dist < (item.radius + player.radius) ) {
-                result = false;
-            }
+            result = result &&
+                (Math.pow((item.x - player.x), 2) +
+                 Math.pow((item.y - player.y), 2) >= Math.pow((item.radius + player.radius), 2));
         });
 
         return result;
@@ -88,8 +116,8 @@ class GameController {
         }
 
         if (x !== 0 && y !== 0) {
-            x *= Math.sqrt(2) / 2;
-            y *= Math.sqrt(2) / 2;
+            x *= Math.SQRT1_2; // It is real JS const!
+            y *= Math.SQRT1_2;
         }
 
         player.x += x;

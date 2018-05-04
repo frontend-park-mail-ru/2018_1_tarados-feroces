@@ -7,6 +7,7 @@ export default class Wave {
         this.mobs = [];
         console.log(mobs);
         this.scene = scene;
+
         mobs.forEach((item) => {
             const [x, y] = this.countCoords(this.scene.arena.width, this.scene.arena.height, item[0], item[1]);
             const mob = new Mob(ctx, x, y, item[1], item[2]);
@@ -14,11 +15,10 @@ export default class Wave {
         });
     }
 
-    moveBots() {
+    moveBots(timestamp) {
         this.mobs.forEach((item) => {
-            item.movement();
+            item.movement(timestamp);
         });
-        // console.log(this.che);
         return !this.checkEnd();
     }
 

@@ -14,6 +14,7 @@ export default class OfflineGame extends GameCore {
 
     start() {
         super.start();
+        this.controller.start();
         this.scene.initPlayer();
         this.nextRound();
         this.gameLoopId = requestAnimationFrame(this.gameLoop);
@@ -21,6 +22,7 @@ export default class OfflineGame extends GameCore {
 
     stop() {
         super.stop();
+        this.controller.stop();
         cancelAnimationFrame(this.gameLoopId);
     }
 
@@ -37,7 +39,7 @@ export default class OfflineGame extends GameCore {
 
     nextRound() {
         document.querySelector('.game__title-text')
-            .querySelector('.label-text').textContent = `round ${this.currentRound}`;
+            .querySelector('.label-text').textContent = `Round ${this.currentRound}`;
         setTimeout(() => {
             this.scene.initRound(this.rounds[this.currentRound]);
             this.currentRound += 1;
@@ -54,26 +56,29 @@ export default class OfflineGame extends GameCore {
         this.gameLoopId = requestAnimationFrame(this.gameLoop);
 
         const currentWave = this.scene.round.waves[this.scene.round.waveCounter];
-        if (!gameController.movementControl(this.scene.player, this.scene.arena, currentWave)) {
+
+        if (!gameController.movementControl(this.scene.players[0], this.scene.arena, currentWave)) {
             this.stop();
             this.gamePaused('GAME OVER');
             this.gameLoopId = null;
             return;
         }
 
-        if (!this.scene.round.iterateWave()) {
-            currentWave.clearWave();
-            if (!this.scene.round.nextWave()) {
-                if (!this.checkEndOfRounds()) {
-                    this.stop();
-                    this.gamePaused('VICTORY');
-                    this.gameLoopId = null;
-                    return;
-
-                }
-                this.nextRound();
-            }
+        if (this.scene.round.iterateWave()) {
+            return;
         }
+        currentWave.clearWave();
 
+        if (this.scene.round.nextWave()) {
+            return;
+        }
+        if (!this.checkEndOfRounds()) {
+            this.stop();
+            this.gamePaused('VICTORY');
+            this.gameLoopId = null;
+            return;
+
+        }
+        this.nextRound();
     }
 };

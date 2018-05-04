@@ -3,7 +3,7 @@
         <div class="header-logo">
             <Image class="header-logo-content" src="../images/Deadlinez.png"></Image>
         </div>
-        <div class="button button-play" click="(){goToGame();}">
+        <div class="button button-play" click="(){send();}">
             <p class="button-play__value">PLAY</p>
         </div>
         <UserInfo login="{{login}}" coins="645" points="1080" avatar="{{{avatar}}}">
@@ -44,23 +44,7 @@
                 </div>
             </div>
 
-            <div class="content-right-party">
-                <div class="content-right-party-friend">
-                    <Image class="content-right-party-friend-logo" src="../images/user-logo.jpg"></Image>
-                </div>
-                <div class="content-right-party-friend">
-                    <Image class="content-right-party-friend-logo" src="../images/user-logo.jpg"></Image>
-                </div>
-                <div class="content-right-party-friend">
-                    <Image class="content-right-party-friend-logo" src="../images/user-logo.jpg"></Image>
-                </div>
-                <div class="content-right-party-friend">
-                    <Image class="content-right-party-friend-logo" src="../images/user-logo.jpg"></Image>
-                </div>
-                <div class="content-right-party-invite">
-                    <Image class="content-right-party-invite-button" src="../images/add.png"></Image>
-                </div>
-            </div>
+            <Party class="content-right-party"></Party>
         </div>
     </div>
 </div>

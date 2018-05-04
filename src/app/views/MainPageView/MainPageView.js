@@ -1,6 +1,7 @@
 import './MainPage.scss';
 import BaseView from '../BaseView/BaseView';
 import router from '../../modules/Router/Router';
+import Ws from '../../modules/WebSocket/WebSocket';
 
 export default class MainPageView extends BaseView {
 
@@ -33,6 +34,10 @@ window.scrollToContent = () => {
 
 window.goToLogin = () => {
     router.go('/login/');
+};
+
+window.send = () => {
+    Ws1.sendMessage('hi fucking retard');
 };
 
 window.goToGame = () => {
