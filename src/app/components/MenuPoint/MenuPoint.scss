@@ -28,7 +28,7 @@
   }
 }
 
-@media all and (max-width : 1000px) {
+@media only screen and (max-device-width : 1000px) {
   .menu-point {
     height: 140px;
     &-text {
