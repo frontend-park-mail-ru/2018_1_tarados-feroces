@@ -11,7 +11,7 @@
   animation: shining 1.5s linear infinite;
 }
 
-@media all and (max-width : 1000px) {
+@media only screen and (max-device-width : 1000px) {
   .menu {
     width: 600px;
   }

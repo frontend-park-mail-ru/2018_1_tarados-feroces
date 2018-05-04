@@ -7,7 +7,7 @@
   display: flex;
   width: 100%;
   height: 100px;
-  @media all and (max-width : 1000px) {
+  @media only screen and (max-device-width : 1000px) {
     height: 200px;
   }
   background-color: $header-background;
@@ -100,7 +100,7 @@
     }
 
   }
-  @media all and (max-width : 1000px) {
+  @media only screen and (max-device-width : 1000px) {
     &__user-info {
       width: 180px;
       background-color: #105C7F;

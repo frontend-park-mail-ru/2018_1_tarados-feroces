@@ -3,7 +3,7 @@
 .button {
   width: 200px;
   height: 70px;
-  @media all and (max-width : 1000px) {
+  @media only screen and (max-device-width : 1000px) {
     width: 350px;
     height: 120px;
     font-size: 65px;
@@ -39,7 +39,7 @@
   &__value {
     color: white;
     font-size: 30px;
-    @media all and (max-width : 1000px) {
+    @media only screen and (max-device-width : 1000px) {
       font-size: 45px;
     }
     align-self: center;
@@ -63,14 +63,14 @@
     &__value {
       color: white;
       font-size: 45px;
-      @media all and (max-width : 1000px) {
+      @media only screen and (max-device-width : 1000px) {
         font-size: 65px;
       }
       align-self: center;
       user-select: none;
       font-family: $main-font;
     }
-    @media all and (max-width : 1000px) {
+    @media only screen and (max-device-width : 1000px) {
       display: none;
     }
   }
