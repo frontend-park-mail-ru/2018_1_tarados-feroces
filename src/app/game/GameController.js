@@ -62,6 +62,7 @@ class GameController {
     }
 
     movementControl(player, arena, wave) {
+        debugger;
         let x = 0;
         let y = 0;
         if (this.keyMap['RIGHT']) {
