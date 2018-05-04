@@ -15,6 +15,44 @@ class GameController {
         window.addEventListener('keypress', (event) => this.checkKeys(event));
         window.addEventListener('keydown', (event) => this.checkKeys(event));
         window.addEventListener('keyup', (event) => this.checkKeys(event));
+        const controls = [...document.getElementsByClassName('controllers')];
+        controls.forEach((item) => {
+            item.addEventListener('touchstart', () => {
+                const className = item.classList[1];
+                console.log(className);
+                let keycode = 10;
+                switch (className) {
+                    case 'controllers__right':
+                        keycode = 68;
+                        break;
+                    case 'controllers__top':
+                        keycode = 87;
+                        break;
+                    case 'controllers__bottom':
+                        keycode = 83;
+                        break;
+                    case 'controllers__left':
+                        keycode = 65;
+                        break;
+                }
+                const keyboardEvent = document.createEvent('KeyboardEvent');
+                const initMethod =
+                    typeof keyboardEvent.initKeyboardEvent !== 'undefined' ? 'initKeyboardEvent' : 'initKeyEvent';
+                keyboardEvent[initMethod](
+                    'keydown', // event type : keydown, keyup, keypress
+                    true, // bubbles
+                    true, // cancelable
+                    window, // viewArg: should be window
+                    false, // ctrlKeyArg
+                    false, // altKeyArg
+                    false, // shiftKeyArg
+                    false, // metaKeyArg
+                    keycode, // keyCodeArg : unsigned long the virtual key code, else 0
+                    0 // charCodeArgs : unsigned long the Unicode character associated with the depressed key, else 0
+                );
+                document.dispatchEvent(keyboardEvent);
+            });
+        });
     }
 
     checkKeys(event) {

@@ -57,7 +57,7 @@ export default class OfflineGame extends GameCore {
 
         const currentWave = this.scene.round.waves[this.scene.round.waveCounter];
 
-        if (!gameController.movementControl(this.scene.player, this.scene.arena, currentWave)) {
+        if (!gameController.movementControl(this.scene.players[0], this.scene.arena, currentWave)) {
             this.stop();
             this.gamePaused('GAME OVER');
             this.gameLoopId = null;

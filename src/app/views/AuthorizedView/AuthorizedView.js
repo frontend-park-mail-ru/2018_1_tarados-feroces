@@ -3,6 +3,7 @@ import BaseView from '../BaseView/BaseView';
 import httpModule from '../../modules/HttpModule/HttpModule';
 import userService from '../../modules/UserService/UserService';
 import router from '../../modules/Router/Router';
+import {Ws1} from '../../modules/WebSocket/WebSocket';
 
 export default class AuthorizedView extends BaseView {
 

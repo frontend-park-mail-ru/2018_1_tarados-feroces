@@ -12,7 +12,7 @@ app.use('/settings', express.static(path.join('dist')));
 app.use('/user', express.static(path.join('dist')));
 app.use('/game', express.static(path.join('dist')));
 // app.use(/\/.+/gi, express.static(path.join('dist')));
-app.use(express.static(path.join('dist')));
+// app.use(express.static(path.join('')));
 
 app.use('*', function(req, res) {
     res.status(404).send('404');

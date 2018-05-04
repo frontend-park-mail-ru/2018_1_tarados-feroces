@@ -17,8 +17,18 @@
     box-shadow: none;
   }
 
+  &__label {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
   &-inputs {
+    margin-bottom: 30px;
+    margin-top: 30px;
     width: 500px;
+    @media only screen and (max-device-width : 1000px) {
+      width: 700px;
+    }
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,6 +37,9 @@
     display: flex;
     user-select: none;
     width: 40px;
+    @media only screen and (max-device-width : 1000px) {
+      width: 100px;
+    }
     cursor: pointer;
     border-bottom-left-radius: 15px;
     border-top-left-radius: 15px;
