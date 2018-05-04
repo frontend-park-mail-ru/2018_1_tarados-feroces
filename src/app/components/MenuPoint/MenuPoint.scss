@@ -27,3 +27,14 @@
     margin: auto;
   }
 }
+
+@media only screen and (max-device-width : 1000px) {
+  .menu-point {
+    height: 140px;
+    &-text {
+      font-size: 54px;
+      font-family: $main-font;
+      margin: auto;
+    }
+  }
+}

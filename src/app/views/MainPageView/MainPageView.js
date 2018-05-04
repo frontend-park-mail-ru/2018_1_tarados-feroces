@@ -36,10 +36,8 @@ window.goToLogin = () => {
     router.go('/login/');
 };
 
-window.Ws1 = new Ws('ws://localhost:8081');
-
 window.send = () => {
-    window.Ws1.sendMessage('hi fucking retard');
+    Ws1.sendMessage('hi fucking retard');
 };
 
 window.goToGame = () => {
