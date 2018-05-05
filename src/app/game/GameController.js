@@ -19,38 +19,39 @@ class GameController {
         controls.forEach((item) => {
             item.addEventListener('touchstart', () => {
                 const className = item.classList[1];
-                console.log(className);
-                let keycode = 10;
                 switch (className) {
                     case 'controllers__right':
-                        keycode = 68;
+                        this.keyMap['RIGHT'] = true;
                         break;
-                    case 'controllers__top':
-                        keycode = 87;
+                    case 'controllers__up':
+                        this.keyMap['UP'] = true;
                         break;
-                    case 'controllers__bottom':
-                        keycode = 83;
+                    case 'controllers__down':
+                        this.keyMap['DOWN'] = true;
                         break;
                     case 'controllers__left':
-                        keycode = 65;
+                        this.keyMap['LEFT'] = true;
                         break;
                 }
-                const keyboardEvent = document.createEvent('KeyboardEvent');
-                const initMethod =
-                    typeof keyboardEvent.initKeyboardEvent !== 'undefined' ? 'initKeyboardEvent' : 'initKeyEvent';
-                keyboardEvent[initMethod](
-                    'keydown', // event type : keydown, keyup, keypress
-                    true, // bubbles
-                    true, // cancelable
-                    window, // viewArg: should be window
-                    false, // ctrlKeyArg
-                    false, // altKeyArg
-                    false, // shiftKeyArg
-                    false, // metaKeyArg
-                    keycode, // keyCodeArg : unsigned long the virtual key code, else 0
-                    0 // charCodeArgs : unsigned long the Unicode character associated with the depressed key, else 0
-                );
-                document.dispatchEvent(keyboardEvent);
+            });
+        });
+        controls.forEach((item) => {
+            item.addEventListener('touchend', () => {
+                const className = item.classList[1];
+                switch (className) {
+                    case 'controllers__right':
+                        this.keyMap['RIGHT'] = false;
+                        break;
+                    case 'controllers__up':
+                        this.keyMap['UP'] = false;
+                        break;
+                    case 'controllers__down':
+                        this.keyMap['DOWN'] = false;
+                        break;
+                    case 'controllers__left':
+                        this.keyMap['LEFT'] = false;
+                        break;
+                }
             });
         });
     }
