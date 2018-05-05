@@ -54,6 +54,10 @@ class Router {
         this.urls[url].view.show();
     }
 
+    getLastView(id = 'root') {
+        return this.lastView[id];
+    }
+
     /**
      * Переходит на новый url
      * @param {string} url
@@ -100,6 +104,7 @@ class Router {
                 (response) => {
                     urlObject.view.__render();
                     insertionElement.appendChild(urlObject.view.element);
+                    urlObject.view.getDOMDependensies();
                     this.pageUpdate(urlObject);
                 }
             );

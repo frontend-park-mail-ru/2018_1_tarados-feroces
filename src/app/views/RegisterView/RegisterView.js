@@ -9,13 +9,17 @@ export default class RegisterView extends BaseView {
         this.template = require('./RegisterView.handlebars');
     }
 
+    getDOMDependensies() {
+        this.inputBlocks = [...document.querySelector('.registration').getElementsByClassName('input-block')];
+    }
+
     needAuthorization() {
         return false;
     }
 }
 
 window.validateRegistration = () => {
-    const blocks = [...document.querySelector('.registration').getElementsByClassName('input-block')];
+    const blocks = router.getLastView().inputBlocks;
     if (blocks.reduce((result, current) => result + validateRegistrationInput(current), 0) === blocks.length) {
         httpModule.doPost('/signup',
             {
@@ -29,10 +33,6 @@ window.validateRegistration = () => {
                 blocks.forEach((item) => item.querySelector('input').value = '');
             },
             (error) => {
-                document.querySelector('.registration').getElementsByClassName('input-block')[0]
-                    .querySelector('.error').innerText = error;
-                document.querySelector('.registration').getElementsByClassName('input-block')[0]
-                    .querySelector('.error').classList.remove('hidden');
             }
         );
     }
