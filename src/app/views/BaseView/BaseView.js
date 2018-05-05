@@ -22,6 +22,10 @@ export default class BaseView {
         return new Promise((resolve, reject) => resolve({}));
     }
 
+    getDOMDependensies() {
+        return true;
+    }
+
     /**
      * Возвращает шаблон вьюхи
      *
