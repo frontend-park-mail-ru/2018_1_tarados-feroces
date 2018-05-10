@@ -21,12 +21,12 @@ module.exports = {
     },
     output: {
         path: outPath,
-        filename: 'bundle.ts',
+        filename: 'bundle.js',
     },
 
     target: 'web',
     resolve: {
-        extensions: ['.js', '.ts', '.tsx'],
+        extensions: ['.js', '.ts', '.tsx', '.jsx'],
         mainFields: ['browser', 'main'],
     },
 
@@ -37,11 +37,12 @@ module.exports = {
                 loader: 'awesome-typescript-loader'
             },
             {
-                test: /\.js$/,
+                enforce: 'pre',
+                test: /\.(ts|js)x?$/,
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['env', 'react']
+                        presets: ['env', 'react', 'es2015']
                     }
                 }
             },
@@ -82,10 +83,10 @@ module.exports = {
             template: path.join(__dirname, 'src/index.html')
         }),
         new CopyWebpackPlugin([
-            {from: path.join(__dirname, 'src/static/images'), to: path.join(outPath, 'images')},
+            // {from: path.join(__dirname, 'src/static/images'), to: path.join(outPath, 'images')},
             {from: path.join(__dirname, 'src/sw.js'), to: path.join(outPath, 'sw.js')}
         ]),
-        new webpack.optimize.AggressiveMergingPlugin()
+        new webpack.optimize.AggressiveMergingPlugin(),
     ],
     node: {
         fs: 'empty',

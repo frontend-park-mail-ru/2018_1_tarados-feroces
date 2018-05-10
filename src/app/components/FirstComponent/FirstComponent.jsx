@@ -11,7 +11,6 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-require("./Back.scss");
 var FirstComponent = /** @class */ (function (_super) {
     __extends(FirstComponent, _super);
     function FirstComponent() {

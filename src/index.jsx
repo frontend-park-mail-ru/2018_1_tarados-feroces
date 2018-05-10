@@ -1,4 +1,5 @@
-'use strict';
+"use strict";
+/// <reference types="node" />
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_dom_1 = require("react-dom");
 var react_1 = require("react");
