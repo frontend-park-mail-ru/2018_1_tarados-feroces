@@ -14,24 +14,28 @@ const extractSass = new ExtractTextPlugin({
 module.exports = {
     entry: {
         main: [
-            './src/index.js',
-            './src/static/css/main.scss'
+            './src/index.tsx',
+            // './src/static/css/main.scss'
         ]
 
     },
     output: {
         path: outPath,
-        filename: 'bundle.js',
+        filename: 'bundle.ts',
     },
 
     target: 'web',
     resolve: {
-        extensions: ['.js'],
+        extensions: ['.js', '.ts', '.tsx'],
         mainFields: ['browser', 'main'],
     },
 
     module: {
         rules: [
+            {
+                test: /\.tsx?$/,
+                loader: 'awesome-typescript-loader'
+            },
             {
                 test: /\.js$/,
                 use: {
