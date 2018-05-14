@@ -1,5 +1,5 @@
 export const httpDomen = 'http://api.deadlinez.net:8080/api';
-export const WS_ADDRESS = 'ws://deadlinez.herokuapp.com:8080/api/ws';
+export const WS_ADDRESS = 'wss://api.deadlinez.net:8080/api/ws';
 export const POST = 'POST';
 export const GET = 'GET';
 export const HEADER_CONTENT_TYPE = 'Content-Type';

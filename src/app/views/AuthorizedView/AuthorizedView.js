@@ -11,6 +11,7 @@ export default class AuthorizedView extends BaseView {
         return httpModule.doGet('/user').then(
             (response) => {
                 this.context = response;
+                console.log(response);
                 if (!this.context.avatar.length) {
                     this.context.avatar = '../images/user-logo.jpg';
                 }
