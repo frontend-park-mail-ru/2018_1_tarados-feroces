@@ -1,4 +1,4 @@
-class Ws {
+export default class Ws {
     constructor(address, onmessage, onclose) {
         self.address = address;
         this.ws = new WebSocket(self.address);
@@ -16,10 +16,4 @@ class Ws {
             this.ws.send(JSON.stringify({message}));
         }
     }
-};
-
-export const Ws1 = new Ws(
-    'ws://api.deadlinez.net:8080/game',
-    (message) => console.log(message),
-    (message) => console.log(message)
-);
+}

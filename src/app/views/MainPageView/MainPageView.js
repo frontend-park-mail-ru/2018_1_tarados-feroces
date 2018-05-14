@@ -36,10 +36,6 @@ window.goToLogin = () => {
     router.go('/login/');
 };
 
-window.send = () => {
-    Ws1.sendMessage('hi fucking retard');
-};
-
 window.goToGame = () => {
     router.go('/game/');
 };

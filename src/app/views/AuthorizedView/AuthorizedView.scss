@@ -125,14 +125,14 @@
       @media only screen and (max-device-width : 1000px) {
         display: none;
       }
-      max-width: 25%;
+      //max-width: 25%;
       height: 100%;
-      min-height: 820px;
+      //min-height: 820px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
 
-      &-friends {
+      &-hide {
         width: auto;
         display: flex;
         flex-direction: row;
@@ -147,7 +147,7 @@
         &-icon {
           display: flex;
           width: 50px;
-          height: 700px;
+          //height: 700px;
           border-right: thin black solid;
           border-top-left-radius: 15px;
           border-bottom-left-radius: 15px;
@@ -174,19 +174,26 @@
         background-color: $blocks-background;
         display: flex;
         flex-direction: column;
-        &-label {
+        &-header {
           display: flex;
           height: 40px;
           border-bottom: black solid thin;
           background-color: $header-background;
-          justify-content: center;
-
-          &-value {
-            font-size: 40px;
-            color: $blocks-text-color;
-            font-family: $main-font;
-            user-select: none;
-            align-self: center;
+          &-point {
+            flex-grow: 1;
+            display: flex;
+            border-left: thin solid black;
+            justify-content: center;
+            &:hover {
+              background-color: #1956a8;
+            }
+            &-value {
+              font-size: 30px;
+              color: $blocks-text-color;
+              font-family: $main-font;
+              user-select: none;
+              align-self: center;
+            }
           }
         }
       }
