@@ -12,7 +12,7 @@ import SettingsView from './app/views/SettingsView/SettingsView';
 import LeaderboardView from './app/views/LeaderboardView/LeaderboardView';
 import NewsView from './app/views/NewsView/NewsView';
 
-serviceWorkerRegister();
+// serviceWorkerRegister();
 
 router
     .addUrl(

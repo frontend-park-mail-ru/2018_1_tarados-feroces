@@ -19,8 +19,8 @@ class HttpModule {
      * @param {Object} headers
      * @return {Promise<any>}
      */
-    doGet(url, headers = [{name: HEADER_CONTENT_TYPE, value: JSON_CONTENT_TYPE}]) {
-        return this.send(GET, url, headers);
+    doGet(url) {
+        return this.send(GET, url);
     }
 
     /**
@@ -30,8 +30,8 @@ class HttpModule {
      * @param {Object} headers
      * @return {Promise<any>}
      */
-    doPost(url, data = null, headers = [{name: HEADER_CONTENT_TYPE, value: JSON_CONTENT_TYPE}]) {
-        return this.send(POST, url, data, headers);
+    doPost(url, data = {}) {
+        return this.send(POST, url, data);
     }
 
     /**
@@ -43,7 +43,7 @@ class HttpModule {
      * @return {Promise<any>}
      * @private
      */
-     send(method, url = '/', data = null, headers = []) {
+     send(method, url = '/', data = {}, headers = []) {
         const options = {
             method: method,
             mode: 'cors',
@@ -52,7 +52,10 @@ class HttpModule {
 
         if (method === POST) {
             options.body = JSON.stringify(data);
-            options.headers = headers;
+            const _headers = new Headers();
+            _headers.append(HEADER_CONTENT_TYPE, JSON_CONTENT_TYPE);
+
+            options.headers = _headers;
         }
 
         return fetch(`${this.domen}${url}`, options)

@@ -8,7 +8,7 @@
         </div>
         <UserInfo login="{{login}}" coins="645" points="1080" avatar="{{{avatar}}}">
             <SettingsButton click="(){goToSettings();}"></SettingsButton>
-            <SignoutButton click="(){signOut();}"></SignoutButton>
+            <SignoutButton click="(event){event.preventDefault(); signOut();}"></SignoutButton>
         </UserInfo>
     </Header>
 
@@ -16,7 +16,7 @@
         <div class="auth-page__content-left">
             <div class="auth-page__content-left-modal">
                 <div class="auth-page__content-left-modal-header modal-header">
-                    <AuthHeaderPoint class="news-header" click="(){goToNews();}">News</AuthHeaderPoint>
+                    <AuthHeaderPoint class="news-header" click="(){ goToNews(); }">News</AuthHeaderPoint>
                     <AuthHeaderPoint class="leaderboard" click="(){ goToScore(); }">Scoreboard</AuthHeaderPoint>
                 </div>
                 <AuthContent id="modal-data"></AuthContent>
