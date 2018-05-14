@@ -20,7 +20,7 @@ class HttpModule {
      * @return {Promise<any>}
      */
     doGet(url, headers = [{name: HEADER_CONTENT_TYPE, value: JSON_CONTENT_TYPE}]) {
-        return this.doRequest(GET, url, headers);
+        return this.send(GET, url, headers);
     }
 
     /**
@@ -31,7 +31,7 @@ class HttpModule {
      * @return {Promise<any>}
      */
     doPost(url, data = null, headers = [{name: HEADER_CONTENT_TYPE, value: JSON_CONTENT_TYPE}]) {
-        return this.doRequest(POST, url, data, headers);
+        return this.send(POST, url, data, headers);
     }
 
     /**
@@ -43,33 +43,27 @@ class HttpModule {
      * @return {Promise<any>}
      * @private
      */
-    doRequest(method = GET, url = '/', data = null, headers = []) {
-        return new Promise((resolve, reject) => {
-            const xhr = new XMLHttpRequest();
-            xhr.open(method, `${this.domen}${url}`, true);
+     send(method, url = '/', data = null, headers = []) {
+        const options = {
+            method: method,
+            mode: 'cors',
+            credentials: 'include'
+        };
 
-            xhr.addEventListener('load', () => {
-                const response = JSON.parse(xhr.responseText);
+        if (method === POST) {
+            options.body = JSON.stringify(data);
+            options.headers = headers;
+        }
 
-                if (xhr.status < 300) {
-                    resolve(response);
-                } else {
-                    reject(response.message);
+        return fetch(`${this.domen}${url}`, options)
+            .then((response) => {
+                if (response.status >= 400) {
+                    throw response;
                 }
+
+                return response.json();
             });
-
-            xhr.addEventListener('error', () => {
-                reject('Network error');
-            });
-
-            headers.forEach((current) => xhr.setRequestHeader(current.name, current.value));
-
-            xhr.withCredentials = true;
-
-            data ? xhr.send(JSON.stringify(data)) : xhr.send();
-        });
     }
-
 }
 
 const httpModule = new HttpModule();
