@@ -3,11 +3,13 @@ import BaseView from '../BaseView/BaseView';
 import httpModule from '../../modules/HttpModule/HttpModule';
 import userService from '../../modules/UserService/UserService';
 import router from '../../modules/Router/Router';
-import {Ws1} from '../../modules/WebSocket/WebSocket';
+import Ws from '../../modules/WebSocket/WebSocket';
+import {WS_ADDRESS} from "../../modules/HttpModule/HttpConstants";
 
 export default class AuthorizedView extends BaseView {
 
     preRender() {
+
         return httpModule.doGet('/user').then(
             (response) => {
                 this.context = response;
@@ -38,7 +40,7 @@ window.signOut = () => {
 };
 
 window.hideFriends = () => {
-    const hideValue = document.querySelector('.auth-page__content-right-friends-icon-value');
+    const hideValue = document.querySelector('.auth-page__content-right-hide-icon-value');
 
     document.querySelector('.friends').classList.toggle('hidden');
     if (hideValue.classList.contains('rotate-close')) {
@@ -58,10 +60,11 @@ window.showFriendActions = (event) => {
     const icon = event.currentTarget;
     console.log(modal);
     console.log(icon);
-    const x = icon.x - 200;
+    const x = icon.getBoundingClientRect().x;
+    const y = icon.getBoundingClientRect().y;
     console.log(icon.left);
     modal.style.left = `${x}px`;
-    modal.style.top = `${icon.y}px`;
+    modal.style.top = `${y + icon.getBoundingClientRect().height}px`;
     modal.classList.toggle('hidden');
 };
 
@@ -80,3 +83,13 @@ window.goToNews = () => {
     }
     router.go('/news/');
 };
+
+window.play = () => {
+    const Ws1 = new Ws(
+        WS_ADDRESS,
+        (message) => console.log(message),
+        (message) => console.log(message)
+    );
+    // Ws1.sendMessage('Sanya hello!');
+};
+
