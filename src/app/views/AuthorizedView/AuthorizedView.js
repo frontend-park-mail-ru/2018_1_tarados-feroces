@@ -4,7 +4,7 @@ import httpModule from '../../modules/HttpModule/HttpModule';
 import userService from '../../modules/UserService/UserService';
 import router from '../../modules/Router/Router';
 import Ws from '../../modules/WebSocket/WebSocket';
-import {WS_ADDRESS} from "../../modules/HttpModule/HttpConstants";
+import {WS_ADDRESS} from '../../modules/HttpModule/HttpConstants';
 
 export default class AuthorizedView extends BaseView {
 
