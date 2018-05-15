@@ -40,7 +40,7 @@ window.signOut = () => {
 };
 
 window.hideFriends = () => {
-    const hideValue = document.querySelector('.auth-page__content-right-friends-icon-value');
+    const hideValue = document.querySelector('.auth-page__content-right-hide-icon-value');
 
     document.querySelector('.friends').classList.toggle('hidden');
     if (hideValue.classList.contains('rotate-close')) {
