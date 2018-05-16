@@ -2,10 +2,8 @@ import * as React from 'react';
 
 import './MainPage.scss';
 
-export default class MainPage extends React.Component<any, any> {
-    constructor(props: any = {}) {
-        super(props);
-    }
+
+export default class MainPage extends React.Component<Interface, any> {
 
     public render() {
         return (
