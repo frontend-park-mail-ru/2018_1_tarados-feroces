@@ -1,19 +1,20 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import {Router, Route} from 'react-router';
+import {Router, Route, Switch} from 'react-router';
 import {createBrowserHistory} from 'history';
 import MainPage from './app/views/MainPage/MainPage';
 
-// import './static/scss/main.scss';
+// import './static/css/main.scss';
 
 const history = createBrowserHistory();
 
 const App = () => (
     <Provider>
         <Router history={ history }>
-            <Route path={ '/' } component={ MainPage as any }>
-            </Route>
+            {/*<Switch>*/}
+                <Route path={ '/' } component={ MainPage }/>
+            {/*</Switch>*/}
         </Router>
     </Provider>
 );

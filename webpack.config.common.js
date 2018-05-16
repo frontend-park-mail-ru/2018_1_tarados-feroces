@@ -13,6 +13,7 @@ module.exports = {
     context: sourcePath,
     entry: {
         main: './index.tsx',
+        // preset: 'env',
         vendor: [
             'react',
             'react-dom',
@@ -97,10 +98,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: 'index.html'
         }),
-        new CopyWebpackPlugin([{
-            from: 'static/imgs',
-            to: 'static/imgs'
-        }])
+        new CopyWebpackPlugin([
+            {from: Path.join(__dirname, 'src/static/imgs'), to: Path.join(outPath, 'imgs')}
+        ])
     ],
     devServer: {
         contentBase: sourcePath,

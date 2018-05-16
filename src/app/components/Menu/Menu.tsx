@@ -1,21 +1,21 @@
 import * as React from 'react';
 
 import './Menu.scss';
-import MenuPoint from "../MenuPoint/MenuPoint";
+import MenuPoint from '../MenuPoint/MenuPoint';
 
-interface Props {
+interface IProps {
     className?: string;
-    buttons?: any[];
+    buttons?: Array<string>;
 }
 
-export default class Menu extends React.Component<Props, any> {
+export default class Menu extends React.Component<IProps, any> {
 
-    render() {
+    public render() {
         const {className, buttons}: any = this.props;
         return (
-            <div className={'menu' + className}>
-                {buttons.map((className, text) => {
-                    return <MenuPoint text={text}/>
+            <div className={'menu ' + className}>
+                {buttons.map((text) => {
+                    return <MenuPoint text={text}/>;
                 })}
             </div>
         );

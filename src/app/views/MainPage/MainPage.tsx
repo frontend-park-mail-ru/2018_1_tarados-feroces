@@ -2,8 +2,11 @@ import * as React from 'react';
 
 import './MainPage.scss';
 
+import Menu from '../../components/Menu/Menu';
+import Trailer from '../../components/Trailer/Trailer';
+import Header from '../../components/Header/Header';
 
-export default class MainPage extends React.Component<Interface, any> {
+export default class MainPage extends React.Component<any, any> {
 
     public render() {
         return (
@@ -16,10 +19,7 @@ export default class MainPage extends React.Component<Interface, any> {
                 </Header>
                 <div className='main-page__content'>
                     <div className='main-page__content-row'>
-                        <Menu>
-                            <MenuPoint>Play</MenuPoint>
-                            <MenuPoint>Sign In</MenuPoint>
-                            <MenuPoint>Sign Up</MenuPoint>
+                        <Menu buttons={['Play', 'Login', 'Sign up']}>
                         </Menu>
                         <div className='scroll'>
                             <div className='scroll-icon rotate-scroll-close'>
@@ -44,7 +44,6 @@ export default class MainPage extends React.Component<Interface, any> {
                             <Trailer
                                 src='https://www.youtube.com/embed/L3Mg6lk6yyA'
                                 frameborder='0'
-                                allow='autoplay; encrypted-media'
                             />
                         </div>
                     </div>
