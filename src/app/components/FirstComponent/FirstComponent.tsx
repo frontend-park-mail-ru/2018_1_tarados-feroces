@@ -1,19 +1,18 @@
 import * as React from 'react';
-import {Link} from 'react-router';
 
 // import './Back.scss';
 interface Interface {
 
 }
 
-export class FirstComponent extends React.Component<Interface, any> {
-    constructor() {
-        super();
+export default class FirstComponent extends React.Component<Interface, any> {
+    constructor(props: Interface = {}) {
+        super(props);
     }
 
     render() {
         return (
-        <p>Hello!</p>
-    );
+            <p>Hello!!</p>
+        );
     }
 }

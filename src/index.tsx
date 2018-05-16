@@ -1,8 +1,24 @@
-/// <reference types="node" />
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
+import {Router, Route} from 'react-router';
+import {createBrowserHistory} from 'history';
+import FirstComponent from './app/components/FirstComponent/FirstComponent'
 
-import ReactDOM from 'react-dom';
-import React from 'react';
-import {FirstComponent} from './app/components/FirstComponent/FirstComponent';
+// import './static/scss/main.scss';
 
-ReactDOM.render(<FirstComponent/>,
-    document.getElementById('root'));
+const history = createBrowserHistory();
+
+const App = () => (
+    <Provider>
+        <Router history={ history }>
+            <Route path={ '/signup' } component={ FirstComponent as any }>
+            </Route>
+        </Router>
+    </Provider>
+);
+
+ReactDOM.render(
+    <App />,
+    document.getElementById('root')
+);
