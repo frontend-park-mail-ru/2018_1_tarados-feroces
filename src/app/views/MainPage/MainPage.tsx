@@ -2,14 +2,7 @@ import * as React from 'react';
 
 import './MainPage.scss';
 
-interface Interface {
-
-}
-
 export default class MainPage extends React.Component<Interface, any> {
-    constructor(props: Interface = {}) {
-        super(props);
-    }
 
     render() {
         return (
