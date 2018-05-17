@@ -1,14 +1,15 @@
 @import "../../../static/css/config";
 
 .friend {
-  height: 100px;
+  height: 70px;
   display: flex;
+  flex: 1;
   justify-content: space-around;
   background-color: $blocks-background;
-  border-bottom: thin solid black;
+  //border-bottom: thin solid black;
   &__avatar {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     align-self: center;
     opacity: 1;
     border-radius: 15px;
@@ -17,10 +18,14 @@
     display: flex;
     &-value {
       margin: auto;
-      font-size: 30px;
+      font-size: 25px;
       font-family: $main-font;
       color: $blocks-text-color;
       user-select: none;
     }
+  }
+
+  &:hover {
+    background-color: #1956a8;
   }
 }

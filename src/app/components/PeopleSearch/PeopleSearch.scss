@@ -1,0 +1,28 @@
+@import "../../../static/css/config";
+
+.search {
+  margin-top: 5px;
+  display: flex;
+  border-bottom: thin solid black;
+  justify-content: space-around;
+  width: 100%;
+
+  &__input {
+    width: 70%;
+    font-size: 20px;
+    font-family: $main-font;
+    padding: 5px;
+    border-radius: 10px;
+    border: thin black solid;
+    //box-shadow: 2px 2px 4px 1px #00072d;
+    background-color: #d9eaff;
+    outline: 0;
+    margin-bottom: 5px;
+  }
+
+  &__button {
+    width: 40px;
+    height: 40px;
+    background-image: url("../../../static/images/search2.png");
+  }
+}
