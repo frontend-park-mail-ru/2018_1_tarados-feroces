@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import './MainPage.scss';
+import Logo from '../../components/Logo/Logo';
 
 export default class MainPage extends React.Component<Interface, any> {
 
@@ -8,9 +9,7 @@ export default class MainPage extends React.Component<Interface, any> {
         return (
             <div className="main-page">
                 <Header className="main-page__header">
-                    <div className="header-logo">
-                        <div className="header-logo-content"></div>
-                    </div>
+                    <Logo/>
                 </Header>
                 <div className="main-page__content">
                     <div className="main-page__content-row">
