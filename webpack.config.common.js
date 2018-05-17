@@ -79,6 +79,7 @@ module.exports = {
         }),
         new CopyWebpackPlugin([
             {from: path.join(__dirname, 'src/static/images'), to: path.join(outPath, 'images')},
+            {from: path.join(__dirname, 'src/static/background_audio.mp3'), to: path.join(outPath, 'background_audio.mp3')},
             {from: path.join(__dirname, 'src/sw.js'), to: path.join(outPath, 'sw.js')}
         ]),
         new webpack.optimize.AggressiveMergingPlugin()

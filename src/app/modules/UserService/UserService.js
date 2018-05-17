@@ -7,6 +7,20 @@ import router from '../Router/Router';
  */
 class UserService {
 
+    init() {
+        this.data = {};
+        return httpModule.doGet('/user').then(
+            (response) => {
+                this.data = response;
+                console.log(this.data);
+            }
+        );
+    }
+
+    update(data) {
+        this.data = data;
+    }
+
     /**
      * Проверка авторизации пользователя
      * @return {PromiseLike<boolean> | Promise<boolean>}

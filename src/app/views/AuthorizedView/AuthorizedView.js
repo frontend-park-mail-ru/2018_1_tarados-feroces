@@ -8,15 +8,29 @@ import {WS_ADDRESS} from '../../modules/HttpModule/HttpConstants';
 
 export default class AuthorizedView extends BaseView {
 
+    //TODO : get friends or all users
+    update(context = {}) {
+        getPeople().then(
+            (response) => {
+                this.context.people = response.people
+            }
+        );
+    }
+
+    //TODO : WSs or HTTPs?
+    search(name) {
+
+    }
+
     preRender() {
 
-        return httpModule.doGet('/user').then(
+        this.context = userService.data;
+        if (!this.context.avatar.length) {
+            this.context.avatar = '../images/user-logo.jpg';
+        }
+        httpModule.doPost('/user/friends', {login: this.context.login}).then(
             (response) => {
-                this.context = response;
-                console.log(response);
-                if (!this.context.avatar.length) {
-                    this.context.avatar = '../images/user-logo.jpg';
-                }
+                this.context.friends = response.friends;
             }
         );
     }
@@ -37,6 +51,10 @@ window.signOut = () => {
             router.go('/');
         }
     );
+};
+
+window.getPeople = () => {
+    return httpModule.doPost('/people');
 };
 
 window.hideFriends = () => {

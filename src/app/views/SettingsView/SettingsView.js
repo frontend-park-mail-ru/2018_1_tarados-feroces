@@ -2,24 +2,21 @@ import './SettingsView.scss';
 import BaseView from '../BaseView/BaseView';
 import httpModule from '../../modules/HttpModule/HttpModule';
 import router from '../../modules/Router/Router';
+import userService from "../../modules/UserService/UserService";
 
 export default class SettingsView extends BaseView {
 
     preRender() {
-        return httpModule.doGet('/user').then(
-            (response) => {
-                this.context = response;
-                if (!this.context.avatar.length) {
-                    this.context.avatar = '../images/user-logo.jpg';
-                }
-            }
-        );
+
+        this.context = userService.data;
+        if (!this.context.avatar.length) {
+            this.context.avatar = '../images/user-logo.jpg';
+        }
     }
 
     render() {
         this.template = require('./SettingsView.handlebars');
     }
-
 }
 
 window.reader = new FileReader();
@@ -48,9 +45,10 @@ const settings = (notAvatar = true) => {
 
     httpModule.doPost('/user/update', data)
         .then(
-        (responseText) => {
+        (response) => {
             router.clearUrlElement('/user/');
             router.clearUrlElement('/settings/');
+            userService.update(data);
             router.go('/user/');
         },
         (error) => {

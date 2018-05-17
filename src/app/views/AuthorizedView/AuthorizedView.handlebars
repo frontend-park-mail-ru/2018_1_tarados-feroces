@@ -43,23 +43,20 @@
                     </div>
                     <PeopleSearch></PeopleSearch>
                     <div class="friends-data">
-                        <Friend avatar="../images/user-logo.jpg" login="Kabachok" click="(event){showFriendActions(event);}"></Friend>
-                        <Friend avatar="../images/user-logo.jpg" login="Kabachok" click="(event){showFriendActions(event);}"></Friend>
-                        <Friend avatar="../images/user-logo.jpg" login="Kabachok" click="(event){showFriendActions(event);}"></Friend>
-                        <Friend avatar="../images/user-logo.jpg" login="Kabachok" click="(event){showFriendActions(event);}"></Friend>
-                        <Friend avatar="../images/user-logo.jpg" login="Kabachok" click="(event){showFriendActions(event);}"></Friend>
-                        <Friend avatar="../images/user-logo.jpg" login="Kabachok" click="(event){showFriendActions(event);}"></Friend>
-                        <Friend avatar="../images/user-logo.jpg" login="Kabachok" click="(event){showFriendActions(event);}"></Friend>
-                        <Friend avatar="../images/user-logo.jpg" login="Kabachok" click="(event){showFriendActions(event);}"></Friend>
-                        <Friend avatar="../images/user-logo.jpg" login="Kabachok" click="(event){showFriendActions(event);}"></Friend>
-                        <Friend avatar="../images/user-logo.jpg" login="Kabachok" click="(event){showFriendActions(event);}"></Friend>
-                        <Friend avatar="../images/user-logo.jpg" login="Kabachok" click="(event){showFriendActions(event);}"></Friend>
-                        <Friend avatar="../images/user-logo.jpg" login="Kabachok" click="(event){showFriendActions(event);}"></Friend>
+                        {{#if isFriends}}
+                            {{#each friends}}
+                                <Friend avatar="{{this.avatar}}" login="{{this.login}}" click="(event){showFriendActions(event);}"></Friend>
+                            {{/each}}
+                        {{else}}
+                            {{#each people}}
+                                <Friend avatar="{{this.avatar}}" login="{{this.login}}" click="(event){showFriendActions(event);}"></Friend>
+                            {{/each}}
+                        {{/if}}
                     </div>
                 </div>
             </div>
 
-            <Party class="content-right-party"></Party>
+            <Party class="content-right-party" partyUsers="{{partyUsers}}"></Party>
         </div>
     </div>
 </div>
