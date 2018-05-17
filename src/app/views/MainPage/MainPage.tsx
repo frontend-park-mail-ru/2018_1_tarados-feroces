@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import './MainPage.scss';
+import Logo from '../../components/Logo/Logo';
 
 import Menu from '../../components/Menu/Menu';
 import Trailer from '../../components/Trailer/Trailer';
@@ -11,12 +12,7 @@ export default class MainPage extends React.Component<any, any> {
     public render() {
         return (
             <div className='main-page'>
-                <Header className='main-page__header'>
-                    <div className='header-logo'>
-                        <div className='header-logo-content'>
-                        </div>
-                    </div>
-                </Header>
+                <Header className='main-page__header'/>
                 <div className='main-page__content'>
                     <div className='main-page__content-row'>
                         <Menu buttons={['Play', 'Login', 'Sign up']}>
