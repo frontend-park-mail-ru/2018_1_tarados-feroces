@@ -6,6 +6,7 @@ import MenuPoint from '../MenuPoint/MenuPoint';
 interface IProps {
     className?: string;
     buttons?: Array<string>;
+    onCLickPlay?: any;
 }
 
 export default class Menu extends React.Component<IProps, any> {
