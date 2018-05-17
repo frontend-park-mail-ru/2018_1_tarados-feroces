@@ -9,7 +9,7 @@ interface Props {
 
 export default class Image extends React.Component<Props, any> {
 
-    render() {
+    public render() {
         const {className, src}: any = this.props;
         return (
             <img className={className} src={src}/>

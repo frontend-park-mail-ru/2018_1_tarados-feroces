@@ -2,16 +2,16 @@ import * as React from 'react';
 
 import './Form.scss';
 
-interface Props {
+interface IProps {
     method?: string;
 }
 
-export default class Form extends React.Component<Props, any> {
+export default class Form extends React.Component<IProps, any> {
 
-    render() {
+    public render() {
         const {method}: any = this.props;
         return (
             <form method={method}/>
         );
     }
-};
+}

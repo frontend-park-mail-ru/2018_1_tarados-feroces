@@ -11,6 +11,10 @@ import Button from '../../components/Button/Button';
 import Image from '../../components/Image/Image';
 import UserInfo from '../../components/Image/Image';
 
+interface IProps {
+
+}
+
 export default class Settings extends React.Component<any, any> {
 
     public render() {
