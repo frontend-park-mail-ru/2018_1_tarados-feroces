@@ -5,7 +5,6 @@ import './MainPage.scss';
 import Menu from '../../components/Menu/Menu';
 import Trailer from '../../components/Trailer/Trailer';
 import Header from '../../components/Header/Header';
-import {Redirect} from 'react-router';
 
 export default class MainPage extends React.Component<any, any> {
 
@@ -16,21 +15,21 @@ export default class MainPage extends React.Component<any, any> {
     }
 
     public slide(event) {
-        const iconValue: Element = event.target;
-        const icon: Element = iconValue.parentElement;
-        const header: Element = document.querySelector('.main-page__header');
-
-        if (iconValue.classList.contains('rotate-scroll-close')) {
-            window.scrollTo(0, icon.getBoundingClientRect().top + window.scrollY - header.getBoundingClientRect().height);
-            iconValue.classList.add('rotate-scroll-open');
-            iconValue.style.transform = 'rotate(90deg)';
-            iconValue.classList.remove('rotate-scroll-close');
-        } else {
-            window.scrollTo(0, 0);
-            iconValue.classList.add('rotate-scroll-close');
-            iconValue.style.transform = 'rotate(270deg)';
-            iconValue.classList.remove('rotate-scroll-open');
-        }
+    //     const iconValue: Element = event.target;
+    //     const icon: Element = iconValue.parentElement;
+    //     const header: Element = document.querySelector('.main-page__header');
+    //
+    //     if (iconValue.classList.contains('rotate-scroll-close')) {
+    //         window.scrollTo(0, icon.getBoundingClientRect().top + window.scrollY - header.getBoundingClientRect().height);
+    //         iconValue.classList.add('rotate-scroll-open');
+    //         iconValue.style.transform = 'rotate(90deg)';
+    //         iconValue.classList.remove('rotate-scroll-close');
+    //     } else {
+    //         window.scrollTo(0, 0);
+    //         iconValue.classList.add('rotate-scroll-close');
+    //         iconValue.style.transform = 'rotate(270deg)';
+    //         iconValue.classList.remove('rotate-scroll-open');
+    //     }
     }
 
     public render() {

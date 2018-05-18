@@ -1,4 +1,5 @@
 import * as React from 'react';
+import transport from '../../modules/Transport/Transport';
 
 import Header from '../../components/Header/Header';
 import Label from '../../components/Label/Label';
@@ -12,6 +13,25 @@ export default class Signup extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
         this.goBack = this.goBack.bind(this);
+        this.registerUser = this.registerUser.bind(this);
+    }
+
+    public registerUser() {
+        const form: any = {
+            email: 'a',
+            login: 'a',
+            password: 'a'
+        };
+
+        transport.doPost('/signup', form)
+            .then(
+                (response) => {
+                    console.log(response);
+                },
+                (error) => {
+                  console.log(error.message);
+                }
+            );
     }
 
     public render() {
@@ -51,7 +71,7 @@ export default class Signup extends React.Component<any, any> {
                                     type='password'
                                     placeholder='Repeat password'
                                 />
-                                <Button className='login-button' text='Sign up'/>
+                                <Button onClick={this.registerUser} className='login-button' text='Sign up'/>
                             </div>
                         </form>
                     </div>
@@ -63,5 +83,10 @@ export default class Signup extends React.Component<any, any> {
     private goBack() {
         const { history } = this.props;
         history.push('/');
+    }
+
+    private goAuth() {
+        const { history } = this.props;
+        history.push('/me');
     }
 }

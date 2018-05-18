@@ -15,8 +15,8 @@ export default class Menu extends React.Component<IProps, any> {
         const {className, buttons}: any = this.props;
         return (
             <div className={'menu ' + className}>
-                {buttons.map((button) => {
-                    return <MenuPoint onClick={button.onClick} text={button.text} />;
+                {buttons.map((button, index) => {
+                    return <MenuPoint key={index} onClick={button.onClick} text={button.text} />;
                 })}
             </div>
         );

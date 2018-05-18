@@ -8,12 +8,33 @@ import Form from '../../components/Form/Form';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 import Image from '../../components/Image/Image';
+import transport from "../../modules/Transport/Transport";
 
 export default class Login extends React.Component<any, any> {
 
     constructor(props: any) {
         super(props);
         this.goBack = this.goBack.bind(this);
+        this.loginUser = this.loginUser.bind(this);
+    }
+
+    public loginUser() {
+        const { history } = this.props;
+        const form: any = {
+            login: 'a',
+            password: 'a'
+        };
+
+        transport.doPost('/signin', form)
+            .then(
+                (response) => {
+                    console.log(response);
+                    history.push('/me');
+                },
+                (error) => {
+                    console.log(error.message);
+                }
+            );
     }
 
     public render() {
@@ -43,7 +64,7 @@ export default class Login extends React.Component<any, any> {
                                     type='password'
                                     placeholder='Password'
                                 />
-                                <Button className='login-button' text='Sign In'/>
+                                <Button onClick={this.loginUser} className='login-button' text='Sign In'/>
                             </div>
                         </form>
                     </div>

@@ -6,18 +6,22 @@ import {createBrowserHistory} from 'history';
 import MainPage from './app/containers/MainPage/MainPage';
 import Login from './app/containers/Login/Login';
 import Signup from './app/containers/Signup/Signup';
+import Authorized from './app/containers/Authorized/Authorized';
+import configureStore from './app/store/store';
 
 import './static/css/main.scss';
 
+const store = configureStore({});
 const history = createBrowserHistory();
 
 const App = () => (
-    <Provider>
+    <Provider store={ store }>
         <Router history={ history }>
             <Switch>
-                <Route exact path={ '/' } component={ MainPage }/>
-                <Route path={ '/login' } component={ Login }/>
+                <Route exact path={ '/' } component={ MainPage } />
+                <Route path={ '/login' } component={ Login } />
                 <Route path={ '/signup' } component={ Signup } />
+                <Route path={ '/me' } component={ Authorized } />
             </Switch>
         </Router>
     </Provider>
