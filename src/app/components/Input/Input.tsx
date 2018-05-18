@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import './Input.scss';
 
-interface Props {
+interface IProps {
     blockClass?: string;
     inputName?: string;
     type?: string;
@@ -11,10 +11,9 @@ interface Props {
     value?: string;
 }
 
-//TODO handlers onblur, onfocus
-export default class Input extends React.Component<Props, any> {
+export default class Input extends React.Component<IProps, any> {
 
-    render() {
+    public render(): JSX.Element {
         const {blockClass, inputName, type, inputClass, placeholder, value}: any = this.props;
         return (
             <div className={'input-block ' + blockClass}>

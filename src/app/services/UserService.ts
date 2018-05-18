@@ -12,7 +12,7 @@ class UserService {
      * Проверка авторизации пользователя
      * @return {PromiseLike<boolean> | Promise<boolean>}
      */
-    public checkSession() {
+    public checkSession(): any {
         if (this.isAuthorized === undefined) {
             return transport.doGet('/isauthorized').then(
                 (response) => {
@@ -29,7 +29,7 @@ class UserService {
     /**
      * Установка флага авторизованного пользователя
      */
-    public userLogin() {
+    public userLogin(): void {
         this.isAuthorized = true;
     }
 
@@ -37,10 +37,10 @@ class UserService {
      * Сброс флага авторизованного пользователя
      * Удаление отрендеренных вью пользователя
      */
-    public userLogout() {
+    public userLogout(): void {
         this.isAuthorized = false;
     }
 }
 
-const userService = new UserService();
+const userService: any = new UserService();
 export default userService;

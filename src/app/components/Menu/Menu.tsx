@@ -10,8 +10,7 @@ interface IProps {
 
 export default class Menu extends React.Component<IProps, any> {
 
-    public render() {
-        // debugger;
+    public render(): JSX.Element {
         const {className, buttons}: any = this.props;
         return (
             <div className={'menu ' + className}>

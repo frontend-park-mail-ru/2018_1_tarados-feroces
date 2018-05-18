@@ -2,14 +2,14 @@ import * as React from 'react';
 
 import './Image.scss';
 
-interface Props {
+interface IProps {
     className?: string;
     src?: string;
 }
 
-export default class Image extends React.Component<Props, any> {
+export default class Image extends React.Component<IProps, any> {
 
-    public render() {
+    public render(): JSX.Element {
         const {className, src}: any = this.props;
         return (
             <img className={className} src={src}/>

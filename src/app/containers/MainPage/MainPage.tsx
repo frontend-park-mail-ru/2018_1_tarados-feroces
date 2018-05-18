@@ -32,7 +32,7 @@ export default class MainPage extends React.Component<any, any> {
     //     }
     }
 
-    public render() {
+    public render(): JSX.Element {
         const buttons: any = [
             {text: 'Play'},
             {text: 'Login', onClick: this.goLogin},

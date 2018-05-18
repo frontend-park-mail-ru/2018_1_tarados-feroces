@@ -2,15 +2,14 @@ import * as React from 'react';
 
 import './Label.scss';
 
-interface Props {
+interface IProps {
     className?: string;
     text?: string;
 }
 
-//TODO handlers onblur, onfocus
-export default class Label extends React.Component<Props, any> {
+export default class Label extends React.Component<IProps, any> {
 
-    render() {
+    public render(): JSX.Element {
         const {className, text}: any = this.props;
         return (
             <div className={'label ' + className}>

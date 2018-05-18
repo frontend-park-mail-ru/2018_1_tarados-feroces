@@ -2,15 +2,14 @@ import * as React from 'react';
 
 import './InputFile.scss';
 
-interface Props {
+interface IProps {
     className?: string;
     fileClass?: string;
 }
 
-//TODO handlers onblur, onfocus
-export default class InputFile extends React.Component<Props, any> {
+export default class InputFile extends React.Component<IProps, any> {
 
-    render() {
+    public render(): JSX.Element {
         const {className, fileClass}: any = this.props;
         return (
             <div className={'file-upload ' + className}>

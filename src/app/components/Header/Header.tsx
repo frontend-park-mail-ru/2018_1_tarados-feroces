@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import './Header.scss';
+
 import UserInfo from '../UserInfo/UserInfo';
 import Logo from '../Logo/Logo';
 

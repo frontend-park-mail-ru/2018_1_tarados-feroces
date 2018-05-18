@@ -9,8 +9,11 @@ import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 import Image from '../../components/Image/Image';
 import transport from "../../modules/Transport/Transport";
+import {bindActionCreators} from "redux";
+import {connect} from "react-redux";
+import * as userActions from "../../actions/UserActions";
 
-export default class Login extends React.Component<any, any> {
+class Login extends React.Component<any, any> {
 
     constructor(props: any) {
         super(props);
@@ -18,7 +21,7 @@ export default class Login extends React.Component<any, any> {
         this.loginUser = this.loginUser.bind(this);
     }
 
-    public loginUser() {
+    public loginUser(): void {
         const { history } = this.props;
         const form: any = {
             login: 'a',
@@ -27,17 +30,27 @@ export default class Login extends React.Component<any, any> {
 
         transport.doPost('/signin', form)
             .then(
-                (response) => {
-                    console.log(response);
-                    history.push('/me');
+                (response: any) => {
+                    const { setUser } = this.props.userActions;
+                    transport.doGet('/user')
+                        .then(
+                            (response: any) => {
+                                console.log(response);
+                                setUser(response);
+                                history.push('/me');
+                            },
+                            (reject: any) => {
+                                console.log('Can`t get user info:(');
+                            }
+                        );
                 },
-                (error) => {
+                (error: any) => {
                     console.log(error.message);
                 }
             );
     }
 
-    public render() {
+    public render(): JSX.Element {
         return (
             <div className='main-page'>
                 <Header className='main-page__header'>
@@ -45,6 +58,9 @@ export default class Login extends React.Component<any, any> {
                         <div className='header-logo-content'/>
                     </div>
                 </Header>
+
+                {store.isLoading && <Preloader></Preloader>}
+                {!store.isLoading && <Preloader></Preloader>}
 
                 <div className='form-block login'>
                     <div className='form-block-content'>
@@ -73,8 +89,22 @@ export default class Login extends React.Component<any, any> {
         );
     }
 
-    private goBack() {
+    private goBack(): void {
         const { history } = this.props;
         history.push('/');
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        userActions: bindActionCreators(userActions, dispatch)
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

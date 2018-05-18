@@ -16,7 +16,7 @@ export default class Signup extends React.Component<any, any> {
         this.registerUser = this.registerUser.bind(this);
     }
 
-    public registerUser() {
+    public registerUser(): void {
         const form: any = {
             email: 'a',
             login: 'a',
@@ -25,16 +25,16 @@ export default class Signup extends React.Component<any, any> {
 
         transport.doPost('/signup', form)
             .then(
-                (response) => {
+                (response: any) => {
                     console.log(response);
                 },
-                (error) => {
+                (error: any) => {
                   console.log(error.message);
                 }
             );
     }
 
-    public render() {
+    public render(): JSX.Element {
         return (
             <div className='main-page'>
                 <Header className='main-page__header'>
@@ -80,13 +80,13 @@ export default class Signup extends React.Component<any, any> {
         );
     }
 
-    private goBack() {
-        const { history } = this.props;
+    private goBack(): void {
+        const { history }: any = this.props;
         history.push('/');
     }
 
-    private goAuth() {
-        const { history } = this.props;
+    private goAuth(): void {
+        const { history }: any = this.props;
         history.push('/me');
     }
 }

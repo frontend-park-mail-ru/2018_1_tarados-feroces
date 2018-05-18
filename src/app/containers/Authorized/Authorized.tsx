@@ -17,20 +17,12 @@ import transport from '../../modules/Transport/Transport';
 
 class Authorized extends React.Component<any, any> {
 
-    public componentWillMount() {
-        const { setUser } = this.props.userActions;
-        transport.doGet('/user')
-            .then(
-                (response) => {
-                    setUser(response);
-                },
-                (reject) => {
-                    console.log('Can`t get user info:(');
-                }
-            );
-    }
+    // public componentWillMount() {
+    //
+    // }
 
-    public render() {
+    public render(): JSX.Element {
+        console.log(this.props);
         const { user } = this.props;
 
         return (
@@ -66,14 +58,14 @@ class Authorized extends React.Component<any, any> {
                                         <p className='friends-header-point-value'>People</p>
                                     </div>
                                 </div>
-                                <Friend avatar='../images/user-logo.jpg' login='Kabachok'/>
-                                <Friend avatar='../images/user-logo.jpg' login='Kabachok'/>
-                                <Friend avatar='../images/user-logo.jpg' login='Kabachok'/>
-                                <Friend avatar='../images/user-logo.jpg' login='Kabachok'/>
+                                <Friend avatar='../static/imgs/user-logo.jpg' login='Kabachok'/>
+                                <Friend avatar='../static/imgs/user-logo.jpg' login='Kabachok'/>
+                                <Friend avatar='../static/imgs/user-logo.jpg' login='Kabachok'/>
+                                <Friend avatar='../static/imgs/user-logo.jpg' login='Kabachok'/>
                             </div>
                         </div>
 
-                        <Party className='content-right-party'/>
+                        {/*<Party className='content-right-party'/>*/}
                     </div>
                 </div>
             </div>
