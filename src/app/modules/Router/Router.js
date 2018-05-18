@@ -44,6 +44,7 @@ class Router {
      * Обновляет и перерисовывает вью в DOM
      * @param {Object} context
      * @param {string} url
+     * @param {Object} props
      */
     // TODO
     viewUpdate(url, context) {
@@ -73,7 +74,7 @@ class Router {
         url = this.checkAuth(url);
         if (this.urls[url].insertElemId !== 'root' && !this.urls['/user/'].loaded) {
             this.route('/user/').then(
-                (response) => {
+                (resolve) => {
                     this.route(url);
                 }
             );
@@ -101,7 +102,7 @@ class Router {
         if (!urlObject.loaded) {
             urlObject.loaded = true;
             return urlObject.view.preRender().then(
-                (response) => {
+                (resolve) => {
                     urlObject.view.__render();
                     insertionElement.appendChild(urlObject.view.element);
                     urlObject.view.getDOMDependensies();

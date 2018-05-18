@@ -29,19 +29,18 @@
         </div>
 
         <div class="auth-page__content-right">
-
             <div class="auth-page__content-right-hide">
                 <HideFriendsButton click="(){hideFriends();}"></HideFriendsButton>
                 <div class="friends">
                     <div class="friends-header">
-                        <div class="friends-header-point">
+                        <div class="friends-header-point infriends" click="(){router.getLastView().context.inFreinds = true;}">
                             <p class="friends-header-point-value">Friends</p>
                         </div>
-                        <div class="friends-header-point">
+                        <div class="friends-header-point inpeople" click="(){router.getLastView().context.inFreinds = false;}">
                             <p class="friends-header-point-value">People</p>
                         </div>
                     </div>
-                    <PeopleSearch></PeopleSearch>
+                    <PeopleSearch click="(){search();}"></PeopleSearch>
                     <div class="friends-data">
                         {{#if isFriends}}
                             {{#each friends}}
@@ -58,5 +57,7 @@
 
             <Party class="content-right-party" partyUsers="{{partyUsers}}"></Party>
         </div>
+
+
     </div>
 </div>

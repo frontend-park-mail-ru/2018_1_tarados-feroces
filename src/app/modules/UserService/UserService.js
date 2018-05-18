@@ -12,7 +12,10 @@ class UserService {
         return httpModule.doGet('/user').then(
             (response) => {
                 this.data = response;
-                console.log(this.data);
+                console.log('data done');
+            },
+            (reject) => {
+                console.log(reject);
             }
         );
     }
@@ -52,6 +55,7 @@ class UserService {
      * Удаление отрендеренных вью пользователя
      */
     userLogout() {
+        this.data = {};
         this.isAuthorized = false;
         router.clearUrlElement('/user/');
         router.clearUrlElement('/leaderboard/');

@@ -8,29 +8,33 @@ import {WS_ADDRESS} from '../../modules/HttpModule/HttpConstants';
 
 export default class AuthorizedView extends BaseView {
 
-    //TODO : get friends or all users
     update(context = {}) {
-        getPeople().then(
+        const name = document.querySelector('search__input').textContent;
+        if (this.context.inFriends) {
+            return httpModule.doPost('/user/friends', {login: this.context.login, template: name}).then(
+                (response) => {
+                    this.context.friends = response.data;
+                }
+            );
+        }
+
+        return httpModule.doPost('/allusers', {template: name}).then(
             (response) => {
-                this.context.people = response.people
+                this.context.people = response.data;
             }
         );
     }
 
-    //TODO : WSs or HTTPs?
-    search(name) {
-
-    }
-
     preRender() {
-
+        console.log(userService.data);
         this.context = userService.data;
+        this.context.inFriends = true;
         if (!this.context.avatar.length) {
             this.context.avatar = '../images/user-logo.jpg';
         }
         httpModule.doPost('/user/friends', {login: this.context.login}).then(
             (response) => {
-                this.context.friends = response.friends;
+                this.context.friends = response.data;
             }
         );
     }
@@ -51,10 +55,6 @@ window.signOut = () => {
             router.go('/');
         }
     );
-};
-
-window.getPeople = () => {
-    return httpModule.doPost('/people');
 };
 
 window.hideFriends = () => {
@@ -109,5 +109,9 @@ window.play = () => {
         (message) => console.log(message)
     );
     // Ws1.sendMessage('Sanya hello!');
+};
+
+window.search = () => {
+    router.viewUpdate('/user/', {});
 };
 
