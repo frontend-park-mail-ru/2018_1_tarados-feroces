@@ -128,7 +128,7 @@ window.changeFriendsOrPeople = () => {
 
 window.addToFriends = () => {
     console.log(router.getLastView().context.currentFriend);
-    httpModule.doPost('/user/addfriend', {login: router.getLastView().context.currentFriend})
+    httpModule.doPost('/user/addfriend', {login: router.getLastView().context.currentFriend});
 };
 
 window.play = () => {
@@ -158,7 +158,6 @@ window.search = () => {
             router.viewUpdate('/user/', view.context);
         }
     );
-
 
 };
 
