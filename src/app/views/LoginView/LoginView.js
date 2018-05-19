@@ -32,7 +32,7 @@ window.validateLogin = () => {
                 return userService.init();
             },
             (error) => {
-                alert(error);
+                console.log(error);
             }
         ).then(
             (resolve) => {

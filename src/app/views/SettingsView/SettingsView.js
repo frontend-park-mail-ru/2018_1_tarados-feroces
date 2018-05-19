@@ -12,10 +12,12 @@ export default class SettingsView extends BaseView {
         if (!this.context.avatar.length) {
             this.context.avatar = '../images/user-logo.jpg';
         }
+
+        return super.preRender();
     }
 
     render() {
-        this.template = require('./SettingsView.handlebars');
+        return this.template = require('./SettingsView.handlebars');
     }
 }
 

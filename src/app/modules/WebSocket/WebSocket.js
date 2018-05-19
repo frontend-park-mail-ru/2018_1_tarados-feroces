@@ -1,5 +1,7 @@
-export default class Ws {
-    constructor(address, onmessage, onclose) {
+'use strict';
+
+class Ws {
+    open(address, onmessage, onclose) {
         self.address = address;
         this.ws = new WebSocket(self.address);
         this.ws.onopen = () => {
@@ -16,4 +18,13 @@ export default class Ws {
             this.ws.send(JSON.stringify({message}));
         }
     }
+
+    close(code, reason) {
+        if (this.ws && this.ws.readyState === WebSocket.OPEN) {
+            this.ws.close(code, reason);
+        }
+    }
 }
+
+const ws = new Ws();
+export default ws;

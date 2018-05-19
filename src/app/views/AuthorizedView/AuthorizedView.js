@@ -15,6 +15,7 @@ export default class AuthorizedView extends BaseView {
     }
 
     preRender() {
+
         console.log(userService.data);
         this.context = userService.data;
         this.context.inFriends = true;
@@ -127,15 +128,11 @@ window.changeFriendsOrPeople = () => {
 
 window.addToFriends = () => {
     console.log(router.getLastView().context.currentFriend);
+    httpModule.doPost('/user/addfriend', {login: router.getLastView().context.currentFriend})
 };
 
 window.play = () => {
-    const ws1 = new Ws(
-        WS_ADDRESS,
-        (message) => console.log(message),
-        (message) => console.log(message)
-    );
-    ws1.sendMessage(JSON.stringify({cls: 'aaf', message: 'Sanya hello!'}));
+
 };
 
 window.search = () => {
