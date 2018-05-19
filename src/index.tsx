@@ -1,33 +1,18 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
-import {Router, Route, Switch} from 'react-router';
-import {createBrowserHistory} from 'history';
-import MainPage from './app/containers/MainPage/MainPage';
-import Login from './app/containers/Login/Login';
-import Signup from './app/containers/Signup/Signup';
-import Authorized from './app/containers/Authorized/Authorized';
-import configureStore from './app/store/store';
-
-import './static/css/main.scss';
+import App from './app/containers/App/App';
+import {Provider} from "react-redux";
+import configureStore from "./app/store/store";
 
 const store = configureStore({});
-const history = createBrowserHistory();
 
-const App = () => (
-    <Provider store={ store }>
-        <Router history={ history }>
-            <Switch>
-                <Route exact path={ '/' } component={ MainPage } />
-                <Route path={ '/login' } component={ Login } />
-                <Route path={ '/signup' } component={ Signup } />
-                <Route path={ '/me' } component={ Authorized } />
-            </Switch>
-        </Router>
+const App1 = () => (
+    <Provider store = { store }>
+        <App />
     </Provider>
 );
 
 ReactDOM.render(
-    <App />,
+    <App1 />,
     document.getElementById('root')
 );

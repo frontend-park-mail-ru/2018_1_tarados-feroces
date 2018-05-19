@@ -59,9 +59,6 @@ class Login extends React.Component<any, any> {
                     </div>
                 </Header>
 
-                {store.isLoading && <Preloader></Preloader>}
-                {!store.isLoading && <Preloader></Preloader>}
-
                 <div className='form-block login'>
                     <div className='form-block-content'>
                         <div onClick={this.goBack} className='form-block-content__back'>

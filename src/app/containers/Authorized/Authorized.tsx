@@ -9,11 +9,13 @@ import FriendAction from '../../components/FriendAction/FriendAction';
 import HideFriendsButton from '../../components/HideFriendsButton/HideFriendsButton';
 import Friend from '../../components/Friend/Friend';
 import Party from '../../components/Party/Party';
+import Loading from '../../components/Loading/Loading';
 
 import {connect} from 'react-redux';
 import * as userActions from '../../actions/UserActions';
 import {bindActionCreators} from 'redux';
 import transport from '../../modules/Transport/Transport';
+import {Redirect} from "react-router";
 
 class Authorized extends React.Component<any, any> {
 
@@ -22,8 +24,17 @@ class Authorized extends React.Component<any, any> {
     // }
 
     public render(): JSX.Element {
-        console.log(this.props);
         const { user } = this.props;
+
+        if (user.isAuthorized === null) {
+            return (
+                <Loading />
+            );
+        } else if (user.isAuthorized === false) {
+            return (
+                <Redirect to={'/'} />
+            );
+        }
 
         return (
             <div className='auth-page'>
