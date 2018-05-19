@@ -24,31 +24,41 @@
         </div>
 
         <div class="friends-modal hidden">
-            <FriendAction>Invite</FriendAction>
-            <FriendAction>Chat</FriendAction>
+            {{#if inFriends}}
+                <FriendAction click="(event){window.inviteToParty();}">Invite</FriendAction>
+                <FriendAction>Chat</FriendAction>
+            {{else}}
+                <FriendAction click="(event){window.addToFriends();}">Add to friends</FriendAction>
+            {{/if}}
         </div>
 
         <div class="auth-page__content-right">
-
             <div class="auth-page__content-right-hide">
                 <HideFriendsButton click="(){hideFriends();}"></HideFriendsButton>
                 <div class="friends">
                     <div class="friends-header">
-                        <div class="friends-header-point">
+                        <div class="friends-header-point" click="(){changeFriendsOrPeople(); }">
                             <p class="friends-header-point-value">Friends</p>
                         </div>
-                        <div class="friends-header-point">
+                        <div class="friends-header-point" click="(){changeFriendsOrPeople();}">
                             <p class="friends-header-point-value">People</p>
                         </div>
                     </div>
-                    <Friend avatar="../images/user-logo.jpg" login="Kabachok" click="(event){showFriendActions(event);}"></Friend>
-                    <Friend avatar="../images/user-logo.jpg" login="Kabachok" click="(event){showFriendActions(event);}"></Friend>
-                    <Friend avatar="../images/user-logo.jpg" login="Kabachok" click="(event){showFriendActions(event);}"></Friend>
-                    <Friend avatar="../images/user-logo.jpg" login="Kabachok" click="(event){showFriendActions(event);}"></Friend>
+                    <PeopleSearch>
+                        <Image class="search__button" src="../images/search.png" click="(){search();}"></Image>
+                    </PeopleSearch>
+
+                    <div class="friends-data">
+                    {{#each people}}
+                        <Friend avatar="{{this.avatar}}" login="{{this.login}}" click="(event){showFriendActions(event);}"></Friend>
+                    {{/each}}
+                    </div>
                 </div>
             </div>
 
-            <Party class="content-right-party"></Party>
+            <Party class="content-right-party" partyUsers="{{partyUsers}}"></Party>
         </div>
+
+
     </div>
 </div>

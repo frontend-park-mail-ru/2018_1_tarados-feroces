@@ -63,7 +63,6 @@ class HttpModule {
                 if (response.status >= 400) {
                     throw response;
                 }
-
                 return response.json();
             });
     }

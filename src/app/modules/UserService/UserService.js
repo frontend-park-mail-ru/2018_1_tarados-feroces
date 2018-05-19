@@ -1,11 +1,35 @@
 import httpModule from '../HttpModule/HttpModule';
 import router from '../Router/Router';
+import ws from "../WebSocket/WebSocket";
+import {WS_ADDRESS} from "../HttpModule/HttpConstants";
 
 /**
  * Класс для работы с сессией пользователя
  * @module UserService
  */
 class UserService {
+
+    init() {
+        ws.open(
+            WS_ADDRESS,
+            (message) => console.log(message),
+            (message) => console.log(message)
+        );
+        this.data = {};
+        return httpModule.doGet('/user').then(
+            (response) => {
+                this.data = response;
+                console.log('data done');
+            },
+            (reject) => {
+                console.log(reject);
+            }
+        );
+    }
+
+    update(data) {
+        this.data = data;
+    }
 
     /**
      * Проверка авторизации пользователя
@@ -30,7 +54,9 @@ class UserService {
      * Установка флага авторизованного пользователя
      */
     userLogin() {
+
         this.isAuthorized = true;
+
     }
 
     /**
@@ -38,6 +64,9 @@ class UserService {
      * Удаление отрендеренных вью пользователя
      */
     userLogout() {
+        ws.close(1000, 'Logout');
+
+        this.data = {};
         this.isAuthorized = false;
         router.clearUrlElement('/user/');
         router.clearUrlElement('/leaderboard/');

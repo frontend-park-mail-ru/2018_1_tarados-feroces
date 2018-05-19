@@ -26,13 +26,17 @@ window.validateLogin = () => {
                 login: blocks[0].querySelector('input').value,
                 password: blocks[1].querySelector('input').value,
             }).then(
-            (responseText) => {
+            (response) => {
                 userService.userLogin();
-                router.go('/user/');
                 blocks.forEach((item) => item.querySelector('input').value = '');
+                return userService.init();
             },
             (error) => {
-                alert(error);
+                console.log(error);
+            }
+        ).then(
+            (resolve) => {
+                router.go('/user/');
             }
         );
     }

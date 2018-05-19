@@ -29,7 +29,10 @@ window.validateRegistration = () => {
             }).then(
             (responseText) => {
                 userService.userLogin();
-                router.go('/user/');
+                userService.init().then(
+                    (response) => {
+                        router.go('/user/');
+                    });
                 blocks.forEach((item) => item.querySelector('input').value = '');
             },
             (error) => {
