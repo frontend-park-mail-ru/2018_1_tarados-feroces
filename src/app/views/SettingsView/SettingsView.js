@@ -2,7 +2,7 @@ import './SettingsView.scss';
 import BaseView from '../BaseView/BaseView';
 import httpModule from '../../modules/HttpModule/HttpModule';
 import router from '../../modules/Router/Router';
-import userService from "../../modules/UserService/UserService";
+import userService from '../../modules/UserService/UserService';
 
 export default class SettingsView extends BaseView {
 

@@ -1,7 +1,7 @@
 import httpModule from '../HttpModule/HttpModule';
 import router from '../Router/Router';
-import ws from "../WebSocket/WebSocket";
-import {WS_ADDRESS} from "../HttpModule/HttpConstants";
+import ws from '../WebSocket/WebSocket';
+import {WS_ADDRESS} from '../HttpModule/HttpConstants';
 
 /**
  * Класс для работы с сессией пользователя
