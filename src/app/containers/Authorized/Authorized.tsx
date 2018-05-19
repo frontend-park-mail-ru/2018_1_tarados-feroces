@@ -17,7 +17,11 @@ import {bindActionCreators} from 'redux';
 import transport from '../../modules/Transport/Transport';
 import {Redirect} from "react-router";
 
-class Authorized extends React.Component<any, any> {
+interface IProps {
+    user?: any;
+}
+
+class Authorized extends React.Component<IProps, any> {
 
     // public componentWillMount() {
     //
@@ -26,7 +30,7 @@ class Authorized extends React.Component<any, any> {
     public render(): JSX.Element {
         const { user } = this.props;
 
-        if (user.isAuthorized === null) {
+        if (user.isAuthorized === undefined) {
             return (
                 <Loading />
             );

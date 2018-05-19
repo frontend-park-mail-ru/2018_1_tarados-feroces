@@ -1,7 +1,5 @@
 const initialState: any = {
-    user: {
-        isAuthorized: null
-    }
+    user: {}
 };
 
 export default function user(state: any = initialState, action: any): any {
