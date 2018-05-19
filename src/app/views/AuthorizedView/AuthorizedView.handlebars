@@ -24,8 +24,12 @@
         </div>
 
         <div class="friends-modal hidden">
-            <FriendAction>Invite</FriendAction>
-            <FriendAction>Chat</FriendAction>
+            {{#if inFriends}}
+                <FriendAction click="(event){window.inviteToParty();}">Invite</FriendAction>
+                <FriendAction>Chat</FriendAction>
+            {{else}}
+                <FriendAction click="(event){window.addToFriends();}">Add to friends</FriendAction>
+            {{/if}}
         </div>
 
         <div class="auth-page__content-right">
@@ -33,24 +37,21 @@
                 <HideFriendsButton click="(){hideFriends();}"></HideFriendsButton>
                 <div class="friends">
                     <div class="friends-header">
-                        <div class="friends-header-point infriends" click="(){router.getLastView().context.inFreinds = true;}">
+                        <div class="friends-header-point" click="(){changeFriendsOrPeople(); }">
                             <p class="friends-header-point-value">Friends</p>
                         </div>
-                        <div class="friends-header-point inpeople" click="(){router.getLastView().context.inFreinds = false;}">
+                        <div class="friends-header-point" click="(){changeFriendsOrPeople();}">
                             <p class="friends-header-point-value">People</p>
                         </div>
                     </div>
-                    <PeopleSearch click="(){search();}"></PeopleSearch>
+                    <PeopleSearch>
+                        <Image class="search__button" src="../images/search.png" click="(){search();}"></Image>
+                    </PeopleSearch>
+
                     <div class="friends-data">
-                        {{#if isFriends}}
-                            {{#each friends}}
-                                <Friend avatar="{{this.avatar}}" login="{{this.login}}" click="(event){showFriendActions(event);}"></Friend>
-                            {{/each}}
-                        {{else}}
-                            {{#each people}}
-                                <Friend avatar="{{this.avatar}}" login="{{this.login}}" click="(event){showFriendActions(event);}"></Friend>
-                            {{/each}}
-                        {{/if}}
+                    {{#each people}}
+                        <Friend avatar="{{this.avatar}}" login="{{this.login}}" click="(event){showFriendActions(event);}"></Friend>
+                    {{/each}}
                     </div>
                 </div>
             </div>

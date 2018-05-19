@@ -36,7 +36,6 @@ window.validateLogin = () => {
             }
         ).then(
             (resolve) => {
-                console.log('go');
                 router.go('/user/');
             }
         );

@@ -104,6 +104,7 @@ class Router {
             return urlObject.view.preRender().then(
                 (resolve) => {
                     urlObject.view.__render();
+                    console.log(urlObject.view.context);
                     insertionElement.appendChild(urlObject.view.element);
                     urlObject.view.getDOMDependensies();
                     this.pageUpdate(urlObject);

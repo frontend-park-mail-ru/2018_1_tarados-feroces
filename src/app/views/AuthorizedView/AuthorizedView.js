@@ -9,38 +9,40 @@ import {WS_ADDRESS} from '../../modules/HttpModule/HttpConstants';
 export default class AuthorizedView extends BaseView {
 
     update(context = {}) {
-        const name = document.querySelector('search__input').textContent;
-        if (this.context.inFriends) {
-            return httpModule.doPost('/user/friends', {login: this.context.login, template: name}).then(
-                (response) => {
-                    this.context.friends = response.data;
-                }
-            );
-        }
 
-        return httpModule.doPost('/allusers', {template: name}).then(
-            (response) => {
-                this.context.people = response.data;
-            }
-        );
+        this.context = context;
+        // console.log(context);
     }
 
     preRender() {
         console.log(userService.data);
         this.context = userService.data;
         this.context.inFriends = true;
-        if (!this.context.avatar.length) {
+
+        if (!this.context.avatar) {
             this.context.avatar = '../images/user-logo.jpg';
         }
-        httpModule.doPost('/user/friends', {login: this.context.login}).then(
+
+        return httpModule.doPost('/user/friends', {prefix: ''}).then(
             (response) => {
-                this.context.friends = response.data;
+                // console.log(response);
+                if ('message' in response) {
+                    this.context.people = [];
+                } else {
+                    this.context.people = response;
+                }
+
+                this.context.people.forEach((item) => {
+                    if (!item.avatar) {
+                        item.avatar = '../images/user-logo.jpg';
+                    }
+                });
             }
         );
     }
 
     render() {
-        this.template = require('./AuthorizedView.handlebars');
+        return this.template = require('./AuthorizedView.handlebars');
     }
 }
 
@@ -76,11 +78,13 @@ window.hideFriends = () => {
 window.showFriendActions = (event) => {
     const modal = document.querySelector('.friends-modal');
     const icon = event.currentTarget;
-    console.log(modal);
+    // console.log(modal);
     console.log(icon);
+    router.getLastView().context.currentFriend = icon.querySelector('.friend__login-value').textContent;
+
     const x = icon.getBoundingClientRect().x;
     const y = icon.getBoundingClientRect().y;
-    console.log(icon.left);
+    // console.log(icon.left);
     modal.style.left = `${x}px`;
     modal.style.top = `${y + icon.getBoundingClientRect().height}px`;
     modal.classList.toggle('hidden');
@@ -102,16 +106,62 @@ window.goToNews = () => {
     router.go('/news/');
 };
 
+window.inviteToParty = () => {
+    console.log(router.getLastView().context.currentFriend);
+    // const ws1 = new Ws(
+    //     WS_ADDRESS,
+    //     (message) => console.log(message),
+    //     (message) => console.log(message)
+    // );
+    // ws1.sendMessage(JSON.stringify({cls: 'aaf', message: 'Sanya hello!'}));
+};
+
+window.changeFriendsOrPeople = () => {
+    if (router.getLastView().context.inFriends) {
+        router.getLastView().context.inFriends = false;
+    } else {
+        router.getLastView().context.inFriends = true;
+    }
+    window.search();
+};
+
+window.addToFriends = () => {
+    console.log(router.getLastView().context.currentFriend);
+};
+
 window.play = () => {
-    const Ws1 = new Ws(
+    const ws1 = new Ws(
         WS_ADDRESS,
         (message) => console.log(message),
         (message) => console.log(message)
     );
-    // Ws1.sendMessage('Sanya hello!');
+    ws1.sendMessage(JSON.stringify({cls: 'aaf', message: 'Sanya hello!'}));
 };
 
 window.search = () => {
-    router.viewUpdate('/user/', {});
+    const name = document.querySelector('.search__input').value;
+    console.log(name);
+    const view = router.getLastView();
+    const url = view.context.inFriends ? '/user/friends' : '/allusers';
+
+    httpModule.doPost(url, {prefix: name}).then(
+        (response) => {
+            if ('message' in response) {
+                view.context.people = [];
+            } else {
+                response.forEach((item) => {
+                    if (!item.avatar) {
+                        item.avatar = '../images/user-logo.jpg';
+                    }
+                });
+                view.context.people = response;
+                console.log(response);
+            }
+            // console.log(view.context);
+            router.viewUpdate('/user/', view.context);
+        }
+    );
+
+
 };
 
