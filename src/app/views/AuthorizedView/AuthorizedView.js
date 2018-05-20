@@ -110,35 +110,38 @@ window.goToNews = () => {
     router.go('/news/');
 };
 
-window.inviteToParty = () => {
-    console.log(router.getLastView().context.currentFriend);
-
-};
-
-window.changeFriendsOrPeople = () => {
-    if (router.getLastView().context.inFriends) {
-        router.getLastView().context.inFriends = false;
-    } else {
-        router.getLastView().context.inFriends = true;
-    }
+window.changeFriendsOrPeople = (data) => {
+    router.getLastView().context.inFriends = data;
     window.search();
 };
 
 window.showInvite = (message) => {
     router.getLastView().context.request = message;
     document.querySelector('.confirm').classList.remove('hidden');
-    // document.querySelector('.friends-modal').classList.add('hidden');
+    document.querySelector('.friends-modal').classList.add('hidden');
 };
 
-window.closeInvite = () => {
+const closeInvite = () => {
     document.querySelector('.confirm').classList.add('hidden');
 };
 
 window.addToFriends = () => {
-    console.log(router.getLastView().context.currentFriend);
-    // ws.sendMessage({cls: 'aaf'});
-    // showInvite({});
-    // httpModule.doPost('/user/addfriend', {login: router.getLastView().context.currentFriend});
+    httpModule.doPost('/user/addfriend', {login: router.getLastView().context.currentFriend});
+};
+
+window.inviteToParty = () => {
+    httpModule.doPost('/party/invite', {login: router.getLastView().context.currentFriend});
+};
+
+window.acceptFriend = (accept) => {
+    closeInvite();
+    const type = router.getLastView().context.request.type;
+    accept && httpModule.doPost(`/user/${type}/response`,
+        {answer: 'accept', request_id: router.getLastView().context.request.request_id}).then(
+        (resolve) => {
+            search();
+        }
+    );
 };
 
 window.play = () => {
@@ -147,7 +150,6 @@ window.play = () => {
 
 window.search = () => {
     const name = document.querySelector('.search__input').value;
-    console.log(name);
     const view = router.getLastView();
     const url = view.context.inFriends ? '/user/friends' : '/allusers';
 
@@ -167,6 +169,5 @@ window.search = () => {
             router.viewUpdate('/user/', view.context);
         }
     );
-
 };
 

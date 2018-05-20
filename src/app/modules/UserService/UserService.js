@@ -10,6 +10,12 @@ import {WS_ADDRESS} from '../HttpModule/HttpConstants';
 class UserService {
 
     init() {
+        this.MESSAGES = {
+            ADD_AS_FRIEND: 'aaf',
+            PARTY_INVITE: 'pi',
+            UPDATE_PARTY: 'up'
+        };
+
         this.data = {};
         return httpModule.doGet('/user').then(
             (response) => {
@@ -28,10 +34,19 @@ class UserService {
             (message) => {
                 const data = JSON.parse(message.data);
                 switch (data.cls) {
-                    case 'ping':
+                    case this.MESSAGES.ADD_AS_FRIEND:
+                        data.message = 'New friend request';
+                        data.type = 'friends';
                         showInvite(data);
                         break;
-                    case 'atp':
+                    case this.MESSAGES.PARTY_INVITE:
+                        data.message = 'Invite to party';
+                        data.type = 'party';
+                        showInvite(data);
+                        break;
+                    case this.MESSAGES.UPDATE_PARTY:
+                        data.message = 'Invite to party';
+                        data.type = 'party';
                         showInvite(data);
                         break;
                     default:

@@ -177,6 +177,7 @@
           height: 40px;
           border-bottom: black solid thin;
           background-color: $header-background;
+          
           &-point {
             flex-grow: 1;
             display: flex;
@@ -187,6 +188,11 @@
             &:hover {
               background-color: #1956a8;
             }
+
+            &:active {
+              background-color: #1956a8;
+            }
+
             &-value {
               font-size: 30px;
               color: $blocks-text-color;

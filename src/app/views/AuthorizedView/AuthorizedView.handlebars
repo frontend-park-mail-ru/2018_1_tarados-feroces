@@ -26,7 +26,6 @@
         <div class="friends-modal hidden">
             {{#if inFriends}}
                 <FriendAction click="(event){window.inviteToParty();}">Invite</FriendAction>
-                <FriendAction>Chat</FriendAction>
             {{else}}
                 <FriendAction click="(event){window.addToFriends();}">Add to friends</FriendAction>
             {{/if}}
@@ -37,10 +36,10 @@
                 <HideFriendsButton click="(){hideFriends();}"></HideFriendsButton>
                 <div class="friends">
                     <div class="friends-header">
-                        <div class="friends-header-point" click="(){changeFriendsOrPeople(); }">
+                        <div class="friends-header-point" click="(){changeFriendsOrPeople(true); }">
                             <p class="friends-header-point-value">Friends</p>
                         </div>
-                        <div class="friends-header-point" click="(){changeFriendsOrPeople();}">
+                        <div class="friends-header-point" click="(){changeFriendsOrPeople(false);}">
                             <p class="friends-header-point-value">People</p>
                         </div>
                     </div>
@@ -78,8 +77,8 @@
                 <p class="confirm-modal__info-login">{{login}}</p>
             </div>
             <div class="confirm-modal__accept">
-                <Button click="(){closeInvite()}">Accept</Button>
-                <Button click="(){closeInvite()}">Decline</Button>
+                <Button click="(){acceptFriend(true);}">Accept</Button>
+                <Button click="(){acceptFriend(false);}">Decline</Button>
 
             </div>
         </div>
