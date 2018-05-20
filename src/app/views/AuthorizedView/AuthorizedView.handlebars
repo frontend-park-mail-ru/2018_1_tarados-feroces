@@ -50,15 +50,39 @@
 
                     <div class="friends-data">
                     {{#each people}}
-                        <Friend avatar="{{this.avatar}}" login="{{this.login}}" click="(event){showFriendActions(event);}"></Friend>
+                        <Friend avatar="{{{this.avatar}}}" login="{{this.login}}" click="(event){showFriendActions(event);}"></Friend>
                     {{/each}}
                     </div>
                 </div>
             </div>
 
-            <Party class="content-right-party" partyUsers="{{partyUsers}}"></Party>
+            <Party class="content-right-party">
+                {{#each party}}
+                    <div class="party__friend">
+                        <Image class="party__friend-logo" src="{{{this.avatar}}}"></Image>
+                    </div>
+                {{/each}}
+                <div class="party__invite">
+                    <Image class="party__invite-button" src="../images/add.png"></Image>
+                </div>
+            </Party>
         </div>
 
 
     </div>
+    <ConfirmDialog class="hidden" avatar="{{{request.avatar}}}" login="{{request.login}}" message="{{request.message}}">
+        <div class="confirm-modal">
+            <p class="confirm-modal__message">{{message}}</p>
+            <div class="confirm-modal__info">
+                <Image class="confirm-modal__info-avatar" src="{{{avatar}}}"></Image>
+                <p class="confirm-modal__info-login">{{login}}</p>
+            </div>
+            <div class="confirm-modal__accept">
+                <Button click="(){closeInvite()}">Accept</Button>
+                <Button click="(){closeInvite()}">Decline</Button>
+
+            </div>
+        </div>
+    </ConfirmDialog>
+    <!--<ConfirmDialog class="hidden" avatar="../images/add.png" login="ANDREW" message="New friend request"></ConfirmDialog>-->
 </div>

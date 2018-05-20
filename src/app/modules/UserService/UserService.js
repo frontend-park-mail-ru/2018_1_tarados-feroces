@@ -10,11 +10,6 @@ import {WS_ADDRESS} from '../HttpModule/HttpConstants';
 class UserService {
 
     init() {
-        ws.open(
-            WS_ADDRESS,
-            (message) => console.log(message),
-            (message) => console.log(message)
-        );
         this.data = {};
         return httpModule.doGet('/user').then(
             (response) => {
@@ -24,6 +19,27 @@ class UserService {
             (reject) => {
                 console.log(reject);
             }
+        );
+    }
+
+    openWebSocket() {
+        ws.open(
+            WS_ADDRESS,
+            (message) => {
+                const data = JSON.parse(message.data);
+                switch (data.cls) {
+                    case 'ping':
+                        showInvite(data);
+                        break;
+                    case 'atp':
+                        showInvite(data);
+                        break;
+                    default:
+                        console.log(data);
+                }
+                console.log(message);
+            },
+            (message) => console.log(message)
         );
     }
 

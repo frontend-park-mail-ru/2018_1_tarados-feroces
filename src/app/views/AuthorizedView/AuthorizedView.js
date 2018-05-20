@@ -3,7 +3,7 @@ import BaseView from '../BaseView/BaseView';
 import httpModule from '../../modules/HttpModule/HttpModule';
 import userService from '../../modules/UserService/UserService';
 import router from '../../modules/Router/Router';
-import Ws from '../../modules/WebSocket/WebSocket';
+import ws from '../../modules/WebSocket/WebSocket';
 import {WS_ADDRESS} from '../../modules/HttpModule/HttpConstants';
 
 export default class AuthorizedView extends BaseView {
@@ -15,10 +15,13 @@ export default class AuthorizedView extends BaseView {
     }
 
     preRender() {
-
+        userService.openWebSocket();
         console.log(userService.data);
         this.context = userService.data;
         this.context.inFriends = true;
+        this.context.party = [{avatar: '../images/user-logo.jpg'}];
+
+        this.context.request = {avatar: '../images/user-logo.jpg', login: 'Andrew', message: 'New friend request'};
 
         if (!this.context.avatar) {
             this.context.avatar = '../images/user-logo.jpg';
@@ -109,12 +112,7 @@ window.goToNews = () => {
 
 window.inviteToParty = () => {
     console.log(router.getLastView().context.currentFriend);
-    // const ws1 = new Ws(
-    //     WS_ADDRESS,
-    //     (message) => console.log(message),
-    //     (message) => console.log(message)
-    // );
-    // ws1.sendMessage(JSON.stringify({cls: 'aaf', message: 'Sanya hello!'}));
+
 };
 
 window.changeFriendsOrPeople = () => {
@@ -126,9 +124,21 @@ window.changeFriendsOrPeople = () => {
     window.search();
 };
 
+window.showInvite = (message) => {
+    router.getLastView().context.request = message;
+    document.querySelector('.confirm').classList.remove('hidden');
+    // document.querySelector('.friends-modal').classList.add('hidden');
+};
+
+window.closeInvite = () => {
+    document.querySelector('.confirm').classList.add('hidden');
+};
+
 window.addToFriends = () => {
     console.log(router.getLastView().context.currentFriend);
-    httpModule.doPost('/user/addfriend', {login: router.getLastView().context.currentFriend});
+    // ws.sendMessage({cls: 'aaf'});
+    // showInvite({});
+    // httpModule.doPost('/user/addfriend', {login: router.getLastView().context.currentFriend});
 };
 
 window.play = () => {
@@ -154,7 +164,6 @@ window.search = () => {
                 view.context.people = response;
                 console.log(response);
             }
-            // console.log(view.context);
             router.viewUpdate('/user/', view.context);
         }
     );

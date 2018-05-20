@@ -11,9 +11,9 @@ class Ws {
         };
     }
 
-    sendMessage(message) {
+    sendMessage(cls, message) {
         if (message !== null && typeof message === 'object') {
-            this.ws.send(JSON.stringify(message));
+            this.ws.send(JSON.stringify({cls: cls} + message));
         } else {
             this.ws.send(JSON.stringify({message}));
         }

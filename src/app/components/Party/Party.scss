@@ -8,7 +8,12 @@
   border-radius: 15px;
   border-left: thin solid black;
   border-right: thin solid black;
-  justify-content: space-around;
+  justify-content: flex-start;
+
+  &:first-child {
+    margin-left: 20px;
+  }
+
   &__friend {
     display: flex;
     width: 20%;
