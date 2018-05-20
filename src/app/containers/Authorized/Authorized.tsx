@@ -19,30 +19,43 @@ import {Redirect} from "react-router";
 
 interface IProps {
     user?: any;
+    userActions?: any
 }
 
 class Authorized extends React.Component<IProps, any> {
 
-    // public componentWillMount() {
-    //
-    // }
+    constructor(props) {
+        super(props);
+        this.logout = this.logout.bind(this);
+    }
+
+    public logout(): void {
+        const { setUser }: any = this.props.userActions;
+        transport.doPost('/signout')
+            .then(
+                () => setUser({ isAuthorized: false }),
+                (error) => console.log(error.message)
+            )
+    }
 
     public render(): JSX.Element {
         const { user } = this.props;
 
-        if (user.isAuthorized === undefined) {
+        console.log(user);
+        if (user.isAuthorized === null || user.isAuthorized === undefined) {
             return (
                 <Loading />
             );
         } else if (user.isAuthorized === false) {
+            console.log(1);
             return (
-                <Redirect to={'/'} />
+                <Redirect to='/' />
             );
         }
 
         return (
             <div className='auth-page'>
-                <Header isAuth={ true } user={ user } className='auth-page__header header'/>
+                <Header isAuth={ true } user={ user } className='auth-page__header header' logoutHandler={this.logout}/>
 
                 <div className='auth-page__content'>
                     <div className='auth-page__content-left'>

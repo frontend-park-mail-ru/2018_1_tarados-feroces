@@ -9,16 +9,28 @@ interface IProps {
     className?: string;
     isAuth?: boolean;
     user?: any;
+    settingsHandler?: any;
+    logoutHandler?: any;
 }
 
 export default class Header extends React.Component<IProps, any> {
 
     public render(): JSX.Element {
-        const {className, isAuth, user}: any = this.props;
+        const {className, isAuth, user, settingsHandler, logoutHandler}: any = this.props;
         return (
             <div className={'header ' + className}>
                 <Logo/>
-                {isAuth && <UserInfo avatar={user.avatar} points={user.points} coins={user.coins} login={user.login} />}
+                {
+                    isAuth &&
+                    <UserInfo
+                        avatar={user.avatar}
+                        points={user.points}
+                        coins={user.coins}
+                        login={user.login}
+                        settingsHandler={settingsHandler}
+                        logoutHandler={logoutHandler}
+                    />
+                }
             </div>
         );
     }

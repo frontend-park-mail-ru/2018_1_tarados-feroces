@@ -12,31 +12,38 @@ import transport from "../../modules/Transport/Transport";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import * as userActions from "../../actions/UserActions";
+import * as loginActions from "../../actions/LoginActions";
+import {Redirect} from 'react-router';
+import Loading from '../../components/Loading/Loading';
 
-class Login extends React.Component<any, any> {
+interface IProps {
+    user?: any;
+    loginForm?: any;
+    history?: any;
+    userActions?: any;
+    loginActions?: any;
+}
+
+class Login extends React.Component<IProps, any> {
 
     constructor(props: any) {
         super(props);
         this.goBack = this.goBack.bind(this);
         this.loginUser = this.loginUser.bind(this);
+        this.changeLoginForm = this.changeLoginForm.bind(this);
     }
 
     public loginUser(): void {
-        const { history } = this.props;
-        const form: any = {
-            login: 'a',
-            password: 'a'
-        };
+        const { history, loginForm } = this.props;
 
-        transport.doPost('/signin', form)
+        transport.doPost('/signin', loginForm)
             .then(
                 (response: any) => {
                     const { setUser } = this.props.userActions;
                     transport.doGet('/user')
                         .then(
                             (response: any) => {
-                                console.log(response);
-                                setUser(response);
+                                setUser({...response, isAuthorized: true});
                                 history.push('/me');
                             },
                             (reject: any) => {
@@ -50,7 +57,27 @@ class Login extends React.Component<any, any> {
             );
     }
 
+    public changeLoginForm(event): void {
+        const input: any = event.target;
+        const { setLoginForm }: any = this.props.loginActions;
+        const updateLogin: any = {};
+        updateLogin[input.dataset.dest] = input.value;
+        setLoginForm(updateLogin);
+    }
+
     public render(): JSX.Element {
+        const { user } = this.props;
+
+        if (user.isAuthorized === null || user.isAuthorized === undefined) {
+            return (
+                <Loading />
+            );
+        }
+        if (user.isAuthorized) {
+            return (
+                <Redirect to='/me' />
+            );
+        }
         return (
             <div className='main-page'>
                 <Header className='main-page__header'>
@@ -71,11 +98,15 @@ class Login extends React.Component<any, any> {
                                     block-class='user-name'
                                     type='text'
                                     placeholder='Login'
+                                    dest='login'
+                                    onChange={this.changeLoginForm}
                                 />
                                 <Input
                                     block-class='user-password'
                                     type='password'
                                     placeholder='Password'
+                                    dest='password'
+                                    onChange={this.changeLoginForm}
                                 />
                                 <Button onClick={this.loginUser} className='login-button' text='Sign In'/>
                             </div>
@@ -94,13 +125,15 @@ class Login extends React.Component<any, any> {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user
+        user: state.user,
+        loginForm: state.loginForm
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        userActions: bindActionCreators(userActions, dispatch)
+        userActions: bindActionCreators(userActions, dispatch),
+        loginActions: bindActionCreators(loginActions, dispatch)
     };
 };
 

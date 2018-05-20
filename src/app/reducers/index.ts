@@ -1,6 +1,12 @@
-const initialState: any = {
-};
+import {combineReducers} from 'redux';
+import user from './user';
+import loginForm from './loginForm';
+import signupForm from './signupForm';
 
-export default function user(state: any = initialState) {
-    return state;
-}
+export default combineReducers(
+    {
+        user,
+        loginForm,
+        signupForm,
+    }
+);

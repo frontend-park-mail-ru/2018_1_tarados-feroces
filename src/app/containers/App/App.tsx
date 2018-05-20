@@ -8,6 +8,9 @@ import MainPage from '../MainPage/MainPage';
 import Login from '../Login/Login';
 import Signup from '../Signup/Signup';
 import Authorized from '../Authorized/Authorized';
+import Settings from '../Settings/Settings';
+
+
 import configureStore from '../../store/store';
 
 import '../../../static/css/main.scss';
@@ -25,20 +28,14 @@ class App extends React.Component<any, any> {
         transport.doGet('/isauthorized')
             .then(
                 (response: any) => {
-                    const isAuth = response.is_authorized;
-
-                    isAuth && transport.doGet('/user')
+                    const isAuthorized = response.is_authorized;
+                    isAuthorized && transport.doGet('/user')
                         .then(
-                            (response: any) => {
-                                const user: any = response.user;
-                                user.isAuthorized = isAuth;
-                                setUser(user);
-                            }
+                            (response: any) => setUser({...response, isAuthorized})
                         );
+                    setUser({isAuthorized})
                 },
-                (error: any) => {
-                    console.log(error.message);
-                }
+                (error: any) => console.log(error.message)
             );
     }
 
@@ -50,6 +47,7 @@ class App extends React.Component<any, any> {
                     <Route path={ '/login' } component={ Login } />
                     <Route path={ '/signup' } component={ Signup } />
                     <Route path={ '/me' } component={ Authorized } />
+                    <Route path={ '/settings' } component={ Settings } />
                 </Switch>
             </Router>
         );

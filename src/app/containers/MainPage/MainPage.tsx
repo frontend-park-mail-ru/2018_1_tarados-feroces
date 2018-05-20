@@ -5,8 +5,20 @@ import './MainPage.scss';
 import Menu from '../../components/Menu/Menu';
 import Trailer from '../../components/Trailer/Trailer';
 import Header from '../../components/Header/Header';
+import Loading from '../../components/Loading/Loading';
 
-export default class MainPage extends React.Component<any, any> {
+import {Redirect} from 'react-router';
+import {bindActionCreators} from 'redux';
+import * as userActions from '../../actions/UserActions';
+import {connect} from 'react-redux';
+
+interface IProps {
+    user?: any;
+    history?: any;
+    userActions?: any;
+}
+
+class MainPage extends React.Component<IProps, any> {
 
     constructor(props: any) {
         super(props);
@@ -38,6 +50,18 @@ export default class MainPage extends React.Component<any, any> {
             {text: 'Login', onClick: this.goLogin},
             {text: 'Sign up', onClick: this.goSignup}
         ];
+        const { user } = this.props;
+
+        if (user.isAuthorized === null || user.isAuthorized === undefined) {
+            return (
+                <Loading />
+            );
+        }
+        if (user.isAuthorized) {
+            return (
+                <Redirect to='/me' />
+            );
+        }
 
         return (
             <div className='main-page'>
@@ -85,3 +109,17 @@ export default class MainPage extends React.Component<any, any> {
         history.push('/signup');
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        userActions: bindActionCreators(userActions, dispatch)
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

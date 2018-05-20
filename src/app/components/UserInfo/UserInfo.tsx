@@ -7,12 +7,14 @@ interface IProps {
     login?: string;
     coins?: string;
     points?: string;
+    settingsHandler?: any;
+    logoutHandler?: any;
 }
 
 export default class UserInfo extends React.Component<IProps, any> {
 
     public render(): JSX.Element {
-        const {avatar, login, coins, points}: any = this.props;
+        const {avatar, login, coins, points, settingsHandler, logoutHandler}: any = this.props;
 
         return (
             <div className="header__user-info">
@@ -36,8 +38,8 @@ export default class UserInfo extends React.Component<IProps, any> {
                         </div>
                     </div>
                 </div>
-                <SettingsButton />
-                <SignoutButton />
+                <SettingsButton onClick={settingsHandler}/>
+                <SignoutButton onClick={logoutHandler}/>
             </div>
         );
     }
