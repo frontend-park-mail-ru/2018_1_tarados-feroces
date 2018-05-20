@@ -2,20 +2,21 @@ import * as React from 'react';
 
 import './Input.scss';
 
-interface Props {
+interface IProps {
     blockClass?: string;
     inputName?: string;
     type?: string;
     inputClass?: string;
     placeholder?: string;
     value?: string;
+    onChange?: any;
+    dest?: any;
 }
 
-//TODO handlers onblur, onfocus
-export default class Input extends React.Component<Props, any> {
+export default class Input extends React.Component<IProps, any> {
 
-    render() {
-        const {blockClass, inputName, type, inputClass, placeholder, value}: any = this.props;
+    public render(): JSX.Element {
+        const {blockClass, inputName, type, inputClass, placeholder, value, onChange, dest}: any = this.props;
         return (
             <div className={'input-block ' + blockClass}>
                 <input
@@ -24,6 +25,8 @@ export default class Input extends React.Component<Props, any> {
                     className={'input-block__input ' + inputClass}
                     placeholder={placeholder}
                     value={value}
+                    onChange={onChange}
+                    data-dest={dest}
                 />
             </div>
         );

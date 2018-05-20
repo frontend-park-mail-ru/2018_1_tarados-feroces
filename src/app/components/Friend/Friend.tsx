@@ -2,14 +2,14 @@ import * as React from 'react';
 
 import './Friend.scss';
 
-interface Props {
+interface IProps {
     avatar?: string;
     login?: string;
 }
 
-export default class Friend extends React.Component<Props, any> {
+export default class Friend extends React.Component<IProps, any> {
 
-    render() {
+    public render(): JSX.Element {
         const {avatar, login}: any = this.props;
         return (
             <div className='friend'>

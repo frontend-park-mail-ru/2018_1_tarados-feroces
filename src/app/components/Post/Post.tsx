@@ -2,16 +2,16 @@ import * as React from 'react';
 
 import './Post.scss';
 
-interface Props {
+interface IProps {
     className?: string;
     title?: string;
     datetime?: string;
     body?: string;
 }
 
-export default class Post extends React.Component<Props, any> {
+export default class Post extends React.Component<IProps, any> {
 
-    render() {
+    public render(): JSX.Element {
         const {className, title, datetime, body}: any = this.props;
 
         return (

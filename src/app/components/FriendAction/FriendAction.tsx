@@ -2,13 +2,13 @@ import * as React from 'react';
 
 import './FriendAction.scss';
 
-interface Props {
+interface IProps {
     text?: string;
 }
 
-export default class FriendAction extends React.Component<Props, any> {
+export default class FriendAction extends React.Component<IProps, any> {
 
-    render() {
+    public render(): JSX.Element {
         const {text}: any = this.props;
         return (
             <div className='friends-modal-points'>

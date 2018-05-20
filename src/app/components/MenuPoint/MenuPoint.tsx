@@ -19,7 +19,7 @@ export default class MenuPoint extends React.Component<IProps, any> {
         };
     }
 
-    public render() {
+    public render(): JSX.Element {
         const {text, onClick}: any = this.props;
 
         return (

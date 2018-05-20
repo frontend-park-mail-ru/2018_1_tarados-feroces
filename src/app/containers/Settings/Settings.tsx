@@ -17,7 +17,7 @@ interface IProps {
 
 export default class Settings extends React.Component<any, any> {
 
-    public render() {
+    public render(): JSX.Element {
         return (
             <div className='main-page'>
                 <Header className='auth-page__header header'>

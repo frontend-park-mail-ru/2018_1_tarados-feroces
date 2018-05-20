@@ -1,27 +1,37 @@
 import * as React from 'react';
 
 import './Header.scss';
+
 import UserInfo from '../UserInfo/UserInfo';
 import Logo from '../Logo/Logo';
 
-interface Props {
+interface IProps {
     className?: string;
     isAuth?: boolean;
-    avatar?: string;
-    coins?: string;
-    points?: string;
-    login?: string;
+    user?: any;
+    settingsHandler?: any;
+    logoutHandler?: any;
 }
 
-export default class Header extends React.Component<Props, any> {
+export default class Header extends React.Component<IProps, any> {
 
-    render() {
-        const {className, isAuth, avatar, points, coins, login}: any = this.props;
+    public render(): JSX.Element {
+        const {className, isAuth, user, settingsHandler, logoutHandler}: any = this.props;
         return (
             <div className={'header ' + className}>
                 <Logo/>
-                {isAuth ? <UserInfo avatar={avatar} points={points} coins={coins} login={login} /> : ''}
+                {
+                    isAuth &&
+                    <UserInfo
+                        avatar={user.avatar}
+                        points={user.points}
+                        coins={user.coins}
+                        login={user.login}
+                        settingsHandler={settingsHandler}
+                        logoutHandler={logoutHandler}
+                    />
+                }
             </div>
         );
     }
-};
+}
