@@ -63,13 +63,7 @@ module.exports = {
             },
             {
                 test: /\.handlebars$/,
-                loader: 'handlebars-loader',
-                options: {
-                    helperDirs: path.join(__dirname, 'src/app/modules/Helpers'),
-                    precompileOptions: {
-                        knownHelpersOnly: false,
-                    }
-                }
+                use: 'handlebars-loader'
             },
             {
                 test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,

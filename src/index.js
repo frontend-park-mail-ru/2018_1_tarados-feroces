@@ -12,7 +12,7 @@ import SettingsView from './app/views/SettingsView/SettingsView';
 import LeaderboardView from './app/views/LeaderboardView/LeaderboardView';
 import NewsView from './app/views/NewsView/NewsView';
 // import ws from "./app/modules/WebSocket/WebSocket";
-// import {WS_ADDRESS} from './app/modules/HttpModule/HttpConstants';
+import {WS_ADDRESS} from './app/modules/HttpModule/HttpConstants';
 
 // serviceWorkerRegister();
 

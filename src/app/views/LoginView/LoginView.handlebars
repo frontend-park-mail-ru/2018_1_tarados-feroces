@@ -17,18 +17,18 @@
                             block-class="user-name"
                             type="text"
                             placeholder="Login"
-                            onfocus="{{{ stringifyFunc validateFocusLoginInput }}}"
-                            onblur="{{{ stringifyFunc validateBlurLoginInput }}}">
+                            focus="() { validateFocusLoginInput(document.querySelector('.login').getElementsByClassName('input-block')[0]) }"
+                            blur="() { validateBlurLoginInput(document.querySelector('.login').getElementsByClassName('input-block')[0]) }">
                     </Input>
                     <Input
                             block-class="user-password"
                             type="password"
                             placeholder="Password"
-                            onfocus="{{{stringifyFunc validateFocusLoginInput }}}"
-                            onblur="{{{stringifyFunc validateBlurLoginInput }}}">
+                            focus="() { validateFocusLoginInput(document.querySelector('.login').getElementsByClassName('input-block')[1]) }"
+                            blur="() { validateBlurLoginInput(document.querySelector('.login').getElementsByClassName('input-block')[1]) }">
                     </Input>
                     <Button
-                            onclick="{{{stringifyFunc validateLogin }}}"
+                            click="(){ validateLogin(); }"
                             class="login-button">
                         Sign In
                     </Button>

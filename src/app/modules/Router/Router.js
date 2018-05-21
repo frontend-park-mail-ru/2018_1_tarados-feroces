@@ -223,5 +223,5 @@ class Router {
     }
 }
 
-window.router = new Router();
+const router = new Router();
 export default router;

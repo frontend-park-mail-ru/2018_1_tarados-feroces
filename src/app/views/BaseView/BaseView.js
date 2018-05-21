@@ -1,5 +1,4 @@
 import htmlParser from '../../modules/HtmlParser/HtmlParser';
-import router from '../../modules/Router/Router';
 
 /**
  * Базовый класс вьюх
@@ -13,7 +12,6 @@ export default class BaseView {
     constructor() {
         this.element = null;
         this.context = {};
-        // this.router = router.bind(this);
     }
 
     /**
@@ -26,10 +24,6 @@ export default class BaseView {
 
     getDOMDependensies() {
         return true;
-    }
-
-    setContext() {
-        this.context = {}
     }
 
     /**
@@ -97,7 +91,6 @@ export default class BaseView {
      */
     __render() {
         this.render();
-        this.setContext();
         this.element = htmlParser.getHTML(this.template(this.context));
         return this.element;
     }

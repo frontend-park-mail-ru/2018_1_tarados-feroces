@@ -3,13 +3,15 @@ import BaseView from '../BaseView/BaseView';
 import httpModule from '../../modules/HttpModule/HttpModule';
 import userService from '../../modules/UserService/UserService';
 import router from '../../modules/Router/Router';
-// import ws from '../../modules/WebSocket/WebSocket';
-// import {WS_ADDRESS} from '../../modules/HttpModule/HttpConstants';
+import ws from '../../modules/WebSocket/WebSocket';
+import {WS_ADDRESS} from '../../modules/HttpModule/HttpConstants';
 
 export default class AuthorizedView extends BaseView {
 
     update(context = {}) {
+
         this.context = context;
+        // console.log(context);
     }
 
     preRender() {
@@ -17,18 +19,17 @@ export default class AuthorizedView extends BaseView {
         console.log(userService.data);
         this.context = userService.data;
         this.context.inFriends = true;
-
+        this.context.party = [{avatar: '../images/user-logo.jpg'}];
 
         this.context.request = {avatar: '../images/user-logo.jpg', login: 'Andrew', message: 'New friend request'};
 
         if (!this.context.avatar) {
             this.context.avatar = '../images/user-logo.jpg';
         }
-        this.context.party = [{avatar: this.context.avatar}, {avatar: ''}, {avatar: ''}, {avatar: ''}];
-
 
         return httpModule.doPost('/user/friends', {prefix: ''}).then(
             (response) => {
+                // console.log(response);
                 if ('message' in response) {
                     this.context.people = [];
                 } else {
@@ -81,11 +82,13 @@ window.hideFriends = () => {
 window.showFriendActions = (event) => {
     const modal = document.querySelector('.friends-modal');
     const icon = event.currentTarget;
+    // console.log(modal);
     console.log(icon);
     router.getLastView().context.currentFriend = icon.querySelector('.friend__login-value').textContent;
 
     const x = icon.getBoundingClientRect().x;
     const y = icon.getBoundingClientRect().y;
+    // console.log(icon.left);
     modal.style.left = `${x}px`;
     modal.style.top = `${y + icon.getBoundingClientRect().height}px`;
     modal.classList.toggle('hidden');

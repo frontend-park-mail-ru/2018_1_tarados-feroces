@@ -5,62 +5,6 @@ import httpModule from '../../modules/HttpModule/HttpModule';
 
 export default class LoginView extends BaseView {
 
-    setContext() {
-        this.context.validateLogin = () => {
-            const blocks = window.router.getLastView().inputBlocks;
-            if (blocks.reduce((result, current) => result + this.context.validateLoginInput(current), 0) === blocks.length) {
-                httpModule.doPost('/signin',
-                    {
-                        login: blocks[0].querySelector('input').value,
-                        password: blocks[1].querySelector('input').value,
-                    }).then(
-                    (response) => {
-                        userService.userLogin();
-                        blocks.forEach((item) => item.querySelector('input').value = '');
-                        return userService.init();
-                    },
-                    (error) => {
-                        console.log(error);
-                    }
-                ).then(
-                    (resolve) => {
-                        window.router.go('/user/');
-                    }
-                );
-            }
-        };
-
-        this.context.validateBlurLoginInput = () => {
-            const input = event.target;
-            console.log(event.currentTarget);
-
-            if (input.value === '') {
-                input.classList.add('input-block__input_error');
-            }
-        };
-
-        this.context.validateLoginInput = (block) => {
-            const input = block.querySelector('input');
-
-            if (input.value === '') {
-                input.classList.add('input-block__input_error');
-                return false;
-            } else {
-                input.classList.remove('input-block__input_error');
-                return true;
-            }
-        };
-
-        this.context.validateFocusLoginInput = () => {
-            // event.currentTarget.querySelector('input').classList.remove('input-block__input_error');
-            // block.querySelector('input').classList.remove('input-block__input_error');
-            const input = event.target;
-            console.log(event.currentTarget);
-
-            input.classList.remove('input-block__input_error');
-        };
-    }
-
     render() {
         this.template = require('./LoginView.handlebars');
     }
@@ -73,3 +17,49 @@ export default class LoginView extends BaseView {
         return false;
     }
 }
+
+window.validateLogin = () => {
+    const blocks = router.getLastView().inputBlocks;
+    if (blocks.reduce((result, current) => result + validateLoginInput(current), 0) === blocks.length) {
+        httpModule.doPost('/signin',
+            {
+                login: blocks[0].querySelector('input').value,
+                password: blocks[1].querySelector('input').value,
+            }).then(
+            (response) => {
+                userService.userLogin();
+                blocks.forEach((item) => item.querySelector('input').value = '');
+                return userService.init();
+            },
+            (error) => {
+                console.log(error);
+            }
+        ).then(
+            (resolve) => {
+                router.go('/user/');
+            }
+        );
+    }
+};
+
+window.validateLoginInput = (block) => {
+    const input = block.querySelector('input');
+
+    if (input.value === '') {
+        input.classList.add('input-block__input_error');
+        return false;
+    } else {
+        input.classList.remove('input-block__input_error');
+        return true;
+    }
+};
+
+window.validateFocusLoginInput = (block) => block.querySelector('input').classList.remove('input-block__input_error');
+
+window.validateBlurLoginInput = (block) => {
+    const input = block.querySelector('input');
+
+    if (input.value === '') {
+        input.classList.add('input-block__input_error');
+    }
+};
