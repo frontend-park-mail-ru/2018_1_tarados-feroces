@@ -13,8 +13,6 @@ interface IProps {
 
 class Leaderboard extends React.Component<IProps, any> {
 
-    public leaderboard: any;
-
     public async componentWillMount() {
         const { getLeaderboard } = this.props.leaderActions;
         await getLeaderboard( {position: 0, count: 9} );

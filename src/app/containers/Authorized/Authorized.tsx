@@ -16,6 +16,7 @@ import {connect} from 'react-redux';
 import * as userActions from '../../actions/UserActions';
 import {bindActionCreators} from 'redux';
 import {Redirect} from "react-router";
+import News from '../../components/News/News';
 
 interface IProps {
     history?: any;
@@ -33,6 +34,7 @@ class Authorized extends React.Component<IProps, any> {
           newsActive: false
         };
         this.showLeaders = this.showLeaders.bind(this);
+        this.showNews = this.showNews.bind(this);
     }
 
     public settings(): void {
@@ -42,14 +44,22 @@ class Authorized extends React.Component<IProps, any> {
 
     public showLeaders(): void {
         this.setState({
-            leaderActive: true
+            leaderActive: true,
+            newsActive: false
+        });
+    }
+
+    public showNews(): void {
+        this.setState({
+            leaderActive: false,
+            newsActive: true
         });
     }
 
     public render(): JSX.Element {
         const { user } = this.props;
         const { logoutUser }: any = this.props.userActions;
-        const { leaderActive }: any = this.state;
+        const { leaderActive, newsActive }: any = this.state;
 
         console.log(user);
         if (user.isAuthorized === null || user.isAuthorized === undefined) {
@@ -77,8 +87,9 @@ class Authorized extends React.Component<IProps, any> {
                         <div className='auth-page__content-left-modal'>
                             <div className='auth-page__content-left-modal-header modal-header'>
                                 <AuthHeaderPoint
-                                    className='news-header'
+                                    className={newsActive && 'modal-header__point_active'}
                                     text='News'
+                                    onClick={this.showNews}
                                 />
                                 <AuthHeaderPoint
                                     className={leaderActive && 'modal-header__point_active'}
@@ -87,7 +98,8 @@ class Authorized extends React.Component<IProps, any> {
                                 />
                             </div>
                             <AuthContent>
-                                { leaderActive && <Leaderboard />}
+                                { leaderActive && <Leaderboard /> }
+                                { newsActive && <News /> }
                             </AuthContent>
                         </div>
                     </div>

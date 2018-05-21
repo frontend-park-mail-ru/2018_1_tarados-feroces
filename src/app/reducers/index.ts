@@ -4,6 +4,7 @@ import loginForm from './loginForm';
 import signupForm from './signupForm';
 import settingsForm from './settingsForm';
 import leaderboard from './leaderboard';
+import news from './news';
 
 export default combineReducers(
     {
@@ -11,6 +12,7 @@ export default combineReducers(
         loginForm,
         signupForm,
         settingsForm,
-        leaderboard
+        leaderboard,
+        news
     }
 );

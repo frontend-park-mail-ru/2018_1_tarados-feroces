@@ -12,3 +12,5 @@ export const UPDATE_USER: string = '/user/update';
 export const LOGOUT: string = '/signout';
 
 export const GET_LEADERS: string = '/leaderboard';
+
+export const GET_NEWS: string = '/news';
