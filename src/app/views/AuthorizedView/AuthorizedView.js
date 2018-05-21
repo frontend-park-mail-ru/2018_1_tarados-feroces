@@ -11,7 +11,19 @@ export default class AuthorizedView extends BaseView {
     update(context = {}) {
 
         this.context = context;
-        // console.log(context);
+        if (this.context.request && !this.context.request.avatar) {
+            this.context.request.avatar = '../images/user-logo.jpg';
+        }
+        if (this.context.party.users.length) {
+            this.context.party.users.forEach((item) => {
+                if (!item.avatar) {
+                    item.avatar = '../images/user-logo.jpg';
+                }
+            });
+        }
+        if (!this.context.party.leader.avatar) {
+            this.context.party.leader.avatar = '../images/user-logo.jpg';
+        }
     }
 
     preRender() {
@@ -29,9 +41,12 @@ export default class AuthorizedView extends BaseView {
         // this.context.party = [{avatar: this.context.avatar}, {avatar: '../images/transparent.ico'},
         //     {avatar: '../images/transparent.ico'}, {avatar: '../images/transparent.ico'}];
 
-        this.context.party = [{avatar: this.context.avatar}, {avatar: ''},
-            {avatar: ''}, {avatar: ''}];
-
+        this.context.party = {
+            leader: {
+                avatar: this.context.avatar
+            },
+            users: []
+        };
 
         return httpModule.doPost('/user/friend/all', {prefix: ''}).then(
             (response) => {
@@ -61,7 +76,7 @@ window.goToSettings = () => {
 };
 
 window.signOut = () => {
-    httpModule.doPost('/signout').then(
+    httpModule.doGet('/signout').then(
         (response) => {
             userService.userLogout();
             router.go('/');
@@ -126,9 +141,12 @@ const closeModal = () => {
 };
 
 window.showInvite = (data) => {
-    router.getLastView().context.request = data;
-    document.querySelector('.confirm').classList.remove('hidden');
     closeModal();
+    const view = router.getLastView();
+    view.context.request = data;
+    router.viewUpdate('/user/', view.context);
+    document.querySelector('.confirm').classList.remove('hidden');
+
 };
 
 const closeInvite = () => {
@@ -145,16 +163,9 @@ window.inviteToParty = () => {
     httpModule.doPost('/party/invite', {login: router.getLastView().context.currentFriend});
 };
 
-//TODO
-window.partyUpdate = (data) => {
+window.updateParty = (data) => {
     const view = router.getLastView();
-    router.viewUpdate('/user/', view.context);
-};
-
-window.leaveParty = (data) => {
-    const view = router.getLastView();
-    view.context.party = [{avatar: this.context.avatar}, {avatar: ''},
-        {avatar: ''}, {avatar: ''}];
+    view.context.party = data;
     router.viewUpdate('/user/', view.context);
 };
 
@@ -162,7 +173,7 @@ window.acceptFriend = (accept) => {
     closeInvite();
     const type = router.getLastView().context.request.type;
 
-    let url = 'party/response';
+    let url = '/party/response';
     let response = {answer: 'accept', leader: router.getLastView().context.request.leader};
     if (type === 'friends') {
         url = '/user/friend/response';
