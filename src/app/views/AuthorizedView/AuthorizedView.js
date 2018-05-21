@@ -20,17 +20,20 @@ export default class AuthorizedView extends BaseView {
         this.context = userService.data;
         this.context.inFriends = true;
 
-        this.context.request = {avatar: '../images/user-logo.jpg', login: 'Andrew', message: 'New friend request'};
+        // this.context.request = {avatar: '../images/user-logo.jpg', login: 'Andrew', message: 'New friend request'};
 
         if (!this.context.avatar) {
             this.context.avatar = '../images/user-logo.jpg';
         }
 
-        this.context.party = [{avatar: this.context.avatar}, {avatar: '../images/transparent.ico'},
-            {avatar: '../images/transparent.ico'}, {avatar: '../images/transparent.ico'}];
+        // this.context.party = [{avatar: this.context.avatar}, {avatar: '../images/transparent.ico'},
+        //     {avatar: '../images/transparent.ico'}, {avatar: '../images/transparent.ico'}];
+
+        this.context.party = [{avatar: this.context.avatar}, {avatar: ''},
+            {avatar: ''}, {avatar: ''}];
 
 
-        return httpModule.doPost('/user/friends', {prefix: ''}).then(
+        return httpModule.doPost('/user/friend/all', {prefix: ''}).then(
             (response) => {
                 // console.log(response);
                 if ('message' in response) {
@@ -122,8 +125,8 @@ const closeModal = () => {
     document.querySelector('.friends-modal').classList.add('hidden');
 };
 
-window.showInvite = (message) => {
-    router.getLastView().context.request = message;
+window.showInvite = (data) => {
+    router.getLastView().context.request = data;
     document.querySelector('.confirm').classList.remove('hidden');
     closeModal();
 };
@@ -142,11 +145,31 @@ window.inviteToParty = () => {
     httpModule.doPost('/party/invite', {login: router.getLastView().context.currentFriend});
 };
 
+//TODO
+window.partyUpdate = (data) => {
+    const view = router.getLastView();
+    router.viewUpdate('/user/', view.context);
+};
+
+window.leaveParty = (data) => {
+    const view = router.getLastView();
+    view.context.party = [{avatar: this.context.avatar}, {avatar: ''},
+        {avatar: ''}, {avatar: ''}];
+    router.viewUpdate('/user/', view.context);
+};
+
 window.acceptFriend = (accept) => {
     closeInvite();
     const type = router.getLastView().context.request.type;
-    accept && httpModule.doPost(`/user/${type}/response`,
-        {answer: 'accept', request_id: router.getLastView().context.request.request_id}).then(
+
+    let url = 'party/response';
+    let response = {answer: 'accept', leader: router.getLastView().context.request.leader};
+    if (type === 'friends') {
+        url = '/user/friend/response';
+        response = {answer: 'accept', request_id: router.getLastView().context.request.request_id};
+    }
+
+    accept && httpModule.doPost(url, response).then(
         (resolve) => {
             search();
         }
@@ -160,7 +183,7 @@ window.play = () => {
 window.search = () => {
     const name = document.querySelector('.search__input').value;
     const view = router.getLastView();
-    const url = view.context.inFriends ? '/user/friends/all' : '/allusers';
+    const url = view.context.inFriends ? '/user/friend/all' : '/allusers';
 
     httpModule.doPost(url, {prefix: name}).then(
         (response) => {
