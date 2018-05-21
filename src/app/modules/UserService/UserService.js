@@ -10,11 +10,15 @@ import {WS_ADDRESS} from '../HttpModule/HttpConstants';
 class UserService {
 
     init() {
-        ws.open(
-            WS_ADDRESS,
-            (message) => console.log(message),
-            (message) => console.log(message)
-        );
+        this.MESSAGES = {
+            ADD_AS_FRIEND: 'aaf',
+            INVITE_TO_PARTY: 'itp',
+            LEAVE_PARTY: 'lp',
+            UPDATE_PARTY: 'up',
+            INIT_GAME: 'ig',
+
+        };
+
         this.data = {};
         return httpModule.doGet('/user').then(
             (response) => {
@@ -24,6 +28,35 @@ class UserService {
             (reject) => {
                 console.log(reject);
             }
+        );
+    }
+
+    openWebSocket() {
+        ws.open(
+            WS_ADDRESS,
+            (message) => {
+                const data = JSON.parse(message.data);
+                switch (data.cls) {
+                    case this.MESSAGES.ADD_AS_FRIEND:
+                        data.message = 'New friend request';
+                        data.type = 'friends';
+                        showInvite(data);
+                        break;
+                    case this.MESSAGES.INVITE_TO_PARTY:
+                        data.message = 'Invite to party';
+                        data.type = 'party';
+                        showInvite(data);
+                        break;
+                    case this.MESSAGES.LEAVE_PARTY:
+
+                        leaveParty(data);
+                        break;
+                    default:
+                        console.log(data);
+                }
+                console.log(message);
+            },
+            (message) => console.log(message)
         );
     }
 

@@ -177,6 +177,7 @@
           height: 40px;
           border-bottom: black solid thin;
           background-color: $header-background;
+          
           &-point {
             flex-grow: 1;
             display: flex;
@@ -187,6 +188,11 @@
             &:hover {
               background-color: #1956a8;
             }
+
+            &:active {
+              background-color: #1956a8;
+            }
+
             &-value {
               font-size: 30px;
               color: $blocks-text-color;
@@ -200,6 +206,7 @@
         &-data {
           flex: 1;
           overflow-y: auto;
+          overflow-x: hidden;
           &::-webkit-scrollbar-track
           {
             -webkit-box-shadow: inset 0 0 6px rgba(223, 231, 15, 0.3);

@@ -3,7 +3,7 @@ import BaseView from '../BaseView/BaseView';
 import httpModule from '../../modules/HttpModule/HttpModule';
 import userService from '../../modules/UserService/UserService';
 import router from '../../modules/Router/Router';
-import Ws from '../../modules/WebSocket/WebSocket';
+import ws from '../../modules/WebSocket/WebSocket';
 import {WS_ADDRESS} from '../../modules/HttpModule/HttpConstants';
 
 export default class AuthorizedView extends BaseView {
@@ -15,16 +15,25 @@ export default class AuthorizedView extends BaseView {
     }
 
     preRender() {
-
+        userService.openWebSocket();
         console.log(userService.data);
         this.context = userService.data;
         this.context.inFriends = true;
+
+        // this.context.request = {avatar: '../images/user-logo.jpg', login: 'Andrew', message: 'New friend request'};
 
         if (!this.context.avatar) {
             this.context.avatar = '../images/user-logo.jpg';
         }
 
-        return httpModule.doPost('/user/friends', {prefix: ''}).then(
+        // this.context.party = [{avatar: this.context.avatar}, {avatar: '../images/transparent.ico'},
+        //     {avatar: '../images/transparent.ico'}, {avatar: '../images/transparent.ico'}];
+
+        this.context.party = [{avatar: this.context.avatar}, {avatar: ''},
+            {avatar: ''}, {avatar: ''}];
+
+
+        return httpModule.doPost('/user/friend/all', {prefix: ''}).then(
             (response) => {
                 // console.log(response);
                 if ('message' in response) {
@@ -107,28 +116,64 @@ window.goToNews = () => {
     router.go('/news/');
 };
 
-window.inviteToParty = () => {
-    console.log(router.getLastView().context.currentFriend);
-    // const ws1 = new Ws(
-    //     WS_ADDRESS,
-    //     (message) => console.log(message),
-    //     (message) => console.log(message)
-    // );
-    // ws1.sendMessage(JSON.stringify({cls: 'aaf', message: 'Sanya hello!'}));
-};
-
-window.changeFriendsOrPeople = () => {
-    if (router.getLastView().context.inFriends) {
-        router.getLastView().context.inFriends = false;
-    } else {
-        router.getLastView().context.inFriends = true;
-    }
+window.changeFriendsOrPeople = (data) => {
+    router.getLastView().context.inFriends = data;
     window.search();
 };
 
+const closeModal = () => {
+    document.querySelector('.friends-modal').classList.add('hidden');
+};
+
+window.showInvite = (data) => {
+    router.getLastView().context.request = data;
+    document.querySelector('.confirm').classList.remove('hidden');
+    closeModal();
+};
+
+const closeInvite = () => {
+    document.querySelector('.confirm').classList.add('hidden');
+};
+
 window.addToFriends = () => {
-    console.log(router.getLastView().context.currentFriend);
-    httpModule.doPost('/user/addfriend', {login: router.getLastView().context.currentFriend});
+    closeModal();
+    httpModule.doPost('/user/friend/add', {login: router.getLastView().context.currentFriend});
+};
+
+window.inviteToParty = () => {
+    closeModal();
+    httpModule.doPost('/party/invite', {login: router.getLastView().context.currentFriend});
+};
+
+//TODO
+window.partyUpdate = (data) => {
+    const view = router.getLastView();
+    router.viewUpdate('/user/', view.context);
+};
+
+window.leaveParty = (data) => {
+    const view = router.getLastView();
+    view.context.party = [{avatar: this.context.avatar}, {avatar: ''},
+        {avatar: ''}, {avatar: ''}];
+    router.viewUpdate('/user/', view.context);
+};
+
+window.acceptFriend = (accept) => {
+    closeInvite();
+    const type = router.getLastView().context.request.type;
+
+    let url = 'party/response';
+    let response = {answer: 'accept', leader: router.getLastView().context.request.leader};
+    if (type === 'friends') {
+        url = '/user/friend/response';
+        response = {answer: 'accept', request_id: router.getLastView().context.request.request_id};
+    }
+
+    accept && httpModule.doPost(url, response).then(
+        (resolve) => {
+            search();
+        }
+    );
 };
 
 window.play = () => {
@@ -137,9 +182,8 @@ window.play = () => {
 
 window.search = () => {
     const name = document.querySelector('.search__input').value;
-    console.log(name);
     const view = router.getLastView();
-    const url = view.context.inFriends ? '/user/friends' : '/allusers';
+    const url = view.context.inFriends ? '/user/friend/all' : '/allusers';
 
     httpModule.doPost(url, {prefix: name}).then(
         (response) => {
@@ -154,10 +198,8 @@ window.search = () => {
                 view.context.people = response;
                 console.log(response);
             }
-            // console.log(view.context);
             router.viewUpdate('/user/', view.context);
         }
     );
-
 };
 

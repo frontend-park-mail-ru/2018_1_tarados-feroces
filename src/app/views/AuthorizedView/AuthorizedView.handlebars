@@ -26,7 +26,6 @@
         <div class="friends-modal hidden">
             {{#if inFriends}}
                 <FriendAction click="(event){window.inviteToParty();}">Invite</FriendAction>
-                <FriendAction>Chat</FriendAction>
             {{else}}
                 <FriendAction click="(event){window.addToFriends();}">Add to friends</FriendAction>
             {{/if}}
@@ -37,10 +36,10 @@
                 <HideFriendsButton click="(){hideFriends();}"></HideFriendsButton>
                 <div class="friends">
                     <div class="friends-header">
-                        <div class="friends-header-point" click="(){changeFriendsOrPeople(); }">
+                        <div class="friends-header-point" click="(){changeFriendsOrPeople(true); }">
                             <p class="friends-header-point-value">Friends</p>
                         </div>
-                        <div class="friends-header-point" click="(){changeFriendsOrPeople();}">
+                        <div class="friends-header-point" click="(){changeFriendsOrPeople(false);}">
                             <p class="friends-header-point-value">People</p>
                         </div>
                     </div>
@@ -50,15 +49,36 @@
 
                     <div class="friends-data">
                     {{#each people}}
-                        <Friend avatar="{{this.avatar}}" login="{{this.login}}" click="(event){showFriendActions(event);}"></Friend>
+                        <Friend avatar="{{{this.avatar}}}" login="{{this.login}}" click="(event){showFriendActions(event);}"></Friend>
                     {{/each}}
                     </div>
                 </div>
             </div>
 
-            <Party class="content-right-party" partyUsers="{{partyUsers}}"></Party>
+            <Party class="content-right-party">
+                {{#each party}}
+                    <div class="party__friend">
+                        <Image class="party__friend-logo" src="{{{this.avatar}}}"></Image>
+                    </div>
+                {{/each}}
+            </Party>
         </div>
 
 
     </div>
+    <ConfirmDialog class="hidden" avatar="{{{request.avatar}}}" login="{{request.login}}" message="{{request.message}}">
+        <div class="confirm-modal">
+            <p class="confirm-modal__message">{{message}}</p>
+            <div class="confirm-modal__info">
+                <Image class="confirm-modal__info-avatar" src="{{{avatar}}}"></Image>
+                <p class="confirm-modal__info-login">{{login}}</p>
+            </div>
+            <div class="confirm-modal__accept">
+                <Button click="(){acceptFriend(true);}">Accept</Button>
+                <Button click="(){acceptFriend(false);}">Decline</Button>
+
+            </div>
+        </div>
+    </ConfirmDialog>
+    <!--<ConfirmDialog class="hidden" avatar="../images/add.png" login="ANDREW" message="New friend request"></ConfirmDialog>-->
 </div>

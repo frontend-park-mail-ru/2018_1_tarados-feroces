@@ -12,6 +12,7 @@ import Label from '../../components/Label/Label';
 import Friend from '../../components/Friend/Friend';
 import PeopleSearch from '../../components/PeopleSearch/PeopleSearch';
 import FriendAction from '../../components/FriendAction/FriendAction';
+import ConfirmDialog from '../../components/ConfirmDialog/ConfirmDialog';
 import HideFriendsButton from '../../components/HideFriendsButton/HideFriendsButton';
 import UserInfo from '../../components/UserInfo/UserInfo';
 import SettingsButton from '../../components/SettingsButton/SettingsButton';
@@ -51,6 +52,7 @@ class HtmlParser {
             Friend: () => new Friend(),
             PeopleSearch: () => new PeopleSearch(),
             FriendAction: () => new FriendAction(),
+            ConfirmDialog: () => new ConfirmDialog(),
             HideFriendsButton: () => new HideFriendsButton(),
             UserInfo: () => new UserInfo(),
             SettingsButton: () => new SettingsButton(),
