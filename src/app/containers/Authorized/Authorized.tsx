@@ -31,7 +31,7 @@ class Authorized extends React.Component<IProps, any> {
         this.settings = this.settings.bind(this);
         this.state = {
           leaderActive: false,
-          newsActive: false
+          newsActive: true
         };
         this.showLeaders = this.showLeaders.bind(this);
         this.showNews = this.showNews.bind(this);
@@ -49,6 +49,22 @@ class Authorized extends React.Component<IProps, any> {
         });
     }
 
+    public hideFriends(): void {
+        const hideValue = document.querySelector('.auth-page__content-right-hide-icon-value');
+
+        document.querySelector('.friends').classList.toggle('hidden');
+        if (hideValue.classList.contains('rotate-close')) {
+            hideValue.classList.add('rotate-open');
+            hideValue.style.transform = 'rotate(180deg)';
+            hideValue.classList.remove('rotate-close');
+        } else {
+            hideValue.classList.add('rotate-close');
+            hideValue.style.transform = 'rotate(0deg)';
+            hideValue.classList.remove('rotate-open');
+        }
+        document.querySelector('.content-right-party').classList.toggle('hidden');
+    }
+
     public showNews(): void {
         this.setState({
             leaderActive: false,
@@ -60,6 +76,13 @@ class Authorized extends React.Component<IProps, any> {
         const { user } = this.props;
         const { logoutUser }: any = this.props.userActions;
         const { leaderActive, newsActive }: any = this.state;
+
+         const avatars = [
+             '../static/imgs/user-logo.jpg',
+             '../static/imgs/user-logo.jpg',
+             '../static/imgs/user-logo.jpg',
+             '../static/imgs/user-logo.jpg'
+         ];
 
         console.log(user);
         if (user.isAuthorized === null || user.isAuthorized === undefined) {
@@ -112,7 +135,7 @@ class Authorized extends React.Component<IProps, any> {
                     <div className='auth-page__content-right'>
 
                         <div className='auth-page__content-right-hide'>
-                            <HideFriendsButton />
+                            <HideFriendsButton onClick={this.hideFriends}/>
                             <div className='friends'>
                                 <div className='friends-header'>
                                     <div className='friends-header-point'>
@@ -128,7 +151,7 @@ class Authorized extends React.Component<IProps, any> {
                                 <Friend avatar='../static/imgs/user-logo.jpg' login='Kabachok'/>
                             </div>
                         </div>
-                        {/*<Party className='content-right-party'/>*/}
+                        <Party avatars={avatars} className='content-right-party'/>
                     </div>
                 </div>
             </div>

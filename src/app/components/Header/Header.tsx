@@ -22,6 +22,12 @@ export default class Header extends React.Component<IProps, any> {
                 <Logo/>
                 {
                     isAuth &&
+                    <div className='button button-play'>
+                        <p className='button-play__value'>PLAY</p>
+                    </div>
+                }
+                {
+                    isAuth &&
                     <UserInfo
                         avatar={user.avatar || '../static/imgs/user-logo.jpg'}
                         points={user.points}

@@ -11,11 +11,13 @@ interface IProps {
 export default class Party extends React.Component<IProps, any> {
 
     public render(): JSX.Element {
-        const {className, avatars}: any = this.props;
-        const getAvatars = avatars.map((src) => {
-                return <div className='party__friend'>
-                    <Image className='party__friend-logo' src={src}/>
-                </div>;
+        const { className, avatars }: any = this.props;
+        const getAvatars = avatars.map((src, key) => {
+                return (
+                    <div key={key} className='party__friend'>
+                        <Image className='party__friend-logo' src={src}/>
+                    </div>
+                );
             });
         return (
             <div className={'party ' + className}>
