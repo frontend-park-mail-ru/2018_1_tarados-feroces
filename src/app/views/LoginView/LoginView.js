@@ -5,10 +5,15 @@ import httpModule from '../../modules/HttpModule/HttpModule';
 
 export default class LoginView extends BaseView {
 
+    constructor() {
+        super();
+        this.setContext = this.setContext.bind(this);
+    }
+
     setContext() {
         this.context.validateLogin = () => {
             const blocks = window.router.getLastView().inputBlocks;
-            if (blocks.reduce((result, current) => result + this.validateLoginInput(current), 0) === blocks.length) {
+            if (blocks.reduce((result, current) => result + this.context.validateLoginInput(current), 0) === blocks.length) {
                 window.httpModule.doPost('/signin',
                     {
                         login: blocks[0].querySelector('input').value,
@@ -29,8 +34,6 @@ export default class LoginView extends BaseView {
                 );
             }
         };
-
-        this.context.validateLogin.bind(this.context);
 
         this.context.validateLoginInput = (block) => {
             const input = block.querySelector('input');

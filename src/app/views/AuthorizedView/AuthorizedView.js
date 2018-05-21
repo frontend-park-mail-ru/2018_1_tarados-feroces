@@ -133,7 +133,8 @@ window.inviteToParty = () => {
 window.acceptFriend = (accept) => {
     closeInvite();
     const type = router.getLastView().context.request.type;
-    accept && httpModule.doPost(`/user/${type}/response`,
+    const url = type === 'friend' ? '/user/friend/response' : 'party/response';
+    accept && httpModule.doPost(url,
         {answer: 'accept', request_id: router.getLastView().context.request.request_id}).then(
         (resolve) => {
             search();
