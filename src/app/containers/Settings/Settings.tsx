@@ -40,9 +40,10 @@ class Settings extends React.Component<IProps, any> {
 
     public async changeUser() {
         const { history, settingsForm }: any = this.props;
-        const { updateUser, getUser }: any = this.props.userActions;
-        await updateUser(settingsForm);
-        await getUser();
+        const { updateUser, getUser, setUser }: any = this.props.userActions;
+        setUser( { isAuthorized : null } );
+        await updateUser( settingsForm );
+        getUser();
         history.push('/me');
     }
 

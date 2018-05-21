@@ -24,7 +24,7 @@ export function getUser() {
 export function updateUser(data) {
     return async (dispatch) => {
         const response = await transport.doPost(HttpConstants.UPDATE_USER, data);
-        response.ok && dispatch(update({...(await response.json()), 'isAuthorized': true }));
+        // response.ok && dispatch(update(await response.json()));
     }
 }
 
