@@ -5,7 +5,7 @@ import Ws from '../../modules/WebSocket/WebSocket';
 
 export default class MainPageView extends BaseView {
 
-    preRender() {
+    setContext() {
         this.context.goToLogin = () => {
             window.router.go('/login/');
         };
@@ -39,9 +39,7 @@ export default class MainPageView extends BaseView {
         this.context.goBack = () => {
             window.router.go('/');
         };
-
-        return super.preRender();
-    };
+    }
 
     render() {
         this.template = require('./MainPageView.handlebars');

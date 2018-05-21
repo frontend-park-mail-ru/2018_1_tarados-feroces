@@ -7,14 +7,14 @@
     <div class="main-page__content">
         <div class="main-page__content-row">
             <Menu>
-                <MenuPoint onclick="{{{stringifyFunc goToGame}}}">Play</MenuPoint>
-                <MenuPoint onclick="{{{stringifyFunc goToLogin}}}">Login</MenuPoint>
-                <MenuPoint onclick="{{{stringifyFunc goToSignUp}}}">Sign Up</MenuPoint>
+                <MenuPoint click="{{{ stringifyFunc goToGame }}}">Play</MenuPoint>
+                <MenuPoint click="{{{ stringifyFunc goToLogin }}}">Login</MenuPoint>
+                <MenuPoint click="{{{ stringifyFunc goToSignUp }}}">Sign Up</MenuPoint>
             </Menu>
             <div class="scroll">
                 <div
                     class="scroll-icon rotate-scroll-close"
-                    click="(){scrollToContent();}"
+                    click="{{{ stringifyFunc scrollToContent }}}"
                 >
                 </div>
             </div>

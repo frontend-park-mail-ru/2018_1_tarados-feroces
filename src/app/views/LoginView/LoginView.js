@@ -30,9 +30,9 @@ export default class LoginView extends BaseView {
             }
         };
 
-        this.context.validateBlurLoginInput = () => {
+        this.context.validateBlurLoginInput = (event) => {
             const input = event.target;
-            console.log(event.currentTarget);
+            // console.log(event.currentTarget);
 
             if (input.value === '') {
                 input.classList.add('input-block__input_error');
@@ -49,15 +49,21 @@ export default class LoginView extends BaseView {
                 input.classList.remove('input-block__input_error');
                 return true;
             }
+
         };
 
-        this.context.validateFocusLoginInput = () => {
+        this.context.validateFocusLoginInput = (event) => {
             // event.currentTarget.querySelector('input').classList.remove('input-block__input_error');
             // block.querySelector('input').classList.remove('input-block__input_error');
-            const input = event.target;
-            console.log(event.currentTarget);
+            // const input = event.target;
+            // console.log(event.currentTarget);
+            //
+            // input.classList.remove('input-block__input_error');
+            console.log(1111);
+        };
 
-            input.classList.remove('input-block__input_error');
+        this.context.goBack = () => {
+            window.router.go('/');
         };
     }
 

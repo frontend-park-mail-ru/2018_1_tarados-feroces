@@ -7,7 +7,7 @@
 
     <div class="form-block login">
         <div class="form-block-content">
-            <div click="(event){ event.preventDefault(); goBack();  }" class="form-block-content__back">
+            <div click="{{{ stringifyFunc goBack}}}" class="form-block-content__back">
                 <Image class="form-block-content__back-icon" src="images/back.png"></Image>
             </div>
             <Form>
@@ -17,18 +17,18 @@
                             block-class="user-name"
                             type="text"
                             placeholder="Login"
-                            onfocus="{{{ stringifyFunc validateFocusLoginInput }}}"
-                            onblur="{{{ stringifyFunc validateBlurLoginInput }}}">
+                            focus="{{{ stringifyFunc validateFocusLoginInput }}}"
+                            blur="{{{ stringifyFunc validateBlurLoginInput }}}">
                     </Input>
                     <Input
                             block-class="user-password"
                             type="password"
                             placeholder="Password"
-                            onfocus="{{{stringifyFunc validateFocusLoginInput }}}"
-                            onblur="{{{stringifyFunc validateBlurLoginInput }}}">
+                            focus="{{{ stringifyFunc validateFocusLoginInput }}}"
+                            blur="{{{ stringifyFunc validateBlurLoginInput }}}">
                     </Input>
                     <Button
-                            onclick="{{{stringifyFunc validateLogin }}}"
+                            click="{{{ stringifyFunc validateLogin }}}"
                             class="login-button">
                         Sign In
                     </Button>

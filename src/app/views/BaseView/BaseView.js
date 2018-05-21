@@ -28,9 +28,7 @@ export default class BaseView {
         return true;
     }
 
-    setContext() {
-        this.context = {}
-    }
+    setContext() {}
 
     /**
      * Возвращает шаблон вьюхи
