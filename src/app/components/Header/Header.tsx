@@ -23,7 +23,7 @@ export default class Header extends React.Component<IProps, any> {
                 {
                     isAuth &&
                     <UserInfo
-                        avatar={user.avatar}
+                        avatar={user.avatar || '../static/imgs/user-logo.jpg'}
                         points={user.points}
                         coins={user.coins}
                         login={user.login}

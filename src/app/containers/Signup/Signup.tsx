@@ -32,28 +32,12 @@ class Signup extends React.Component<IProps, any> {
         this.changeSignupForm = this.changeSignupForm.bind(this);
     }
 
-    public registerUser(): void {
-        const { history, signupForm } = this.props;
+    public async registerUser() {
+        const { signupForm }: any = this.props;
+        const { signupUser, getUser }: any = this.props.userActions;
 
-        transport.doPost('/signup', signupForm)
-            .then(
-                (response: any) => {
-                    const { setUser } = this.props.userActions;
-                    transport.doGet('/user')
-                        .then(
-                            (response: any) => {
-                                setUser({...response, isAuthorized: true});
-                                history.push('/me');
-                            },
-                            (reject: any) => {
-                                console.log('Can`t get user info:(');
-                            }
-                        );
-                },
-                (error: any) => {
-                    console.log(error.message);
-                }
-            );
+        await signupUser(signupForm);
+        getUser();
     }
 
     public changeSignupForm(event): void {

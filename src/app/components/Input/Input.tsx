@@ -10,13 +10,14 @@ interface IProps {
     placeholder?: string;
     value?: string;
     onChange?: any;
-    dest?: any;
+    dest?: string;
+    defaultValue?: string;
 }
 
 export default class Input extends React.Component<IProps, any> {
 
     public render(): JSX.Element {
-        const {blockClass, inputName, type, inputClass, placeholder, value, onChange, dest}: any = this.props;
+        const {blockClass, inputName, type, inputClass, placeholder, defaultValue, onChange, dest}: any = this.props;
         return (
             <div className={'input-block ' + blockClass}>
                 <input
@@ -24,7 +25,7 @@ export default class Input extends React.Component<IProps, any> {
                     type={type}
                     className={'input-block__input ' + inputClass}
                     placeholder={placeholder}
-                    value={value}
+                    defaultValue={defaultValue}
                     onChange={onChange}
                     data-dest={dest}
                 />

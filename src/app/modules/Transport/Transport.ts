@@ -14,7 +14,7 @@ class Transport {
      * @param {Object} headers
      * @return {Promise<any>}
      */
-    public doGet(url: string) {
+    public async doGet(url: string) {
         return this.send(GET, url);
     }
 
@@ -25,7 +25,7 @@ class Transport {
      * @param {Object} headers
      * @return {Promise<any>}
      */
-    public doPost(url: string, data: any = {}) {
+    public async doPost(url: string, data: any = {}) {
         return this.send(POST, url, data);
     }
 
@@ -38,7 +38,7 @@ class Transport {
      * @return {Promise<any>}
      * @private
      */
-    private send(method: string, url: string = '/', data: any = {}, headers: any = []) {
+    private async send(method: string, url: string = '/', data: any = {}, headers: any = []) {
         const options: any = {
             method: method,
             mode: 'cors',
@@ -47,18 +47,15 @@ class Transport {
 
         if (method === POST) {
             options.body = JSON.stringify(data);
-            const _headers = new Headers();
-            _headers.append(HEADER_CONTENT_TYPE, JSON_CONTENT_TYPE);
+            const headers = new Headers();
+            headers.append(HEADER_CONTENT_TYPE, JSON_CONTENT_TYPE);
 
-            options.headers = _headers;
+            options.headers = headers;
         }
 
         return fetch(`${this.domen}${url}`, options)
             .then((response) => {
-                if (response.status >= 400) {
-                    throw response;
-                }
-                return response.json();
+                return response;
             });
     }
 }

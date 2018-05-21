@@ -33,28 +33,11 @@ class Login extends React.Component<IProps, any> {
         this.changeLoginForm = this.changeLoginForm.bind(this);
     }
 
-    public loginUser(): void {
-        const { history, loginForm } = this.props;
-
-        transport.doPost('/signin', loginForm)
-            .then(
-                (response: any) => {
-                    const { setUser } = this.props.userActions;
-                    transport.doGet('/user')
-                        .then(
-                            (response: any) => {
-                                setUser({...response, isAuthorized: true});
-                                history.push('/me');
-                            },
-                            (reject: any) => {
-                                console.log('Can`t get user info:(');
-                            }
-                        );
-                },
-                (error: any) => {
-                    console.log(error.message);
-                }
-            );
+    public async loginUser() {
+        const { loginForm } = this.props;
+        const { loginUser, getUser }: any = this.props.userActions;
+        await loginUser(loginForm);
+        getUser();
     }
 
     public changeLoginForm(event): void {

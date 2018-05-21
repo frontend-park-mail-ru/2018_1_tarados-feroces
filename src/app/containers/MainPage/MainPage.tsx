@@ -27,21 +27,22 @@ class MainPage extends React.Component<IProps, any> {
     }
 
     public slide(event) {
-    //     const iconValue: Element = event.target;
-    //     const icon: Element = iconValue.parentElement;
-    //     const header: Element = document.querySelector('.main-page__header');
-    //
-    //     if (iconValue.classList.contains('rotate-scroll-close')) {
-    //         window.scrollTo(0, icon.getBoundingClientRect().top + window.scrollY - header.getBoundingClientRect().height);
-    //         iconValue.classList.add('rotate-scroll-open');
-    //         iconValue.style.transform = 'rotate(90deg)';
-    //         iconValue.classList.remove('rotate-scroll-close');
-    //     } else {
-    //         window.scrollTo(0, 0);
-    //         iconValue.classList.add('rotate-scroll-close');
-    //         iconValue.style.transform = 'rotate(270deg)';
-    //         iconValue.classList.remove('rotate-scroll-open');
-    //     }
+        const iconValue: any = event.target;
+        const icon: any = iconValue.parentElement;
+        const header: any = document.querySelector('.main-page__header');
+
+        const height: number = icon.getBoundingClientRect().top + window.scrollY - header.getBoundingClientRect().height;
+
+        window.scrollTo(
+            0,
+            iconValue.classList.contains('rotate-scroll-close') ? 0 : height
+        );
+
+        iconValue.classList.toggle('rotate-scroll-open');
+        iconValue.style.transform =
+            iconValue.classList.contains('rotate-scroll-close') ? 'rotate(90deg)' : 'rotate(270deg)';
+        iconValue.classList.toggle('rotate-scroll-close');
+
     }
 
     public render(): JSX.Element {

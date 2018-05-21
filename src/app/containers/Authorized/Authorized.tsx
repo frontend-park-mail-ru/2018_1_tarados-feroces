@@ -10,36 +10,46 @@ import HideFriendsButton from '../../components/HideFriendsButton/HideFriendsBut
 import Friend from '../../components/Friend/Friend';
 import Party from '../../components/Party/Party';
 import Loading from '../../components/Loading/Loading';
+import Leaderboard from '../../components/Leaderboard/Leaderboard';
 
 import {connect} from 'react-redux';
 import * as userActions from '../../actions/UserActions';
 import {bindActionCreators} from 'redux';
-import transport from '../../modules/Transport/Transport';
 import {Redirect} from "react-router";
 
 interface IProps {
+    history?: any;
     user?: any;
-    userActions?: any
+    userActions?: any;
 }
 
 class Authorized extends React.Component<IProps, any> {
 
     constructor(props) {
         super(props);
-        this.logout = this.logout.bind(this);
+        this.settings = this.settings.bind(this);
+        this.state = {
+          leaderActive: false,
+          newsActive: false
+        };
+        this.showLeaders = this.showLeaders.bind(this);
     }
 
-    public logout(): void {
-        const { setUser }: any = this.props.userActions;
-        transport.doPost('/signout')
-            .then(
-                () => setUser({ isAuthorized: false }),
-                (error) => console.log(error.message)
-            )
+    public settings(): void {
+        const { history }: any = this.props;
+        history.push('/settings');
+    }
+
+    public showLeaders(): void {
+        this.setState({
+            leaderActive: true
+        });
     }
 
     public render(): JSX.Element {
         const { user } = this.props;
+        const { logoutUser }: any = this.props.userActions;
+        const { leaderActive }: any = this.state;
 
         console.log(user);
         if (user.isAuthorized === null || user.isAuthorized === undefined) {
@@ -47,7 +57,6 @@ class Authorized extends React.Component<IProps, any> {
                 <Loading />
             );
         } else if (user.isAuthorized === false) {
-            console.log(1);
             return (
                 <Redirect to='/' />
             );
@@ -55,16 +64,31 @@ class Authorized extends React.Component<IProps, any> {
 
         return (
             <div className='auth-page'>
-                <Header isAuth={ true } user={ user } className='auth-page__header header' logoutHandler={this.logout}/>
+                <Header
+                    isAuth={ true }
+                    user={ user }
+                    className='auth-page__header header'
+                    logoutHandler={logoutUser}
+                    settingsHandler={this.settings}
+                />
 
                 <div className='auth-page__content'>
                     <div className='auth-page__content-left'>
                         <div className='auth-page__content-left-modal'>
                             <div className='auth-page__content-left-modal-header modal-header'>
-                                <AuthHeaderPoint className='news-header' text='News'/>
-                                <AuthHeaderPoint className='leaderboard' text='Scoreboard'/>
+                                <AuthHeaderPoint
+                                    className='news-header'
+                                    text='News'
+                                />
+                                <AuthHeaderPoint
+                                    className={leaderActive && 'modal-header__point_active'}
+                                    text='Scoreboard'
+                                    onClick={this.showLeaders}
+                                />
                             </div>
-                            <AuthContent id='modal-data'/>
+                            <AuthContent>
+                                { leaderActive && <Leaderboard />}
+                            </AuthContent>
                         </div>
                     </div>
 
@@ -76,7 +100,7 @@ class Authorized extends React.Component<IProps, any> {
                     <div className='auth-page__content-right'>
 
                         <div className='auth-page__content-right-hide'>
-                            <HideFriendsButton/>
+                            <HideFriendsButton />
                             <div className='friends'>
                                 <div className='friends-header'>
                                     <div className='friends-header-point'>
@@ -92,7 +116,6 @@ class Authorized extends React.Component<IProps, any> {
                                 <Friend avatar='../static/imgs/user-logo.jpg' login='Kabachok'/>
                             </div>
                         </div>
-
                         {/*<Party className='content-right-party'/>*/}
                     </div>
                 </div>

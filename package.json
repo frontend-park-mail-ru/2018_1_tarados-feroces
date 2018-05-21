@@ -8,8 +8,8 @@
     "tslint": "tslint ./src",
     "flint": "tslint --fix ./src",
     "server": "node ./server",
-    "webpack": "webpack --config webpack.config.dev.js",
-    "webpack-prod": "webpack --config webpack.config.prod.js"
+    "webpack": "./node_modules/.bin/webpack -w --config webpack.config.dev.js",
+    "webpack-prod": "./node_modules/.bin/webpack --config webpack.config.prod.js"
   },
   "repository": {
     "type": "git",
