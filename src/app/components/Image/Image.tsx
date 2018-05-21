@@ -13,7 +13,6 @@ export default class Image extends React.Component<IProps, any> {
         const {className, src}: any = this.props;
         return (
             <img className={className} src={src}/>
-
         );
     }
 };

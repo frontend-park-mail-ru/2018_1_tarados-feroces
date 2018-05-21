@@ -30,19 +30,17 @@ class MainPage extends React.Component<IProps, any> {
         const iconValue: any = event.target;
         const icon: any = iconValue.parentElement;
         const header: any = document.querySelector('.main-page__header');
-
         const height: number = icon.getBoundingClientRect().top + window.scrollY - header.getBoundingClientRect().height;
 
         window.scrollTo(
             0,
-            iconValue.classList.contains('rotate-scroll-close') ? 0 : height
+            iconValue.classList.contains('rotate-scroll-open') ? 0 : height
         );
 
         iconValue.classList.toggle('rotate-scroll-open');
         iconValue.style.transform =
             iconValue.classList.contains('rotate-scroll-close') ? 'rotate(90deg)' : 'rotate(270deg)';
         iconValue.classList.toggle('rotate-scroll-close');
-
     }
 
     public render(): JSX.Element {

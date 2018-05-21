@@ -17,6 +17,7 @@ import * as userActions from '../../actions/UserActions';
 import {bindActionCreators} from 'redux';
 import {Redirect} from "react-router";
 import News from '../../components/News/News';
+import {isBoolean} from 'util';
 
 interface IProps {
     history?: any;
@@ -30,11 +31,13 @@ class Authorized extends React.Component<IProps, any> {
         super(props);
         this.settings = this.settings.bind(this);
         this.state = {
-          leaderActive: false,
-          newsActive: true
+            leaderActive: false,
+            newsActive: true,
+            hideFriends: false
         };
         this.showLeaders = this.showLeaders.bind(this);
         this.showNews = this.showNews.bind(this);
+        this.hideFriends = this.hideFriends.bind(this);
     }
 
     public settings(): void {
@@ -49,20 +52,16 @@ class Authorized extends React.Component<IProps, any> {
         });
     }
 
-    public hideFriends(): void {
-        const hideValue = document.querySelector('.auth-page__content-right-hide-icon-value');
+    public hideFriends(event): void {
+        const hideValue = event.currentTarget.firstChild;
+        const { hideFriends } = this.state;
+        this.setState({
+            hideFriends: !hideFriends
+        });
 
-        document.querySelector('.friends').classList.toggle('hidden');
-        if (hideValue.classList.contains('rotate-close')) {
-            hideValue.classList.add('rotate-open');
-            hideValue.style.transform = 'rotate(180deg)';
-            hideValue.classList.remove('rotate-close');
-        } else {
-            hideValue.classList.add('rotate-close');
-            hideValue.style.transform = 'rotate(0deg)';
-            hideValue.classList.remove('rotate-open');
-        }
-        document.querySelector('.content-right-party').classList.toggle('hidden');
+        hideValue.classList.toggle('rotate-close');
+        hideValue.style.transform = hideValue.classList.contains('rotate-close') ? 'rotate(180deg)' : 'rotate(0deg)';
+        hideValue.classList.toggle('rotate-open');
     }
 
     public showNews(): void {
@@ -75,7 +74,7 @@ class Authorized extends React.Component<IProps, any> {
     public render(): JSX.Element {
         const { user } = this.props;
         const { logoutUser }: any = this.props.userActions;
-        const { leaderActive, newsActive }: any = this.state;
+        const { leaderActive, newsActive, hideFriends }: any = this.state;
 
          const avatars = [
              '../static/imgs/user-logo.jpg',
@@ -136,7 +135,7 @@ class Authorized extends React.Component<IProps, any> {
 
                         <div className='auth-page__content-right-hide'>
                             <HideFriendsButton onClick={this.hideFriends}/>
-                            <div className='friends'>
+                            <div className={!hideFriends ? 'friends' : 'hidden'}>
                                 <div className='friends-header'>
                                     <div className='friends-header-point'>
                                         <p className='friends-header-point-value'>Friends</p>
@@ -151,7 +150,7 @@ class Authorized extends React.Component<IProps, any> {
                                 <Friend avatar='../static/imgs/user-logo.jpg' login='Kabachok'/>
                             </div>
                         </div>
-                        <Party avatars={avatars} className='content-right-party'/>
+                        <Party avatars={avatars} className={!hideFriends ? 'content-right-party' : 'hidden'}/>
                     </div>
                 </div>
             </div>

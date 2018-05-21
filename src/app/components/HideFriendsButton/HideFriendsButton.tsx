@@ -11,7 +11,7 @@ export default class HideFriendsButton extends React.Component<IProps, any> {
         const { onClick } = this.props;
         return (
             <div onClick={onClick} className='auth-page__content-right-hide-icon'>
-                <Image className='auth-page__content-right-hide-icon-value' src='../static/imgs/back.png'/>
+                <Image className='auth-page__content-right-hide-icon-value rotate-open' src='../static/imgs/back.png'/>
             </div>
         );
     }
