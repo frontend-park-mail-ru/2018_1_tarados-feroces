@@ -19,13 +19,16 @@ export default class AuthorizedView extends BaseView {
         console.log(userService.data);
         this.context = userService.data;
         this.context.inFriends = true;
-        this.context.party = [{avatar: '../images/user-logo.jpg'}];
 
         this.context.request = {avatar: '../images/user-logo.jpg', login: 'Andrew', message: 'New friend request'};
 
         if (!this.context.avatar) {
             this.context.avatar = '../images/user-logo.jpg';
         }
+
+        this.context.party = [{avatar: this.context.avatar}, {avatar: '../images/transparent.ico'},
+            {avatar: '../images/transparent.ico'}, {avatar: '../images/transparent.ico'}];
+
 
         return httpModule.doPost('/user/friends', {prefix: ''}).then(
             (response) => {
@@ -115,10 +118,14 @@ window.changeFriendsOrPeople = (data) => {
     window.search();
 };
 
+const closeModal = () => {
+    document.querySelector('.friends-modal').classList.add('hidden');
+};
+
 window.showInvite = (message) => {
     router.getLastView().context.request = message;
     document.querySelector('.confirm').classList.remove('hidden');
-    document.querySelector('.friends-modal').classList.add('hidden');
+    closeModal();
 };
 
 const closeInvite = () => {
@@ -126,10 +133,12 @@ const closeInvite = () => {
 };
 
 window.addToFriends = () => {
-    httpModule.doPost('/user/addfriend', {login: router.getLastView().context.currentFriend});
+    closeModal();
+    httpModule.doPost('/user/friend/add', {login: router.getLastView().context.currentFriend});
 };
 
 window.inviteToParty = () => {
+    closeModal();
     httpModule.doPost('/party/invite', {login: router.getLastView().context.currentFriend});
 };
 
@@ -151,7 +160,7 @@ window.play = () => {
 window.search = () => {
     const name = document.querySelector('.search__input').value;
     const view = router.getLastView();
-    const url = view.context.inFriends ? '/user/friends' : '/allusers';
+    const url = view.context.inFriends ? '/user/friends/all' : '/allusers';
 
     httpModule.doPost(url, {prefix: name}).then(
         (response) => {
