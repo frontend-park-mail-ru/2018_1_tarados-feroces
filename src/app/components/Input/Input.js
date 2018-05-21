@@ -12,6 +12,7 @@ export default class Input extends BaseComponent {
         this.events.forEach((item) => {
             if (context[item]) {
                 const func = context[item].match(this.functionExp);
+                console.log(this._element);
                 this._element.getElementsByTagName('input')[0].addEventListener(item, new Function(func[1], func[2]));
             }
         });

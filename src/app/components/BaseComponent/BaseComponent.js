@@ -10,7 +10,7 @@ export default class BaseComponent {
         this._element = null;
         this.template = template;
         this.events = ['click', 'focus', 'blur', 'change'];
-        this.functionExp = /\s*\(([\w, ]*)\)\n*\t*\s*{(.*)}/i;
+        this.functionExp = /function\s*\(([\w, ]*)\)\n*\t*\s*{(.*)}/i;
     }
 
     /**
@@ -47,8 +47,8 @@ export default class BaseComponent {
     addListeners(context) {
         this.events.forEach((item) => {
             if (context[item]) {
-                console.log(context);
                 const func = context[item].match(this.functionExp);
+                // console.log(func);
                 this._element.addEventListener(item, new Function(func[1], func[2]));
                 // this._element.addEventListener(item, eval(context[item]));
             }

@@ -105,5 +105,5 @@ class UserService {
     }
 }
 
-const userService = new UserService();
+window.userService = new UserService();
 export default userService;

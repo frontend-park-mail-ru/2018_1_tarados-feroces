@@ -123,7 +123,7 @@ const closeInvite = () => {
 };
 
 window.addToFriends = () => {
-    httpModule.doPost('/user/addfriend', {login: router.getLastView().context.currentFriend});
+    httpModule.doPost('/user/friend/add', {login: router.getLastView().context.currentFriend});
 };
 
 window.inviteToParty = () => {
@@ -148,7 +148,7 @@ window.play = () => {
 window.search = () => {
     const name = document.querySelector('.search__input').value;
     const view = router.getLastView();
-    const url = view.context.inFriends ? '/user/friends' : '/allusers';
+    const url = view.context.inFriends ? '/user/friend/all' : '/allusers';
 
     httpModule.doPost(url, {prefix: name}).then(
         (response) => {

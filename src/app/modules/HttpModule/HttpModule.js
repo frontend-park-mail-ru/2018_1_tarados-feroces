@@ -68,5 +68,5 @@ class HttpModule {
     }
 }
 
-const httpModule = new HttpModule();
+window.httpModule = new HttpModule();
 export default httpModule;
