@@ -13,7 +13,8 @@ class UserService {
         this.MESSAGES = {
             ADD_AS_FRIEND: 'aaf',
             INVITE_TO_PARTY: 'itp',
-            LEAVE_PARTY: 'lp',
+            // LEAVE_PARTY: 'lp',
+            PARTY_VIEW: 'pv',
             UPDATE_PARTY: 'up',
             INIT_GAME: 'ig',
 
@@ -45,12 +46,16 @@ class UserService {
                     case this.MESSAGES.INVITE_TO_PARTY:
                         data.message = 'Invite to party';
                         data.type = 'party';
+                        data.login = data.leader;
                         showInvite(data);
                         break;
-                    case this.MESSAGES.LEAVE_PARTY:
-
-                        leaveParty(data);
+                    case this.MESSAGES.PARTY_VIEW:
+                        updateParty(data);
                         break;
+                    // case this.MESSAGES.LEAVE_PARTY:
+                    //
+                    //     leaveParty(data);
+                    //     break;
                     default:
                         console.log(data);
                 }

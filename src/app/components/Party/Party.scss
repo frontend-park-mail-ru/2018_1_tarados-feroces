@@ -9,6 +9,7 @@
   border-left: thin solid black;
   border-right: thin solid black;
   justify-content: flex-start;
+  flex-grow: 0;
 
   //&:last-child {
   //  margin-right: 5px;
@@ -23,7 +24,6 @@
     border-radius: 15px;
     &-logo {
       align-self: center;
-      flex-grow: 0;
       width: 100%;
       height: 100%;
       border-radius: 15px;

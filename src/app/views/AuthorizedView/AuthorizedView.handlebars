@@ -56,7 +56,10 @@
             </div>
 
             <Party class="content-right-party">
-                {{#each party}}
+                <div class="party__friend">
+                    <Image class="party__friend-logo" src="{{{party.leader.avatar}}}"></Image>
+                </div>
+                {{#each party.users}}
                     <div class="party__friend">
                         <Image class="party__friend-logo" src="{{{this.avatar}}}"></Image>
                     </div>
@@ -66,12 +69,12 @@
 
 
     </div>
-    <ConfirmDialog class="hidden" avatar="{{{request.avatar}}}" login="{{request.login}}" message="{{request.message}}">
+    <ConfirmDialog class="hidden">
         <div class="confirm-modal">
-            <p class="confirm-modal__message">{{message}}</p>
+            <p class="confirm-modal__message">{{request.message}}</p>
             <div class="confirm-modal__info">
-                <Image class="confirm-modal__info-avatar" src="{{{avatar}}}"></Image>
-                <p class="confirm-modal__info-login">{{login}}</p>
+                <Image class="confirm-modal__info-avatar" src="{{{request.avatar}}}"></Image>
+                <p class="confirm-modal__info-login">{{request.login}}</p>
             </div>
             <div class="confirm-modal__accept">
                 <Button click="(){acceptFriend(true);}">Accept</Button>

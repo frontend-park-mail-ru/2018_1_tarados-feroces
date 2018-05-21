@@ -36,7 +36,7 @@ window.validateLogin = () => {
             }
         ).then(
             (resolve) => {
-                router.go('/user/');
+                router.go('/news/');
             }
         );
     }
