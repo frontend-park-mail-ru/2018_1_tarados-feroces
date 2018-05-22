@@ -27,7 +27,7 @@ export default class AuthorizedView extends BaseView {
         this.context.party = [{avatar: this.context.avatar}, {avatar: ''}, {avatar: ''}, {avatar: ''}];
 
 
-        return httpModule.doPost('/user/friends', {prefix: ''}).then(
+        return httpModule.doPost('/user/friend/all', {prefix: ''}).then(
             (response) => {
                 if ('message' in response) {
                     this.context.people = [];

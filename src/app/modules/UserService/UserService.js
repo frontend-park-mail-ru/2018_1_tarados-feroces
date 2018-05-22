@@ -13,7 +13,8 @@ class UserService {
         this.MESSAGES = {
             ADD_AS_FRIEND: 'aaf',
             PARTY_INVITE: 'pi',
-            UPDATE_PARTY: 'up'
+            UPDATE_PARTY: 'up',
+            START_GAME: 'sg',
         };
 
         this.data = {};

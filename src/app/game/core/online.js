@@ -1,17 +1,17 @@
 import GameCore from './index';
 import bus from '../../modules/Bus/Bus';
-import Ws from '../../modules/WebSocket/WebSocket';
+import userService from '../../modules/UserService/UserService';
 import {WS_ADDRESS} from '../../modules/HttpModule/HttpConstants';
 
 export default class OnlineGame extends GameCore {
     start() {
         super.start();
-        this.ws = new Ws(WS_ADDRESS);
-        this.ws.send('game-started', null);
+        // this.ws = new Ws(WS_ADDRESS);
+        // this.ws.send('game-started', null);
     }
 
     onControlsPressed(event) {
-        this.ws.send(this.controller.keyMap);
+        // this.ws.send(this.controller.keyMap);
     }
 
     onGameStarted(event) {

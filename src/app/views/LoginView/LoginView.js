@@ -11,9 +11,12 @@ export default class LoginView extends BaseView {
     }
 
     setContext() {
+        this.context.selfy = this;
+
         this.context.validateLogin = () => {
+
             const blocks = window.router.getLastView().inputBlocks;
-            if (blocks.reduce((result, current) => result + this.context.validateLoginInput(current), 0) === blocks.length) {
+            if (blocks.reduce((result, current) => result + selfy.validateLoginInput(current), 0) === blocks.length) {
                 window.httpModule.doPost('/signin',
                     {
                         login: blocks[0].querySelector('input').value,
