@@ -5,8 +5,31 @@ import userService from '../../modules/UserService/UserService';
 import router from '../../modules/Router/Router';
 import ws from '../../modules/WebSocket/WebSocket';
 import {WS_ADDRESS} from '../../modules/HttpModule/HttpConstants';
+import bus from "../../modules/Bus/Bus";
 
 export default class AuthorizedView extends BaseView {
+
+    constructor() {
+        super();
+        bus.on(userService.MESSAGES.ADD_AS_FRIEND, (message) => {
+            const data = JSON.parse(message.data);
+            data.message = 'New friend request';
+            data.type = 'friends';
+            showInvite(data);
+        });
+        bus.on(userService.MESSAGES.INVITE_TO_PARTY, (message) => {
+            const data = JSON.parse(message.data);
+            data.message = 'Invite to party';
+            data.type = 'party';
+            data.login = data.leader;
+            showInvite(data);
+        });
+        bus.on(userService.MESSAGES.PARTY_VIEW, (message) => {
+            const data = JSON.parse(message.data);
+            updateParty(data);
+            showInvite(data);
+        });
+    }
 
     update(context = {}) {
 
@@ -32,25 +55,19 @@ export default class AuthorizedView extends BaseView {
         this.context = userService.data;
         this.context.inFriends = true;
 
-        // this.context.request = {avatar: '../images/user-logo.jpg', login: 'Andrew', message: 'New friend request'};
-
         if (!this.context.avatar) {
             this.context.avatar = '../images/user-logo.jpg';
         }
-
-        // this.context.party = [{avatar: this.context.avatar}, {avatar: '../images/transparent.ico'},
-        //     {avatar: '../images/transparent.ico'}, {avatar: '../images/transparent.ico'}];
 
         this.context.party = {
             leader: {
                 avatar: this.context.avatar
             },
-            users: []
+            users: [{avatar: '../images/transparent.ico'}]
         };
 
         return httpModule.doPost('/user/friend/all', {prefix: ''}).then(
             (response) => {
-                // console.log(response);
                 if ('message' in response) {
                     this.context.people = [];
                 } else {

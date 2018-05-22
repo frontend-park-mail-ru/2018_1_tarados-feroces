@@ -1,7 +1,10 @@
 import httpModule from '../HttpModule/HttpModule';
 import router from '../Router/Router';
 import ws from '../WebSocket/WebSocket';
+import bus from '../Bus/Bus';
 import {WS_ADDRESS} from '../HttpModule/HttpConstants';
+
+
 
 /**
  * Класс для работы с сессией пользователя
@@ -9,7 +12,7 @@ import {WS_ADDRESS} from '../HttpModule/HttpConstants';
  */
 class UserService {
 
-    init() {
+    constructor() {
         this.MESSAGES = {
             ADD_AS_FRIEND: 'aaf',
             INVITE_TO_PARTY: 'itp',
@@ -20,7 +23,12 @@ class UserService {
 
         };
 
+
+    }
+
+    init() {
         this.data = {};
+
         return httpModule.doGet('/user').then(
             (response) => {
                 this.data = response;
@@ -37,29 +45,7 @@ class UserService {
             WS_ADDRESS,
             (message) => {
                 const data = JSON.parse(message.data);
-                switch (data.cls) {
-                    case this.MESSAGES.ADD_AS_FRIEND:
-                        data.message = 'New friend request';
-                        data.type = 'friends';
-                        showInvite(data);
-                        break;
-                    case this.MESSAGES.INVITE_TO_PARTY:
-                        data.message = 'Invite to party';
-                        data.type = 'party';
-                        data.login = data.leader;
-                        showInvite(data);
-                        break;
-                    case this.MESSAGES.PARTY_VIEW:
-                        updateParty(data);
-                        break;
-                    // case this.MESSAGES.LEAVE_PARTY:
-                    //
-                    //     leaveParty(data);
-                    //     break;
-                    default:
-                        console.log(data);
-                }
-                console.log(message);
+                bus.emit(data.cls, message);
             },
             (message) => console.log(message)
         );
