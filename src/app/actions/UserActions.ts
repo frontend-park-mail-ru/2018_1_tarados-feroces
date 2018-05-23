@@ -23,7 +23,10 @@ export function getUser() {
 
 export function updateUser(data) {
     return async (dispatch) => {
+        dispatch(setUser( { isAuthorized : null } ));
         const response = await transport.doPost(HttpConstants.UPDATE_USER, data);
+        const json = await response.json();
+        response.ok ? dispatch(getUser()) : alert(json.message);
         // response.ok && dispatch(update(await response.json()));
     }
 }
@@ -38,7 +41,8 @@ function update(data): any {
 export function signupUser(data) {
     return async (dispatch) => {
         const response = await transport.doPost(HttpConstants.SIGNUP, data);
-        response.ok && dispatch(signup({...(await response.json()), 'isAuthorized': true }));
+        const json = await response.json();
+        response.ok ? dispatch(signup({...json, 'isAuthorized': true })) : alert(json.message);
     }
 }
 
@@ -52,7 +56,8 @@ function signup(data): any {
 export function loginUser(data) {
     return async (dispatch) => {
         const response = await transport.doPost(HttpConstants.LOGIN, data);
-        response.ok && dispatch(login({...(await response.json()), 'isAuthorized': true }));
+        const json = await response.json();
+        response.ok ? dispatch(signup({...json, 'isAuthorized': true })) : alert(json.message);
     }
 }
 
@@ -66,8 +71,8 @@ function login(data): any {
 export function logoutUser() {
     return async (dispatch) => {
         const response = await transport.doGet(HttpConstants.LOGOUT);
-        response.ok && dispatch(logout());
-    }
+        const json = await response.json();
+        response.ok ? dispatch(logout()) : alert(json.message);    }
 }
 
 function logout(): any {

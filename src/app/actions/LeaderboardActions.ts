@@ -5,9 +5,10 @@ import { GET_LEADERS } from '../constants/ReducersConstants';
 export function getLeaderboard(position): any {
         return async (dispatch) => {
             const response = await transport.doPost(HttpConstants.GET_LEADERS, position);
+            const json = await response.json();
             dispatch(
                 leaderboard(
-                    response.ok && ( await response.json() )
+                    response.ok ? (json) : alert(json.message)
                 )
             );
         }

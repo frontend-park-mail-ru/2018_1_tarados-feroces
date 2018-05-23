@@ -104,6 +104,7 @@ class Signup extends React.Component<IProps, any> {
                                     block-class='user-repeat-password'
                                     type='password'
                                     placeholder='Repeat password'
+                                    onChange={() => {}}
                                 />
                                 <Button onClick={this.registerUser} className='login-button' text='Sign up'/>
                             </div>

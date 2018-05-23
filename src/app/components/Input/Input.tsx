@@ -9,7 +9,7 @@ interface IProps {
     inputClass?: string;
     placeholder?: string;
     value?: string;
-    onChange?: any;
+    onChange: any;
     dest?: string;
     defaultValue?: string;
 }

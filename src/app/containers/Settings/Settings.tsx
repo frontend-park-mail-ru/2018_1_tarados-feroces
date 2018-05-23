@@ -23,6 +23,7 @@ interface IProps {
     history?: any;
     userActions?: any;
     settingsActions?: any;
+    changeUser?: any;
 }
 
 class Settings extends React.Component<IProps, any> {
@@ -38,12 +39,10 @@ class Settings extends React.Component<IProps, any> {
         this.changeImage = this.changeImage.bind(this);
     }
 
-    public async changeUser() {
+    public changeUser() {
         const { history, settingsForm }: any = this.props;
-        const { updateUser, getUser, setUser }: any = this.props.userActions;
-        setUser( { isAuthorized : null } );
-        await updateUser( settingsForm );
-        getUser();
+        const { updateUser } = this.props.userActions;
+        updateUser(settingsForm);
         history.push('/me');
     }
 
@@ -93,7 +92,10 @@ class Settings extends React.Component<IProps, any> {
                                 />
                             </div>
                             <div className='form-block-content-inputs'>
-                                <InputFile onChange={this.changeAvatar} fileClass='file-avatar' />
+                                <InputFile
+                                    onChange={this.changeAvatar}
+                                    fileClass='file-avatar'
+                                />
                                 <Input
                                     block-class='user-email'
                                     type='text'
@@ -147,6 +149,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
+
     return {
         userActions: bindActionCreators(userActions, dispatch),
         settingsActions: bindActionCreators(settingsActions, dispatch)

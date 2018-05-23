@@ -10,11 +10,11 @@ import Login from '../Login/Login';
 import Signup from '../Signup/Signup';
 import Authorized from '../Authorized/Authorized';
 import Settings from '../Settings/Settings';
+import GameContainer from '../Game/Game';
 
 import '../../../static/css/main.scss';
 
 import * as userActions from '../../actions/UserActions';
-import transport from '../../modules/Transport/Transport';
 
 const history = createBrowserHistory();
 
@@ -34,6 +34,7 @@ class App extends React.Component<any, any> {
                     <Route path={ PathConstants.SIGNUP } component={ Signup } />
                     <Route path={ PathConstants.AUTHORIZED } component={ Authorized } />
                     <Route path={ PathConstants.SETTINGS } component={ Settings } />
+                    <Route path={ PathConstants.SINGLE } component={ GameContainer } />
                 </Switch>
             </Router>
         );

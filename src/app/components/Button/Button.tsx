@@ -14,7 +14,7 @@ export default class Button extends React.Component<IProps, any> {
         const {text, className, onClick}: any = this.props;
         return (
             <div onClick={onClick} className={'button ' + className}>
-                <p className={'button__value'}>{text}</p>
+                <p className='button__value'>{text}</p>
             </div>
         );
     }

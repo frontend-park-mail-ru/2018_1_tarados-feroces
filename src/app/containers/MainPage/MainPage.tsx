@@ -24,6 +24,7 @@ class MainPage extends React.Component<IProps, any> {
         super(props);
         this.goLogin = this.goLogin.bind(this);
         this.goSignup = this.goSignup.bind(this);
+        this.goSingle = this.goSingle.bind(this);
     }
 
     public slide(event) {
@@ -45,7 +46,7 @@ class MainPage extends React.Component<IProps, any> {
 
     public render(): JSX.Element {
         const buttons: any = [
-            {text: 'Play'},
+            {text: 'Play', onClick: this.goSingle},
             {text: 'Login', onClick: this.goLogin},
             {text: 'Sign up', onClick: this.goSignup}
         ];
@@ -101,6 +102,11 @@ class MainPage extends React.Component<IProps, any> {
     private goLogin() {
         const { history } = this.props;
         history.push('/login');
+    }
+
+    private goSingle() {
+        const { history } = this.props;
+        history.push('/game');
     }
 
     private goSignup() {

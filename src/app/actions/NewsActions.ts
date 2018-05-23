@@ -5,9 +5,10 @@ import { GET_NEWS } from '../constants/ReducersConstants';
 export function getNews(position): any {
     return async (dispatch) => {
         const response = await transport.doPost(HttpConstants.GET_NEWS, position);
+        const json = await response.json();
         dispatch(
             news(
-                response.ok && ( await response.json() )
+                response.ok ? (json) : alert(json.message)
             )
         );
     }
