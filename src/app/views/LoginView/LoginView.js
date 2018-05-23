@@ -9,26 +9,34 @@ export default class LoginView extends BaseView {
         this.template = require('./LoginView.handlebars');
     }
 
+    getDOMDependensies() {
+        this.inputBlocks = [...document.querySelector('.login').getElementsByClassName('input-block')];
+    }
+
     needAuthorization() {
         return false;
     }
 }
 
 window.validateLogin = () => {
-    const blocks = [...document.querySelector('.login').getElementsByClassName('input-block')];
+    const blocks = router.getLastView().inputBlocks;
     if (blocks.reduce((result, current) => result + validateLoginInput(current), 0) === blocks.length) {
         httpModule.doPost('/signin',
             {
                 login: blocks[0].querySelector('input').value,
                 password: blocks[1].querySelector('input').value,
             }).then(
-            (responseText) => {
+            (response) => {
                 userService.userLogin();
-                router.go('/user/');
                 blocks.forEach((item) => item.querySelector('input').value = '');
+                return userService.init();
             },
             (error) => {
-                alert(error);
+                console.log(error);
+            }
+        ).then(
+            (resolve) => {
+                router.go('/news/');
             }
         );
     }

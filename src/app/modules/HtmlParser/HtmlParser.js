@@ -10,7 +10,9 @@ import Image from '../../components/Image/Image';
 import Trailer from '../../components/Trailer/Trailer';
 import Label from '../../components/Label/Label';
 import Friend from '../../components/Friend/Friend';
+import PeopleSearch from '../../components/PeopleSearch/PeopleSearch';
 import FriendAction from '../../components/FriendAction/FriendAction';
+import ConfirmDialog from '../../components/ConfirmDialog/ConfirmDialog';
 import HideFriendsButton from '../../components/HideFriendsButton/HideFriendsButton';
 import UserInfo from '../../components/UserInfo/UserInfo';
 import SettingsButton from '../../components/SettingsButton/SettingsButton';
@@ -48,7 +50,9 @@ class HtmlParser {
             Trailer: () => new Trailer(),
             Label: () => new Label(),
             Friend: () => new Friend(),
+            PeopleSearch: () => new PeopleSearch(),
             FriendAction: () => new FriendAction(),
+            ConfirmDialog: () => new ConfirmDialog(),
             HideFriendsButton: () => new HideFriendsButton(),
             UserInfo: () => new UserInfo(),
             SettingsButton: () => new SettingsButton(),
@@ -64,6 +68,7 @@ class HtmlParser {
             ul: () => new StandartComponent(),
             span: () => new StandartComponent(),
             canvas: () => new StandartComponent(),
+            input: () => new StandartComponent()
         };
     }
 

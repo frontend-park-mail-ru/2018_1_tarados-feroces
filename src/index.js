@@ -11,8 +11,10 @@ import AuthorizedView from './app/views/AuthorizedView/AuthorizedView';
 import SettingsView from './app/views/SettingsView/SettingsView';
 import LeaderboardView from './app/views/LeaderboardView/LeaderboardView';
 import NewsView from './app/views/NewsView/NewsView';
+// import ws from "./app/modules/WebSocket/WebSocket";
+import {WS_ADDRESS} from './app/modules/HttpModule/HttpConstants';
 
-serviceWorkerRegister();
+// serviceWorkerRegister();
 
 router
     .addUrl(
@@ -53,10 +55,18 @@ router
 userService.checkSession()
     .then(
         (resolve) => {
-            router.go(document.location.pathname);
+            if (userService.isAuthorized) {
+                userService.init().then(
+                    (resolve) => {
+                        router.go(document.location.pathname);
+                    }
+                );
+            } else {
+                router.go(document.location.pathname);
+            }
+
         },
         (reject) => {
-            console.log('error');
             router.go(document.location.pathname);
         }
     );

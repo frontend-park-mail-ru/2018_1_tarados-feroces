@@ -3,12 +3,12 @@
         <div class="header-logo">
             <Image class="header-logo-content" src="../images/Deadlinez.png"></Image>
         </div>
-        <div class="button button-play" click="(){send();}">
+        <div class="button button-play" click="(){play();}">
             <p class="button-play__value">PLAY</p>
         </div>
         <UserInfo login="{{login}}" coins="645" points="1080" avatar="{{{avatar}}}">
             <SettingsButton click="(){goToSettings();}"></SettingsButton>
-            <SignoutButton click="(){signOut();}"></SignoutButton>
+            <SignoutButton click="(event){signOut();}"></SignoutButton>
         </UserInfo>
     </Header>
 
@@ -16,7 +16,7 @@
         <div class="auth-page__content-left">
             <div class="auth-page__content-left-modal">
                 <div class="auth-page__content-left-modal-header modal-header">
-                    <AuthHeaderPoint class="news-header" click="(){goToNews();}">News</AuthHeaderPoint>
+                    <AuthHeaderPoint class="news-header" click="(){ goToNews(); }">News</AuthHeaderPoint>
                     <AuthHeaderPoint class="leaderboard" click="(){ goToScore(); }">Scoreboard</AuthHeaderPoint>
                 </div>
                 <AuthContent id="modal-data"></AuthContent>
@@ -24,27 +24,64 @@
         </div>
 
         <div class="friends-modal hidden">
-            <FriendAction>Invite</FriendAction>
-            <FriendAction>Chat</FriendAction>
-            <FriendAction>View profile</FriendAction>
+            {{#if inFriends}}
+                <FriendAction click="(event){window.inviteToParty();}">Invite</FriendAction>
+            {{else}}
+                <FriendAction click="(event){window.addToFriends();}">Add to friends</FriendAction>
+            {{/if}}
         </div>
 
         <div class="auth-page__content-right">
-
-            <div class="auth-page__content-right-friends">
+            <div class="auth-page__content-right-hide">
                 <HideFriendsButton click="(){hideFriends();}"></HideFriendsButton>
                 <div class="friends">
-                    <div class="friends-label">
-                        <p class="friends-label-value">Friends</p>
+                    <div class="friends-header">
+                        <div class="friends-header-point" click="(){changeFriendsOrPeople(true); }">
+                            <p class="friends-header-point-value">Friends</p>
+                        </div>
+                        <div class="friends-header-point" click="(){changeFriendsOrPeople(false);}">
+                            <p class="friends-header-point-value">People</p>
+                        </div>
                     </div>
-                    <Friend avatar="../images/user-logo.jpg" login="Kabachok" click="(event){showFriendActions(event);}"></Friend>
-                    <Friend avatar="../images/user-logo.jpg" login="Kabachok" click="(event){showFriendActions(event);}"></Friend>
-                    <Friend avatar="../images/user-logo.jpg" login="Kabachok" click="(event){showFriendActions(event);}"></Friend>
-                    <Friend avatar="../images/user-logo.jpg" login="Kabachok" click="(event){showFriendActions(event);}"></Friend>
+                    <PeopleSearch>
+                        <Image class="search__button" src="../images/search.png" click="(){search();}"></Image>
+                    </PeopleSearch>
+
+                    <div class="friends-data">
+                    {{#each people}}
+                        <Friend avatar="{{{this.avatar}}}" login="{{this.login}}" click="(event){showFriendActions(event);}"></Friend>
+                    {{/each}}
+                    </div>
                 </div>
             </div>
 
-            <Party class="content-right-party"></Party>
+            <Party class="content-right-party">
+                <div class="party__friend">
+                    <Image class="party__friend-logo" src="{{{party.leader.avatar}}}"></Image>
+                </div>
+                {{#each party.users}}
+                    <div class="party__friend">
+                        <Image class="party__friend-logo" src="{{{this.avatar}}}"></Image>
+                    </div>
+                {{/each}}
+            </Party>
         </div>
+
+
     </div>
+    <ConfirmDialog class="hidden">
+        <div class="confirm-modal">
+            <p class="confirm-modal__message">{{request.message}}</p>
+            <div class="confirm-modal__info">
+                <Image class="confirm-modal__info-avatar" src="{{{request.avatar}}}"></Image>
+                <p class="confirm-modal__info-login">{{request.login}}</p>
+            </div>
+            <div class="confirm-modal__accept">
+                <Button click="(){acceptFriend(true);}">Accept</Button>
+                <Button click="(){acceptFriend(false);}">Decline</Button>
+
+            </div>
+        </div>
+    </ConfirmDialog>
+    <!--<ConfirmDialog class="hidden" avatar="../images/add.png" login="ANDREW" message="New friend request"></ConfirmDialog>-->
 </div>

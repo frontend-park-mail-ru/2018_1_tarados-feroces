@@ -1,11 +1,73 @@
 import httpModule from '../HttpModule/HttpModule';
 import router from '../Router/Router';
+import ws from '../WebSocket/WebSocket';
+import {WS_ADDRESS} from '../HttpModule/HttpConstants';
 
 /**
  * Класс для работы с сессией пользователя
  * @module UserService
  */
 class UserService {
+
+    init() {
+        this.MESSAGES = {
+            ADD_AS_FRIEND: 'aaf',
+            INVITE_TO_PARTY: 'itp',
+            // LEAVE_PARTY: 'lp',
+            PARTY_VIEW: 'pv',
+            UPDATE_PARTY: 'up',
+            INIT_GAME: 'ig',
+
+        };
+
+        this.data = {};
+        return httpModule.doGet('/user').then(
+            (response) => {
+                this.data = response;
+                console.log('data done');
+            },
+            (reject) => {
+                console.log(reject);
+            }
+        );
+    }
+
+    openWebSocket() {
+        ws.open(
+            WS_ADDRESS,
+            (message) => {
+                const data = JSON.parse(message.data);
+                switch (data.cls) {
+                    case this.MESSAGES.ADD_AS_FRIEND:
+                        data.message = 'New friend request';
+                        data.type = 'friends';
+                        showInvite(data);
+                        break;
+                    case this.MESSAGES.INVITE_TO_PARTY:
+                        data.message = 'Invite to party';
+                        data.type = 'party';
+                        data.login = data.leader;
+                        showInvite(data);
+                        break;
+                    case this.MESSAGES.PARTY_VIEW:
+                        updateParty(data);
+                        break;
+                    // case this.MESSAGES.LEAVE_PARTY:
+                    //
+                    //     leaveParty(data);
+                    //     break;
+                    default:
+                        console.log(data);
+                }
+                console.log(message);
+            },
+            (message) => console.log(message)
+        );
+    }
+
+    update(data) {
+        this.data = data;
+    }
 
     /**
      * Проверка авторизации пользователя
@@ -30,7 +92,9 @@ class UserService {
      * Установка флага авторизованного пользователя
      */
     userLogin() {
+
         this.isAuthorized = true;
+
     }
 
     /**
@@ -38,6 +102,9 @@ class UserService {
      * Удаление отрендеренных вью пользователя
      */
     userLogout() {
+        ws.close(1000, 'Logout');
+
+        this.data = {};
         this.isAuthorized = false;
         router.clearUrlElement('/user/');
         router.clearUrlElement('/leaderboard/');
