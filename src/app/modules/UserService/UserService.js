@@ -16,9 +16,10 @@ class UserService {
         this.MESSAGES = {
             ADD_AS_FRIEND: 'aaf',
             INVITE_TO_PARTY: 'itp',
-            // LEAVE_PARTY: 'lp',
+            LEAVE_PARTY: 'lp',
             JOIN_GAME: 'jg',
-            INTERRAPT: 'in',
+            ASK_FOR_GAME: 'afjg',
+            // INTERRAPT: 'in',
             PARTY_VIEW: 'pv',
             UPDATE_PARTY: 'up',
             START_GAME: 'sg',
@@ -33,7 +34,6 @@ class UserService {
         return httpModule.doGet('/user').then(
             (response) => {
                 this.data = response;
-                console.log('data done');
             },
             (reject) => {
                 console.log(reject);
@@ -46,6 +46,7 @@ class UserService {
             WS_ADDRESS,
             (message) => {
                 const data = JSON.parse(message.data);
+                console.log(data);
                 bus.emit(data.cls, message);
             },
             (message) => console.log(message)

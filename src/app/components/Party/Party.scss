@@ -11,17 +11,10 @@
   justify-content: flex-start;
   width: 100%;
 
-  //&:last-child {
-  //  margin-right: 5px;
-  //}
-
   &__friend {
     display: flex;
-    width: 25%;
-    //flex-basis: 25%;
     justify-content: center;
     margin: 5px;
-    //border: thin solid black;
     border-radius: 15px;
 
     &-logo {

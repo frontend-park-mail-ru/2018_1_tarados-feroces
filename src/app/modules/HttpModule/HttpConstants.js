@@ -1,4 +1,4 @@
-export const httpDomen = 'http://api.deadlinez.net:8080/api';
+export const DOMEN = 'http://api.deadlinez.net:8080/api';
 export const WS_ADDRESS = 'ws://api.deadlinez.net:8080/session';
 export const POST = 'POST';
 export const GET = 'GET';

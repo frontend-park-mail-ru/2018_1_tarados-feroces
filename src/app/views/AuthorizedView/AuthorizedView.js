@@ -26,7 +26,10 @@ export default class AuthorizedView extends BaseView {
         bus.on(userService.MESSAGES.PARTY_VIEW, (message) => {
             const data = JSON.parse(message.data);
             updateParty(data);
-            showInvite(data);
+        });
+        bus.on(userService.MESSAGES.ASK_FOR_GAME, (message) => {
+            console.log(message);
+            showGameInvite();
         });
     }
 
@@ -60,13 +63,6 @@ export default class AuthorizedView extends BaseView {
 
         this.context.waiting = false;
 
-        this.context.party = {
-            leader: {
-                avatar: this.context.avatar
-            },
-            users: [{avatar: '../images/transparent.ico'}]
-        };
-
         return httpModule.doPost('/user/friend/all', {prefix: ''}).then(
             (response) => {
                 if ('message' in response) {
@@ -80,6 +76,31 @@ export default class AuthorizedView extends BaseView {
                         item.avatar = '../images/user-logo.jpg';
                     }
                 });
+
+                return httpModule.doGet('/party/get').then(
+                    (response) => {
+                        this.context.party = response;
+
+                        if (!this.context.party.leader.avatar) {
+                            this.context.party.leader.avatar = '../images/user-logo.jpg';
+                        }
+
+                        this.context.party.users.forEach((item) => {
+                            if (!item.avatar) {
+                                item.avatar = '../images/user-logo.jpg';
+                            }
+                        });
+                    },
+                    (reject) => {
+                        // console.log(this.context);
+                        this.context.party = {
+                            leader: {
+                                avatar: this.context.avatar
+                            },
+                            users: []
+                        };
+                    }
+                );
             }
         );
     }
@@ -121,13 +142,11 @@ window.hideFriends = () => {
 window.showFriendActions = (event) => {
     const modal = document.querySelector('.friends-modal');
     const icon = event.currentTarget;
-    // console.log(modal);
     console.log(icon);
     router.getLastView().context.currentFriend = icon.querySelector('.friend__login-value').textContent;
 
     const x = icon.getBoundingClientRect().x;
     const y = icon.getBoundingClientRect().y;
-    // console.log(icon.left);
     modal.style.left = `${x}px`;
     modal.style.top = `${y + icon.getBoundingClientRect().height}px`;
     modal.classList.toggle('hidden');
@@ -171,11 +190,6 @@ const closeInvite = () => {
     document.querySelector('.confirm').classList.add('hidden');
 };
 
-const closeGameInvite = () => {
-    document.querySelector('.game-confirm').classList.add('hidden');
-
-};
-
 window.addToFriends = () => {
     closeModal();
     httpModule.doPost('/user/friend/add', {login: router.getLastView().context.currentFriend});
@@ -186,23 +200,40 @@ window.inviteToParty = () => {
     httpModule.doPost('/party/invite', {login: router.getLastView().context.currentFriend});
 };
 
+window.getParty = () => {
+
+};
+
 window.updateParty = (data) => {
     const view = router.getLastView();
     view.context.party = data;
     router.viewUpdate('/user/', view.context);
 };
 
+window.leaveParty = () => {
+    const view = router.getLastView();
+    view.context.party = {
+        leader: {
+            avatar: this.context.avatar
+        },
+        users: []
+    };
+    ws.sendMessage(userService.MESSAGES.LEAVE_PARTY, {login: view.context.login});
+    router.viewUpdate('/user/', view.context);
+};
+
 window.showGameInvite = () => {
-    document.querySelector('.wait').classList.remove('hidden');
+    document.querySelector('.confirm-game').classList.remove('hidden');
+};
+
+const closeGameInvite = () => {
+    document.querySelector('.confirm-game').classList.add('hidden');
 };
 
 window.acceptGame = () => {
-    // userService.ws.send();
     document.querySelector('.wait').classList.add('hidden');
     document.querySelector('.confirm-game-modal__message').textContent = 'Waiting for other players...';
-    ws.sendMessage('jg', {});
-    router.go('/game');
-
+    ws.sendMessage('jg', {login: router.getLastView().context.login});
 };
 
 window.acceptFriend = (accept) => {
@@ -210,7 +241,7 @@ window.acceptFriend = (accept) => {
     const view = router.getLastView();
     const type = view.context.request.type;
 
-    let url = '/party/response';
+    let url = '/party/join';
     let response = {answer: 'accept', leader: view.context.request.leader};
     if (type === 'friends') {
         url = '/user/friend/response';
@@ -224,9 +255,14 @@ window.acceptFriend = (accept) => {
     );
 };
 
-window.play = () => {
+window.startGame = () => {
     const view = router.getLastView();
-    httpModule.doPost('/game', {leader: view.context.party.leader});
+    httpModule.doPost('/game/party', {leader: view.context.party.leader.login});
+};
+
+window.play = () => {
+    closeGameInvite();
+    router.go('/game');
 };
 
 window.search = () => {
