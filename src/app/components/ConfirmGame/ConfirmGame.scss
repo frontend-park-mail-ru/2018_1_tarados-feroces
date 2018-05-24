@@ -10,7 +10,7 @@
   text-align: $text-align;
 }
 
-.confirm {
+.confirm-game {
   position: fixed;
   top: 0;
   left: 0;
@@ -20,7 +20,7 @@
   z-index: 9999;
 }
 
-.confirm-modal {
+.confirm-game-modal {
   @include position-center;
   border-radius: 5px;
   width: 30%;
@@ -37,33 +37,12 @@
     color: white;
   }
 
-  &__info {
-    display: flex;
-    justify-content: space-around;
-    width: 60%;
-
-    &-avatar {
-      border-radius: 5px;
-      margin-bottom: 20px;
-      margin-top: 20px;
-      width: 100px;
-      height: 100px;
-    }
-
-    &-login {
-      align-self: center;
-      font-size: 40px;
-      font-family: $main-font;
-      color: white;
-    }
-  }
-
-
   &__accept {
+    margin-top: 20px;
     display: flex;
     width: 90%;
-    justify-content: space-between;
-    }
+    justify-content: center;
+  }
 
 
 }

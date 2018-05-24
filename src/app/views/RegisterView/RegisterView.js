@@ -31,7 +31,7 @@ window.validateRegistration = () => {
                 userService.userLogin();
                 userService.init().then(
                     (response) => {
-                        router.go('/news/');
+                        router.go('/user/');
                     });
                 blocks.forEach((item) => item.querySelector('input').value = '');
             },

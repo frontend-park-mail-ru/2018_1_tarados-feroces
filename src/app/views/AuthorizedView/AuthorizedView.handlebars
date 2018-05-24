@@ -66,9 +66,8 @@
                 {{/each}}
             </Party>
         </div>
-
-
     </div>
+
     <ConfirmDialog class="hidden">
         <div class="confirm-modal">
             <p class="confirm-modal__message">{{request.message}}</p>
@@ -79,9 +78,18 @@
             <div class="confirm-modal__accept">
                 <Button click="(){acceptFriend(true);}">Accept</Button>
                 <Button click="(){acceptFriend(false);}">Decline</Button>
-
             </div>
         </div>
     </ConfirmDialog>
-    <!--<ConfirmDialog class="hidden" avatar="../images/add.png" login="ANDREW" message="New friend request"></ConfirmDialog>-->
+
+    <ConfirmGame>
+        <div class="confirm-game-modal">
+            <p class="confirm-game-modal__message">Are you ready for GAME???</p>
+
+            <div class="confirm-game-modal__accept">
+                <Button class="wait" click="(){acceptGame(true);}">READY</Button>
+            </div>
+        </div>
+    </ConfirmGame>
+
 </div>

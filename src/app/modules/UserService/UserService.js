@@ -17,13 +17,14 @@ class UserService {
             ADD_AS_FRIEND: 'aaf',
             INVITE_TO_PARTY: 'itp',
             // LEAVE_PARTY: 'lp',
+            JOIN_GAME: 'jg',
+            INTERRAPT: 'in',
             PARTY_VIEW: 'pv',
             UPDATE_PARTY: 'up',
-            INIT_GAME: 'ig',
-
+            START_GAME: 'sg',
+            FINISH_GAME: 'fg',
+            GAME_STATE_CHANGED: 'gsc',
         };
-
-
     }
 
     init() {

@@ -1,17 +1,28 @@
 import GameCore from './index';
 import bus from '../../modules/Bus/Bus';
 import ws from '../../modules/WebSocket/WebSocket';
-import {WS_ADDRESS} from '../../modules/HttpModule/HttpConstants';
+import userService from "../../modules/UserService/UserService";
 
 export default class OnlineGame extends GameCore {
+
+    constructor(controller, scene) {
+        super(controller, scene);
+        this.gameLoop = this.gameLoop.bind(this);
+        this.gameLoopId = null;
+    }
+
     start() {
         super.start();
-        // this.ws = new Ws(WS_ADDRESS);
-        // this.ws.send('game-started', null);
     }
 
     onControlsPressed(event) {
-        ws.send(this.controller.keyMap);
+        const movement = {};
+        movement.x = this.controller.keyMap['RIGHT'] ? 1 : 0 +
+                        this.controller.keyMap['LEFT'] ? -1 : 0;
+        movement.y = this.controller.keyMap['UP'] ? 1 : 0 +
+                        this.controller.keyMap['DOWN'] ? -1 : 0;
+
+        ws.sendMessage(userService.MESSAGES.GAME_STATE_CHANGED, movement);
     }
 
     onGameStarted(event) {
@@ -33,5 +44,10 @@ export default class OnlineGame extends GameCore {
 
     onGameFinished(event) {
         bus.emit('CLOSE_GAME');
+    }
+
+    gameLoop() {
+        this.gameLoopId = requestAnimationFrame(this.gameLoop);
+        bus.emit(userService.MESSAGES.GAME_STATE_CHANGED);
     }
 }

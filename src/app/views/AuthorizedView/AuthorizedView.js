@@ -4,7 +4,6 @@ import httpModule from '../../modules/HttpModule/HttpModule';
 import userService from '../../modules/UserService/UserService';
 import router from '../../modules/Router/Router';
 import ws from '../../modules/WebSocket/WebSocket';
-import {WS_ADDRESS} from '../../modules/HttpModule/HttpConstants';
 import bus from "../../modules/Bus/Bus";
 
 export default class AuthorizedView extends BaseView {
@@ -58,6 +57,8 @@ export default class AuthorizedView extends BaseView {
         if (!this.context.avatar) {
             this.context.avatar = '../images/user-logo.jpg';
         }
+
+        this.context.waiting = false;
 
         this.context.party = {
             leader: {
@@ -170,6 +171,11 @@ const closeInvite = () => {
     document.querySelector('.confirm').classList.add('hidden');
 };
 
+const closeGameInvite = () => {
+    document.querySelector('.game-confirm').classList.add('hidden');
+
+};
+
 window.addToFriends = () => {
     closeModal();
     httpModule.doPost('/user/friend/add', {login: router.getLastView().context.currentFriend});
@@ -186,15 +192,29 @@ window.updateParty = (data) => {
     router.viewUpdate('/user/', view.context);
 };
 
+window.showGameInvite = () => {
+    document.querySelector('.wait').classList.remove('hidden');
+};
+
+window.acceptGame = () => {
+    // userService.ws.send();
+    document.querySelector('.wait').classList.add('hidden');
+    document.querySelector('.confirm-game-modal__message').textContent = 'Waiting for other players...';
+    ws.sendMessage('jg', {});
+    router.go('/game');
+
+};
+
 window.acceptFriend = (accept) => {
     closeInvite();
-    const type = router.getLastView().context.request.type;
+    const view = router.getLastView();
+    const type = view.context.request.type;
 
     let url = '/party/response';
-    let response = {answer: 'accept', leader: router.getLastView().context.request.leader};
+    let response = {answer: 'accept', leader: view.context.request.leader};
     if (type === 'friends') {
         url = '/user/friend/response';
-        response = {answer: 'accept', request_id: router.getLastView().context.request.request_id};
+        response = {answer: 'accept', request_id: view.context.request.request_id};
     }
 
     accept && httpModule.doPost(url, response).then(
@@ -205,7 +225,8 @@ window.acceptFriend = (accept) => {
 };
 
 window.play = () => {
-
+    const view = router.getLastView();
+    httpModule.doPost('/game', {leader: view.context.party.leader});
 };
 
 window.search = () => {

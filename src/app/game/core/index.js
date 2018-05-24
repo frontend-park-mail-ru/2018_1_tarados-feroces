@@ -1,4 +1,5 @@
 import bus from '../../modules/Bus/Bus';
+import userService from "../../modules/UserService/UserService";
 
 // const KEYS = {
 //     LEFT: [65],
@@ -14,10 +15,10 @@ export default class GameCore {
     }
 
     start() {
-        bus.on('START_GAME', this.onGameStarted);
-        bus.on('FINISH_GAME', this.onGameFinished);
+        bus.on(userService.MESSAGES.START_GAME, this.onGameStarted);
+        bus.on(userService.MESSAGES.FINISH_GAME, this.onGameFinished);
         bus.on('CONTROLS_PRESSED', this.onControlsPressed);
-        bus.on('GAME_STATE_CHANGED', this.onGameStateChanged);
+        bus.on(userService.MESSAGES.GAME_STATE_CHANGED, this.onGameFinished);
         // bus.on('WAVE_COMPLETED', this.onWaveCompleted);
         bus.on('ROUND_COMPLETED', this.onRoundCompleted);
     }
