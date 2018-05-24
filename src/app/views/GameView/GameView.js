@@ -13,6 +13,12 @@ export default class GameView extends BaseView {
         this.canvas = null;
     }
 
+    setContext() {
+        this.context.exitGame = () => {
+            router.go('/');
+        };
+    }
+
     create() {
         this.canvas = document.querySelector('.game__battleground-canvas');
         this.canvas.width = window.innerWidth;
@@ -98,6 +104,3 @@ export default class GameView extends BaseView {
     }
 }
 
-window.exitGame = () => {
-    router.go('/');
-};

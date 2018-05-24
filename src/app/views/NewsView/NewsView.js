@@ -10,6 +10,18 @@ export default class NewsView extends BaseView {
         return null;
     }
 
+    setContext() {
+        this.context.currentNewsPosition = 9;
+
+        this.context.newsPaginate = (index) => {
+            const paginationConstant = 9;
+            httpModule.doPost('/news', {position: index, count: paginationConstant}).then(
+                (response) => router.viewUpdate('/news/', response)
+            );
+            this.context.currentNewsPosition += paginationConstant;
+        };
+    }
+
     needUpdate() {
         return true;
     }
@@ -62,13 +74,3 @@ export default class NewsView extends BaseView {
         return this.template = require('./NewsView.handlebars');
     }
 }
-
-window.currentNewsPosition = 9;
-
-window.newsPaginate = (index) => {
-    const paginationConstant = 9;
-    httpModule.doPost('/news', {position: index, count: paginationConstant}).then(
-        (response) => router.viewUpdate('/news/', response)
-    );
-    window.currentNewsPosition += paginationConstant;
-};

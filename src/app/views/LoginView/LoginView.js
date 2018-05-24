@@ -11,12 +11,11 @@ export default class LoginView extends BaseView {
     }
 
     setContext() {
-        this.context.selfy = this;
 
         this.context.validateLogin = () => {
 
             const blocks = window.router.getLastView().inputBlocks;
-            if (blocks.reduce((result, current) => result + selfy.validateLoginInput(current), 0) === blocks.length) {
+            if (blocks.reduce((result, current) => result + window.validateLoginInput(current), 0) === blocks.length) {
                 window.httpModule.doPost('/signin',
                     {
                         login: blocks[0].querySelector('input').value,
@@ -36,19 +35,6 @@ export default class LoginView extends BaseView {
                     }
                 );
             }
-        };
-
-        this.context.validateLoginInput = (block) => {
-            const input = block.querySelector('input');
-
-            if (input.value === '') {
-                input.classList.add('input-block__input_error');
-                return false;
-            } else {
-                input.classList.remove('input-block__input_error');
-                return true;
-            }
-
         };
 
         this.context.validateBlurLoginInput = (event) => {
@@ -81,3 +67,16 @@ export default class LoginView extends BaseView {
         return false;
     }
 }
+
+window.validateLoginInput = (block) => {
+    const input = block.querySelector('input');
+
+    if (input.value === '') {
+        input.classList.add('input-block__input_error');
+        return false;
+    } else {
+        input.classList.remove('input-block__input_error');
+        return true;
+    }
+
+};

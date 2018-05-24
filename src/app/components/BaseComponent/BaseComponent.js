@@ -1,3 +1,7 @@
+import httpModule from '../../modules/HttpModule/HttpModule';
+import userService from '../../modules/UserService/UserService';
+import router from '../../modules/Router/Router';
+
 /** Базовый класс компоненты
  * @module BaseComponent
  */
@@ -10,7 +14,7 @@ export default class BaseComponent {
         this._element = null;
         this.template = template;
         this.events = ['click', 'focus', 'blur', 'change'];
-        this.functionExp = /function\s*\(([\w, ]*)\)\n*\t*\s*{(.*)}/i;
+        this.functionExp = /\s*\(([\w, ]*)\)\n*\t*\s*{(.*)}/i;
     }
 
     /**
@@ -48,7 +52,6 @@ export default class BaseComponent {
         this.events.forEach((item) => {
             if (context[item]) {
                 const func = context[item].match(this.functionExp);
-                // console.log(func);
                 this._element.addEventListener(item, new Function(func[1], func[2]));
                 // this._element.addEventListener(item, eval(context[item]));
             }
