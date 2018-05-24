@@ -12,7 +12,7 @@
         </UserInfo>
     </Header>
 
-    <div class="form-block login">
+    <div class="form-block settings">
         <div class="form-block-content">
             <div click="{{{ stringifyFunc goToUser }}}" class="form-block-content__back">
                 <Image class="form-block-content__back-icon" src="images/back.png"></Image>
@@ -25,7 +25,12 @@
                     </div>
 
                     <div class="form-block-content-inputs">
-                        <InputFile change="{{{ stringifyFunc changeAvatar }}}" file-class="file-avatar"></InputFile>
+                        <InputFile
+                                change="{{{ stringifyFunc changeAvatar }}}"
+                                file-class="file-avatar"
+                                src="{{{blobAvatar}}}"
+                        >
+                        </InputFile>
                         <Input
                                 block-class="user-name"
                                 type="text"

@@ -7,7 +7,7 @@ import BaseView from '../BaseView/BaseView';
 export default class SettingsView extends BaseView {
 
     setContext() {
-        const reader = new FileReader();
+        window.reader = new FileReader();
 
         this.context.goToSettings = () => {
             router.go('/settings/');
@@ -29,58 +29,30 @@ export default class SettingsView extends BaseView {
             reader.onload = changeImage;
         };
 
-        const changeImage = () => {
-            const field = document.querySelector('.settings-avatar__user-avatar');
-            field.src = reader.result;
-        };
-
-        const settings = (notAvatar = true) => {
-            const blocks = [...document.querySelector('.settings').getElementsByClassName('input-block')];
-            const data = {
-                login: blocks[0].querySelector('input').value,
-                email: blocks[1].querySelector('input').value
-            };
-            if (notAvatar) {
-                data.avatar = reader.result;
-            }
-
-            httpModule.doPost('/user/update', data)
-                .then(
-                    (response) => {
-                        router.clearUrlElement('/user/');
-                        router.clearUrlElement('/settings/');
-                        userService.update(data);
-                        router.go('/user/');
-                    },
-                    (error) => {
-
-                    }
-                );
-        };
-
         this.context.validateSettings = () => {
-            const blocks = window.router.getLastView('modal-data').inputBlocks;
+            const blocks = window.router.getLastView().inputBlocks;
             if (blocks.reduce((result, current) => result + validateSettingsInput(current), 0) === blocks.length) {
                 const files = document.querySelector('.file-avatar').files;
                 const file = files[files.length - 1];
                 if (!file) {
                     settings(false);
+                } else {
+                    reader.readAsDataURL(file);
+                    reader.onload = settings;
                 }
-                reader.readAsDataURL(file);
-                reader.onload = settings;
             }
         };
 
         this.context.validateFocusSettingsInput = (event) => {
             const input = event.target;
-            input.querySelector('input').classList.remove('input-block__input_error')
+            input.classList.remove('input-block__input_error')
         };
 
         this.context.validateBlurSettingsInput = (event) => {
             const input = event.target;
 
             if (input.value === '') {
-                input.querySelector('input').classList.add('input-block__input_error');
+                input.classList.add('input-block__input_error');
             }
         };
 
@@ -93,7 +65,7 @@ export default class SettingsView extends BaseView {
         if (!this.context.avatar.length) {
             this.context.avatar = '../images/user-logo.jpg';
         }
-
+        
         return super.preRender();
     }
 
@@ -102,7 +74,8 @@ export default class SettingsView extends BaseView {
     }
 
     getDOMDependensies() {
-        this.inputBlocks = [...document.querySelector('.login').getElementsByClassName('input-block')];
+        this.inputBlocks = [...document.querySelector('.settings').getElementsByClassName('input-block')];
+        console.log(this.inputBlocks);
     }
 }
 
@@ -116,4 +89,37 @@ window.validateSettingsInput = (block) => {
         input.classList.remove('input-block__input_error');
         return true;
     }
+};
+
+window.changeImage = () => {
+    const field = document.querySelector('.settings-avatar__user-avatar');
+    field.src = reader.result;
+};
+
+window.settings = (notAvatar = true) => {
+    const blocks = window.router.getLastView().inputBlocks;
+    const data = {
+        login: blocks[0].querySelector('input').value,
+        email: blocks[1].querySelector('input').value
+    };
+    if (notAvatar) {
+        data.avatar = reader.result;
+    }
+
+    httpModule.doPost('/user/update', data)
+        .then(
+            (response) => {
+                router.clearUrlElement('/user/');
+                router.clearUrlElement('/settings/');
+                userService.update()
+                    .then((response) => {
+                            router.go('/user/');
+                        }
+                    );
+
+            },
+            (error) => {
+
+            }
+        );
 };

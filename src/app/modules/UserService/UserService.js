@@ -59,8 +59,16 @@ class UserService {
         );
     }
 
-    update(data) {
-        this.data = data;
+    update() {
+        return httpModule.doGet('/user').then(
+            (response) => {
+                this.data = response;
+                console.log('data done');
+            },
+            (reject) => {
+                console.log(reject);
+            }
+        );
     }
 
     /**
