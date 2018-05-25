@@ -2,6 +2,7 @@ import BaseView from '../BaseView/BaseView';
 import router from '../../modules/Router/Router';
 import userService from '../../modules/UserService/UserService';
 import httpModule from '../../modules/HttpModule/HttpModule';
+import Validation from '../../modules/Validator/index';
 
 export default class LoginView extends BaseView {
 
@@ -15,6 +16,21 @@ export default class LoginView extends BaseView {
         this.context.validateLogin = () => {
 
             const blocks = window.router.getLastView().inputBlocks;
+            const inputs = blocks.map((block) => block.querySelector('input'));
+            const errors = {};
+            console.log(window.Validation(inputs, errors));
+            for (let key in errors) {
+                blocks.map((block) => {
+                    const error = block.querySelector('p[name=' + key + ']');
+                    if (error) {
+                        error.textContent = errors[key];
+                    }
+                });
+            }
+            if (Object.keys(errors).length) {
+                return;
+            }
+
             if (blocks.reduce((result, current) => result + window.validateLoginInput(current), 0) === blocks.length) {
                 window.httpModule.doPost('/signin',
                     {

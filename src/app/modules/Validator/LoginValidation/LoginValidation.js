@@ -1,14 +1,14 @@
-const loginRegular = /^[a-z0-9_-]{3,15}$/;
+const loginRegular = /^[A-Za-z0-9_-]{5,15}$/;
 
 export default function LoginValidation(input, errors) {
     const valid = loginRegular.test(input);
     if (!valid) {
-        if (input.length < 3) {
-            errors.login = 'Логин должен быть от 3 символов!';
+        if (input.length < 5) {
+            errors.login = 'Login should contain 5 or more symbols';
         } else if (input.length > 15) {
-            errors.login = 'Логин должен быть до 15 символов!';
+            errors.login = 'Login should contain less than 15 symbols';
         } else {
-            errors.login = 'Логин должен быть только из цифр и нижних букв английского алфавита!';
+            errors.login = 'Login should contain only english symbols, numbers, - or _';
         }
     } else {
         errors.login = '';
