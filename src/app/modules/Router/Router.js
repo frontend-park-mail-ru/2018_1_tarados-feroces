@@ -153,8 +153,8 @@ class Router {
      * @private
      */
     checkAuth(url) {
-        if (url === '/game/') {
-            return '/game/';
+        if (url === '/single/' || url === '/multi/') {
+            return url;
         }
 
         if (this.urls[url].view.needAuthorization() && !userService.isAuthorized) {
@@ -183,6 +183,7 @@ class Router {
         }
 
         if (urlObject.url === '/multi/') {
+            console.log('MULTI');
             urlObject.view.create(true);
         }
     }
