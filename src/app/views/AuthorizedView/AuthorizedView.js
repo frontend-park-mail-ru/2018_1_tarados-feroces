@@ -12,6 +12,8 @@ export default class AuthorizedView extends BaseView {
     constructor() {
         super();
 
+        // this.context.showGameInvite = this.context.showGameInvite.bind(this);
+
         window.router = router;
         window.httpModule = httpModule;
         window.ws = ws;
@@ -21,24 +23,24 @@ export default class AuthorizedView extends BaseView {
             const data = JSON.parse(message.data);
             data.message = 'New friend request';
             data.type = 'friends';
-            showInvite(data);
+            this.context.showInvite(data);
         });
         bus.on(userService.MESSAGES.INVITE_TO_PARTY, (message) => {
             const data = JSON.parse(message.data);
             data.message = 'Invite to party';
             data.type = 'party';
             data.login = data.leader;
-            showInvite(data);
+            this.context.showInvite(data);
         });
         bus.on(userService.MESSAGES.PARTY_VIEW, (message) => {
             const data = JSON.parse(message.data);
-            updateParty(data);
+            this.context.updateParty(data);
         });
         bus.on(userService.MESSAGES.ASK_FOR_GAME, (message) => {
-            showGameInvite();
+            this.context.showGameInvite();
         });
         bus.on(userService.MESSAGES.INIT_GAME, (message) => {
-            play();
+            this.context.play();
         });
     }
 
@@ -106,43 +108,12 @@ export default class AuthorizedView extends BaseView {
             window.router.go('/news/');
         };
 
-        this.context.showInvite = (message) => {
-            window.router.getLastView().context.request = message;
-            document.querySelector('.confirm').classList.remove('hidden');
-            document.querySelector('.friends-modal').classList.add('hidden');
-        };
-
         this.context.addToFriends = () => {
             window.httpModule.doPost('/user/friend/add', {login: window.router.getLastView().context.currentFriend});
         };
 
         this.context.inviteToParty = () => {
             window.httpModule.doPost('/party/invite', {login: window.router.getLastView().context.currentFriend});
-        };
-
-        this.context.acceptFriend = (accept) => {
-            document.querySelector('.confirm').classList.add('hidden');
-            const view = window.router.getLastView();
-            const type = view.context.request.type;
-
-            let url = '/party/join';
-            let response = {answer: 'accept', leader: view.context.request.leader};
-            if (type === 'friends') {
-                url = '/user/friend/response';
-                response = {answer: 'accept', request_id: view.context.request.request_id};
-            }
-
-            accept && window.httpModule.doPost(url, response).then(
-                (resolve) => {
-                    search();
-                }
-            );
-        };
-
-        this.context.updateParty = (data) => {
-            const view = window.router.getLastView();
-            view.context.party = data;
-            window.router.viewUpdate('/user/', view.context);
         };
 
         this.context.leaveParty = () => {
@@ -161,7 +132,10 @@ export default class AuthorizedView extends BaseView {
             document.querySelector('.confirm-game').classList.remove('hidden');
         };
 
-        window.showInvite = (data) => {
+        this.context.showGameInvite = this.context.showGameInvite.bind(this);
+
+
+        this.context.showInvite = (data) => {
             document.querySelector('.friends-modal').classList.add('hidden');
             const view = router.getLastView();
             view.context.request = data;
@@ -169,6 +143,9 @@ export default class AuthorizedView extends BaseView {
             document.querySelector('.confirm').classList.remove('hidden');
 
         };
+
+        this.context.showInvite = this.context.showInvite.bind(this);
+
 
         this.context.addToFriends = () => {
             document.querySelector('.friends-modal').classList.add('hidden');
@@ -296,4 +273,29 @@ window.search = () => {
             router.viewUpdate('/user/', view.context);
         }
     );
+};
+
+window.acceptFriend = (accept) => {
+    document.querySelector('.confirm').classList.add('hidden');
+    const view = window.router.getLastView();
+    const type = view.context.request.type;
+
+    let url = '/party/join';
+    let response = {answer: 'accept', leader: view.context.request.leader};
+    if (type === 'friends') {
+        url = '/user/friend/response';
+        response = {answer: 'accept', request_id: view.context.request.request_id};
+    }
+
+    accept && window.httpModule.doPost(url, response).then(
+        (resolve) => {
+            search();
+        }
+    );
+};
+
+window.updateParty = (data) => {
+    const view = window.router.getLastView();
+    view.context.party = data;
+    window.router.viewUpdate('/user/', view.context);
 };

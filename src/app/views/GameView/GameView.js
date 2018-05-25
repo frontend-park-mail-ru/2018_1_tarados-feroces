@@ -3,7 +3,7 @@ import BaseView from '../BaseView/BaseView';
 import Game from '../../game/core/offline';
 import gameController from '../../game/GameController';
 import Scene from '../../game/objects/Scene';
-import router from '../../modules/Router/Router';
+// import router from '../../modules/Router/Router';
 
 export default class GameView extends BaseView {
 
@@ -15,8 +15,11 @@ export default class GameView extends BaseView {
 
     setContext() {
         this.context.exitGame = () => {
-            router.go('/');
+            window.router.go('/');
         };
+
+        this.context.goToGame = () => {
+            window.router.go('/game/');        };
     }
 
     create() {
