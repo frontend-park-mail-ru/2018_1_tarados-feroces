@@ -206,7 +206,7 @@ export default class AuthorizedView extends BaseView {
 
         this.context.play = () => {
             closeGameInvite();
-            router.go('/game');
+            router.go('/game/');
         };
 
         this.context.search = () => {

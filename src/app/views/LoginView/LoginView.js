@@ -18,7 +18,7 @@ export default class LoginView extends BaseView {
             const blocks = window.router.getLastView().inputBlocks;
             const inputs = blocks.map((block) => block.querySelector('input'));
             const errors = {};
-            console.log(window.Validation(inputs, errors));
+            window.Validation(inputs, errors);
             for (let key in errors) {
                 blocks.map((block) => {
                     const error = block.querySelector('p[name=' + key + ']');

@@ -1,11 +1,11 @@
 import './MainPage.scss';
 import BaseView from '../BaseView/BaseView';
 import router from '../../modules/Router/Router';
-import Ws from '../../modules/WebSocket/WebSocket';
 
 export default class MainPageView extends BaseView {
 
     setContext() {
+        window.router = router;
         this.context.goToLogin = () => {
             window.router.go('/login/');
         };
@@ -34,10 +34,6 @@ export default class MainPageView extends BaseView {
 
         this.context.goToSignUp = () => {
             window.router.go('/signup/');
-        };
-
-        this.context.goBack = () => {
-            window.router.go('/');
         };
     }
 

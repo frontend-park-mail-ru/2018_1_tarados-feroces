@@ -9,6 +9,7 @@ export default class RegisterView extends BaseView {
             const blocks = router.getLastView().inputBlocks;
             const inputs = blocks.map((block) => block.querySelector('input'));
             const errors = {};
+            window.Validation(inputs, errors);
             for (let key in errors) {
                 blocks.map((block) => {
                     const error = block.querySelector('p[name=' + key + ']');
@@ -70,8 +71,6 @@ export default class RegisterView extends BaseView {
         return false;
     }
 }
-
-
 
 window.validateRegistrationInput = (block) => {
     const input = block.querySelector('input');

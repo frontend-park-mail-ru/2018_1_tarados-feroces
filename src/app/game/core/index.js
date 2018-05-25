@@ -15,7 +15,7 @@ export default class GameCore {
     }
 
     start() {
-        bus.on(userService.MESSAGES.START_GAME, this.onGameStarted);
+        bus.on('START_GAME', this.onGameStarted);
         bus.on(userService.MESSAGES.FINISH_GAME, this.onGameFinished);
         bus.on('CONTROLS_PRESSED', this.onControlsPressed);
         bus.on(userService.MESSAGES.GAME_STATE_CHANGED, this.onGameFinished);

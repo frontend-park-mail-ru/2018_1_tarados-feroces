@@ -26,11 +26,8 @@ export default class BaseView {
         return true;
     }
 
-<<<<<<< HEAD
-=======
     setContext() {}
 
->>>>>>> fix-views
     /**
      * Возвращает шаблон вьюхи
      *
