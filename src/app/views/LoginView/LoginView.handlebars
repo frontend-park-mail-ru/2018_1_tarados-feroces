@@ -17,30 +17,17 @@
                             block-class="user-name"
                             type="text"
                             input-name="login"
-                            placeholder="Login"
-
-                            focus="{{{ stringifyFunc validateFocusLoginInput}}}"
-                            blur="{{{ stringifyFunc validateBlurLoginInput }}}">
->>>>>>> fix-views
+                            placeholder="Login">
                     </Input>
                     <Input
                             block-class="user-password"
                             type="password"
                             input-name="password"
-                            placeholder="Password"
-<<<<<<< HEAD
-                            focus="() { validateFocusLoginInput(document.querySelector('.login').getElementsByClassName('input-block')[1]) }"
-                            blur="() { validateBlurLoginInput(document.querySelector('.login').getElementsByClassName('input-block')[1]) }">
+                            placeholder="Password">
                     </Input>
-                    <Button
-                            click="(){ validateLogin(); }"
-=======
-                            focus="{{{ stringifyFunc validateFocusLoginInput }}}"
-                            blur="{{{ stringifyFunc validateBlurLoginInput }}}">
-                    </Input>
+
                     <Button
                             click="{{{ stringifyFunc validateLogin }}}"
->>>>>>> fix-views
                             class="login-button">
                         Sign In
                     </Button>

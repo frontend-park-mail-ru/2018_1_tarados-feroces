@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <PeopleSearch>
-                        <Image class="search__button" src="../images/search.png" click="{{{ stringifyFunc search }}}"></Image>
+                        <Image class="search__button" src="../images/search.png" click="(){search();}"></Image>
                     </PeopleSearch>
 
                     <div class="friends-data">
@@ -88,7 +88,7 @@
             <p class="confirm-game-modal__message">Are you ready for GAME???</p>
 
             <div class="confirm-game-modal__accept">
-                <Button class="wait" click="(){acceptGame();}">READY</Button>
+                <Button class="wait" click="{{{ stringifyFunc acceptGame }}}">READY</Button>
             </div>
         </div>
     </ConfirmGame>

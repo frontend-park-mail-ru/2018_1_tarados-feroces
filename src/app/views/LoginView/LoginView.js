@@ -8,7 +8,7 @@ export default class LoginView extends BaseView {
 
     constructor() {
         super();
-        this.setContext = this.setContext.bind(this);
+        window.httpModule = httpModule;
     }
 
     setContext() {
@@ -27,43 +27,33 @@ export default class LoginView extends BaseView {
                     }
                 });
             }
-            if (Object.keys(errors).length) {
-                return;
+
+            for (let key in errors) {
+                console.log(key, errors[key]);
+                if (errors[key].length) {
+                    return;
+                }
             }
 
-            if (blocks.reduce((result, current) => result + window.validateLoginInput(current), 0) === blocks.length) {
-                window.httpModule.doPost('/signin',
-                    {
-                        login: blocks[0].querySelector('input').value,
-                        password: blocks[1].querySelector('input').value,
-                    }).then(
-                    (response) => {
-                        window.userService.userLogin();
-                        blocks.forEach((item) => item.querySelector('input').value = '');
-                        return window.userService.init();
-                    },
-                    (error) => {
-                        console.log(error);
-                    }
-                ).then(
-                    (resolve) => {
-                        window.router.go('/user/');
-                    }
-                );
-            }
-        };
+            window.httpModule.doPost('/signin',
+                {
+                    login: blocks[0].querySelector('input').value,
+                    password: blocks[1].querySelector('input').value,
+                }).then(
+                (response) => {
+                    window.userService.userLogin();
+                    blocks.forEach((item) => item.querySelector('input').value = '');
+                    return window.userService.init();
+                },
+                (error) => {
+                    console.log(error);
+                }
+            ).then(
+                (resolve) => {
+                    window.router.go('/user/');
+                }
+            );
 
-        this.context.validateBlurLoginInput = (event) => {
-            const input = event.target;
-
-            if (input.value === '') {
-                input.classList.add('input-block__input_error');
-            }
-        };
-
-        this.context.validateFocusLoginInput = (event) => {
-            const input = event.target;
-            input.classList.remove('input-block__input_error');
         };
 
         this.context.goBack = () => {
@@ -84,14 +74,14 @@ export default class LoginView extends BaseView {
     }
 }
 
-window.validateLoginInput = (block) => {
-    const input = block.querySelector('input');
-
-    if (input.value === '') {
-        input.classList.add('input-block__input_error');
-        return false;
-    } else {
-        input.classList.remove('input-block__input_error');
-        return true;
-    }
-};
+// window.validateLoginInput = (block) => {
+//     const input = block.querySelector('input');
+//
+//     if (input.value === '') {
+//         input.classList.add('input-block__input_error');
+//         return false;
+//     } else {
+//         input.classList.remove('input-block__input_error');
+//         return true;
+//     }
+// };

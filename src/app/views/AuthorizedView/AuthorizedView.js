@@ -6,7 +6,6 @@ import httpModule from '../../modules/HttpModule/HttpModule';
 import userService from '../../modules/UserService/UserService';
 import router from '../../modules/Router/Router';
 import ws from '../../modules/WebSocket/WebSocket';
-// import {WS_ADDRESS} from '../../modules/HttpModule/HttpConstants';
 
 export default class AuthorizedView extends BaseView {
 
@@ -16,6 +15,7 @@ export default class AuthorizedView extends BaseView {
         window.router = router;
         window.httpModule = httpModule;
         window.ws = ws;
+        window.userService = userService;
 
         bus.on(userService.MESSAGES.ADD_AS_FRIEND, (message) => {
             const data = JSON.parse(message.data);
@@ -62,14 +62,14 @@ export default class AuthorizedView extends BaseView {
 
     setContext() {
         this.context.goToSettings = () => {
-            router.go('/settings/');
+            window.router.go('/settings/');
         };
 
         this.context.signOut = () => {
-            httpModule.doPost('/signout').then(
+            window.httpModule.doGet('/signout').then(
                 (response) => {
-                    userService.userLogout();
-                    router.go('/');
+                    window.userService.userLogout();
+                    window.router.go('/');
                 }
             );
         };
@@ -95,7 +95,7 @@ export default class AuthorizedView extends BaseView {
             if (score.classList.contains('modal-header__point_active')) {
                 return;
             }
-            router.go('/leaderboard/');
+            window.router.go('/leaderboard/');
         };
 
         this.context.goToNews = () => {
@@ -103,26 +103,26 @@ export default class AuthorizedView extends BaseView {
             if (news.classList.contains('modal-header__point_active')) {
                 return;
             }
-            router.go('/news/');
+            window.router.go('/news/');
         };
 
         this.context.showInvite = (message) => {
-            router.getLastView().context.request = message;
+            window.router.getLastView().context.request = message;
             document.querySelector('.confirm').classList.remove('hidden');
             document.querySelector('.friends-modal').classList.add('hidden');
         };
 
         this.context.addToFriends = () => {
-            httpModule.doPost('/user/friend/add', {login: router.getLastView().context.currentFriend});
+            window.httpModule.doPost('/user/friend/add', {login: window.router.getLastView().context.currentFriend});
         };
 
         this.context.inviteToParty = () => {
-            httpModule.doPost('/party/invite', {login: router.getLastView().context.currentFriend});
+            window.httpModule.doPost('/party/invite', {login: window.router.getLastView().context.currentFriend});
         };
 
         this.context.acceptFriend = (accept) => {
-            closeInvite();
-            const view = router.getLastView();
+            document.querySelector('.confirm').classList.add('hidden');
+            const view = window.router.getLastView();
             const type = view.context.request.type;
 
             let url = '/party/join';
@@ -132,7 +132,7 @@ export default class AuthorizedView extends BaseView {
                 response = {answer: 'accept', request_id: view.context.request.request_id};
             }
 
-            accept && httpModule.doPost(url, response).then(
+            accept && window.httpModule.doPost(url, response).then(
                 (resolve) => {
                     search();
                 }
@@ -140,96 +140,61 @@ export default class AuthorizedView extends BaseView {
         };
 
         this.context.updateParty = (data) => {
-            const view = router.getLastView();
+            const view = window.router.getLastView();
             view.context.party = data;
-            router.viewUpdate('/user/', view.context);
+            window.router.viewUpdate('/user/', view.context);
         };
 
         this.context.leaveParty = () => {
-            const view = router.getLastView();
+            const view = window.router.getLastView();
             view.context.party = {
                 leader: {
                     avatar: this.context.avatar
                 },
                 users: []
             };
-            ws.sendMessage(userService.MESSAGES.LEAVE_PARTY, {login: view.context.login});
-            router.viewUpdate('/user/', view.context);
+            window.ws.sendMessage(window.userService.MESSAGES.LEAVE_PARTY, {login: view.context.login});
+            window.router.viewUpdate('/user/', view.context);
         };
 
         this.context.showGameInvite = () => {
             document.querySelector('.confirm-game').classList.remove('hidden');
         };
 
-        const closeGameInvite = () => {
-            document.querySelector('.confirm-game').classList.add('hidden');
-        };
-
-        const closeModal = () => {
-            document.querySelector('.friends-modal').classList.add('hidden');
-        };
-
         window.showInvite = (data) => {
-            closeModal();
+            document.querySelector('.friends-modal').classList.add('hidden');
             const view = router.getLastView();
             view.context.request = data;
-            router.viewUpdate('/user/', view.context);
+            window.router.viewUpdate('/user/', view.context);
             document.querySelector('.confirm').classList.remove('hidden');
 
         };
 
-        const closeInvite = () => {
-            document.querySelector('.confirm').classList.add('hidden');
-        };
-
         this.context.addToFriends = () => {
-            closeModal();
-            httpModule.doPost('/user/friend/add', {login: router.getLastView().context.currentFriend});
+            document.querySelector('.friends-modal').classList.add('hidden');
+            window.httpModule.doPost('/user/friend/add', {login: window.router.getLastView().context.currentFriend});
         };
 
         this.context.inviteToParty = () => {
-            closeModal();
-            httpModule.doPost('/party/invite', {login: router.getLastView().context.currentFriend});
+            document.querySelector('.friends-modal').classList.add('hidden');
+            window.httpModule.doPost('/party/invite', {login: window.router.getLastView().context.currentFriend});
         };
 
         this.context.acceptGame = () => {
             document.querySelector('.wait').classList.add('hidden');
             document.querySelector('.confirm-game-modal__message').textContent = 'Waiting for other players...';
             console.log(1111);
-            ws.sendMessage(userService.MESSAGES.JOIN_GAME, {login: userService.data.login});
+            window.ws.sendMessage(window.userService.MESSAGES.JOIN_GAME, {login: window.userService.data.login});
         };
 
         this.context.startGame = () => {
-            const view = router.getLastView();
-            httpModule.doPost('/game/party', {leader: view.context.party.leader.login});
+            const view = window.router.getLastView();
+            window.httpModule.doPost('/game/party', {leader: view.context.party.leader.login});
         };
 
         this.context.play = () => {
-            closeGameInvite();
-            router.go('/game/');
-        };
-
-        this.context.search = () => {
-            const name = document.querySelector('.search__input').value;
-            const view = router.getLastView();
-            const url = view.context.inFriends ? '/user/friend/all' : '/allusers';
-
-            httpModule.doPost(url, {prefix: name}).then(
-                (response) => {
-                    if ('message' in response) {
-                        view.context.people = [];
-                    } else {
-                        response.forEach((item) => {
-                            if (!item.avatar) {
-                                item.avatar = '../images/user-logo.jpg';
-                            }
-                        });
-                        view.context.people = response;
-                        console.log(response);
-                    }
-                    router.viewUpdate('/user/', view.context);
-                }
-            );
+            document.querySelector('.confirm-game').classList.add('hidden');
+            window.router.go('/game/');
         };
     }
 
@@ -308,4 +273,27 @@ window.showFriendActions = (event) => {
     modal.style.left = `${x}px`;
     modal.style.top = `${y + icon.getBoundingClientRect().height}px`;
     modal.classList.toggle('hidden');
+};
+
+window.search = () => {
+    const name = document.querySelector('.search__input').value;
+    const view = router.getLastView();
+    const url = view.context.inFriends ? '/user/friend/all' : '/allusers';
+
+    httpModule.doPost(url, {prefix: name}).then(
+        (response) => {
+            if ('message' in response) {
+                view.context.people = [];
+            } else {
+                response.forEach((item) => {
+                    if (!item.avatar) {
+                        item.avatar = '../images/user-logo.jpg';
+                    }
+                });
+                view.context.people = response;
+                console.log(response);
+            }
+            router.viewUpdate('/user/', view.context);
+        }
+    );
 };

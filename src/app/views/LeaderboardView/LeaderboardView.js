@@ -17,15 +17,7 @@ export default class LeaderboardView extends BaseView {
     }
 
     setContext() {
-        this.context.currentScorePosition = 9;
 
-        this.context.scoreboardPaginate = (index) => {
-            const paginationConstant = 9;
-            httpModule.doPost('/leaderboard', {position: index, count: paginationConstant}).then(
-                (response) => router.viewUpdate('/leaderboard/', response)
-            );
-            this.context.currentScorePosition += paginationConstant;
-        };
     }
 
     needUpdate() {
@@ -59,4 +51,14 @@ export default class LeaderboardView extends BaseView {
         return this.template = require('./LeaderboardView.handlebars');
     }
 }
+
+window.currentScorePosition = 9;
+
+window.scoreboardPaginate = (index) => {
+    const paginationConstant = 9;
+    httpModule.doPost('/leaderboard', {position: index, count: paginationConstant}).then(
+        (response) => router.viewUpdate('/leaderboard/', response)
+    );
+    window.currentScorePosition += paginationConstant;
+};
 
