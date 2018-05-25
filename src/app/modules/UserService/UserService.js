@@ -22,7 +22,7 @@ class UserService {
             // INTERRAPT: 'in',
             PARTY_VIEW: 'pv',
             UPDATE_PARTY: 'up',
-            START_GAME: 'sg',
+            INIT_GAME: 'ig',
             FINISH_GAME: 'fg',
             GAME_STATE_CHANGED: 'gsc',
         };

@@ -12,8 +12,11 @@ class Ws {
     }
 
     sendMessage(cls, message) {
+        message['cls'] = cls;
+        console.log(message);
+
         if (message !== null && typeof message === 'object') {
-            this.ws.send(JSON.stringify({cls: cls} + message));
+            this.ws.send(JSON.stringify(message));
         } else {
             this.ws.send(JSON.stringify({message}));
         }

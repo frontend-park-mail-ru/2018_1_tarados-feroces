@@ -28,8 +28,10 @@ export default class AuthorizedView extends BaseView {
             updateParty(data);
         });
         bus.on(userService.MESSAGES.ASK_FOR_GAME, (message) => {
-            console.log(message);
             showGameInvite();
+        });
+        bus.on(userService.MESSAGES.INIT_GAME, (message) => {
+            play();
         });
     }
 
@@ -233,7 +235,8 @@ const closeGameInvite = () => {
 window.acceptGame = () => {
     document.querySelector('.wait').classList.add('hidden');
     document.querySelector('.confirm-game-modal__message').textContent = 'Waiting for other players...';
-    ws.sendMessage('jg', {login: router.getLastView().context.login});
+    console.log(1111);
+    ws.sendMessage(userService.MESSAGES.JOIN_GAME, {login: userService.data.login});
 };
 
 window.acceptFriend = (accept) => {
