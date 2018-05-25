@@ -7,7 +7,7 @@
 
     <div class="form-block login">
         <div class="form-block-content">
-            <div click="(event){ event.preventDefault(); goBack();  }" class="form-block-content__back">
+            <div click="{{{ stringifyFunc goBack}}}" class="form-block-content__back">
                 <Image class="form-block-content__back-icon" src="images/back.png"></Image>
             </div>
             <Form>
@@ -17,18 +17,28 @@
                             block-class="user-name"
                             type="text"
                             placeholder="Login"
-                            focus="() { validateFocusLoginInput(document.querySelector('.login').getElementsByClassName('input-block')[0]) }"
-                            blur="() { validateBlurLoginInput(document.querySelector('.login').getElementsByClassName('input-block')[0]) }">
+
+                            focus="{{{ stringifyFunc validateFocusLoginInput}}}"
+                            blur="{{{ stringifyFunc validateBlurLoginInput }}}">
+>>>>>>> fix-views
                     </Input>
                     <Input
                             block-class="user-password"
                             type="password"
                             placeholder="Password"
+<<<<<<< HEAD
                             focus="() { validateFocusLoginInput(document.querySelector('.login').getElementsByClassName('input-block')[1]) }"
                             blur="() { validateBlurLoginInput(document.querySelector('.login').getElementsByClassName('input-block')[1]) }">
                     </Input>
                     <Button
                             click="(){ validateLogin(); }"
+=======
+                            focus="{{{ stringifyFunc validateFocusLoginInput }}}"
+                            blur="{{{ stringifyFunc validateBlurLoginInput }}}">
+                    </Input>
+                    <Button
+                            click="{{{ stringifyFunc validateLogin }}}"
+>>>>>>> fix-views
                             class="login-button">
                         Sign In
                     </Button>

@@ -1,7 +1,12 @@
 import GameCore from './index';
 import bus from '../../modules/Bus/Bus';
+<<<<<<< HEAD
 import ws from '../../modules/WebSocket/WebSocket';
 import userService from "../../modules/UserService/UserService";
+=======
+import userService from '../../modules/UserService/UserService';
+import {WS_ADDRESS} from '../../modules/HttpModule/HttpConstants';
+>>>>>>> fix-views
 
 export default class OnlineGame extends GameCore {
 
@@ -13,6 +18,7 @@ export default class OnlineGame extends GameCore {
 
     start() {
         super.start();
+<<<<<<< HEAD
     }
 
     onControlsPressed(event) {
@@ -23,6 +29,14 @@ export default class OnlineGame extends GameCore {
                         this.controller.keyMap['DOWN'] ? -1 : 0;
 
         ws.sendMessage(userService.MESSAGES.GAME_STATE_CHANGED, movement);
+=======
+        // this.ws = new Ws(WS_ADDRESS);
+        // this.ws.send('game-started', null);
+    }
+
+    onControlsPressed(event) {
+        // this.ws.send(this.controller.keyMap);
+>>>>>>> fix-views
     }
 
     onGameStarted(event) {

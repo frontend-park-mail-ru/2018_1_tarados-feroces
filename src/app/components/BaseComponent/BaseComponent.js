@@ -1,3 +1,7 @@
+import httpModule from '../../modules/HttpModule/HttpModule';
+import userService from '../../modules/UserService/UserService';
+import router from '../../modules/Router/Router';
+
 /** Базовый класс компоненты
  * @module BaseComponent
  */

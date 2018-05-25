@@ -25,6 +25,7 @@ class UserService {
             INIT_GAME: 'ig',
             FINISH_GAME: 'fg',
             GAME_STATE_CHANGED: 'gsc',
+
         };
     }
 
@@ -53,8 +54,16 @@ class UserService {
         );
     }
 
-    update(data) {
-        this.data = data;
+    update() {
+        return httpModule.doGet('/user').then(
+            (response) => {
+                this.data = response;
+                console.log('data done');
+            },
+            (reject) => {
+                console.log(reject);
+            }
+        );
     }
 
     /**
@@ -100,5 +109,5 @@ class UserService {
     }
 }
 
-const userService = new UserService();
+window.userService = new UserService();
 export default userService;
