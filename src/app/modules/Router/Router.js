@@ -178,8 +178,12 @@ class Router {
         this.lastView[urlObject.insertElemId] = urlObject.view;
         this.showPage(urlObject);
         this.hideLoading();
-        if (urlObject.url === '/game/') {
-            urlObject.view.create();
+        if (urlObject.url === '/single/') {
+            urlObject.view.create(false);
+        }
+
+        if (urlObject.url === '/multi/') {
+            urlObject.view.create(true);
         }
     }
 

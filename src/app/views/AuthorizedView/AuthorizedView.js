@@ -31,7 +31,7 @@ export default class AuthorizedView extends BaseView {
             showGameInvite();
         });
         bus.on(userService.MESSAGES.INIT_GAME, (message) => {
-            play();
+            playParty();
         });
     }
 
@@ -263,9 +263,9 @@ window.startGame = () => {
     httpModule.doPost('/game/party', {leader: view.context.party.leader.login});
 };
 
-window.play = () => {
+window.playParty = () => {
     closeGameInvite();
-    router.go('/game');
+    router.go('/multi/');
 };
 
 window.search = () => {
