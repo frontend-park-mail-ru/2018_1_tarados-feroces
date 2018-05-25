@@ -153,8 +153,8 @@ class Router {
      * @private
      */
     checkAuth(url) {
-        if (url === '/game/') {
-            return '/game/';
+        if (url === '/single/' || url === '/multi/') {
+            return url;
         }
 
         if (this.urls[url].view.needAuthorization() && !userService.isAuthorized) {
@@ -178,8 +178,13 @@ class Router {
         this.lastView[urlObject.insertElemId] = urlObject.view;
         this.showPage(urlObject);
         this.hideLoading();
-        if (urlObject.url === '/game/') {
-            urlObject.view.create();
+        if (urlObject.url === '/single/') {
+            urlObject.view.create(false);
+        }
+
+        if (urlObject.url === '/multi/') {
+            console.log('MULTI');
+            urlObject.view.create(true);
         }
     }
 

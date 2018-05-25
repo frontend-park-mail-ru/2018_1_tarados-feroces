@@ -1,9 +1,9 @@
 import './GameView.scss';
 import BaseView from '../BaseView/BaseView';
-import Game from '../../game/core/offline';
+import OfflineGame from '../../game/core/offline';
+import OnlineGame from '../../game/core/online';
 import gameController from '../../game/GameController';
 import Scene from '../../game/objects/Scene';
-// import router from '../../modules/Router/Router';
 
 export default class GameView extends BaseView {
 
@@ -22,7 +22,7 @@ export default class GameView extends BaseView {
             window.router.go('/game/');        };
     }
 
-    create() {
+    create(online) {
         this.canvas = document.querySelector('.game__battleground-canvas');
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight;
@@ -30,12 +30,19 @@ export default class GameView extends BaseView {
         const pause = document.querySelector('.game__pause');
         pause.classList.add('hidden');
 
-        this.doGame();
+        this.doGame(online);
     }
 
-    doGame() {
+    doGame(online) {
+        if (online) {
+            const scene = new Scene(this.canvas);
+            this.game = new OnlineGame(gameController, scene);
+            this.game.start();
+            // bus.emit('START_GAME');
+            return;
+        }
         const scene = new Scene(this.canvas);
-        this.game = new Game(gameController, scene);
+        this.game = new OfflineGame(gameController, scene);
 
         // 0 - transform %, 1 - direction, 2 - timeout ms
         const rounds = [

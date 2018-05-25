@@ -10,10 +10,15 @@ export default class OnlineGame extends GameCore {
         super(controller, scene);
         this.gameLoop = this.gameLoop.bind(this);
         this.gameLoopId = null;
+        this.onGameStarted = this.onGameStarted.bind(this);
+        this.onGameStateChanged = this.onGameStateChanged.bind(this);
+        this.onControlsPressed = this.onControlsPressed.bind(this);
     }
 
     start() {
         super.start();
+        console.log('watahell');
+        ws.sendMessage(userService.MESSAGES.GAME_READY, {});
     }
 
     onControlsPressed(event) {
@@ -23,18 +28,22 @@ export default class OnlineGame extends GameCore {
         movement.y = this.controller.keyMap['UP'] ? 1 : 0 +
                         this.controller.keyMap['DOWN'] ? -1 : 0;
 
-        ws.sendMessage(userService.MESSAGES.GAME_STATE_CHANGED, movement);
+        ws.sendMessage(userService.MESSAGES.CLIENT_SNAP, movement);
     }
 
     onGameStarted(event) {
+        console.log('GAME INITED');
+        console.log(event);
         this.controller.start();
-        event.forEach((item) => {
-            this.scene.initPlayer(item.x, item.y, item.color);
+        event.users.forEach((item) => {
+            this.scene.initPlayer(item.x, item.y, `rgb(${item.color.red}, ${item.color.green}, ${item.color.blue})`);
         });
     }
 
     onGameStateChanged(event) {
+        console.log(event);
         const players = event.players;
+        console.log(players);
         const mobs = event.mobs;
         this.scene.update(players, mobs);
     }
@@ -49,6 +58,6 @@ export default class OnlineGame extends GameCore {
 
     gameLoop() {
         this.gameLoopId = requestAnimationFrame(this.gameLoop);
-        bus.emit(userService.MESSAGES.GAME_STATE_CHANGED);
+        bus.emit(userService.MESSAGES.CLIENT_SNAP);
     }
 }

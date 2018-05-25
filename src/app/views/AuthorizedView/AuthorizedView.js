@@ -12,8 +12,6 @@ export default class AuthorizedView extends BaseView {
     constructor() {
         super();
 
-        // this.context.showGameInvite = this.context.showGameInvite.bind(this);
-
         window.router = router;
         window.httpModule = httpModule;
         window.ws = ws;
@@ -34,13 +32,16 @@ export default class AuthorizedView extends BaseView {
         });
         bus.on(userService.MESSAGES.PARTY_VIEW, (message) => {
             const data = JSON.parse(message.data);
-            this.context.updateParty(data);
+            window.updateParty(data);
         });
         bus.on(userService.MESSAGES.ASK_FOR_GAME, (message) => {
             this.context.showGameInvite();
         });
         bus.on(userService.MESSAGES.INIT_GAME, (message) => {
             this.context.play();
+        });
+        bus.on(userService.MESSAGES.GAME_PREPARE, (message) => {
+            playParty();
         });
     }
 
@@ -239,6 +240,26 @@ window.changeFriendsOrPeople = (data) => {
     window.search();
 };
 
+
+window.acceptFriend = (accept) => {
+    closeInvite();
+    const view = router.getLastView();
+    const type = view.context.request.type;
+
+    let url = '/party/join';
+    let response = {answer: 'accept', leader: view.context.request.leader};
+    if (type === 'friends') {
+        url = '/user/friend/response';
+        response = {answer: 'accept', request_id: view.context.request.request_id};
+    }
+
+    accept && httpModule.doPost(url, response).then(
+        (resolve) => {
+            search();
+        }
+    );
+};
+
 window.showFriendActions = (event) => {
     const modal = document.querySelector('.friends-modal');
     const icon = event.currentTarget;
@@ -298,4 +319,9 @@ window.updateParty = (data) => {
     const view = window.router.getLastView();
     view.context.party = data;
     window.router.viewUpdate('/user/', view.context);
+};
+
+window.playParty = () => {
+    // closeGameInvite();
+    window.router.go('/multi/');
 };

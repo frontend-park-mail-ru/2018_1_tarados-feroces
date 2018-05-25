@@ -18,14 +18,15 @@ class UserService {
             INVITE_TO_PARTY: 'itp',
             LEAVE_PARTY: 'lp',
             JOIN_GAME: 'jg',
+            GAME_READY: 'gr',
             ASK_FOR_GAME: 'afjg',
-            // INTERRAPT: 'in',
             PARTY_VIEW: 'pv',
             UPDATE_PARTY: 'up',
             INIT_GAME: 'ig',
+            GAME_PREPARE: 'gp',
             FINISH_GAME: 'fg',
-            GAME_STATE_CHANGED: 'gsc',
-
+            SERVER_SNAP: 'ss',
+            CLIENT_SNAP: 'cs',
         };
     }
 
