@@ -9,10 +9,15 @@ export default class OnlineGame extends GameCore {
         super(controller, scene);
         this.gameLoop = this.gameLoop.bind(this);
         this.gameLoopId = null;
+        this.onGameStarted = this.onGameStarted.bind(this);
+        this.onGameStateChanged = this.onGameStateChanged.bind(this);
+        this.onControlsPressed = this.onControlsPressed.bind(this);
     }
 
     start() {
         super.start();
+        console.log('watahell');
+        ws.sendMessage(userService.MESSAGES.GAME_READY, {});
     }
 
     onControlsPressed(event) {
@@ -35,7 +40,9 @@ export default class OnlineGame extends GameCore {
     }
 
     onGameStateChanged(event) {
+        console.log(event);
         const players = event.players;
+        console.log(players);
         const mobs = event.mobs;
         this.scene.update(players, mobs);
     }

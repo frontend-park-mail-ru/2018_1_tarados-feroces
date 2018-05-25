@@ -15,7 +15,7 @@ export default class GameCore {
     }
 
     start() {
-        bus.on('START_GAME', this.onGameStarted);
+        bus.on(userService.MESSAGES.INIT_GAME, this.onGameStarted);
         bus.on(userService.MESSAGES.FINISH_GAME, this.onGameFinished);
         bus.on(userService.MESSAGES.CLIENT_SNAP, this.onControlsPressed);
         bus.on(userService.MESSAGES.SERVER_SNAP, this.onGameStateChanged);
@@ -23,7 +23,7 @@ export default class GameCore {
     }
 
     stop() {
-        bus.off('START_GAME', this.onGameStarted);
+        bus.off(userService.MESSAGES.INIT_GAME, this.onGameStarted);
         bus.off(userService.MESSAGES.FINISH_GAME, this.onGameFinished);
         bus.off(userService.MESSAGES.CLIENT_SNAP, this.onControlsPressed);
         bus.off(userService.MESSAGES.SERVER_SNAP, this.onGameStateChanged);

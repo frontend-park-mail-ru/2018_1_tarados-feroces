@@ -30,6 +30,7 @@ export default class GameView extends BaseView {
         if (online) {
             const scene = new Scene(this.canvas);
             this.game = new OnlineGame(gameController, scene);
+            this.game.start();
             // bus.emit('START_GAME');
             return;
         }
