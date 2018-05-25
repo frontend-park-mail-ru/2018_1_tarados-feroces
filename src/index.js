@@ -42,7 +42,11 @@ router
         'modal-data'
     )
     .addUrl(
-        '/game/',
+        '/single/',
+        new GameView()
+    )
+    .addUrl(
+        '/multi/',
         new GameView()
     )
     .addUrl(
@@ -53,10 +57,18 @@ router
 userService.checkSession()
     .then(
         (resolve) => {
-            router.go(document.location.pathname);
+            if (userService.isAuthorized) {
+                userService.init().then(
+                    (resolve) => {
+                        router.go(document.location.pathname);
+                    }
+                );
+            } else {
+                router.go(document.location.pathname);
+            }
+
         },
         (reject) => {
-            console.log('error');
             router.go(document.location.pathname);
         }
     );

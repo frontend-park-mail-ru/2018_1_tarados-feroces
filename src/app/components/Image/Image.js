@@ -1,3 +1,4 @@
+import './Image.scss';
 import BaseComponent from '../BaseComponent/BaseComponent';
 
 export default class Image extends BaseComponent {

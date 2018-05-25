@@ -1,8 +1,8 @@
 import './LeaderboardView.scss';
 import '../../../static/css/table.scss';
 import BaseView from '../BaseView/BaseView';
-import httpModule from '../../modules/HttpModule/HttpModule';
-import router from '../../modules/Router/Router';
+// import httpModule from '../../modules/HttpModule/HttpModule';
+// import router from '../../modules/Router/Router';
 
 export default class LeaderboardView extends BaseView {
 
@@ -14,6 +14,10 @@ export default class LeaderboardView extends BaseView {
             this.context.rows.push(newRow);
         }
         return null;
+    }
+
+    setContext() {
+
     }
 
     needUpdate() {
@@ -57,3 +61,4 @@ window.scoreboardPaginate = (index) => {
     );
     window.currentScorePosition += paginationConstant;
 };
+

@@ -44,6 +44,7 @@ class Router {
      * Обновляет и перерисовывает вью в DOM
      * @param {Object} context
      * @param {string} url
+     * @param {Object} props
      */
     // TODO
     viewUpdate(url, context) {
@@ -52,6 +53,10 @@ class Router {
         this.urls[url].view.__render();
         parent.appendChild(this.urls[url].view.element);
         this.urls[url].view.show();
+    }
+
+    getLastView(id = 'root') {
+        return this.lastView[id];
     }
 
     /**
@@ -69,7 +74,7 @@ class Router {
         url = this.checkAuth(url);
         if (this.urls[url].insertElemId !== 'root' && !this.urls['/user/'].loaded) {
             this.route('/user/').then(
-                (response) => {
+                (resolve) => {
                     this.route(url);
                 }
             );
@@ -97,9 +102,11 @@ class Router {
         if (!urlObject.loaded) {
             urlObject.loaded = true;
             return urlObject.view.preRender().then(
-                (response) => {
+                (resolve) => {
                     urlObject.view.__render();
+                    console.log(urlObject.view.context);
                     insertionElement.appendChild(urlObject.view.element);
+                    urlObject.view.getDOMDependensies();
                     this.pageUpdate(urlObject);
                 }
             );
@@ -146,8 +153,8 @@ class Router {
      * @private
      */
     checkAuth(url) {
-        if (url === '/game/') {
-            return '/game/';
+        if (url === '/single/' || url === '/multi/') {
+            return url;
         }
 
         if (this.urls[url].view.needAuthorization() && !userService.isAuthorized) {
@@ -171,8 +178,13 @@ class Router {
         this.lastView[urlObject.insertElemId] = urlObject.view;
         this.showPage(urlObject);
         this.hideLoading();
-        if (urlObject.url === '/game/') {
-            urlObject.view.create();
+        if (urlObject.url === '/single/') {
+            urlObject.view.create(false);
+        }
+
+        if (urlObject.url === '/multi/') {
+            console.log('MULTI');
+            urlObject.view.create(true);
         }
     }
 

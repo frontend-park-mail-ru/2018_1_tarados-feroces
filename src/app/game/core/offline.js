@@ -3,6 +3,7 @@ import gameController from '../GameController';
 import router from '../../modules/Router/Router';
 
 export default class OfflineGame extends GameCore {
+
     constructor(controller, scene) {
         super(controller, scene);
         this.rounds = [];

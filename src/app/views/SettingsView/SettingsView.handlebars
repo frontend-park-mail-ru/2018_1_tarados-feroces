@@ -7,14 +7,14 @@
             <p class="button-play__value">PLAY</p>
         </div>
         <UserInfo login="{{login}}" coins="645" points="1080" avatar="{{{avatar}}}">
-            <SettingsButton click="(){goToSettings();}"></SettingsButton>
-            <SignoutButton click="(){signOut();}"></SignoutButton>
+            <SettingsButton click="{{{ stringifyFunc goToSettings }}}"></SettingsButton>
+            <SignoutButton click="{{{ stringifyFunc signOut }}}"></SignoutButton>
         </UserInfo>
     </Header>
 
-    <div class="form-block login">
+    <div class="form-block settings">
         <div class="form-block-content">
-            <div click="(event){ event.preventDefault(); goToUser(); }" class="form-block-content__back">
+            <div click="{{{ stringifyFunc goToUser }}}" class="form-block-content__back">
                 <Image class="form-block-content__back-icon" src="images/back.png"></Image>
             </div>
             <Form>
@@ -25,25 +25,30 @@
                     </div>
 
                     <div class="form-block-content-inputs">
-                        <InputFile change="(){ changeAvatar(); }" file-class="file-avatar"></InputFile>
+                        <InputFile
+                                change="{{{ stringifyFunc changeAvatar }}}"
+                                file-class="file-avatar"
+                                src="{{{blobAvatar}}}"
+                        >
+                        </InputFile>
                         <Input
                                 block-class="user-name"
                                 type="text"
                                 placeholder="Login"
                                 value="{{login}}"
-                                focus="() { validateFocusSettingsInput(document.querySelector('.settings').getElementsByClassName('input-block')[0]) }"
-                                blur="() { validateBlurSettingsInput(document.querySelector('.settings').getElementsByClassName('input-block')[0]) }">
+                                focus="{{{ stringifyFunc validateFocusSettingsInput }}}"
+                                blur="{{{ stringifyFunc validateBlurSettingsInput }}}">
                         </Input>
                         <Input
                                 block-class="user-email"
                                 type="text"
                                 placeholder="E-mail"
                                 value="{{email}}"
-                                focus="() { validateFocusSettingsInput(document.querySelector('.settings').getElementsByClassName('input-block')[1]) }"
-                                blur="() { validateBlurSettingsInput(document.querySelector('.settings').getElementsByClassName('input-block')[1]) }">
+                                focus="{{{ stringifyFunc validateFocusSettingsInput }}}"
+                                blur="{{{ stringifyFunc validateBlurSettingsInput }}}">
                         </Input>
                         <Button
-                                click="(){ validateSettings(); }"
+                                click="{{{ stringifyFunc validateSettings }}}"
                                 class="login-button">
                             Save
                         </Button>
