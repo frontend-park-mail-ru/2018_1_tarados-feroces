@@ -264,7 +264,7 @@ window.startGame = () => {
 };
 
 window.playParty = () => {
-    closeGameInvite();
+    // closeGameInvite();
     router.go('/multi/');
 };
 

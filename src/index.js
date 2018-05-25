@@ -44,7 +44,11 @@ router
         'modal-data'
     )
     .addUrl(
-        '/game/',
+        '/single/',
+        new GameView()
+    )
+    .addUrl(
+        '/multi/',
         new GameView()
     )
     .addUrl(
