@@ -7,7 +7,7 @@
 
     <div class="form-block registration">
         <div class="form-block-content">
-            <div click="(event){ event.preventDefault(); goBack();  }" class="form-block-content__back">
+            <div click="{{{ stringifyFunc goBack}}}" class="form-block-content__back">
                 <Image class="form-block-content__back-icon" src="images/back.png"></Image>
             </div>
             <Form>
@@ -16,33 +16,29 @@
                     <Input
                             block-class="user-name"
                             type="text"
-                            placeholder="Login"
-                            focus="() { validateFocusRegistrationInput(document.querySelector('.registration').getElementsByClassName('input-block')[0]) }"
-                            blur="() { validateBlurRegistrationInput(document.querySelector('.registration').getElementsByClassName('input-block')[0]) }">
+                            input-name="login"
+                            placeholder="Login">
                     </Input>
                     <Input
                             block-class="user-email"
                             type="text"
-                            placeholder="E-mail"
-                            focus="() { validateFocusRegistrationInput(document.querySelector('.registration').getElementsByClassName('input-block')[1]) }"
-                            blur="() { validateBlurRegistrationInput(document.querySelector('.registration').getElementsByClassName('input-block')[1]) }">
+                            input-name="email"
+                            placeholder="E-mail">
                     </Input>
                     <Input
                             block-class="user-password"
                             type="password"
-                            placeholder="Password"
-                            focus="() { validateFocusRegistrationInput(document.querySelector('.registration').getElementsByClassName('input-block')[2]) }"
-                            blur="() { validateBlurRegistrationInput(document.querySelector('.registration').getElementsByClassName('input-block')[2]) }">
+                            input-name="password"
+                            placeholder="Password">
                     </Input>
                     <Input
                             block-class="user-repeat-password"
                             type="password"
-                            placeholder="Repeat password"
-                            focus="() { validateFocusRegistrationInput(document.querySelector('.registration').getElementsByClassName('input-block')[3]) }"
-                            blur="() { validateBlurRegistrationInput(document.querySelector('.registration').getElementsByClassName('input-block')[3]) }">
+                            input-name="repeatPassword"
+                            placeholder="Repeat password">
                     </Input>
                     <Button
-                            click="(){ validateRegistration(); }"
+                            click="{{{ stringifyFunc validateRegistration }}}"
                             class="signup-button">
                         Sign Up
                     </Button>

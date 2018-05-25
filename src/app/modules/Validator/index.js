@@ -1,16 +1,24 @@
 import BasicValidation from './BasicValidation/BasicValidation';
 
-function repeatPassword(password1, password2, errors) {
-    if (password1 !== password2) {
-        errors.repeatPassword = 'Пароли не совпадают!';
-    }
-}
+window.Validation = (values, errors) => {
+    let password = null;
+    let repeatPassword = null;
 
-const Validation = (values, errors) => {
-    (Object.keys(values) || []).forEach(value => BasicValidation(values[value], errors));
+    (Object.keys(values) || []).forEach(value => {
+        BasicValidation(values[value], errors);
+        if (values[value].name == 'password') {
+            password = values[value];
+        }
+        if (values[value].name == 'repeatPassword') {
+            repeatPassword = values[value];
+        }
+    });
 
-    if (values.repeatPassword) {
-        repeatPassword(values.password.value, values.repeatPassword.value, errors);
+
+    if (repeatPassword) {
+        if (password.value !== repeatPassword.value) {
+            errors.repeatPassword = 'Passwords don`t match';
+        }
     }
 
     return errors;
