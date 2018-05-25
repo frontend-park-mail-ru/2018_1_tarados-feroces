@@ -3,12 +3,13 @@
         <div class="header-logo">
             <Image class="header-logo-content" src="../images/Deadlinez.png"></Image>
         </div>
-        <div class="button button-play" click="(){play();}">
+        <div class="button button-play" click="{{{ stringifyFunc startGame }}}">
+
             <p class="button-play__value">PLAY</p>
         </div>
         <UserInfo login="{{login}}" coins="645" points="1080" avatar="{{{avatar}}}">
-            <SettingsButton click="(){goToSettings();}"></SettingsButton>
-            <SignoutButton click="(event){signOut();}"></SignoutButton>
+            <SettingsButton click="{{{ stringifyFunc goToSettings }}}"></SettingsButton>
+            <SignoutButton click="{{{ stringifyFunc signOut }}}"></SignoutButton>
         </UserInfo>
     </Header>
 
@@ -16,8 +17,8 @@
         <div class="auth-page__content-left">
             <div class="auth-page__content-left-modal">
                 <div class="auth-page__content-left-modal-header modal-header">
-                    <AuthHeaderPoint class="news-header" click="(){ goToNews(); }">News</AuthHeaderPoint>
-                    <AuthHeaderPoint class="leaderboard" click="(){ goToScore(); }">Scoreboard</AuthHeaderPoint>
+                    <AuthHeaderPoint class="news-header" click="{{{ stringifyFunc goToNews }}}">News</AuthHeaderPoint>
+                    <AuthHeaderPoint class="leaderboard" click="{{{ stringifyFunc goToScore }}}">Scoreboard</AuthHeaderPoint>
                 </div>
                 <AuthContent id="modal-data"></AuthContent>
             </div>
@@ -25,21 +26,21 @@
 
         <div class="friends-modal hidden">
             {{#if inFriends}}
-                <FriendAction click="(event){window.inviteToParty();}">Invite</FriendAction>
+                <FriendAction click="{{{ stringifyFunc inviteToParty }}}">Invite</FriendAction>
             {{else}}
-                <FriendAction click="(event){window.addToFriends();}">Add to friends</FriendAction>
+                <FriendAction click="{{{ stringifyFunc addToFriends }}}">Add to friends</FriendAction>
             {{/if}}
         </div>
 
         <div class="auth-page__content-right">
             <div class="auth-page__content-right-hide">
-                <HideFriendsButton click="(){hideFriends();}"></HideFriendsButton>
+                <HideFriendsButton click="{{{ stringifyFunc hideFriends }}}"></HideFriendsButton>
                 <div class="friends">
                     <div class="friends-header">
-                        <div class="friends-header-point" click="(){changeFriendsOrPeople(true); }">
+                        <div class="friends-header-point" click="{(){changeFriendsOrPeople(true);}">
                             <p class="friends-header-point-value">Friends</p>
                         </div>
-                        <div class="friends-header-point" click="(){changeFriendsOrPeople(false);}">
+                        <div class="friends-header-point" click="{(){changeFriendsOrPeople(false);}">
                             <p class="friends-header-point-value">People</p>
                         </div>
                     </div>
@@ -49,7 +50,7 @@
 
                     <div class="friends-data">
                     {{#each people}}
-                        <Friend avatar="{{{this.avatar}}}" login="{{this.login}}" click="(event){showFriendActions(event);}"></Friend>
+                        <Friend avatar="{{{this.avatar}}}" login="{{this.login}}" click="{(event){showFriendActions(event);}"></Friend>
                     {{/each}}
                     </div>
                 </div>
@@ -66,9 +67,8 @@
                 {{/each}}
             </Party>
         </div>
-
-
     </div>
+
     <ConfirmDialog class="hidden">
         <div class="confirm-modal">
             <p class="confirm-modal__message">{{request.message}}</p>
@@ -79,9 +79,18 @@
             <div class="confirm-modal__accept">
                 <Button click="(){acceptFriend(true);}">Accept</Button>
                 <Button click="(){acceptFriend(false);}">Decline</Button>
-
             </div>
         </div>
     </ConfirmDialog>
-    <!--<ConfirmDialog class="hidden" avatar="../images/add.png" login="ANDREW" message="New friend request"></ConfirmDialog>-->
+
+    <ConfirmGame class="hidden">
+        <div class="confirm-game-modal">
+            <p class="confirm-game-modal__message">Are you ready for GAME???</p>
+
+            <div class="confirm-game-modal__accept">
+                <Button class="wait" click="{{{ stringifyFunc acceptGame }}}">READY</Button>
+            </div>
+        </div>
+    </ConfirmGame>
+
 </div>

@@ -1,7 +1,10 @@
 import httpModule from '../HttpModule/HttpModule';
 import router from '../Router/Router';
 import ws from '../WebSocket/WebSocket';
+import bus from '../Bus/Bus';
 import {WS_ADDRESS} from '../HttpModule/HttpConstants';
+
+
 
 /**
  * Класс для работы с сессией пользователя
@@ -9,22 +12,30 @@ import {WS_ADDRESS} from '../HttpModule/HttpConstants';
  */
 class UserService {
 
-    init() {
+    constructor() {
         this.MESSAGES = {
             ADD_AS_FRIEND: 'aaf',
             INVITE_TO_PARTY: 'itp',
-            // LEAVE_PARTY: 'lp',
+            LEAVE_PARTY: 'lp',
+            JOIN_GAME: 'jg',
+            GAME_READY: 'gr',
+            ASK_FOR_GAME: 'afjg',
             PARTY_VIEW: 'pv',
             UPDATE_PARTY: 'up',
             INIT_GAME: 'ig',
-
+            GAME_PREPARE: 'gp',
+            FINISH_GAME: 'fg',
+            SERVER_SNAP: 'ss',
+            CLIENT_SNAP: 'cs',
         };
+    }
 
+    init() {
         this.data = {};
+
         return httpModule.doGet('/user').then(
             (response) => {
                 this.data = response;
-                console.log('data done');
             },
             (reject) => {
                 console.log(reject);
@@ -37,36 +48,23 @@ class UserService {
             WS_ADDRESS,
             (message) => {
                 const data = JSON.parse(message.data);
-                switch (data.cls) {
-                    case this.MESSAGES.ADD_AS_FRIEND:
-                        data.message = 'New friend request';
-                        data.type = 'friends';
-                        showInvite(data);
-                        break;
-                    case this.MESSAGES.INVITE_TO_PARTY:
-                        data.message = 'Invite to party';
-                        data.type = 'party';
-                        data.login = data.leader;
-                        showInvite(data);
-                        break;
-                    case this.MESSAGES.PARTY_VIEW:
-                        updateParty(data);
-                        break;
-                    // case this.MESSAGES.LEAVE_PARTY:
-                    //
-                    //     leaveParty(data);
-                    //     break;
-                    default:
-                        console.log(data);
-                }
-                console.log(message);
+                console.log(data);
+                bus.emit(data.cls, message);
             },
             (message) => console.log(message)
         );
     }
 
-    update(data) {
-        this.data = data;
+    update() {
+        return httpModule.doGet('/user').then(
+            (response) => {
+                this.data = response;
+                console.log('data done');
+            },
+            (reject) => {
+                console.log(reject);
+            }
+        );
     }
 
     /**
@@ -112,5 +110,5 @@ class UserService {
     }
 }
 
-const userService = new UserService();
+window.userService = new UserService();
 export default userService;
