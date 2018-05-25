@@ -263,9 +263,10 @@ window.startGame = () => {
     httpModule.doPost('/game/party', {leader: view.context.party.leader.login});
 };
 
-window.playParty = () => {
+window.playParty = (data) => {
     // closeGameInvite();
     router.go('/multi/');
+    bus.emit('START_GAME', data);
 };
 
 window.search = () => {
