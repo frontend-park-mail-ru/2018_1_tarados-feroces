@@ -15,19 +15,18 @@ export default class GameCore {
     }
 
     start() {
-        bus.on(userService.MESSAGES.START_GAME, this.onGameStarted);
+        bus.on('START_GAME', this.onGameStarted);
         bus.on(userService.MESSAGES.FINISH_GAME, this.onGameFinished);
-        bus.on('CONTROLS_PRESSED', this.onControlsPressed);
-        bus.on(userService.MESSAGES.GAME_STATE_CHANGED, this.onGameFinished);
-        // bus.on('WAVE_COMPLETED', this.onWaveCompleted);
+        bus.on(userService.MESSAGES.CLIENT_SNAP, this.onControlsPressed);
+        bus.on(userService.MESSAGES.SERVER_SNAP, this.onGameStateChanged);
         bus.on('ROUND_COMPLETED', this.onRoundCompleted);
     }
 
     stop() {
         bus.off('START_GAME', this.onGameStarted);
-        bus.off('FINISH_GAME', this.onGameFinished);
-        bus.off('CONTROLS_PRESSED', this.onControlsPressed);
-        bus.off('GAME_STATE_CHANGED', this.onGameStateChanged);
+        bus.off(userService.MESSAGES.FINISH_GAME, this.onGameFinished);
+        bus.off(userService.MESSAGES.CLIENT_SNAP, this.onControlsPressed);
+        bus.off(userService.MESSAGES.SERVER_SNAP, this.onGameStateChanged);
         // bus.off('WAVE_COMPLETED', this.onWaveCompleted);
         bus.off('ROUND_COMPLETED', this.onRoundCompleted);
     }

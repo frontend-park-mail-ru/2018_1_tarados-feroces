@@ -22,13 +22,14 @@ export default class OnlineGame extends GameCore {
         movement.y = this.controller.keyMap['UP'] ? 1 : 0 +
                         this.controller.keyMap['DOWN'] ? -1 : 0;
 
-        ws.sendMessage(userService.MESSAGES.GAME_STATE_CHANGED, movement);
+        ws.sendMessage(userService.MESSAGES.CLIENT_SNAP, movement);
     }
 
     onGameStarted(event) {
+
         this.controller.start();
-        event.forEach((item) => {
-            this.scene.initPlayer(item.x, item.y, item.color);
+        event.users.forEach((item) => {
+            this.scene.initPlayer(item.x, item.y, `rgb(${item.color.red}, ${item.color.green}, ${item.color.blue})`);
         });
     }
 
@@ -48,6 +49,6 @@ export default class OnlineGame extends GameCore {
 
     gameLoop() {
         this.gameLoopId = requestAnimationFrame(this.gameLoop);
-        bus.emit(userService.MESSAGES.GAME_STATE_CHANGED);
+        bus.emit(userService.MESSAGES.CLIENT_SNAP);
     }
 }

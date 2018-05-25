@@ -24,7 +24,8 @@ class UserService {
             UPDATE_PARTY: 'up',
             INIT_GAME: 'ig',
             FINISH_GAME: 'fg',
-            GAME_STATE_CHANGED: 'gsc',
+            SERVER_SNAP: 'ss',
+            CLIENT_SNAP: 'cs',
         };
     }
 
