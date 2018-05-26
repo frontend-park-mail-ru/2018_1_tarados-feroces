@@ -3,6 +3,7 @@ import gameController from '../GameController';
 import router from '../../modules/Router/Router';
 
 export default class OfflineGame extends GameCore {
+
     constructor(controller, scene) {
         super(controller, scene);
         this.rounds = [];
@@ -14,7 +15,7 @@ export default class OfflineGame extends GameCore {
 
     start() {
         super.start();
-        this.controller.start();
+        this.controller.start(false);
         this.scene.initPlayer();
         this.nextRound();
         this.gameLoopId = requestAnimationFrame(this.gameLoop);

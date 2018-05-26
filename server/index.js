@@ -10,7 +10,8 @@ app.use('/leaderboard', express.static(path.join('dist')));
 app.use('/news', express.static(path.join('dist')));
 app.use('/settings', express.static(path.join('dist')));
 app.use('/user', express.static(path.join('dist')));
-app.use('/game', express.static(path.join('dist')));
+app.use('/single', express.static(path.join('dist')));
+app.use('/multi', express.static(path.join('dist')));
 // app.use(/\/.+/gi, express.static(path.join('dist')));
 // app.use(express.static(path.join('')));
 

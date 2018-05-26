@@ -26,6 +26,8 @@ export default class BaseView {
         return true;
     }
 
+    setContext() {}
+
     /**
      * Возвращает шаблон вьюхи
      *
@@ -91,6 +93,7 @@ export default class BaseView {
      */
     __render() {
         this.render();
+        this.setContext();
         this.element = htmlParser.getHTML(this.template(this.context));
         return this.element;
     }

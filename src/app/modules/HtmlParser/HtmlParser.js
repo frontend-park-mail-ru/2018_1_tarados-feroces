@@ -22,6 +22,7 @@ import AuthHeaderPoint from '../../components/AuthHeaderPoint/AuthHeaderPoint';
 import Post from '../../components/Post/Post';
 import Party from '../../components/Party/Party';
 import StandartComponent from '../../components/StandartComponent/StandartComponent';
+import ConfirmGame from '../../components/ConfirmGame/ConfirmGame';
 
 /** Класс для парсинга html тэгов
  * @module HtmlParser
@@ -53,6 +54,7 @@ class HtmlParser {
             PeopleSearch: () => new PeopleSearch(),
             FriendAction: () => new FriendAction(),
             ConfirmDialog: () => new ConfirmDialog(),
+            ConfirmGame: () => new ConfirmGame(),
             HideFriendsButton: () => new HideFriendsButton(),
             UserInfo: () => new UserInfo(),
             SettingsButton: () => new SettingsButton(),

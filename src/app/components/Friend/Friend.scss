@@ -18,7 +18,7 @@
 
   &__login {
     display: flex;
-    min-width: 100px;
+    min-width: 150px;
     max-width: 150px;
 
     &-value {
@@ -27,6 +27,19 @@
       font-family: $main-font;
       color: $blocks-text-color;
       user-select: none;
+    }
+  }
+
+  &__online {
+    display: flex;
+    width: 20px;
+
+    &-value {
+      margin:auto;
+      width: 10px;
+      height: 10px;
+      border-radius: 5px;
+      background-color: limegreen;
     }
   }
 

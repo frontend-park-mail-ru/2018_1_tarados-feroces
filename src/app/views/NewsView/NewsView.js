@@ -70,5 +70,5 @@ window.newsPaginate = (index) => {
     httpModule.doPost('/news', {position: index, count: paginationConstant}).then(
         (response) => router.viewUpdate('/news/', response)
     );
-    window.currentNewsPosition += paginationConstant;
+    this.context.currentNewsPosition += paginationConstant;
 };

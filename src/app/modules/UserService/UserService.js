@@ -1,6 +1,7 @@
 import httpModule from '../HttpModule/HttpModule';
 import router from '../Router/Router';
 import ws from '../WebSocket/WebSocket';
+import bus from '../Bus/Bus';
 import {WS_ADDRESS} from '../HttpModule/HttpConstants';
 
 /**
@@ -9,22 +10,30 @@ import {WS_ADDRESS} from '../HttpModule/HttpConstants';
  */
 class UserService {
 
-    init() {
+    constructor() {
         this.MESSAGES = {
-            ADD_AS_FRIEND: 'aaf',
-            INVITE_TO_PARTY: 'itp',
-            // LEAVE_PARTY: 'lp',
-            PARTY_VIEW: 'pv',
-            UPDATE_PARTY: 'up',
-            INIT_GAME: 'ig',
-
+            ADD_AS_FRIEND: 'AskForFriendship',
+            INVITE_TO_PARTY: 'InviteToParty',
+            LEAVE_PARTY: 'LeaveParty',
+            JOIN_GAME: 'JoinGame',
+            GAME_READY: 'GameReady',
+            ASK_FOR_GAME: 'AskForJoinGame',
+            PARTY_VIEW: 'PartyView',
+            INIT_GAME: 'InitGame',
+            GAME_PREPARE: 'GamePrepare',
+            FINISH_GAME: 'FinishGame',
+            SERVER_SNAP: 'ServerSnap',
+            CLIENT_SNAP: 'ClientSnap',
+            INTERRUPT_GAME: 'InterruptGame',
         };
+    }
 
+    init() {
         this.data = {};
+
         return httpModule.doGet('/user').then(
             (response) => {
                 this.data = response;
-                console.log('data done');
             },
             (reject) => {
                 console.log(reject);
@@ -37,36 +46,23 @@ class UserService {
             WS_ADDRESS,
             (message) => {
                 const data = JSON.parse(message.data);
-                switch (data.cls) {
-                    case this.MESSAGES.ADD_AS_FRIEND:
-                        data.message = 'New friend request';
-                        data.type = 'friends';
-                        showInvite(data);
-                        break;
-                    case this.MESSAGES.INVITE_TO_PARTY:
-                        data.message = 'Invite to party';
-                        data.type = 'party';
-                        data.login = data.leader;
-                        showInvite(data);
-                        break;
-                    case this.MESSAGES.PARTY_VIEW:
-                        updateParty(data);
-                        break;
-                    // case this.MESSAGES.LEAVE_PARTY:
-                    //
-                    //     leaveParty(data);
-                    //     break;
-                    default:
-                        console.log(data);
-                }
-                console.log(message);
+                console.log(data);
+                bus.emit(data.cls, message);
             },
             (message) => console.log(message)
         );
     }
 
-    update(data) {
-        this.data = data;
+    update() {
+        return httpModule.doGet('/user').then(
+            (response) => {
+                this.data = response;
+                console.log('data done');
+            },
+            (reject) => {
+                console.log(reject);
+            }
+        );
     }
 
     /**
@@ -92,9 +88,7 @@ class UserService {
      * Установка флага авторизованного пользователя
      */
     userLogin() {
-
         this.isAuthorized = true;
-
     }
 
     /**
@@ -103,7 +97,6 @@ class UserService {
      */
     userLogout() {
         ws.close(1000, 'Logout');
-
         this.data = {};
         this.isAuthorized = false;
         router.clearUrlElement('/user/');
@@ -112,5 +105,5 @@ class UserService {
     }
 }
 
-const userService = new UserService();
+window.userService = new UserService();
 export default userService;

@@ -29,11 +29,11 @@ export default class Scene {
     }
 
     drawPlayers(players) {
-        players.forEach((item) => this.players[item.id].setCoords(item.x, item.y).draw());
+        players.forEach((item) => this._drawItem(item, item.color));
     }
 
     drawMobs(mobs) {
-        mobs.forEach((item) => this._drawMob(item));
+        mobs.forEach((item) => this._drawItem(item));
     }
 
     update(players, mobs) {
@@ -42,10 +42,10 @@ export default class Scene {
         this.drawMobs(mobs);
     }
 
-    _drawMob(item, color = 'black') {
+    _drawItem(item, color = 'black', radius = 20) {
         const ctx = this.ctx;
         ctx.beginPath();
-        ctx.arc(item.x, item.y, item.radius, 0, 360, false);
+        ctx.arc(item.pos.x, item.pos.y, radius, 0, 360, false);
         ctx.fillStyle = color;
         ctx.fill();
         ctx.closePath();

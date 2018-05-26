@@ -1,28 +1,47 @@
 import GameCore from './index';
 import bus from '../../modules/Bus/Bus';
-import Ws from '../../modules/WebSocket/WebSocket';
-import {WS_ADDRESS} from '../../modules/HttpModule/HttpConstants';
+import ws from '../../modules/WebSocket/WebSocket';
+import userService from '../../modules/UserService/UserService';
 
 export default class OnlineGame extends GameCore {
+
+    constructor(controller, scene) {
+        super(controller, scene);
+        this.onGameStarted = this.onGameStarted.bind(this);
+        this.onGameStateChanged = this.onGameStateChanged.bind(this);
+        this.onControlsPressed = this.onControlsPressed.bind(this);
+    }
+
     start() {
         super.start();
-        this.ws = new Ws(WS_ADDRESS);
-        this.ws.send('game-started', null);
+        this.controller.start(true);
+        console.log('watahell');
+        ws.sendMessage(userService.MESSAGES.GAME_READY, {});
     }
 
     onControlsPressed(event) {
-        this.ws.send(this.controller.keyMap);
+        const movement = {};
+        movement.x = this.controller.keyMap['RIGHT'] ? 1 : 0 +
+                        this.controller.keyMap['LEFT'] ? -1 : 0;
+        movement.y = this.controller.keyMap['UP'] ? 1 : 0 +
+                        this.controller.keyMap['DOWN'] ? -1 : 0;
+        console.log('PRESSED!');
+        ws.sendMessage(userService.MESSAGES.CLIENT_SNAP, movement);
     }
 
     onGameStarted(event) {
+        const data = JSON.parse(event.data);
+        console.log('GAME INITED');
         this.controller.start();
-        event.forEach((item) => {
-            this.scene.initPlayer(item.x, item.y, item.color);
+        data.users.forEach((item) => {
+            this.scene.initPlayer(item.x, item.y, item.color, item.party_id);
         });
     }
 
     onGameStateChanged(event) {
-        const players = event.players;
+        const data = JSON.parse(event.data);
+        const players = data.players;
+        console.log(players);
         const mobs = event.mobs;
         this.scene.update(players, mobs);
     }
