@@ -1,6 +1,9 @@
 import transport from '../modules/Transport/Transport';
 import * as HttpConstants from '../constants/HttpConstants';
-import { SET_USER, LOGIN_USER, SIGNUP_USER, LOGOUT_USER, UPDATE_USER } from '../constants/ReducersConstants';
+import {
+    SET_USER, LOGIN_USER, SIGNUP_USER, LOGOUT_USER, UPDATE_USER, GET_FRIENDS,
+    GET_PEOPLE, SET_PEOPLE_LOADING, GET_PARTY
+} from '../constants/ReducersConstants';
 
 
 export function setUser(user): any {
@@ -82,10 +85,58 @@ function logout(): any {
     };
 }
 
-// export async function req(): any {
-//         return transport.doPost('/signout');
-// }
-//
-// async function test() {
-//     const reponse = await req();
-// }
+export function getFriends(prefix = ''): any {
+    return async (dispatch) => {
+        dispatch(setPeopleLoading(true));
+        const response = await transport.doPost(HttpConstants.GET_FRIENDS, { prefix });
+        const json = await response.json();
+        response.ok ? dispatch(friends(json)) : alert(json.message);
+        dispatch(setPeopleLoading(false));
+    }
+}
+
+function friends(people): any {
+    return {
+        type: GET_FRIENDS,
+        payload: {friends: people}
+    };
+}
+
+export function getPeople(prefix = ''): any {
+    return async (dispatch) => {
+        dispatch(setPeopleLoading(true));
+        const response = await transport.doPost(HttpConstants.GET_PEOPLE, { prefix });
+        const json = await response.json();
+        response.ok ? dispatch(people(json)) : alert(json.message);
+        dispatch(setPeopleLoading(false));
+    }
+}
+
+function people(people): any {
+    return {
+        type: GET_PEOPLE,
+        payload: {people: people}
+    };
+}
+
+function setPeopleLoading(state) {
+    return {
+        type: SET_PEOPLE_LOADING,
+        payload: {peopleLoading: state}
+    }
+}
+
+export function getParty(): any {
+    return async (dispatch) => {
+        const response = await transport.doGet(HttpConstants.GET_PARTY);
+        const json = await response.json();
+        response.ok ? dispatch(party(json)) : alert(json.message);
+    }
+}
+
+function party(party): any {
+    return {
+        type: GET_PARTY,
+        payload: {party: people}
+    };
+}

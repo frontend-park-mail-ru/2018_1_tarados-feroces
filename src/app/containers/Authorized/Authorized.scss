@@ -172,11 +172,17 @@
         background-color: $blocks-background;
         display: flex;
         flex-direction: column;
+        &-people {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+        }
         &-header {
           display: flex;
           height: 40px;
           border-bottom: black solid thin;
           background-color: $header-background;
+          cursor: pointer;
           &-point {
             flex-grow: 1;
             display: flex;
@@ -185,6 +191,11 @@
             &:hover {
               background-color: #1956a8;
             }
+
+            &-active {
+              background-color: #1956a8;
+            }
+
             &-value {
               font-size: 30px;
               color: $blocks-text-color;

@@ -1,9 +1,13 @@
-import { SET_USER, LOGIN_USER, SIGNUP_USER, LOGOUT_USER, UPDATE_USER } from '../constants/ReducersConstants';
+import {
+    SET_USER, LOGIN_USER, SIGNUP_USER, LOGOUT_USER, UPDATE_USER, GET_FRIENDS,
+    GET_PEOPLE, SET_PEOPLE_LOADING
+} from '../constants/ReducersConstants';
 
 const initialState: any = {
     isAuthorized: null,
     email: '',
-    login: ''
+    login: '',
+    peopleLoading: true
 };
 
 export default function user(state: any = initialState, action: any): any {
@@ -17,6 +21,12 @@ export default function user(state: any = initialState, action: any): any {
         case LOGOUT_USER:
             return { ...state, ...action.payload };
         case UPDATE_USER:
+            return { ...state, ...action.payload };
+        case GET_FRIENDS:
+            return { ...state, ...action.payload };
+        case GET_PEOPLE:
+            return { ...state, ...action.payload };
+        case SET_PEOPLE_LOADING:
             return { ...state, ...action.payload };
         default:
             return state;

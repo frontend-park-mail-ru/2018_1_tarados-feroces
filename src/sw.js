@@ -5,7 +5,7 @@ const urls = [
     '/signup/',
     '/user/',
     '/game/',
-    '/leaderboard/',
+    '/people/',
     '/settings/',
 
     '/bundle.js',

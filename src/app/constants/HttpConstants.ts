@@ -1,4 +1,4 @@
-export const httpDomen: string = 'http://api.deadlinez.net:8080/api';
+export const HTTP_DOMEN: string = 'http://api.deadlinez.net:8080/api';
 export const WS_ADDRESS: string = 'ws://api.deadlinez.net:8080/session';
 export const POST: string = 'POST';
 export const GET: string = 'GET';
@@ -14,3 +14,9 @@ export const LOGOUT: string = '/signout';
 export const GET_LEADERS: string = '/leaderboard';
 
 export const GET_NEWS: string = '/news';
+
+export const GET_PEOPLE: string = '/allusers';
+export const GET_FRIENDS: string = '/user/friend/all';
+
+export const GET_PARTY: string = '/party/get';
+

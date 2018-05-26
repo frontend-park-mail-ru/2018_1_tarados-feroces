@@ -1,4 +1,4 @@
-import {httpDomen, HEADER_CONTENT_TYPE, JSON_CONTENT_TYPE, POST, GET} from '../../constants/HttpConstants';
+import {HTTP_DOMEN, HEADER_CONTENT_TYPE, JSON_CONTENT_TYPE, POST, GET} from '../../constants/HttpConstants';
 
 /**
  * Класс, отвечающий за отправку запросов на сервер
@@ -6,7 +6,7 @@ import {httpDomen, HEADER_CONTENT_TYPE, JSON_CONTENT_TYPE, POST, GET} from '../.
  */
 class Transport {
 
-    private domen: any = httpDomen;
+    private domen: any = HTTP_DOMEN;
 
     /**
      * Делает GET-запрос

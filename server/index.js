@@ -6,7 +6,7 @@ app.use('/', express.static(path.join('dist')));
 app.use('/login', express.static(path.join('dist')));
 app.use('/signup', express.static(path.join('dist')));
 app.use('/test', express.static(path.join('dist')));
-app.use('/leaderboard', express.static(path.join('dist')));
+app.use('/people', express.static(path.join('dist')));
 app.use('/news', express.static(path.join('dist')));
 app.use('/settings', express.static(path.join('dist')));
 app.use('/me', express.static(path.join('dist')));

@@ -9,6 +9,7 @@ import FriendAction from '../../components/FriendAction/FriendAction';
 import HideFriendsButton from '../../components/HideFriendsButton/HideFriendsButton';
 import Friend from '../../components/Friend/Friend';
 import Party from '../../components/Party/Party';
+import People from '../../components/People/People';
 import Loading from '../../components/Loading/Loading';
 import Leaderboard from '../../components/Leaderboard/Leaderboard';
 
@@ -33,16 +34,32 @@ class Authorized extends React.Component<IProps, any> {
         this.state = {
             leaderActive: false,
             newsActive: true,
-            hideFriends: false
+            hideFriends: false,
+            areFriends: true,
         };
         this.showLeaders = this.showLeaders.bind(this);
         this.showNews = this.showNews.bind(this);
         this.hideFriends = this.hideFriends.bind(this);
+        this.goFriends = this.goFriends.bind(this);
+        this.goPeople = this.goPeople.bind(this);
+        this.showFriendActions = this.showFriendActions.bind(this);
     }
 
     public settings(): void {
         const { history }: any = this.props;
         history.push('/settings');
+    }
+
+    public goFriends(): void {
+        this.setState({
+           areFriends: true
+        });
+    }
+
+    public goPeople(): void {
+        this.setState({
+            areFriends: false
+        });
     }
 
     public showLeaders(): void {
@@ -51,6 +68,18 @@ class Authorized extends React.Component<IProps, any> {
             newsActive: false
         });
     }
+
+    public showFriendActions(event): void {
+        const modal = document.querySelector('.friends-modal');
+        const icon = event.currentTarget;
+        this.setState({currentUser: icon.querySelector('.friend__login-value').textContent});
+
+        const x = icon.getBoundingClientRect().x;
+        const y = icon.getBoundingClientRect().y;
+        modal.style.left = `${x}px`;
+        modal.style.top = `${y + icon.getBoundingClientRect().height}px`;
+        modal.classList.toggle('hidden');
+    };
 
     public hideFriends(event): void {
         const hideValue = event.currentTarget.firstChild;
@@ -83,7 +112,6 @@ class Authorized extends React.Component<IProps, any> {
              '../static/imgs/user-logo.jpg'
          ];
 
-        console.log(user);
         if (user.isAuthorized === null || user.isAuthorized === undefined) {
             return (
                 <Loading />
@@ -127,8 +155,9 @@ class Authorized extends React.Component<IProps, any> {
                     </div>
 
                     <div className='friends-modal hidden'>
-                        <FriendAction text='Invite'/>
-                        <FriendAction text='Chat'/>
+                        <FriendAction
+                            text={this.state.areFriends ? 'Invite to party' : 'Add to friends'}
+                        />
                     </div>
 
                     <div className='auth-page__content-right'>
@@ -137,17 +166,32 @@ class Authorized extends React.Component<IProps, any> {
                             <HideFriendsButton onClick={this.hideFriends}/>
                             <div className={!hideFriends ? 'friends' : 'hidden'}>
                                 <div className='friends-header'>
-                                    <div className='friends-header-point'>
+                                    <div
+                                        className={
+                                        this.state.areFriends ?
+                                            'friends-header-point friends-header-point-active' :
+                                            'friends-header-point'
+                                        }
+                                         onClick={this.goFriends}
+                                    >
                                         <p className='friends-header-point-value'>Friends</p>
                                     </div>
-                                    <div className='friends-header-point'>
+                                    <div
+                                        className={
+                                        this.state.areFriends ?
+                                            'friends-header-point' :
+                                            'friends-header-point friends-header-point-active'
+                                        }
+                                        onClick={this.goPeople}
+                                    >
                                         <p className='friends-header-point-value'>People</p>
                                     </div>
                                 </div>
-                                <Friend avatar='../static/imgs/user-logo.jpg' login='Kabachok'/>
-                                <Friend avatar='../static/imgs/user-logo.jpg' login='Kabachok'/>
-                                <Friend avatar='../static/imgs/user-logo.jpg' login='Kabachok'/>
-                                <Friend avatar='../static/imgs/user-logo.jpg' login='Kabachok'/>
+                                {
+                                    this.state.areFriends ?
+                                        <People onClick={this.showFriendActions} areFriends={true} prefix=''/> :
+                                        <People onClick={this.showFriendActions} areFriends={false} prefix=''/>
+                                }
                             </div>
                         </div>
                         <Party avatars={avatars} className={!hideFriends ? 'content-right-party' : 'hidden'}/>

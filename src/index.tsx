@@ -6,13 +6,11 @@ import configureStore from "./app/store/store";
 
 const store = configureStore({});
 
-const App1 = () => (
-    <Provider store = { store }>
-        <App />
-    </Provider>
-);
-
 ReactDOM.render(
-    <App1 />,
+    (
+        <Provider store = { store }>
+            <App />
+        </Provider>
+    ),
     document.getElementById('root')
 );

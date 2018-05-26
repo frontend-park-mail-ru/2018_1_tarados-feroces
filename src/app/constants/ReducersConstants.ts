@@ -11,3 +11,13 @@ export const GET_NEWS: string = 'GET_NEWS';
 export const SET_LOGIN_FORM: string = 'SET_LOGIN_FORM';
 export const SET_SETTINGS_FORM: string = 'SET_SETTINGS_FORM';
 export const SET_SIGNUP_FORM: string = 'SET_SIGNUP_FORM';
+
+export const GET_PEOPLE: string = 'GET_PEOPLE';
+export const GET_FRIENDS: string = 'GET_FRIENDS';
+export const SET_PEOPLE_LOADING: string = 'GET_FRIENDS';
+
+export const GET_PARTY: string = 'GET_PARTY';
+
+
+
+
