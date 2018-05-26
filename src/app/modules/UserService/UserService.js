@@ -4,8 +4,6 @@ import ws from '../WebSocket/WebSocket';
 import bus from '../Bus/Bus';
 import {WS_ADDRESS} from '../HttpModule/HttpConstants';
 
-
-
 /**
  * Класс для работы с сессией пользователя
  * @module UserService
@@ -14,19 +12,19 @@ class UserService {
 
     constructor() {
         this.MESSAGES = {
-            ADD_AS_FRIEND: 'aaf',
-            INVITE_TO_PARTY: 'itp',
-            LEAVE_PARTY: 'lp',
-            JOIN_GAME: 'jg',
-            GAME_READY: 'gr',
-            ASK_FOR_GAME: 'afjg',
-            PARTY_VIEW: 'pv',
-            UPDATE_PARTY: 'up',
-            INIT_GAME: 'ig',
-            GAME_PREPARE: 'gp',
-            FINISH_GAME: 'fg',
-            SERVER_SNAP: 'ss',
-            CLIENT_SNAP: 'cs',
+            ADD_AS_FRIEND: 'AskForFriendship',
+            INVITE_TO_PARTY: 'InviteToParty',
+            LEAVE_PARTY: 'LeaveParty',
+            JOIN_GAME: 'JoinGame',
+            GAME_READY: 'GameReady',
+            ASK_FOR_GAME: 'AskForJoinGame',
+            PARTY_VIEW: 'PartyView',
+            INIT_GAME: 'InitGame',
+            GAME_PREPARE: 'GamePrepare',
+            FINISH_GAME: 'FinishGame',
+            SERVER_SNAP: 'ServerSnap',
+            CLIENT_SNAP: 'ClientSnap',
+            INTERRUPT_GAME: 'InterruptGame',
         };
     }
 
@@ -90,9 +88,7 @@ class UserService {
      * Установка флага авторизованного пользователя
      */
     userLogin() {
-
         this.isAuthorized = true;
-
     }
 
     /**
@@ -101,7 +97,6 @@ class UserService {
      */
     userLogout() {
         ws.close(1000, 'Logout');
-
         this.data = {};
         this.isAuthorized = false;
         router.clearUrlElement('/user/');

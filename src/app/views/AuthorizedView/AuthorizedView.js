@@ -37,11 +37,8 @@ export default class AuthorizedView extends BaseView {
         bus.on(userService.MESSAGES.ASK_FOR_GAME, (message) => {
             this.context.showGameInvite();
         });
-        bus.on(userService.MESSAGES.INIT_GAME, (message) => {
-            this.context.play();
-        });
         bus.on(userService.MESSAGES.GAME_PREPARE, (message) => {
-            playParty();
+            this.context.playMultiplayer();
         });
     }
 
@@ -159,10 +156,11 @@ export default class AuthorizedView extends BaseView {
         };
 
         this.context.acceptGame = () => {
+            const view = window.router.getLastView();
+            view.context.multiplayer = true;
             document.querySelector('.wait').classList.add('hidden');
             document.querySelector('.confirm-game-modal__message').textContent = 'Waiting for other players...';
-            console.log(1111);
-            window.ws.sendMessage(window.userService.MESSAGES.JOIN_GAME, {login: window.userService.data.login});
+            window.ws.sendMessage(window.userService.MESSAGES.JOIN_GAME, {login: view.context.login});
         };
 
         this.context.startGame = () => {
@@ -170,10 +168,15 @@ export default class AuthorizedView extends BaseView {
             window.httpModule.doPost('/game/party', {leader: view.context.party.leader.login});
         };
 
-        this.context.play = () => {
+        this.context.playMultiplayer = () => {
             document.querySelector('.confirm-game').classList.add('hidden');
-            window.router.go('/game/');
+            window.router.go('/multi/');
         };
+
+        this.context.playSingleplayer = () => {
+            window.router.go('/single/');
+        };
+
     }
 
     preRender() {
@@ -200,7 +203,11 @@ export default class AuthorizedView extends BaseView {
                     if (!item.avatar) {
                         item.avatar = '../images/user-logo.jpg';
                     }
+
+                    item.online = item.online ? 'yes' : '';
                 });
+
+                console.log(this.context.people);
 
                 return httpModule.doGet('/party/get').then(
                     (response) => {
@@ -217,7 +224,6 @@ export default class AuthorizedView extends BaseView {
                         });
                     },
                     (reject) => {
-                        // console.log(this.context);
                         this.context.party = {
                             leader: {
                                 avatar: this.context.avatar
@@ -287,6 +293,7 @@ window.search = () => {
                     if (!item.avatar) {
                         item.avatar = '../images/user-logo.jpg';
                     }
+                    item.online = item.online ? 'yes' : '';
                 });
                 view.context.people = response;
                 console.log(response);
@@ -319,9 +326,4 @@ window.updateParty = (data) => {
     const view = window.router.getLastView();
     view.context.party = data;
     window.router.viewUpdate('/user/', view.context);
-};
-
-window.playParty = () => {
-    // closeGameInvite();
-    window.router.go('/multi/');
 };

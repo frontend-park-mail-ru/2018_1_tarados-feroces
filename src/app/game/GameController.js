@@ -1,3 +1,7 @@
+import userService from "../modules/UserService/UserService";
+import ws from "../modules/WebSocket/WebSocket";
+import bus from "../modules/Bus/Bus";
+
 class GameController {
 
     constructor() {
@@ -11,10 +15,10 @@ class GameController {
 
     }
 
-    start() {
-        window.addEventListener('keypress', (event) => this.checkKeys(event));
-        window.addEventListener('keydown', (event) => this.checkKeys(event));
-        window.addEventListener('keyup', (event) => this.checkKeys(event));
+    start(online) {
+        window.addEventListener('keypress', (event) => this.checkKeys(event, online));
+        window.addEventListener('keydown', (event) => this.checkKeys(event, online));
+        window.addEventListener('keyup', (event) => this.checkKeys(event, online));
         const controls = [...document.getElementsByClassName('controllers')];
         controls.forEach((item) => {
             item.addEventListener('touchstart', () => {
@@ -56,7 +60,7 @@ class GameController {
         });
     }
 
-    checkKeys(event) {
+    checkKeys(event, online) {
         let direction = '';
 
         console.log(event.type, '-->', event.keyCode);
@@ -69,6 +73,10 @@ class GameController {
         }
         if (direction) {
             this.keyMap[direction] = (event.type === 'keypress' || event.type === 'keydown');
+        }
+
+        if (online) {
+            bus.emit(userService.MESSAGES.CLIENT_SNAP);
         }
     }
 

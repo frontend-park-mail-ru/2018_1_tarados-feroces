@@ -3,11 +3,14 @@
         <div class="header-logo">
             <Image class="header-logo-content" src="../images/Deadlinez.png"></Image>
         </div>
-        <div class="button button-play" click="{{{ stringifyFunc startGame }}}">
-
+        {{#if multiplayer}}
+            <div class="button button-play" click="{{{ stringifyFunc startGame }}}">
+        {{else}}
+            <div class="button button-play" click="{{{ stringifyFunc startGame }}}">
+        {{/if}}
             <p class="button-play__value">PLAY</p>
         </div>
-        <UserInfo login="{{login}}" coins="645" points="1080" avatar="{{{avatar}}}">
+        <UserInfo login="{{login}}" coins="645" points="{{points}}" avatar="{{{avatar}}}">
             <SettingsButton click="{{{ stringifyFunc goToSettings }}}"></SettingsButton>
             <SignoutButton click="{{{ stringifyFunc signOut }}}"></SignoutButton>
         </UserInfo>
@@ -50,7 +53,8 @@
 
                     <div class="friends-data">
                     {{#each people}}
-                        <Friend avatar="{{{this.avatar}}}" login="{{this.login}}" click="{(event){showFriendActions(event);}"></Friend>
+                        <Friend avatar="{{{this.avatar}}}" login="{{this.login}}"
+                                click="{(event){showFriendActions(event);}" online="{{this.online}}"></Friend>
                     {{/each}}
                     </div>
                 </div>

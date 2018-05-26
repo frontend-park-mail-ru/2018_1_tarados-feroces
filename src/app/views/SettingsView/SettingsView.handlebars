@@ -28,24 +28,22 @@
                         <InputFile
                                 change="{{{ stringifyFunc changeAvatar }}}"
                                 file-class="file-avatar"
-                                src="{{{blobAvatar}}}"
                         >
                         </InputFile>
+                        <p class=""
                         <Input
                                 block-class="user-name"
                                 type="text"
                                 placeholder="Login"
                                 value="{{login}}"
-                                focus="{{{ stringifyFunc validateFocusSettingsInput }}}"
-                                blur="{{{ stringifyFunc validateBlurSettingsInput }}}">
+                                input-name="login">
                         </Input>
                         <Input
                                 block-class="user-email"
                                 type="text"
                                 placeholder="E-mail"
                                 value="{{email}}"
-                                focus="{{{ stringifyFunc validateFocusSettingsInput }}}"
-                                blur="{{{ stringifyFunc validateBlurSettingsInput }}}">
+                                input-name="email">
                         </Input>
                         <Button
                                 click="{{{ stringifyFunc validateSettings }}}"

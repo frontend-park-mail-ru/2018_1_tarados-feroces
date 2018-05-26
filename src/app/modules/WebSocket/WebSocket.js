@@ -2,10 +2,10 @@
 
 class Ws {
     open(address, onmessage, onclose) {
-        self.address = address;
-        this.ws = new WebSocket(self.address);
+        this.address = address;
+        this.ws = new WebSocket(this.address);
         this.ws.onopen = () => {
-            console.log(`WS on ${self.address} is opened`);
+            console.log(`WS on ${this.address} is opened`);
             this.ws.onmessage = onmessage;
             this.ws.onclose = onclose;
         };

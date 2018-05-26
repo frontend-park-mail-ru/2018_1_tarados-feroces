@@ -18,8 +18,15 @@ export default class GameView extends BaseView {
             window.router.go('/');
         };
 
+        //TODO only if multiplayer
         this.context.goToGame = () => {
-            window.router.go('/game/');        };
+            window.router.go('/single/');
+        };
+
+        this.context.interruptGame = () => {
+            window.router.go('/');
+            window.ws.sendMessage(window.userService.MESSAGES.INTERRUPT_GAME, {});
+        };
     }
 
     create(online) {
@@ -29,7 +36,7 @@ export default class GameView extends BaseView {
 
         const pause = document.querySelector('.game__pause');
         pause.classList.add('hidden');
-
+        this.context.singleplayer = !online;
         this.doGame(online);
     }
 
@@ -38,7 +45,6 @@ export default class GameView extends BaseView {
             const scene = new Scene(this.canvas);
             this.game = new OnlineGame(gameController, scene);
             this.game.start();
-            // bus.emit('START_GAME');
             return;
         }
         const scene = new Scene(this.canvas);

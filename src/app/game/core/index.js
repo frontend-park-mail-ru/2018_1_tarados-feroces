@@ -15,7 +15,6 @@ export default class GameCore {
     }
 
     start() {
-
         bus.on(userService.MESSAGES.INIT_GAME, this.onGameStarted);
         bus.on(userService.MESSAGES.FINISH_GAME, this.onGameFinished);
         bus.on(userService.MESSAGES.CLIENT_SNAP, this.onControlsPressed);
