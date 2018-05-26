@@ -1,7 +1,6 @@
 import BaseView from '../BaseView/BaseView';
 import Validation from '../../modules/Validator/index';
 
-
 export default class RegisterView extends BaseView {
 
     setContext() {
@@ -10,16 +9,16 @@ export default class RegisterView extends BaseView {
             const inputs = blocks.map((block) => block.querySelector('input'));
             const errors = {};
             window.Validation(inputs, errors);
-            for (let key in errors) {
+            for (const key in errors) {
                 blocks.map((block) => {
-                    const error = block.querySelector('p[name=' + key + ']');
+                    const error = block.querySelector(`p[name=${ key }]`);
                     if (error) {
                         error.textContent = errors[key];
                     }
                 });
             }
 
-            for (let key in errors) {
+            for (const key in errors) {
                 console.log(key, errors[key]);
                 if (errors[key].length) {
                     return;

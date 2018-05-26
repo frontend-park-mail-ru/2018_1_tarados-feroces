@@ -1,8 +1,7 @@
 import GameCore from './index';
 import bus from '../../modules/Bus/Bus';
 import ws from '../../modules/WebSocket/WebSocket';
-import userService from "../../modules/UserService/UserService";
-
+import userService from '../../modules/UserService/UserService';
 
 export default class OnlineGame extends GameCore {
 

@@ -1,7 +1,7 @@
 import './AuthorizedView.scss';
 import BaseView from '../BaseView/BaseView';
 
-import bus from "../../modules/Bus/Bus";
+import bus from '../../modules/Bus/Bus';
 import httpModule from '../../modules/HttpModule/HttpModule';
 import userService from '../../modules/UserService/UserService';
 import router from '../../modules/Router/Router';
@@ -132,7 +132,6 @@ export default class AuthorizedView extends BaseView {
 
         this.context.showGameInvite = this.context.showGameInvite.bind(this);
 
-
         this.context.showInvite = (data) => {
             document.querySelector('.friends-modal').classList.add('hidden');
             const view = router.getLastView();
@@ -143,7 +142,6 @@ export default class AuthorizedView extends BaseView {
         };
 
         this.context.showInvite = this.context.showInvite.bind(this);
-
 
         this.context.addToFriends = () => {
             document.querySelector('.friends-modal').classList.add('hidden');
@@ -245,7 +243,6 @@ window.changeFriendsOrPeople = (data) => {
     router.getLastView().context.inFriends = data;
     window.search();
 };
-
 
 window.acceptFriend = (accept) => {
     closeInvite();

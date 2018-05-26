@@ -45,7 +45,7 @@ export default class SettingsView extends BaseView {
 
         this.context.validateFocusSettingsInput = (event) => {
             const input = event.target;
-            input.classList.remove('input-block__input_error')
+            input.classList.remove('input-block__input_error');
         };
 
         this.context.validateBlurSettingsInput = (event) => {

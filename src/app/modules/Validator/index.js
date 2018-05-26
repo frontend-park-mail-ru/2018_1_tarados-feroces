@@ -4,16 +4,15 @@ window.Validation = (values, errors) => {
     let password = null;
     let repeatPassword = null;
 
-    (Object.keys(values) || []).forEach(value => {
+    (Object.keys(values) || []).forEach((value) => {
         BasicValidation(values[value], errors);
-        if (values[value].name == 'password') {
+        if (values[value].name === 'password') {
             password = values[value];
         }
-        if (values[value].name == 'repeatPassword') {
+        if (values[value].name === 'repeatPassword') {
             repeatPassword = values[value];
         }
     });
-
 
     if (repeatPassword) {
         if (password.value !== repeatPassword.value) {

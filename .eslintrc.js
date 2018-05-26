@@ -5,6 +5,7 @@ module.exports = {
         "browser": true
     },
     "rules": {
+        "new-cap": "off",
         "comma-dangle": "off",
         "no-lonely-if": "off",
         "guard-for-in": "off",

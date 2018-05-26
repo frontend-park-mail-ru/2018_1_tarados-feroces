@@ -18,7 +18,7 @@ export default class GameView extends BaseView {
             window.router.go('/');
         };
 
-        //TODO only if multiplayer
+        // TODO only if multiplayer
         this.context.goToGame = () => {
             window.router.go('/single/');
         };

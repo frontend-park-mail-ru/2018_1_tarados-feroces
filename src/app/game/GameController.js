@@ -1,6 +1,6 @@
-import userService from "../modules/UserService/UserService";
-import ws from "../modules/WebSocket/WebSocket";
-import bus from "../modules/Bus/Bus";
+import userService from '../modules/UserService/UserService';
+import ws from '../modules/WebSocket/WebSocket';
+import bus from '../modules/Bus/Bus';
 
 class GameController {
 

@@ -20,7 +20,8 @@ export default class MainPageView extends BaseView {
             const header = document.querySelector('.main-page__header');
 
             if (iconValue.classList.contains('rotate-scroll-close')) {
-                window.scrollTo(0, icon.getBoundingClientRect().top + window.scrollY - header.getBoundingClientRect().height);
+                window.scrollTo(0, icon.getBoundingClientRect().top + window.scrollY -
+                    header.getBoundingClientRect().height);
                 iconValue.classList.add('rotate-scroll-open');
                 iconValue.style.transform = 'rotate(90deg)';
                 iconValue.classList.remove('rotate-scroll-close');
