@@ -1,4 +1,6 @@
 class Bus {
+    private listeners: any;
+
     constructor() {
         this.listeners = {};
     }

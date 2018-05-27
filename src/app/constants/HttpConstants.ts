@@ -20,3 +20,7 @@ export const GET_FRIENDS: string = '/user/friend/all';
 
 export const GET_PARTY: string = '/party/get';
 
+export const SEND_FRIENDS_INVITE: string = '/user/friend/add';
+export const SEND_PARTY_INVITE: string = '/party/invite';
+
+

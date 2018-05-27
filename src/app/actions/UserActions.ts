@@ -5,6 +5,9 @@ import {
     GET_PEOPLE, SET_PEOPLE_LOADING, GET_PARTY
 } from '../constants/ReducersConstants';
 
+import ws from '../modules/WebSocket/WebSocket';
+
+
 
 export function setUser(user): any {
     return {
@@ -16,6 +19,9 @@ export function setUser(user): any {
 export function getUser() {
     return async (dispatch) => {
         const response = await transport.doGet(HttpConstants.GET_USER);
+        if (response.ok && !ws.address) {
+            ws.open();
+        }
         dispatch(
             setUser(
             response.ok ? ( {...(await response.json()), 'isAuthorized': true } ) : { 'isAuthorized': false }
@@ -30,8 +36,23 @@ export function updateUser(data) {
         const response = await transport.doPost(HttpConstants.UPDATE_USER, data);
         const json = await response.json();
         response.ok ? dispatch(getUser()) : alert(json.message);
-        // response.ok && dispatch(update(await response.json()));
     }
+}
+
+export function sendFriendsInvite(data) {
+    return async (dispatch) => {
+        const response = await transport.doPost(HttpConstants.SEND_FRIENDS_INVITE, data);
+        const json = await response.json();
+        !response.ok && alert(json.message);
+    };
+}
+
+export function sendPartyInvite(data) {
+    return async (dispatch) => {
+        const response = await transport.doPost(HttpConstants.SEND_PARTY_INVITE, data);
+        const json = await response.json();
+        !response.ok && alert(json.message);
+    };
 }
 
 function update(data): any {

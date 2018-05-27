@@ -20,6 +20,9 @@ import {Redirect} from "react-router";
 import News from '../../components/News/News';
 import {isBoolean} from 'util';
 
+import ws from '../../modules/WebSocket/WebSocket';
+import bus from '../../modules/Bus/Bus';
+
 interface IProps {
     history?: any;
     user?: any;
@@ -37,12 +40,61 @@ class Authorized extends React.Component<IProps, any> {
             hideFriends: false,
             areFriends: true,
         };
+
         this.showLeaders = this.showLeaders.bind(this);
         this.showNews = this.showNews.bind(this);
         this.hideFriends = this.hideFriends.bind(this);
         this.goFriends = this.goFriends.bind(this);
         this.goPeople = this.goPeople.bind(this);
         this.showFriendActions = this.showFriendActions.bind(this);
+        this.showGameInvite = this.showGameInvite.bind(this);
+        this.showInvite = this.showInvite.bind(this);
+        this.updateParty = this.updateParty.bind(this);
+        this.sendFriendsInvite = this.sendFriendsInvite.bind(this);
+        this.sendPartyInvite = this.sendPartyInvite.bind(this);
+
+        bus.on(ws.messages.ADD_AS_FRIEND, (data) => {
+            data.message = 'New friend request';
+            data.type = 'friends';
+            this.showInvite(data);
+        });
+        bus.on(ws.messages.INVITE_TO_PARTY, (data) => {
+            data.message = 'Invite to party';
+            data.type = 'party';
+            data.login = data.leader;
+            this.showInvite(data);
+        });
+        bus.on(ws.messages.PARTY_VIEW, (data) => {
+            this.updateParty(data);
+        });
+        bus.on(ws.messages.ASK_FOR_GAME, (message) => {
+            this.showGameInvite();
+        });
+        bus.on(ws.messages.GAME_PREPARE, (message) => {
+            // this.playMultiplayer();
+        });
+    }
+
+    public showGameInvite(): void {
+
+    }
+
+    public showInvite(data): void {
+
+    }
+
+    public updateParty(data): void {
+
+    }
+
+    public sendFriendsInvite(): void {
+        const {sendFriendsInvite} : any = this.props.userActions;
+        sendFriendsInvite({login: this.state.currentUser});
+    }
+
+    public sendPartyInvite(): void {
+        const {sendPartyInvite} : any = this.props.userActions;
+        sendPartyInvite({login: this.state.currentUser});
     }
 
     public settings(): void {
@@ -155,9 +207,12 @@ class Authorized extends React.Component<IProps, any> {
                     </div>
 
                     <div className='friends-modal hidden'>
-                        <FriendAction
-                            text={this.state.areFriends ? 'Invite to party' : 'Add to friends'}
-                        />
+                        {
+                            this.state.areFriends ?
+                                <FriendAction text='Invite to party' onClick={this.sendPartyInvite} /> :
+                                <FriendAction text='Add to friends' onClick={this.sendFriendsInvite} />
+                        }
+
                     </div>
 
                     <div className='auth-page__content-right'>
