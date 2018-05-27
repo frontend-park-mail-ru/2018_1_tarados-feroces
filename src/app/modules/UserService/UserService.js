@@ -47,7 +47,7 @@ class UserService {
             (message) => {
                 const data = JSON.parse(message.data);
                 console.log(data);
-                bus.emit(data.cls, message);
+                bus.emit(data.cls, data);
             },
             (message) => console.log(message)
         );
