@@ -1,6 +1,6 @@
 import {
     SET_USER, LOGIN_USER, SIGNUP_USER, LOGOUT_USER, UPDATE_USER, GET_FRIENDS,
-    GET_PEOPLE, SET_PEOPLE_LOADING
+    GET_PEOPLE, SET_PEOPLE_LOADING, GET_PARTY
 } from '../constants/ReducersConstants';
 
 const initialState: any = {
@@ -27,6 +27,8 @@ export default function user(state: any = initialState, action: any): any {
         case GET_PEOPLE:
             return { ...state, ...action.payload };
         case SET_PEOPLE_LOADING:
+            return { ...state, ...action.payload };
+        case GET_PARTY:
             return { ...state, ...action.payload };
         default:
             return state;

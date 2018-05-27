@@ -23,4 +23,8 @@ export const GET_PARTY: string = '/party/get';
 export const SEND_FRIENDS_INVITE: string = '/user/friend/add';
 export const SEND_PARTY_INVITE: string = '/party/invite';
 
+export const ACCEPT_PARTY_INVITE: string = '/party/join';
+export const ACCEPT_FRIENDS_INVITE: string = '/user/friend/response';
+
+
 

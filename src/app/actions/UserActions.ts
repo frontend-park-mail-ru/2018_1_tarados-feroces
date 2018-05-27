@@ -8,7 +8,6 @@ import {
 import ws from '../modules/WebSocket/WebSocket';
 
 
-
 export function setUser(user): any {
     return {
         type: SET_USER,
@@ -110,7 +109,10 @@ export function getFriends(prefix = ''): any {
     return async (dispatch) => {
         dispatch(setPeopleLoading(true));
         const response = await transport.doPost(HttpConstants.GET_FRIENDS, { prefix });
-        const json = await response.json();
+        let json = await response.json();
+        if (json.message) {
+            json = [];
+        }
         response.ok ? dispatch(friends(json)) : alert(json.message);
         dispatch(setPeopleLoading(false));
     }
@@ -151,13 +153,29 @@ export function getParty(): any {
     return async (dispatch) => {
         const response = await transport.doGet(HttpConstants.GET_PARTY);
         const json = await response.json();
-        response.ok ? dispatch(party(json)) : alert(json.message);
+        response.ok ? dispatch(party(json)) : dispatch(party(false));
     }
 }
 
 function party(party): any {
     return {
         type: GET_PARTY,
-        payload: {party: people}
+        payload: {party: party}
     };
+}
+
+export function acceptParty(leader) {
+    return async (dispatch) => {
+        const response = await transport.doPost(HttpConstants.ACCEPT_PARTY_INVITE, {leader, answer: 'accept'});
+        const json = await response.json();
+        !response.ok && alert(json.message);
+    }
+}
+
+export function acceptFriends(request_id) {
+    return async (dispatch) => {
+        const response = await transport.doPost(HttpConstants.ACCEPT_FRIENDS_INVITE, {request_id, answer: 'accept'});
+        const json = await response.json();
+        response.ok ? getFriends() : alert(json.message);
+    }
 }

@@ -16,19 +16,14 @@ interface IProps {
 class People extends React.Component<IProps, any> {
 
     public componentWillMount() {
-        this.update(this.props);
+        const prefix = '';
+        const { getFriends }: any = this.props.userActions;
+        getFriends(prefix);
     }
 
     // public componentWillUpdate(nextProps, nextState) {
     //     this.update(nextProps);
     // }
-
-    private update(props) {
-        const { areFriends, prefix }: any = props;
-        const { getFriends, getPeople }: any = this.props.userActions;
-        getFriends(prefix);
-        getPeople(prefix);
-    }
 
     public render(): JSX.Element {
         const { areFriends, user, onClick }: any = this.props;
@@ -38,9 +33,9 @@ class People extends React.Component<IProps, any> {
             <div className='friends-people'>
                 {(user.peopleLoading || !people) ?
                     <p>Loading</p> :
-                    people.map((person) => {
+                    people.map((person, index) => {
                         return (
-                            <Friend onClick={onClick} avatar={person.avatar} login={person.login} />
+                            <Friend key={index} onClick={onClick} avatar={person.avatar} login={person.login} />
                         );
                     })
                 }

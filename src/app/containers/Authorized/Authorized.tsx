@@ -22,6 +22,7 @@ import {isBoolean} from 'util';
 
 import ws from '../../modules/WebSocket/WebSocket';
 import bus from '../../modules/Bus/Bus';
+import InviteDialog from '../../components/InviteDialog/InviteDialog';
 
 interface IProps {
     history?: any;
@@ -48,24 +49,27 @@ class Authorized extends React.Component<IProps, any> {
         this.goPeople = this.goPeople.bind(this);
         this.showFriendActions = this.showFriendActions.bind(this);
         this.showGameInvite = this.showGameInvite.bind(this);
-        this.showInvite = this.showInvite.bind(this);
+        this.showPartyInvite = this.showPartyInvite.bind(this);
+        this.showFriendsInvite = this.showFriendsInvite.bind(this);
         this.updateParty = this.updateParty.bind(this);
         this.sendFriendsInvite = this.sendFriendsInvite.bind(this);
         this.sendPartyInvite = this.sendPartyInvite.bind(this);
+        this.acceptParty = this.acceptParty.bind(this);
+        this.declineParty = this.declineParty.bind(this);
+        this.acceptFriends = this.acceptFriends.bind(this);
+        this.declineFriends = this.declineFriends.bind(this);
 
         bus.on(ws.messages.ADD_AS_FRIEND, (data) => {
             data.message = 'New friend request';
-            data.type = 'friends';
-            this.showInvite(data);
+            this.showFriendsInvite(data);
         });
         bus.on(ws.messages.INVITE_TO_PARTY, (data) => {
             data.message = 'Invite to party';
-            data.type = 'party';
             data.login = data.leader;
-            this.showInvite(data);
+            this.showPartyInvite(data);
         });
         bus.on(ws.messages.PARTY_VIEW, (data) => {
-            this.updateParty(data);
+            this.updateParty();
         });
         bus.on(ws.messages.ASK_FOR_GAME, (message) => {
             this.showGameInvite();
@@ -79,12 +83,46 @@ class Authorized extends React.Component<IProps, any> {
 
     }
 
-    public showInvite(data): void {
+    public showPartyInvite(data): void {
+        this.setState({
+            partyInvite: true,
+            friendsInvite: false,
+            party: data
+        })
+    }
+
+    public showFriendsInvite(data): void {
+        this.setState({
+            partyInvite: false,
+            friendsInvite: true,
+            friends: data
+        })
+    }
+
+    public acceptParty(): void {
+        const { acceptParty }: any = this.props.userActions;
+        acceptParty(this.state.party.leader);
+        this.setState({partyInvite: false})
+    }
+
+    public declineParty(): void {
+        this.setState({partyInvite: false})
+    }
+
+    public acceptFriends(): void {
+        const { acceptFriends }: any = this.props.userActions;
+        acceptFriends(this.state.friends.request_id);
+        this.setState({friendsInvite: false})
 
     }
 
-    public updateParty(data): void {
+    public declineFriends(): void {
+        this.setState({friendsInvite: false})
+    }
 
+    public updateParty(): void {
+        const { getParty }: any = this.props.userActions;
+        getParty();
     }
 
     public sendFriendsInvite(): void {
@@ -106,12 +144,18 @@ class Authorized extends React.Component<IProps, any> {
         this.setState({
            areFriends: true
         });
+        const prefix = '';
+        const { getFriends }: any = this.props.userActions;
+        getFriends(prefix);
     }
 
     public goPeople(): void {
         this.setState({
             areFriends: false
         });
+        const prefix = '';
+        const { getPeople }: any = this.props.userActions;
+        getPeople(prefix);
     }
 
     public showLeaders(): void {
@@ -212,8 +256,21 @@ class Authorized extends React.Component<IProps, any> {
                                 <FriendAction text='Invite to party' onClick={this.sendPartyInvite} /> :
                                 <FriendAction text='Add to friends' onClick={this.sendFriendsInvite} />
                         }
-
                     </div>
+
+                    {
+                        this.state.partyInvite || this.state.friendsInvite ?
+                            <InviteDialog
+                                isVisible={ this.state.partyInvite || this.state.friendsInvite }
+                                text={this.state.partyInvite ? this.state.party.message : this.state.friends.message}
+                                login={this.state.partyInvite ? this.state.party.login : this.state.friends.login}
+                                avatar={this.state.partyInvite ? this.state.party.avatar : this.state.friends.avatar}
+                                onAccept={this.state.partyInvite ? this.acceptParty : this.acceptFriends}
+                                onDecline={this.state.partyInvite ? this.declineParty : this.declineFriends}
+                            /> :
+                            ''
+                    }
+
 
                     <div className='auth-page__content-right'>
 
@@ -249,7 +306,7 @@ class Authorized extends React.Component<IProps, any> {
                                 }
                             </div>
                         </div>
-                        <Party avatars={avatars} className={!hideFriends ? 'content-right-party' : 'hidden'}/>
+                        <Party className={!hideFriends ? 'content-right-party' : 'hidden'}/>
                     </div>
                 </div>
             </div>
