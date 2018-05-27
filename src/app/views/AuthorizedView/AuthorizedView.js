@@ -104,14 +104,6 @@ export default class AuthorizedView extends BaseView {
             window.router.go('/news/');
         };
 
-        this.context.addToFriends = () => {
-            window.httpModule.doPost('/user/friend/add', {login: window.router.getLastView().context.currentFriend});
-        };
-
-        this.context.inviteToParty = () => {
-            window.httpModule.doPost('/party/invite', {login: window.router.getLastView().context.currentFriend});
-        };
-
         this.context.leaveParty = () => {
             const view = window.router.getLastView();
             view.context.party = {
