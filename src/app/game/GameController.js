@@ -1,4 +1,3 @@
-import userService from '../modules/UserService/UserService';
 import ws from '../modules/WebSocket/WebSocket';
 import bus from '../modules/Bus/Bus';
 
@@ -76,7 +75,7 @@ class GameController {
         }
 
         if (online) {
-            bus.emit(userService.MESSAGES.CLIENT_SNAP);
+            bus.emit(ws.messages.CLIENT_SNAP);
         }
     }
 
