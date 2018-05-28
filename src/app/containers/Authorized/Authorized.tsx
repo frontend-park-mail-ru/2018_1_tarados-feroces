@@ -79,7 +79,7 @@ class Authorized extends React.Component<IProps, any> {
             this.showPartyInvite(data);
         });
         bus.on(ws.messages.PARTY_VIEW, (data) => {
-            this.updateParty();
+            this.updateParty(data);
         });
         bus.on(ws.messages.ASK_FOR_GAME, (message) => {
             this.showGameInvite();
@@ -90,7 +90,6 @@ class Authorized extends React.Component<IProps, any> {
     }
 
     public showGameInvite(): void {
-        console.log('INVITE to GAME');
         this.setState({
             gameInvite: true,
         });
@@ -136,9 +135,9 @@ class Authorized extends React.Component<IProps, any> {
         this.setState({friendsInvite: false});
     }
 
-    public updateParty(): void {
-        const { getParty }: any = this.props.userActions;
-        getParty();
+    public updateParty(data): void {
+        const { setParty }: any = this.props.userActions;
+        setParty(data);
     }
 
     public sendFriendsInvite(): void {
@@ -233,17 +232,21 @@ class Authorized extends React.Component<IProps, any> {
     }
 
     public playSingleplayer(): void {
-
+        const { history } = this.props;
+        history.push('/single');
     }
 
     public playMultiplayer(): void {
-
+        this.setState({
+            gameInvite: false,
+        });
+        const { history } = this.props;
+        history.push('/multi');
     }
 
     public startGame(): void {
         const { startGame }: any = this.props.userActions;
         startGame(this.props.user.party.leader.login);
-        // this.showGameInvite();
     }
 
     public render(): JSX.Element {
@@ -363,7 +366,7 @@ class Authorized extends React.Component<IProps, any> {
                                 <div className='search'>
                                     <input className='search__input'/>
                                     <Image className='search__button'
-                                           src='../images/search.png'
+                                           src='../static/imgs/search.png'
                                            onClick={this.search}
                                     />
                                 </div>

@@ -11,7 +11,8 @@ import {connect} from "react-redux";
 import * as userActions from "../../actions/UserActions";
 import * as loginActions from "../../actions/LoginActions";
 
-import Game from '../../game/core/offline';
+import OfflineGame from '../../game/core/offline';
+import OnlineGame from '../../game/core/online';
 import gameController from '../../game/GameController';
 import Scene from '../../game/objects/Scene';
 
@@ -44,12 +45,15 @@ export default class GameContainer extends React.Component<IProps, any> {
         const pause = document.querySelector('.game__pause');
         pause.classList.add('hidden');
 
-        this.doGame();
+        const {history} = this.props;
+        const online = history.location.pathname === '/multi/';
+
+        this.doGame(online);
     }
 
-    public doGame(): any {
+    public doGame(online): any {
         const scene = new Scene(this.canvas);
-        this.game = new Game(gameController, scene);
+        this.game = new OfflineGame(gameController, scene);
 
         // 0 - transform %, 1 - direction, 2 - timeout ms
         const rounds = [

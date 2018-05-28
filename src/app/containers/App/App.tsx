@@ -35,6 +35,7 @@ class App extends React.Component<any, any> {
                     <Route path={ PathConstants.AUTHORIZED } component={ Authorized } />
                     <Route path={ PathConstants.SETTINGS } component={ Settings } />
                     <Route path={ PathConstants.SINGLE } component={ GameContainer } />
+                    <Route path={ PathConstants.MULTI } component={ GameContainer } />
                 </Switch>
             </Router>
         );

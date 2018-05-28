@@ -63,6 +63,7 @@ function update(data): any {
 
 export function signupUser(data) {
     return async (dispatch) => {
+        data['avatar'] = '../static/imgs/user-logo.jpg';
         const response = await transport.doPost(HttpConstants.SIGNUP, data);
         const json = await response.json();
         response.ok ? dispatch(signup({...json, 'isAuthorized': true })) : alert(json.message);
@@ -157,6 +158,12 @@ export function getParty(): any {
     }
 }
 
+export function setParty(data): any {
+    return (dispatch) => {
+        party(data);
+    }
+}
+
 function party(party): any {
     return {
         type: GET_PARTY,
@@ -181,7 +188,6 @@ export function acceptFriends(request_id) {
 }
 
 export function startGame(leader) {
-    console.log('wow');
     return async (dispatch) => {
         await transport.doPost(HttpConstants.START_GAME, {leader: leader});
     }
