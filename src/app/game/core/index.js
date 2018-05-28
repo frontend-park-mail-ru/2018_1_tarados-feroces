@@ -1,4 +1,5 @@
 import bus from '../../modules/Bus/Bus';
+import userService from '../../modules/UserService/UserService';
 
 // const KEYS = {
 //     LEFT: [65],
@@ -14,19 +15,18 @@ export default class GameCore {
     }
 
     start() {
-        bus.on('START_GAME', this.onGameStarted);
-        bus.on('FINISH_GAME', this.onGameFinished);
-        bus.on('CONTROLS_PRESSED', this.onControlsPressed);
-        bus.on('GAME_STATE_CHANGED', this.onGameStateChanged);
-        // bus.on('WAVE_COMPLETED', this.onWaveCompleted);
+        bus.on(userService.MESSAGES.INIT_GAME, this.onGameStarted);
+        bus.on(userService.MESSAGES.FINISH_GAME, this.onGameFinished);
+        bus.on(userService.MESSAGES.CLIENT_SNAP, this.onControlsPressed);
+        bus.on(userService.MESSAGES.SERVER_SNAP, this.onGameStateChanged);
         bus.on('ROUND_COMPLETED', this.onRoundCompleted);
     }
 
     stop() {
-        bus.off('START_GAME', this.onGameStarted);
-        bus.off('FINISH_GAME', this.onGameFinished);
-        bus.off('CONTROLS_PRESSED', this.onControlsPressed);
-        bus.off('GAME_STATE_CHANGED', this.onGameStateChanged);
+        bus.off(userService.MESSAGES.INIT_GAME, this.onGameStarted);
+        bus.off(userService.MESSAGES.FINISH_GAME, this.onGameFinished);
+        bus.off(userService.MESSAGES.CLIENT_SNAP, this.onControlsPressed);
+        bus.off(userService.MESSAGES.SERVER_SNAP, this.onGameStateChanged);
         // bus.off('WAVE_COMPLETED', this.onWaveCompleted);
         bus.off('ROUND_COMPLETED', this.onRoundCompleted);
     }

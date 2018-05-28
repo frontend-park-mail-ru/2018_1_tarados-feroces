@@ -52,6 +52,12 @@ export default class GameContainer extends React.Component<IProps, any> {
     }
 
     public doGame(online): any {
+        if (online) {
+            const scene = new Scene(this.canvas);
+            this.game = new OnlineGame(gameController, scene);
+            this.game.start();
+            return;
+        }
         const scene = new Scene(this.canvas);
         this.game = new OfflineGame(gameController, scene);
 
