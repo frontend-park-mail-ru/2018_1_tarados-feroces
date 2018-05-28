@@ -47,12 +47,14 @@ export default class GameContainer extends React.Component<IProps, any> {
 
         const {history} = this.props;
         const online = history.location.pathname === '/multi/';
+        console.log(online, history.location.pathname);
 
         this.doGame(online);
     }
 
     public doGame(online): any {
         if (online) {
+            console.log('ONLINE');
             const scene = new Scene(this.canvas);
             this.game = new OnlineGame(gameController, scene);
             this.game.start();

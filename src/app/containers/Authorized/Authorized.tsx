@@ -241,7 +241,7 @@ class Authorized extends React.Component<IProps, any> {
             gameInvite: false,
         });
         const { history } = this.props;
-        history.push('/multi');
+        history.push('/multi/');
     }
 
     public startGame(): void {
