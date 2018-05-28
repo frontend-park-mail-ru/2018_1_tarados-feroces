@@ -11,18 +11,19 @@ interface IProps {
     user?: any;
     settingsHandler?: any;
     logoutHandler?: any;
+    onPlay?: any;
 }
 
 export default class Header extends React.Component<IProps, any> {
 
     public render(): JSX.Element {
-        const {className, isAuth, user, settingsHandler, logoutHandler}: any = this.props;
+        const {className, onPlay, isAuth, user, settingsHandler, logoutHandler}: any = this.props;
         return (
             <div className={'header ' + className}>
                 <Logo/>
                 {
                     isAuth &&
-                    <div className='button button-play'>
+                    <div className='button button-play' onClick={onPlay}>
                         <p className='button-play__value'>PLAY</p>
                     </div>
                 }

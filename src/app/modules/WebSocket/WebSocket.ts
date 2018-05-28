@@ -36,6 +36,7 @@ class Ws {
             };
             this.ws.onclose = () => {
                 console.log(`WS on ${this.address} was closed`);
+                this.open();
             };
         };
     }

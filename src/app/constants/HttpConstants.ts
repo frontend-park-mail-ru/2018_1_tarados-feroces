@@ -26,5 +26,7 @@ export const SEND_PARTY_INVITE: string = '/party/invite';
 export const ACCEPT_PARTY_INVITE: string = '/party/join';
 export const ACCEPT_FRIENDS_INVITE: string = '/user/friend/response';
 
+export const START_GAME: string = '/game/party';
+
 
 

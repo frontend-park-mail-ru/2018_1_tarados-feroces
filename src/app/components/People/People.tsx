@@ -16,9 +16,8 @@ interface IProps {
 class People extends React.Component<IProps, any> {
 
     public componentWillMount() {
-        const prefix = '';
         const { getFriends }: any = this.props.userActions;
-        getFriends(prefix);
+        getFriends(this.props.prefix);
     }
 
     // public componentWillUpdate(nextProps, nextState) {

@@ -23,6 +23,8 @@ import {isBoolean} from 'util';
 import ws from '../../modules/WebSocket/WebSocket';
 import bus from '../../modules/Bus/Bus';
 import InviteDialog from '../../components/InviteDialog/InviteDialog';
+import Image from '../../components/Image/Image';
+import GameDialog from "../../components/GameDialog/GameDialog";
 
 interface IProps {
     history?: any;
@@ -40,6 +42,9 @@ class Authorized extends React.Component<IProps, any> {
             newsActive: true,
             hideFriends: false,
             areFriends: true,
+            gameInvite: false,
+            multiplayer: false,
+            isReady: false,
         };
 
         this.showLeaders = this.showLeaders.bind(this);
@@ -47,6 +52,7 @@ class Authorized extends React.Component<IProps, any> {
         this.hideFriends = this.hideFriends.bind(this);
         this.goFriends = this.goFriends.bind(this);
         this.goPeople = this.goPeople.bind(this);
+        this.search = this.search.bind(this);
         this.showFriendActions = this.showFriendActions.bind(this);
         this.showGameInvite = this.showGameInvite.bind(this);
         this.showPartyInvite = this.showPartyInvite.bind(this);
@@ -58,6 +64,10 @@ class Authorized extends React.Component<IProps, any> {
         this.declineParty = this.declineParty.bind(this);
         this.acceptFriends = this.acceptFriends.bind(this);
         this.declineFriends = this.declineFriends.bind(this);
+        this.acceptGame = this.acceptGame.bind(this);
+        this.playMultiplayer = this.playMultiplayer.bind(this);
+        this.playSingleplayer = this.playSingleplayer.bind(this);
+        this.startGame = this.startGame.bind(this);
 
         bus.on(ws.messages.ADD_AS_FRIEND, (data) => {
             data.message = 'New friend request';
@@ -75,12 +85,15 @@ class Authorized extends React.Component<IProps, any> {
             this.showGameInvite();
         });
         bus.on(ws.messages.GAME_PREPARE, (message) => {
-            // this.playMultiplayer();
+            this.playMultiplayer();
         });
     }
 
     public showGameInvite(): void {
-
+        console.log('INVITE to GAME');
+        this.setState({
+            gameInvite: true,
+        });
     }
 
     public showPartyInvite(data): void {
@@ -88,7 +101,7 @@ class Authorized extends React.Component<IProps, any> {
             partyInvite: true,
             friendsInvite: false,
             party: data
-        })
+        });
     }
 
     public showFriendsInvite(data): void {
@@ -96,28 +109,31 @@ class Authorized extends React.Component<IProps, any> {
             partyInvite: false,
             friendsInvite: true,
             friends: data
-        })
+        });
     }
 
     public acceptParty(): void {
         const { acceptParty }: any = this.props.userActions;
         acceptParty(this.state.party.leader);
-        this.setState({partyInvite: false})
+        this.setState({
+            partyInvite: false,
+            multiplayer: true,
+        });
     }
 
     public declineParty(): void {
-        this.setState({partyInvite: false})
+        this.setState({partyInvite: false});
     }
 
     public acceptFriends(): void {
         const { acceptFriends }: any = this.props.userActions;
         acceptFriends(this.state.friends.request_id);
-        this.setState({friendsInvite: false})
+        this.setState({friendsInvite: false});
 
     }
 
     public declineFriends(): void {
-        this.setState({friendsInvite: false})
+        this.setState({friendsInvite: false});
     }
 
     public updateParty(): void {
@@ -128,11 +144,23 @@ class Authorized extends React.Component<IProps, any> {
     public sendFriendsInvite(): void {
         const {sendFriendsInvite} : any = this.props.userActions;
         sendFriendsInvite({login: this.state.currentUser});
+        const modal = document.querySelector('.friends-modal');
+        modal.classList.add('hidden');
     }
 
     public sendPartyInvite(): void {
         const {sendPartyInvite} : any = this.props.userActions;
         sendPartyInvite({login: this.state.currentUser});
+        const modal = document.querySelector('.friends-modal');
+        modal.classList.add('hidden');
+    }
+
+    public acceptGame(): void {
+        console.log('Accepted. Now waiting');
+        ws.sendMessage(ws.messages.JOIN_GAME, {});
+        this.setState({
+            isReady: true,
+        });
     }
 
     public settings(): void {
@@ -144,18 +172,16 @@ class Authorized extends React.Component<IProps, any> {
         this.setState({
            areFriends: true
         });
-        const prefix = '';
         const { getFriends }: any = this.props.userActions;
-        getFriends(prefix);
+        getFriends(this.state.prefix);
     }
 
     public goPeople(): void {
         this.setState({
-            areFriends: false
+            areFriends: false,
         });
-        const prefix = '';
         const { getPeople }: any = this.props.userActions;
-        getPeople(prefix);
+        getPeople(this.state.prefix);
     }
 
     public showLeaders(): void {
@@ -189,11 +215,35 @@ class Authorized extends React.Component<IProps, any> {
         hideValue.classList.toggle('rotate-open');
     }
 
+    public search(): void {
+        const { getFriends }: any = this.props.userActions;
+
+        const name = document.querySelector('.search__input').value;
+        this.setState({
+            prefix: name
+        });
+        getFriends(name);
+    }
+
     public showNews(): void {
         this.setState({
             leaderActive: false,
             newsActive: true
         });
+    }
+
+    public playSingleplayer(): void {
+
+    }
+
+    public playMultiplayer(): void {
+
+    }
+
+    public startGame(): void {
+        const { startGame }: any = this.props.userActions;
+        startGame(this.props.user.party.leader.login);
+        // this.showGameInvite();
     }
 
     public render(): JSX.Element {
@@ -226,6 +276,7 @@ class Authorized extends React.Component<IProps, any> {
                     className='auth-page__header header'
                     logoutHandler={logoutUser}
                     settingsHandler={this.settings}
+                    onPlay={ this.startGame }
                 />
 
                 <div className='auth-page__content'>
@@ -271,6 +322,16 @@ class Authorized extends React.Component<IProps, any> {
                             ''
                     }
 
+                    {
+                        this.state.gameInvite ?
+                            <GameDialog
+                                isVisible={this.state.gameInvite}
+                                onAccept={this.acceptGame}
+                                isReady={this.state.isReady}
+                                /> :
+                            ''
+                    }
+
 
                     <div className='auth-page__content-right'>
 
@@ -299,10 +360,17 @@ class Authorized extends React.Component<IProps, any> {
                                         <p className='friends-header-point-value'>People</p>
                                     </div>
                                 </div>
+                                <div className='search'>
+                                    <input className='search__input'/>
+                                    <Image className='search__button'
+                                           src='../images/search.png'
+                                           onClick={this.search}
+                                    />
+                                </div>
                                 {
                                     this.state.areFriends ?
-                                        <People onClick={this.showFriendActions} areFriends={true} prefix=''/> :
-                                        <People onClick={this.showFriendActions} areFriends={false} prefix=''/>
+                                        <People onClick={this.showFriendActions} areFriends={true} prefix={this.state.prefix}/> :
+                                        <People onClick={this.showFriendActions} areFriends={false} prefix={this.state.prefix}/>
                                 }
                             </div>
                         </div>

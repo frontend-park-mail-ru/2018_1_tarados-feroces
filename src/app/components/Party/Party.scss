@@ -8,29 +8,20 @@
   border-radius: 15px;
   border-left: thin solid black;
   border-right: thin solid black;
-  justify-content: space-around;
+  justify-content: flex-start;
+  width: 100%;
+
   &__friend {
     display: flex;
-    width: 20%;
     justify-content: center;
+    margin: 5px;
+    border-radius: 15px;
+
     &-logo {
       align-self: center;
-      width: 50px;
-      height: 50px;
+      width: 70px;
+      height: 70px;
       border-radius: 15px;
-    }
-  }
-  &__invite {
-    display: flex;
-    justify-content: center;
-    width: 20%;
-    height: 100%;
-    &-button {
-      user-select: none;
-      cursor: pointer;
-      margin: auto;
-      width: 50px;
-      height: 50px;
     }
   }
 }

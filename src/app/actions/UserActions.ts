@@ -179,3 +179,10 @@ export function acceptFriends(request_id) {
         response.ok ? getFriends() : alert(json.message);
     }
 }
+
+export function startGame(leader) {
+    console.log('wow');
+    return async (dispatch) => {
+        await transport.doPost(HttpConstants.START_GAME, {leader: leader});
+    }
+}
