@@ -80,28 +80,28 @@ class Signup extends React.Component<IProps, any> {
                             <Label className='form-block-content__label' text='Create an account'/>
                             <div className='form-block-content-inputs'>
                                 <Input
-                                    block-class='user-login'
+                                    blockClass='user-login form-block-content-inputs-item'
                                     type='text'
                                     placeholder='Login'
                                     dest='login'
                                     onChange={this.changeSignupForm}
                                 />
                                 <Input
-                                    block-class='user-email'
+                                    blockClass='user-email form-block-content-inputs-item'
                                     type='text'
                                     placeholder='Email'
                                     dest='email'
                                     onChange={this.changeSignupForm}
                                 />
                                 <Input
-                                    block-class='user-password'
+                                    blockClass='password form-block-content-inputs-item'
                                     type='password'
                                     placeholder='Password'
                                     dest='password'
                                     onChange={this.changeSignupForm}
                                 />
                                 <Input
-                                    block-class='user-repeat-password'
+                                    blockClass='repeatPassword form-block-content-inputs-item'
                                     type='password'
                                     placeholder='Repeat password'
                                     onChange={() => {}}

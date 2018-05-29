@@ -78,14 +78,14 @@ class Login extends React.Component<IProps, any> {
                             <Label className='form-block-content__label' text='Sign In'/>
                             <div className='form-block-content-inputs'>
                                 <Input
-                                    block-class='user-name'
+                                    blockClass='user-login form-block-content-inputs-item'
                                     type='text'
                                     placeholder='Login'
                                     dest='login'
                                     onChange={this.changeLoginForm}
                                 />
                                 <Input
-                                    block-class='user-password'
+                                    blockClass='password form-block-content-inputs-item'
                                     type='password'
                                     placeholder='Password'
                                     dest='password'
