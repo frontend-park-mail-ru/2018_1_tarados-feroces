@@ -2,18 +2,21 @@ import GameCore from './index';
 import gameController from '../GameController';
 
 export default class OfflineGame extends GameCore {
-    constructor(controller, scene) {
+    constructor(controller, scene, scoreUpdate) {
         super(controller, scene);
         this.rounds = [];
         this.currentRound = 0;
         this.gameLoop = this.gameLoop.bind(this);
         this.start = this.start.bind(this);
         this.gameLoopId = null;
+        this.scoreUpdate = scoreUpdate;
+        this.currentPoints = 0;
     }
 
     start() {
         super.start();
         this.controller.start();
+
         this.scene.initPlayer();
         this.nextRound();
         this.gameLoopId = requestAnimationFrame(this.gameLoop);
@@ -69,6 +72,12 @@ export default class OfflineGame extends GameCore {
         currentWave.clearWave();
 
         if (this.scene.round.nextWave()) {
+            this.currentPoints += 1;
+
+            this.scoreUpdate([
+                {login: 'anton', points: this.currentPoints},
+                {login: 'danya', points: this.currentPoints},
+            ]);
             return;
         }
         if (!this.checkEndOfRounds()) {
