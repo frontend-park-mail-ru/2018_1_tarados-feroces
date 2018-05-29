@@ -4,6 +4,7 @@ import './Header.scss';
 
 import UserInfo from '../UserInfo/UserInfo';
 import Logo from '../Logo/Logo';
+import Button from '../Button/Button';
 
 interface IProps {
     className?: string;
@@ -23,9 +24,7 @@ export default class Header extends React.Component<IProps, any> {
                 <Logo/>
                 {
                     isAuth &&
-                    <div className='button button-play' onClick={onPlay}>
-                        <p className='button-play__value'>PLAY</p>
-                    </div>
+                   <Button onClick={onPlay} className='button-play' text='PLAY'/>
                 }
                 {
                     isAuth &&

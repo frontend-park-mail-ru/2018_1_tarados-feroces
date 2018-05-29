@@ -3,23 +3,19 @@
 .file-upload {
   display: flex;
   overflow: hidden;
-  background-color: #0e6ba8;
-  box-shadow: 2px 2px 4px 1px #00072d;
-  border-radius: 10px;
-  width: 150px;
-  height: 40px;
-  color: #fff;
+  background-color: $btn-color;
+  width: 120px;
+  height: 50px;
+  color: $blocks-text-color;
   text-align: center;
   margin-bottom: 15px;
+  border: thin white solid;
+
   &:hover {
-    background: #355fad;
-    animation: button-shining 1.15s ease infinite;
-    box-shadow: aqua;
+    background: $orange-color;
   }
   &:active {
-    background-color: #131b44;
-    animation: none;
-    box-shadow: 0 0 10px 2px aqua;
+    background-color: $blocks-background-hover;
   }
   & input[type="file"] {
     display: none;

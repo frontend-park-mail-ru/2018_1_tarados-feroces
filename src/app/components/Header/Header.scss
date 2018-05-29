@@ -10,13 +10,13 @@
   @media only screen and (max-device-width : 1000px) {
     height: 200px;
   }
-  background-color: $header-background;
+  background-color: $main-header-background;
   color: $header-text-color;
-  box-shadow: 0 0 19px 6px #00071e;
+  box-shadow: 0 0 4px 4px #000000;
   z-index: 9999;
   &__user-info {
     width: 450px;
-    background-color: #105C7F;
+    background-color: rgba(50, 26, 6, 0.71);
     display: flex;
     flex-flow: row;
     justify-content: space-around;
@@ -134,4 +134,10 @@
     }
   }
 
+}
+
+.button-play {
+  display: flex;
+  align-self: center;
+  width: 500px;
 }

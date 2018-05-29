@@ -3,11 +3,11 @@
 .party {
   display: flex;
   background-color: $blocks-background;
-  box-shadow: 4px 4px 10px 2px #00072d;
+  //box-shadow: 4px 4px 10px 2px #00072d;
   flex-direction: row;
-  border-radius: 15px;
-  border-left: thin solid black;
-  border-right: thin solid black;
+  //border-radius: 15px;
+  border: thin solid black;
+  //border-right: thin solid black;
   justify-content: flex-start;
   width: 100%;
 

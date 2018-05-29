@@ -193,11 +193,12 @@ class Authorized extends React.Component<IProps, any> {
     public showFriendActions(event): void {
         const modal = document.querySelector('.friends-modal');
         const icon = event.currentTarget;
+        // icon.classList.add('friend-active');
         this.setState({currentUser: icon.querySelector('.friend__login-value').textContent});
 
         const x = icon.getBoundingClientRect().x;
         const y = icon.getBoundingClientRect().y;
-        modal.style.left = `${x}px`;
+        modal.style.left = `${x + icon.getBoundingClientRect().width / 6}px`;
         modal.style.top = `${y + icon.getBoundingClientRect().height}px`;
         modal.classList.toggle('hidden');
     };
@@ -210,7 +211,7 @@ class Authorized extends React.Component<IProps, any> {
         });
 
         hideValue.classList.toggle('rotate-close');
-        hideValue.style.transform = hideValue.classList.contains('rotate-close') ? 'rotate(180deg)' : 'rotate(0deg)';
+        hideValue.style.transform = hideValue.classList.contains('rotate-close') ? 'rotate(0deg)' : 'rotate(180deg)';
         hideValue.classList.toggle('rotate-open');
     }
 
@@ -363,18 +364,21 @@ class Authorized extends React.Component<IProps, any> {
                                         <p className='friends-header-point-value'>People</p>
                                     </div>
                                 </div>
+
                                 <div className='search'>
-                                    <input className='search__input'/>
+                                    <input className='search__input' placeholder='Username'/>
                                     <Image className='search__button'
                                            src='../static/imgs/search.png'
                                            onClick={this.search}
                                     />
                                 </div>
+                                <div className='friends-data'>
                                 {
                                     this.state.areFriends ?
                                         <People onClick={this.showFriendActions} areFriends={true} prefix={this.state.prefix}/> :
                                         <People onClick={this.showFriendActions} areFriends={false} prefix={this.state.prefix}/>
                                 }
+                                </div>
                             </div>
                         </div>
                         <Party className={!hideFriends ? 'content-right-party' : 'hidden'}/>

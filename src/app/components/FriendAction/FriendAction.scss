@@ -6,9 +6,8 @@
   width: 200px;
   display: flex;
   flex-direction: column;
-  background-color: #105C7F;
-  border-radius: 10px;
-  border: thin black solid;
+  background-color: black;
+  border: thin white solid;
   &-points {
     display: flex;
     width: 100%;
@@ -16,22 +15,13 @@
     user-select: none;
     cursor: pointer;
     border-bottom: thin black solid;
-    &:first-child {
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-    }
-
-    &:last-child {
-      border-bottom-left-radius: 10px;
-      border-bottom-right-radius: 10px;
-    }
 
     &:hover {
-      background-color: #1956a8;
+      background-color: $orange-color;
     }
 
     &:active {
-      background-color: #131b44;
+      background-color: $blocks-background-hover;
     }
 
     &-text {

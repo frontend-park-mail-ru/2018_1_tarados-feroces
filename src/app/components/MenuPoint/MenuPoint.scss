@@ -2,27 +2,23 @@
 
 .menu-point {
   display: flex;
-  height: 80px;
+  height: 100px;
   cursor: pointer;
   user-select: none;
   text-decoration: none;
   border-bottom: black thin solid;
   &:hover {
-    background-color: #1956a8;
+    background-color: $blocks-background-hover;
   }
   &:active {
     background-color: #131b44;
   }
-  &:first-child {
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-  }
+
   &:last-child {
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px;
+    border-bottom: none;
   }
   &-text {
-    font-size: 36px;
+    font-size: 40px;
     font-family: $main-font;
     margin: auto;
   }

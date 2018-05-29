@@ -12,7 +12,7 @@ export default class SettingsButton extends React.Component<IProps, any> {
         return (
             <div onClick={ onClick } className="header__user-info-settings">
                 <div className="header__user-info-settings-value">
-                    <img className="header__user-info-settings-value" src="../static/imgs/settings.svg"/>
+                    <img className="header__user-info-settings-value" src="../static/imgs/settings.png"/>
                 </div>
             </div>
         );
