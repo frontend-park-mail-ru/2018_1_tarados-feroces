@@ -24,7 +24,7 @@ export default class Header extends React.Component<IProps, any> {
                 <Logo/>
                 {
                     isAuth &&
-                   <Button onClick={onPlay} className='button-play' text='PLAY'/>
+                   <Button onClick={onPlay} className='btn-play' text='PLAY'/>
                 }
                 {
                     isAuth &&

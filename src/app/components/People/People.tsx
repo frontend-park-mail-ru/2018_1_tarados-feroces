@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import Friend from '../Friend/Friend';
+import ModalLoader from '../ModalLoader/ModalLoader';
 import {bindActionCreators} from 'redux';
 import * as userActions from '../../actions/UserActions';
 import {connect} from 'react-redux';
@@ -31,7 +32,7 @@ class People extends React.Component<IProps, any> {
         return (
             <div className='friends-people'>
                 {(user.peopleLoading || !people) ?
-                    <p>Loading</p> :
+                    <ModalLoader/> :
                     people.map((person, index) => {
                         return (
                             <Friend key={index} onClick={onClick} avatar={person.avatar} login={person.login} />
