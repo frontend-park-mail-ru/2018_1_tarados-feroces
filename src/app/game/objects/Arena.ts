@@ -1,6 +1,12 @@
 export default class Arena {
 
-    constructor(ctx) {
+    public x: number;
+    public y: number;
+    public width: number;
+    public height: number;
+    public ctx: any;
+
+    public constructor(ctx: any) {
         const arena = document.querySelector('.game__arena');
         this.x = arena.getBoundingClientRect().x;
         this.y = arena.getBoundingClientRect().y;
@@ -9,7 +15,7 @@ export default class Arena {
         this.ctx = ctx;
     }
 
-    clear() {
+    public clear(): void {
         this.ctx.clearRect(this.x, this.y, this.width, this.height);
     }
 }

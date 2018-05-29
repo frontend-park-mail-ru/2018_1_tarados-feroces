@@ -3,7 +3,10 @@ import gameController from '../GameController';
 
 export default class Wave {
 
-    constructor(ctx, scene, mobs) {
+    public mobs: any;
+    public scene: any;
+
+    constructor(ctx: any, scene: any, mobs: any) {
         this.mobs = [];
         console.log(mobs);
         this.scene = scene;
@@ -15,25 +18,25 @@ export default class Wave {
         });
     }
 
-    moveBots(timestamp) {
+    public moveBots(timestamp): boolean {
         this.mobs.forEach((item) => {
             item.movement(timestamp);
         });
         return !this.checkEnd();
     }
 
-    checkEnd() {
+    public checkEnd(): boolean {
         return this.mobs.reduce(
             (result, curr) => result && !gameController.checkMobOutOfBorder(curr, this.scene),
             true
         );
     }
 
-    clearWave() {
+    public clearWave(): void {
         this.mobs.forEach((item) => item.clear());
     }
 
-    countCoords(width, heigth, coord, direction) {
+    public countCoords(width: number, heigth: number, coord: number, direction: number): any {
         const vw = width / 100;
         const vh = heigth / 100;
         switch (direction) {

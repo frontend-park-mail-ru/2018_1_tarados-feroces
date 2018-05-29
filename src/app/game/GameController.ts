@@ -3,7 +3,10 @@ import bus from '../modules/Bus/Bus';
 
 class GameController {
 
-    constructor() {
+    public keyMap: any;
+    public KEYS: any;
+
+    public constructor() {
         this.keyMap = {};
         this.KEYS = {
             LEFT: [65, 37],
@@ -14,7 +17,7 @@ class GameController {
 
     }
 
-    start(online) {
+    public start(online: any): void {
         window.addEventListener('keypress', (event) => this.checkKeys(event, online));
         window.addEventListener('keydown', (event) => this.checkKeys(event, online));
         window.addEventListener('keyup', (event) => this.checkKeys(event, online));
@@ -59,7 +62,7 @@ class GameController {
         });
     }
 
-    checkKeys(event, online) {
+    public checkKeys(event: any, online: any): void {
         let direction = '';
 
         console.log(event.type, '-->', event.keyCode);
@@ -74,19 +77,18 @@ class GameController {
             this.keyMap[direction] = (event.type === 'keypress' || event.type === 'keydown');
         }
 
-        if (online) {
-            bus.emit(ws.messages.CLIENT_SNAP);
-        }
+        online && bus.emit(ws.messages.CLIENT_SNAP, {});
+
     }
 
-    checkBorderCollision(object, field) {
+    public checkBorderCollision(object: any, field: any): boolean {
         return object.x - object.radius > field.x &&
             object.x + object.radius < field.x + field.width &&
             object.y - object.radius > field.y &&
             object.y + object.radius < field.y + field.height;
     }
 
-    checkMobOutOfBorder(object, field) {
+    public checkMobOutOfBorder(object: any, field: any): boolean {
         const result = this.checkBorderCollision(object, field);
 
         if (!result) {
@@ -95,7 +97,7 @@ class GameController {
         return result;
     }
 
-    checkBotCollision(player, wave) {
+    public checkBotCollision(player: any, wave: any): boolean {
         let result = true;
 
         wave.mobs.forEach((item) => {
@@ -107,7 +109,7 @@ class GameController {
         return result;
     }
 
-    movementControl(player, arena, wave) {
+    public movementControl(player: any, arena: any, wave: any): boolean {
         let x = 0;
         let y = 0;
         if (this.keyMap['RIGHT']) {
@@ -145,11 +147,11 @@ class GameController {
         return this.checkBotCollision(player, wave);
     }
 
-    stop() {
-        window.removeEventListener('keypress', this.checkKeys);
-        window.removeEventListener('keyup', this.checkKeys);
-        this.keyMap = {};
-    }
+    // public stop(): void {
+    //     window.removeEventListener('keypress', this.checkKeys);
+    //     window.removeEventListener('keyup', this.checkKeys);
+    //     this.keyMap = {};
+    // }
 }
 
 const gameController = new GameController();

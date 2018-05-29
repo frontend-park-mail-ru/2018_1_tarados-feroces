@@ -1,7 +1,20 @@
 import MovableObject from './MovableObject';
 
 export default class Mob extends MovableObject {
-    constructor(ctx, x, y, direction, timeout = 0, speed = 9, radius = 30, color = 'black') {
+    public direction: number;
+    public radius: number;
+    public speed: number;
+    public speedDirections: any;
+    public timeout: number;
+
+    constructor(ctx: any,
+                x: number,
+                y: number,
+                direction: number,
+                timeout: number = 0,
+                speed: number = 9,
+                radius: number = 30,
+                color: string = 'black') {
         super(ctx, x, y, color);
         this.direction = direction;
         this.radius = radius;
@@ -15,7 +28,7 @@ export default class Mob extends MovableObject {
         this.timeout = timeout;
     }
 
-    draw() {
+    public draw(): void {
         const ctx = this.ctx;
         this.ctx.globalCompositeOperation = 'source-over';
         ctx.beginPath();
@@ -25,7 +38,7 @@ export default class Mob extends MovableObject {
         ctx.closePath();
     }
 
-    clear() {
+    public clear(): void {
         const ctx = this.ctx;
         this.ctx.globalCompositeOperation = 'destination-out';
         ctx.beginPath();
@@ -36,7 +49,7 @@ export default class Mob extends MovableObject {
         // ctx.clearRect(this.x - this.radius, this.y - this.radius, this.radius * 2 + 10, this.radius * 2 + 10);
     }
 
-    movement(timestamp) {
+    public movement(timestamp: any): void {
         if (timestamp + this.timeout + 500 < Date.now()) {
             this.move(this.speedDirections[this.direction][0], this.speedDirections[this.direction][1]);
         }
