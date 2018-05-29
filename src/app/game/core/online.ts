@@ -4,30 +4,30 @@ import ws from '../../modules/WebSocket/WebSocket';
 
 export default class OnlineGame extends GameCore {
 
-    constructor(controller, scene) {
+    public constructor(controller: any, scene: any) {
         super(controller, scene);
         this.onGameStarted = this.onGameStarted.bind(this);
         this.onGameStateChanged = this.onGameStateChanged.bind(this);
         this.onControlsPressed = this.onControlsPressed.bind(this);
     }
 
-    start() {
+    public start(): void {
         super.start();
         this.controller.start(true);
         console.log('watahell');
         ws.sendMessage(ws.messages.GAME_READY, {});
     }
 
-    onControlsPressed(event) {
+    public onControlsPressed(event: any): void {
         const movement = {};
-        movement.x = this.controller.keyMap['RIGHT'] ? 1 : 0 +
+        movement['x'] = this.controller.keyMap['RIGHT'] ? 1 : 0 +
         this.controller.keyMap['LEFT'] ? -1 : 0;
-        movement.y = this.controller.keyMap['UP'] ? -1 : 0 +
+        movement['y'] = this.controller.keyMap['UP'] ? -1 : 0 +
         this.controller.keyMap['DOWN'] ? 1 : 0;
         ws.sendMessage(ws.messages.CLIENT_SNAP, movement);
     }
 
-    onGameStarted(event) {
+    public onGameStarted(event: any): void {
         console.log('GAME INITED');
         this.controller.start();
         event.users.forEach((item) => {
@@ -35,18 +35,18 @@ export default class OnlineGame extends GameCore {
         });
     }
 
-    onGameStateChanged(event) {
+    public onGameStateChanged(event: any): void {
         const players = event.players;
         // console.log(players);
         const mobs = event.mobs;
         this.scene.update(players, mobs);
     }
 
-    onRoundCompleted(event) {
+    public onRoundCompleted(event: any): void {
 
     }
 
-    onGameFinished(event) {
-        bus.emit('CLOSE_GAME');
-    }
+    // onGameFinished(event) {
+    //     bus.emit('CLOSE_GAME');
+    // }
 }

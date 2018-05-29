@@ -1,7 +1,13 @@
 import Wave from './Wave';
 
 export default class Round {
-    constructor(ctx, scene, waves) {
+
+    public scene: any;
+    public waves: any;
+    public waveCounter: number;
+    public timestamp: any;
+
+    constructor(ctx: any, scene: any, waves: any) {
         this.scene = scene;
         this.waves = [];
         this.waveCounter = 0;
@@ -13,11 +19,11 @@ export default class Round {
         // bus.on('WAVE')
     }
 
-    iterateWave() {
+    public iterateWave(): void {
         return this.waves[this.waveCounter].moveBots(this.timestamp);
     }
 
-    nextWave() {
+    public nextWave(): boolean {
         this.timestamp = Date.now();
         ++this.waveCounter;
         console.log(this.waveCounter);

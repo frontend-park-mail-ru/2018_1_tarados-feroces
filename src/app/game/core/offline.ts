@@ -2,7 +2,12 @@ import GameCore from './index';
 import gameController from '../GameController';
 
 export default class OfflineGame extends GameCore {
-    constructor(controller, scene) {
+
+    public rounds: any;
+    public currentRound: number;
+    public gameLoopId: any;
+
+    public constructor(controller: any, scene: any) {
         super(controller, scene);
         this.rounds = [];
         this.currentRound = 0;
@@ -11,7 +16,7 @@ export default class OfflineGame extends GameCore {
         this.gameLoopId = null;
     }
 
-    start() {
+    public start(): void {
         super.start();
         this.controller.start();
         this.scene.initPlayer();
@@ -19,24 +24,21 @@ export default class OfflineGame extends GameCore {
         this.gameLoopId = requestAnimationFrame(this.gameLoop);
     }
 
-    stop() {
+    public stop(): void {
         super.stop();
         this.controller.stop();
         cancelAnimationFrame(this.gameLoopId);
     }
 
-    saveRounds(rounds) {
+    public saveRounds(rounds: any): void {
         this.rounds = rounds;
     }
 
-    checkEndOfRounds() {
-        if (this.rounds.length <= this.currentRound) {
-            return false;
-        }
-        return true;
+    public checkEndOfRounds(): boolean {
+        return this.rounds.length > this.currentRound;
     }
 
-    nextRound() {
+    public nextRound(): void {
         document.querySelector('.game__title-text')
             .querySelector('.label-text').textContent = `Round ${this.currentRound}`;
         setTimeout(() => {
@@ -45,13 +47,13 @@ export default class OfflineGame extends GameCore {
         }, 2000);
     }
 
-    gamePaused(message) {
+    public gamePaused(message: string): void {
         document.querySelector('.game__pause-notes').querySelector('.label-text').textContent = message;
         const pause = document.querySelector('.game__pause');
         pause.classList.remove('hidden');
     }
 
-    gameLoop() {
+    public gameLoop(): void {
         this.gameLoopId = requestAnimationFrame(this.gameLoop);
 
         const currentWave = this.scene.round.waves[this.scene.round.waveCounter];

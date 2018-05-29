@@ -3,12 +3,15 @@ import ws from '../../modules/WebSocket/WebSocket';
 
 
 export default class GameCore {
-    constructor(controller, scene) {
+    public controller: any;
+    public scene: any;
+
+    public constructor(controller: any, scene: any) {
         this.controller = controller;
         this.scene = scene;
     }
 
-    start() {
+    public start(): void {
         bus.on(ws.messages.INIT_GAME, this.onGameStarted);
         bus.on(ws.messages.FINISH_GAME, this.onGameFinished);
         bus.on(ws.messages.CLIENT_SNAP, this.onControlsPressed);
@@ -16,7 +19,7 @@ export default class GameCore {
         bus.on('ROUND_COMPLETED', this.onRoundCompleted);
     }
 
-    stop() {
+    public stop(): void {
         bus.off(ws.messages.INIT_GAME, this.onGameStarted);
         bus.off(ws.messages.FINISH_GAME, this.onGameFinished);
         bus.off(ws.messages.CLIENT_SNAP, this.onControlsPressed);
@@ -25,16 +28,16 @@ export default class GameCore {
         bus.off('ROUND_COMPLETED', this.onRoundCompleted);
     }
 
-    onControlsPressed(event) {
+    public onControlsPressed(event): any {
     }
 
-    onGameStateChanged(event) {
+    public onGameStateChanged(event): any {
     }
 
-    onGameStarted(event) {
+    public onGameStarted(event): any {
     }
 
-    onGameFinished(event) {
+    public onGameFinished(event): any {
     }
 
     // onWaveCompleted() {
