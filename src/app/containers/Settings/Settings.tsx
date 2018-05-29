@@ -97,7 +97,7 @@ class Settings extends React.Component<IProps, any> {
                                     fileClass='file-avatar'
                                 />
                                 <Input
-                                    block-class='user-login'
+                                    blockClass='user-login form-block-content-inputs-item'
                                     type='text'
                                     placeholder='Login'
                                     dest='login'
@@ -105,7 +105,7 @@ class Settings extends React.Component<IProps, any> {
                                     onChange={this.changeSettingsForm}
                                 />
                                 <Input
-                                    block-class='user-email'
+                                    blockClass='user-email  form-block-content-inputs-item'
                                     type='text'
                                     placeholder='Email'
                                     defaultValue={user.email}

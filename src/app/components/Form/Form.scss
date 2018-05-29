@@ -27,13 +27,16 @@
   &-inputs {
     margin-bottom: 30px;
     margin-top: 30px;
-    width: 500px;
+    width: 600px;
     @media only screen and (max-device-width : 1000px) {
       width: 700px;
     }
     display: flex;
     flex-direction: column;
     align-items: center;
+    &-item {
+      margin-top: 10px;
+    }
   }
   &__back {
     display: flex;
