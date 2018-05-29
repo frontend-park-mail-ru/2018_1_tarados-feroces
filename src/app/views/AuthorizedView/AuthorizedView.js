@@ -18,21 +18,19 @@ export default class AuthorizedView extends BaseView {
         window.userService = userService;
 
         bus.on(userService.MESSAGES.ADD_AS_FRIEND, (message) => {
-            const data = JSON.parse(message.data);
-            data.message = 'New friend request';
-            data.type = 'friends';
-            this.context.showInvite(data);
+            console.log(message);
+            message.message = 'New friend request';
+            message.type = 'friends';
+            this.context.showInvite(message);
         });
         bus.on(userService.MESSAGES.INVITE_TO_PARTY, (message) => {
-            const data = JSON.parse(message.data);
-            data.message = 'Invite to party';
-            data.type = 'party';
-            data.login = data.leader;
-            this.context.showInvite(data);
+            message.message = 'Invite to party';
+            message.type = 'party';
+            message.login = message.leader;
+            this.context.showInvite(message);
         });
         bus.on(userService.MESSAGES.PARTY_VIEW, (message) => {
-            const data = JSON.parse(message.data);
-            window.updateParty(data);
+            window.updateParty(message);
         });
         bus.on(userService.MESSAGES.ASK_FOR_GAME, (message) => {
             this.context.showGameInvite();
@@ -104,14 +102,6 @@ export default class AuthorizedView extends BaseView {
                 return;
             }
             window.router.go('/news/');
-        };
-
-        this.context.addToFriends = () => {
-            window.httpModule.doPost('/user/friend/add', {login: window.router.getLastView().context.currentFriend});
-        };
-
-        this.context.inviteToParty = () => {
-            window.httpModule.doPost('/party/invite', {login: window.router.getLastView().context.currentFriend});
         };
 
         this.context.leaveParty = () => {
