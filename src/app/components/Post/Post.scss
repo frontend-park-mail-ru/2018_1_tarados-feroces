@@ -1,0 +1,75 @@
+@import "../../../static/css/config";
+
+.post {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  //margin-top: 60px;
+  border-bottom: thin black solid;
+  min-height: 300px;
+  padding: 10px;
+  //margin-bottom: 60px;
+
+  &:last-child {
+    border: none;
+  }
+
+  &__top-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    color: #ffa23e;
+  }
+  &__bottom-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    //margin-top: 60px;
+  }
+
+  &__title {
+    width: 60%;
+    display: flex;
+    align-self: center;
+    //text-align: center;
+
+    &-value {
+      width: 100%;
+      font-size: 45px;
+      font-family: $main-font;
+    }
+  }
+
+  &__datetime {
+    width: 20%;
+    display: flex;
+    align-self: center;
+    text-align: center;
+    flex-direction: row-reverse;
+
+    &-value {
+      width: 100%;
+      font-size: 15px;
+      font-family: $main-font;
+    }
+  }
+
+  &__body {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    //justify-content: center;
+    align-self: center;
+
+    &-value {
+      width: 100%;
+      display: flex;
+      font-size: 30px;
+      font-family: $main-font;
+      color: white;
+    }
+  }
+}

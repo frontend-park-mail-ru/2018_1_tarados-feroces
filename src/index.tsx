@@ -1,24 +1,16 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
-import {Router, Route} from 'react-router';
-import {createBrowserHistory} from 'history';
-import MainPage from './app/views/MainPage/MainPage';
+import App from './app/containers/App/App';
+import {Provider} from "react-redux";
+import configureStore from "./app/store/store";
 
-// import './static/scss/main.scss';
-
-const history = createBrowserHistory();
-
-const App = () => (
-    <Provider>
-        <Router history={ history }>
-            <Route path={ '/' } component={ MainPage as any }>
-            </Route>
-        </Router>
-    </Provider>
-);
+const store = configureStore({});
 
 ReactDOM.render(
-    <App />,
+    (
+        <Provider store = { store }>
+            <App />
+        </Provider>
+    ),
     document.getElementById('root')
 );

@@ -32,7 +32,7 @@ router.go('/login/');
 #### Components
 Компоненты - элементарные единицы структуры.
 ```javascript
-const header = new Header(); //<div class="{{class}}"><h1>{{text}}</h1></div>
+const header = new Header.tsx(); //<div class="{{class}}"><h1>{{text}}</h1></div>
 ```
 #### Views
 Вьюшки - сущности, состоящие из компонент.
@@ -41,7 +41,7 @@ const myView = new MyView();
 myView.render();
 /* 
    <div class="{{main-class}}">
-   <Header>{{login}}</Header>
+   <Header.tsx>{{login}}</Header.tsx>
    <Button class="button" click="(){alert(42);}"></Button>
    </div>
 */
@@ -53,7 +53,7 @@ myView.render();
 Для удобного написания html страниц был создан парсер, позволяющий преобразовывать все в обычный html.
 ```javascript
 const htmlParser = new HtmlParser();
-const template = `<Header>{{login}}</Header>`;
+const template = `<Header.tsx>{{login}}</Header.tsx>`;
 const context = {login: 'FirstUser'};
 htmlParser.getHTML(templateManager.getHTML(context, template)); //<div><h1>FirstUser</h1></div>
 ```

@@ -1,0 +1,31 @@
+@import "../../../static/css/config";
+
+.news {
+  display: flex;
+  flex-direction: column;
+  //justify-content: space-around;
+  //align-content: center;
+  width: 80%;
+  margin: 5% 10% 5% 10%;
+  //background-color: #5d7dba;
+  //border-radius: 10px;
+
+  &__pagination {
+    margin-top: 25px;
+    width: 450px;
+    display: flex;
+    align-self: center;
+    justify-content: space-around;
+    margin-bottom: 10px;
+    &-go-button {
+
+    }
+
+  }
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}

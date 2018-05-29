@@ -1,0 +1,143 @@
+@import "../../../static/css/config";
+
+.header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  width: 100%;
+  height: 100px;
+  @media only screen and (max-device-width : 1000px) {
+    height: 200px;
+  }
+  background-color: $main-header-background;
+  color: $header-text-color;
+  box-shadow: 0 0 4px 4px #000000;
+  z-index: 9999;
+  &__user-info {
+    width: 450px;
+    background-color: rgba(50, 26, 6, 0.71);
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    border-radius: 5px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+
+    &-avatar {
+      width: 80px;
+      height: 80px;
+      align-self: center;
+      opacity: 1;
+      border-radius: 15px;
+    }
+
+    &-data-block {
+      display: flex;
+      flex-flow: row wrap;
+      width: 200px;
+      justify-content: space-around;
+      &-login {
+        display: flex;
+        flex-basis: 100%;
+        justify-content: center;
+        border-bottom: black thin solid;
+        &-value {
+          margin: 0;
+          font-size: 30px;
+          color: $blocks-text-color;
+          align-self: center;
+          font-family: $main-font;
+        }
+      }
+      &-score {
+        width: 90px;
+        margin-bottom: 5px;
+        display: flex;
+        justify-content: space-around;
+
+        &-image {
+          align-self: center;
+          width: 30px;
+          height: 30px;
+        }
+        &-number {
+          display: flex;
+          &-value {
+            margin: auto;
+            font-size: 20px;
+            color: white;
+            font-family: $main-font;
+
+          }
+        }
+      }
+    }
+    &-settings {
+      display: flex;
+      &-value {
+        cursor: pointer;
+        width: 50px;
+        height: 50px;
+        margin: auto;
+      }
+    }
+
+  }
+  @media only screen and (max-device-width : 1000px) {
+    &__user-info {
+      width: 180px;
+      background-color: #105C7F;
+      display: flex;
+      flex-flow: row;
+      justify-content: space-around;
+      border-radius: 5px;
+      margin-top: 3px;
+      margin-bottom: 3px;
+
+      &-avatar {
+        width: 130px;
+        height: 130px;
+        align-self: center;
+        opacity: 1;
+        border-radius: 15px;
+      }
+      &-data-block {
+        display: none;
+        &-login {
+          display: none;
+          &-value {
+            display: none;
+          }
+        }
+        &-score {
+          display: none;
+
+          &-image {
+            display: none;
+          }
+          &-number {
+            display: none;
+            &-value {
+              display: none;
+
+            }
+          }
+        }
+      }
+      &-settings {
+        display: none;
+        &-value {
+          display: none;
+        }
+      }
+    }
+  }
+
+}
+
+.button-play {
+  display: flex;
+  align-self: center;
+  width: 500px;
+}

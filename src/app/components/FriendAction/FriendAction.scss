@@ -1,0 +1,34 @@
+@import "../../../static/css/config";
+
+.friends-modal {
+  position: absolute;
+  z-index: 999;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  border: thin white solid;
+  &-points {
+    display: flex;
+    width: 100%;
+    height: 40px;
+    user-select: none;
+    cursor: pointer;
+    border-bottom: thin black solid;
+
+    &:hover {
+      background-color: $orange-color;
+    }
+
+    &:active {
+      background-color: $blocks-background-hover;
+    }
+
+    &-text {
+      font-size: 24px;
+      font-family: $main-font;
+      color: white;
+      margin: auto;
+    }
+  }
+}

@@ -97,10 +97,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: 'index.html'
         }),
-        // new CopyWebpackPlugin([{
-        //     from: 'static/imgs',
-        //     to: 'static/imgs'
-        // }])
+        new CopyWebpackPlugin([
+            {from: Path.join(__dirname, 'src/static/imgs'), to: Path.join(outPath, 'static/imgs')}
+        ])
     ],
     devServer: {
         contentBase: sourcePath,

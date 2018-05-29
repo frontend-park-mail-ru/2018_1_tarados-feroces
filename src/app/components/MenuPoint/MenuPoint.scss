@@ -1,0 +1,36 @@
+@import "../../../static/css/config";
+
+.menu-point {
+  display: flex;
+  height: 100px;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  border-bottom: black thin solid;
+  &:hover {
+    background-color: $blocks-background-hover;
+  }
+  &:active {
+    background-color: #131b44;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+  &-text {
+    font-size: 40px;
+    font-family: $main-font;
+    margin: auto;
+  }
+}
+
+@media only screen and (max-device-width : 1000px) {
+  .menu-point {
+    height: 140px;
+    &-text {
+      font-size: 54px;
+      font-family: $main-font;
+      margin: auto;
+    }
+  }
+}

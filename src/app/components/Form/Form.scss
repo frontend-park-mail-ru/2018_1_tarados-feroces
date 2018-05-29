@@ -1,0 +1,89 @@
+@import "../../../static/css/config";
+
+.form-block-content {
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: $blocks-background;
+  opacity: 0.95;
+  border: black thin solid;
+
+  //border-radius: 15px;
+  //box-shadow: 4px 4px 10px 2px #00072d;
+  //animation: form-block-shining 1.5s linear infinite;
+
+  &_no-border {
+    animation: none;
+    border: none;
+    box-shadow: none;
+  }
+
+  &__label {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  &-inputs {
+    margin-bottom: 30px;
+    margin-top: 30px;
+    width: 500px;
+    @media only screen and (max-device-width : 1000px) {
+      width: 700px;
+    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__back {
+    display: flex;
+    user-select: none;
+    width: 40px;
+    @media only screen and (max-device-width : 1000px) {
+      width: 100px;
+    }
+    cursor: pointer;
+    //border-bottom-left-radius: 15px;
+    //border-top-left-radius: 15px;
+    border-right: thin black solid;
+    &:hover {
+      background-color: $blocks-background-hover;
+    }
+    &:active {
+      background-color: #131b44;
+    }
+    &-icon {
+      margin: auto;
+    }
+  }
+}
+
+.login-button {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.signup-button {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+
+
+.form-block {
+  height: 100vh;
+  display: flex;
+  width: 100%;
+}
+
+//@keyframes form-block-shining {
+//  0% {
+//    box-shadow: 0px 0px 10px 6px #c7fbff;
+//  }
+//  50% {
+//    box-shadow: 0px 0px 10px 10px #c7fbff;
+//  }
+//  100% {
+//    box-shadow: 0px 0px 10px 6px #c7fbff;
+//  }
+//}

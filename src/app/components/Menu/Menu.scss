@@ -1,0 +1,19 @@
+@import "../../../static/css/config";
+
+
+.menu {
+  //opacity: 0.9;
+  width: 500px;
+  background-color: $blocks-background;
+  color: $blocks-text-color;
+  border: thin black solid;
+  //border-radius: 25px;
+  //box-shadow: 4px 4px 10px 2px #00072d;
+  //animation: shining 1.5s linear infinite;
+}
+
+@media only screen and (max-device-width : 1000px) {
+  .menu {
+    width: 600px;
+  }
+}

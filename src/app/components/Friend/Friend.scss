@@ -1,0 +1,53 @@
+@import "../../../static/css/config";
+
+.friend {
+  height: 70px;
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  //background-color: $blocks-background;
+  cursor: pointer;
+
+  &__avatar {
+    width: 50px;
+    height: 50px;
+    align-self: center;
+    opacity: 1;
+    border-radius: 15px;
+  }
+
+  &__login {
+    display: flex;
+    min-width: 150px;
+    max-width: 150px;
+
+    &-value {
+      margin: auto;
+      font-size: 25px;
+      font-family: $main-font;
+      color: $blocks-text-color;
+      user-select: none;
+    }
+  }
+
+  &__online {
+    display: flex;
+    width: 20px;
+
+    &-value {
+      margin:auto;
+      width: 10px;
+      height: 10px;
+      border-radius: 5px;
+      background-color: limegreen;
+    }
+  }
+
+  &:hover {
+    background-color: $blocks-background-hover;
+  }
+  &-active {
+    background-color: $blocks-background-hover;
+    border: thin white solid;
+  }
+}
