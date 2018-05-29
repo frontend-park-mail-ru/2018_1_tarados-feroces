@@ -233,7 +233,7 @@ class Authorized extends React.Component<IProps, any> {
 
     public playSingleplayer(): void {
         const { history } = this.props;
-        history.push('/single');
+        history.push('/single/');
     }
 
     public playMultiplayer(): void {
@@ -279,7 +279,7 @@ class Authorized extends React.Component<IProps, any> {
                     className='auth-page__header header'
                     logoutHandler={logoutUser}
                     settingsHandler={this.settings}
-                    onPlay={ this.startGame }
+                    onPlay={ this.state.multiplayer ? this.startGame : this.playSingleplayer }
                 />
 
                 <div className='auth-page__content'>

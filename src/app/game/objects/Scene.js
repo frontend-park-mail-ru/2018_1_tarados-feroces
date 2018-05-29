@@ -42,7 +42,7 @@ export default class Scene {
         this.drawMobs(mobs);
     }
 
-    _drawItem(item, color = 'black', radius = 20) {
+    _drawItem(item, color = 'black', radius = 40) {
         const ctx = this.ctx;
         ctx.beginPath();
         ctx.arc(item.pos.x, item.pos.y, radius, 0, 360, false);
