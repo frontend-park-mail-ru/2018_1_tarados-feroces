@@ -10,12 +10,15 @@
   //border-right: thin solid black;
   justify-content: flex-start;
   width: 100%;
+  margin: auto;
 
   &__friend {
     display: flex;
     justify-content: center;
     margin: 5px;
-    border-radius: 15px;
+    width: 90px;
+    //border-radius: 15px;
+    //border: thin black solid;
 
     &-logo {
       align-self: center;
