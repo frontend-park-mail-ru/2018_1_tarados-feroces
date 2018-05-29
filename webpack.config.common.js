@@ -98,7 +98,8 @@ module.exports = {
             template: 'index.html'
         }),
         new CopyWebpackPlugin([
-            {from: Path.join(__dirname, 'src/static/imgs'), to: Path.join(outPath, 'static/imgs')}
+            {from: Path.join(__dirname, 'src/static/imgs'), to: Path.join(outPath, 'static/imgs')},
+            {from: Path.join(__dirname, 'src/static/videos/test7.mp4'), to: Path.join(outPath, 'static/test7.mp4')}
         ])
     ],
     devServer: {

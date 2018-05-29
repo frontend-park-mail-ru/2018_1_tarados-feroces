@@ -15,12 +15,12 @@ import OfflineGame from '../../game/core/offline';
 import OnlineGame from '../../game/core/online';
 import gameController from '../../game/GameController';
 import Scene from '../../game/objects/Scene';
+import GameCounter from '../../components/GameCounter/GameCounter';
 
 
 interface IProps {
-    // user?: any;
-    // loginForm?: any;
     history?: any;
+    user?: any
     // userActions?: any;
     // loginActions?: any;
 }
@@ -35,6 +35,19 @@ export default class GameContainer extends React.Component<IProps, any> {
 
         this.exitGame = this.exitGame.bind(this);
         this.goGame = this.goGame.bind(this);
+        this.setScore = this.setScore.bind(this);
+        this.state = {
+            scores: [
+                        {login: 'anton', points: 0},
+                        {login: 'danya', points: 0}
+                    ]
+        };
+    }
+
+    public setScore(data): any {
+        this.setState({
+            scores: data
+        });
     }
 
     public componentDidMount(): any {
@@ -56,12 +69,12 @@ export default class GameContainer extends React.Component<IProps, any> {
         if (online) {
             console.log('ONLINE');
             const scene = new Scene(this.canvas);
-            this.game = new OnlineGame(gameController, scene);
+            this.game = new OnlineGame(gameController, scene, this.setScore);
             this.game.start();
             return;
         }
         const scene = new Scene(this.canvas);
-        this.game = new OfflineGame(gameController, scene);
+        this.game = new OfflineGame(gameController, scene, this.setScore);
 
         // 0 - transform %, 1 - direction, 2 - timeout ms
         const rounds = [
@@ -123,6 +136,7 @@ export default class GameContainer extends React.Component<IProps, any> {
     public render(): JSX.Element {
         return (
             <div className='game'>
+                <GameCounter scores={this.state.scores}/>
                 <div className='game__title'>
                     <Label className='game__title-text'/>
                 </div>
@@ -151,7 +165,7 @@ export default class GameContainer extends React.Component<IProps, any> {
 
     private goGame() {
         const { history } = this.props;
-        history.push('/game');
+        history.push('/single/');
     }
 
     private exitGame() {
@@ -160,19 +174,11 @@ export default class GameContainer extends React.Component<IProps, any> {
     }
 
 }
-
+//
 // const mapStateToProps = (state) => {
 //     return {
-//         user: state.user,
-//         loginForm: state.loginForm
+//         user: state.user
 //     };
 // };
 //
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         userActions: bindActionCreators(userActions, dispatch),
-//         loginActions: bindActionCreators(loginActions, dispatch)
-//     };
-// };
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(Login);
+// export default connect(mapStateToProps)(GameCounter);
