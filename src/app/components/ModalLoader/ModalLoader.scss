@@ -1,0 +1,42 @@
+.modal-preloader {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.72);
+}
+
+.modal-loader {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 6px solid #000000;
+  border-top-color: #FFBF00;
+  border-bottom-color: #FFBF00;
+  -webkit-animation: modal-loader 0.5s infinite ease-in-out;
+  animation: modal-loader 0.5s infinite ease-in-out;
+  align-self: center;
+}
+
+@-webkit-keyframes modal-loader {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(540deg);
+    transform: rotate(540deg);
+  }
+}
+
+@keyframes modal-loader {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(540deg);
+    transform: rotate(540deg);
+  }
+}
