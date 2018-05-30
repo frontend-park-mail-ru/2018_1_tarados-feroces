@@ -21,10 +21,6 @@ class People extends React.Component<IProps, any> {
         getFriends(this.props.prefix);
     }
 
-    // public componentWillUpdate(nextProps, nextState) {
-    //     this.update(nextProps);
-    // }
-
     public render(): JSX.Element {
         const { areFriends, user, onClick }: any = this.props;
         const people = areFriends ? user.friends : user.people;
@@ -36,7 +32,7 @@ class People extends React.Component<IProps, any> {
                     !people.message &&
                     people.map((person, index) => {
                         return (
-                            <Friend key={index} onClick={onClick} avatar={person.avatar} login={person.login} />
+                            <Friend key={index} onClick={onClick} avatar={person.avatar} login={person.login} online={person.online} />
                         );
                     })
                 }

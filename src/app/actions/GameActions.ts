@@ -1,8 +1,8 @@
-import {SET_SCORE} from '../constants/ReducersConstants';
+import {GAME_OVER} from '../constants/ReducersConstants';
 
-// export function setScore(data): any {
-//     return {
-//         type: SET_SCORE,
-//         payload: {scores: data}
-//     };
-// }
+export function gameOver(): any {
+    return {
+        type: GAME_OVER,
+        payload: {gameOver: true}
+    };
+}
