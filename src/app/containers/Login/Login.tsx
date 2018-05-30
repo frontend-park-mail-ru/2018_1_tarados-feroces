@@ -34,9 +34,24 @@ class Login extends React.Component<IProps, any> {
         this.goBack = this.goBack.bind(this);
         this.loginUser = this.loginUser.bind(this);
         this.changeLoginForm = this.changeLoginForm.bind(this);
+        this.loginWithEnter = this.loginWithEnter.bind(this);
         this.state = {
             errors: {}
         }
+    }
+
+    public loginWithEnter(event: any): any {
+        if (event.keyCode === 13 && event.type === 'keypress') {
+            this.loginUser();
+        }
+    }
+
+    public componentWillMount(): void {
+        window.addEventListener('keypress', this.loginWithEnter);
+    }
+
+    public componentWillUnmount(): void {
+        window.removeEventListener('keypress', this.loginWithEnter);
     }
 
     public async loginUser() {
@@ -46,7 +61,6 @@ class Login extends React.Component<IProps, any> {
         Validation(loginForm, errors);
         this.setState({errors: errors});
         for (const key in errors) {
-            console.log(key, errors[key]);
             if (errors[key].length) {
                 return;
             }

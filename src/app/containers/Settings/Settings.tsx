@@ -39,9 +39,24 @@ class Settings extends React.Component<IProps, any> {
         this.changeSettingsForm = this.changeSettingsForm.bind(this);
         this.changeAvatar = this.changeAvatar.bind(this);
         this.changeImage = this.changeImage.bind(this);
+        this.updateWithEnter = this.updateWithEnter.bind(this);
         this.state = {
             errors: {}
         }
+    }
+
+    public updateWithEnter(event: any): any {
+        if (event.keyCode === 13 && event.type === 'keypress') {
+            this.changeUser();
+        }
+    }
+
+    public componentWillMount(): void {
+        window.addEventListener('keypress', this.updateWithEnter);
+    }
+
+    public componentWillUnmount(): void {
+        window.removeEventListener('keypress', this.updateWithEnter);
     }
 
     public changeUser() {
@@ -53,7 +68,6 @@ class Settings extends React.Component<IProps, any> {
         Validation(settingsForm, errors);
         this.setState({errors: errors});
         for (const key in errors) {
-            console.log(key, errors[key]);
             if (errors[key].length) {
                 return;
             }

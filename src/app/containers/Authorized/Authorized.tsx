@@ -147,7 +147,9 @@ class Authorized extends React.Component<IProps, any> {
         setParty(data);
     }
 
-    public leaveParty(data): void {
+    public leaveParty(): void {
+        const { leaveParty }: any = this.props.userActions;
+        leaveParty();
     }
 
     public sendFriendsInvite(): void {

@@ -32,9 +32,24 @@ class Signup extends React.Component<IProps, any> {
         this.goBack = this.goBack.bind(this);
         this.registerUser = this.registerUser.bind(this);
         this.changeSignupForm = this.changeSignupForm.bind(this);
+        this.signupWithEnter = this.signupWithEnter.bind(this);
         this.state = {
             errors: {}
         }
+    }
+
+    public signupWithEnter(event: any): any {
+        if (event.keyCode === 13 && event.type === 'keypress') {
+            this.registerUser();
+        }
+    }
+
+    public componentWillMount(): void {
+        window.addEventListener('keypress', this.signupWithEnter);
+    }
+
+    public componentWillUnmount(): void {
+        window.removeEventListener('keypress', this.signupWithEnter);
     }
 
     public async registerUser() {
@@ -45,7 +60,6 @@ class Signup extends React.Component<IProps, any> {
         Validation(signupForm, errors);
         this.setState({errors: errors});
         for (const key in errors) {
-            console.log(key, errors[key]);
             if (errors[key].length) {
                 return;
             }
