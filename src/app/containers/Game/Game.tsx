@@ -33,6 +33,7 @@ class GameContainer extends React.Component<IProps, any> {
         this.exitGame = this.exitGame.bind(this);
         this.goGame = this.goGame.bind(this);
         this.setScore = this.setScore.bind(this);
+        this.props.userActions.getUser();
         this.state = {
             scores: [ { login: this.props.user.login,
                         points: 0 } ]

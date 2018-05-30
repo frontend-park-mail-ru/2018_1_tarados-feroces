@@ -25,6 +25,7 @@ import bus from '../../modules/Bus/Bus';
 import InviteDialog from '../../components/InviteDialog/InviteDialog';
 import Image from '../../components/Image/Image';
 import GameDialog from "../../components/GameDialog/GameDialog";
+import {getPeople} from "../../actions/UserActions";
 
 interface IProps {
     history?: any;
@@ -216,13 +217,14 @@ class Authorized extends React.Component<IProps, any> {
     }
 
     public search(): void {
-        const { getFriends }: any = this.props.userActions;
+        const { getFriends, getPeople }: any = this.props.userActions;
 
         const name = document.querySelector('.search__input').value;
+
         this.setState({
             prefix: name
         });
-        getFriends(name);
+        this.state.areFriends ? getFriends(name) : getPeople(name);
     }
 
     public showNews(): void {
@@ -369,14 +371,12 @@ class Authorized extends React.Component<IProps, any> {
                                     <input className='search__input' placeholder='Username'/>
                                     <Image className='search__button'
                                            src='../static/imgs/search.png'
-                                           onClick={this.search}
-                                    />
+                                           onClick={this.search}/>
                                 </div>
                                 <div className='friends-data'>
-                                {
-                                    this.state.areFriends ?
-                                        <People onClick={this.showFriendActions} areFriends={true} prefix={this.state.prefix}/> :
-                                        <People onClick={this.showFriendActions} areFriends={false} prefix={this.state.prefix}/>
+                                    {
+                                        <People onClick={this.showFriendActions}
+                                                areFriends={this.state.areFriends} prefix={this.state.prefix}/>
                                 }
                                 </div>
                             </div>
