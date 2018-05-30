@@ -16,7 +16,7 @@
   z-index: 9999;
   &__user-info {
     width: 510px;
-    background-color: rgba(50, 26, 6, 0.71);
+    background: linear-gradient(to right, $main-header-background, rgba(118, 51, 34, 0.6));
     display: flex;
     flex-flow: row;
     justify-content: space-around;
@@ -81,6 +81,7 @@
         height: 50px;
         margin: auto;
       }
+
     }
 
   }
