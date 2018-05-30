@@ -62,7 +62,7 @@
 
           &::-webkit-scrollbar-thumb
           {
-            background-color: $orange-color;
+            background-color: $blocks-background-hover;
             //border: 1px solid #555555;
           }
         }
@@ -90,14 +90,14 @@
             //border: thin white solid;
             //box-shadow: 20px 0 20px -20px $orange-color inset, -20px 0 20px -20px $orange-color inset;
             &_active {
-              background-color: $blocks-background-hover;
-              border-bottom: 2px solid $orange-color;
+              background-color: $blocks-background-active;
+              border-bottom: 2px solid $blocks-background-hover;
             }
             &:hover {
-              background-color: $orange-color;
+              background-color: $blocks-background-hover;
             }
             &:active {
-              background-color: $blocks-background-hover;
+              background-color: $blocks-background-active;
             }
             &:first-child{
               //border-top-left-radius: 15px;
@@ -155,10 +155,10 @@
           cursor: pointer;
 
           &:hover {
-            background-color: $orange-color;
+            background-color: $blocks-background-hover;
           }
           &:active {
-            background-color: $blocks-background-hover;
+            background-color: $blocks-background-active;
           }
 
           &-value {
@@ -201,16 +201,16 @@
             cursor: pointer;
 
             &:hover {
-              background-color: $orange-color;
+              background-color: $blocks-background-hover;
             }
 
             &:active {
-              background-color: $blocks-background-hover;
+              background-color: $blocks-background-active;
             }
 
             &-active {
-              background-color: $blocks-background-hover;
-              border-bottom: 2px solid $orange-color;
+              background-color: $blocks-background-active;
+              border-bottom: 2px solid $blocks-background-hover;
             }
 
             &-value {
@@ -242,7 +242,7 @@
 
           &::-webkit-scrollbar-thumb
           {
-            background-color: $orange-color;
+            background-color: $blocks-background-hover;
             //border: 1px solid #555555;
           }
         }
@@ -287,10 +287,10 @@
     //  box-shadow: 0px 0px 6px 2px red;
     //}
     &:hover {
-      background-color: $blocks-background-hover;
+      background-color: $blocks-background-active;
     }
     &:focus {
-      background-color: $blocks-background-hover;
+      background-color: $blocks-background-active;
     }
     margin-bottom: 5px;
   }

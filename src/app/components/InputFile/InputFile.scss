@@ -13,10 +13,10 @@
   border: thin white solid;
 
   &:hover {
-    background: $orange-color;
+    background: $blocks-background-hover;
   }
   &:active {
-    background-color: $blocks-background-hover;
+    background-color: $blocks-background-active;
   }
   & input[type="file"] {
     display: none;
