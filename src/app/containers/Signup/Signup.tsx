@@ -7,6 +7,7 @@ import Form from '../../components/Form/Form';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 import Image from '../../components/Image/Image';
+import Error from '../../components/Error/Error';
 import {Redirect} from 'react-router';
 import {bindActionCreators} from 'redux';
 import * as userActions from '../../actions/UserActions';
@@ -131,6 +132,7 @@ class Signup extends React.Component<IProps, any> {
                         </form>
                     </div>
                 </div>
+                <Error/>
             </div>
         );
     }

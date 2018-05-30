@@ -31,16 +31,19 @@
   align-items: center;
 
   &__message {
+    display: flex;
     font-size: 40px;
     font-family: $main-font;
     color: $blocks-text-color;
+    align-self: center;
   }
 
 
   &__accept {
     display: flex;
+    margin-top: 30px;
     width: 90%;
-    justify-content: space-between;
+    justify-content: space-around;
   }
 
 

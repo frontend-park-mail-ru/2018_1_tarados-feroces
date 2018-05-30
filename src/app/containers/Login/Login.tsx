@@ -22,7 +22,6 @@ import Error from '../../components/Error/Error';
 interface IProps {
     user?: any;
     loginForm?: any;
-    error?: any;
     history?: any;
     userActions?: any;
     loginActions?: any;
@@ -131,7 +130,6 @@ const mapStateToProps = (state) => {
     return {
         user: state.user,
         loginForm: state.loginForm,
-        error: state.error
     };
 };
 

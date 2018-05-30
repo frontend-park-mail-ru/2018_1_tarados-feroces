@@ -12,6 +12,8 @@ import Party from '../../components/Party/Party';
 import People from '../../components/People/People';
 import Loading from '../../components/Loading/Loading';
 import Leaderboard from '../../components/Leaderboard/Leaderboard';
+import Error from '../../components/Error/Error';
+
 
 import {connect} from 'react-redux';
 import * as userActions from '../../actions/UserActions';
@@ -381,6 +383,7 @@ class Authorized extends React.Component<IProps, any> {
                         <Party onLeave={this.leaveParty} className={!hideFriends ? 'content-right-party' : 'hidden'}/>
                     </div>
                 </div>
+                <Error/>
             </div>
         );
     }

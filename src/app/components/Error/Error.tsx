@@ -26,7 +26,7 @@ class Error extends React.Component<IProps, any> {
     }
 
     public showError(): void {
-        const { error }: any = this.props.error;
+        const { error }: any = this.props;
         if (error.message) {
             this.setState({isVisible: true});
             setTimeout(this.closeError, 3000);
@@ -41,14 +41,14 @@ class Error extends React.Component<IProps, any> {
 
     public render(): JSX.Element {
         const { isVisible }: any = this.state;
-        const { error }: any = this.props.error;
-        this.showError();
+        const { error }: any = this.props;
+        // error.message && setTimeout(this.closeError, 3000);
 
         return (
-            <div className={isVisible ? 'error' : 'hidden'}>
+            <div className={error.message ? 'error' : 'hidden'}>
                 <div className="error-modal">
                     <p className="error-modal__message">{error.message}</p>
-                    <div className='confirm-modal__accept'>
+                    <div className='error-modal__accept'>
                         <Button onClick={this.closeError} text='Ok' />
                     </div>
                 </div>
