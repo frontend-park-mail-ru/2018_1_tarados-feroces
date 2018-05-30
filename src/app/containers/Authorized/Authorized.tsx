@@ -80,6 +80,7 @@ class Authorized extends React.Component<IProps, any> {
             this.showPartyInvite(data);
         });
         bus.on(ws.messages.PARTY_VIEW, (data) => {
+            console.log('PARTY_VIEW');
             this.updateParty(data);
         });
         bus.on(ws.messages.ASK_FOR_GAME, (data) => {
@@ -115,6 +116,7 @@ class Authorized extends React.Component<IProps, any> {
     public acceptParty(): void {
         const { acceptParty }: any = this.props.userActions;
         acceptParty(this.state.party.leader);
+        console.log('accepted party');
         this.setState({
             partyInvite: false,
             multiplayer: true,
@@ -127,6 +129,7 @@ class Authorized extends React.Component<IProps, any> {
 
     public acceptFriends(): void {
         const { acceptFriends }: any = this.props.userActions;
+        console.log('accepted friend');
         acceptFriends(this.state.friends.request_id);
         this.setState({friendsInvite: false});
 

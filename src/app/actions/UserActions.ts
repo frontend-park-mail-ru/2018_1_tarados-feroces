@@ -159,6 +159,7 @@ function setPeopleLoading(state) {
 }
 
 export function getParty(): any {
+    console.log('GET PARTY');
     return async (dispatch) => {
         const response = await transport.doGet(HttpConstants.GET_PARTY);
         const json = await response.json();
@@ -168,7 +169,7 @@ export function getParty(): any {
 
 export function setParty(data): any {
     return (dispatch) => {
-        party(data);
+        dispatch(party(data));
     }
 }
 
@@ -180,6 +181,7 @@ function party(party): any {
 }
 
 export function acceptParty(leader) {
+    console.log('GET PARTY');
     return async (dispatch) => {
         const response = await transport.doPost(HttpConstants.ACCEPT_PARTY_INVITE, {leader, answer: 'accept'});
         const json = await response.json();
