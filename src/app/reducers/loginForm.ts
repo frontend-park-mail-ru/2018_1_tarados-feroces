@@ -1,6 +1,9 @@
 import { SET_LOGIN_FORM } from '../constants/ReducersConstants';
 
-const initialState: any = {};
+const initialState: any = {
+    login: '',
+    password: ''
+};
 
 export default function loginForm(state: any = initialState, action: any): any {
     switch (action.type) {

@@ -16,6 +16,7 @@ import Loading from '../../components/Loading/Loading';
 import InputFile from '../../components/InputFile/InputFile';
 
 import './Settings.scss';
+import Validation from '../../modules/Validator';
 
 interface IProps {
     user?: any;
@@ -37,11 +38,41 @@ class Settings extends React.Component<IProps, any> {
         this.changeSettingsForm = this.changeSettingsForm.bind(this);
         this.changeAvatar = this.changeAvatar.bind(this);
         this.changeImage = this.changeImage.bind(this);
+        this.state = {
+            errors: {}
+        }
     }
+
+    // public shouldComponentUpdate(nextProps: IProps, nextState: IProps): boolean {
+    //     return !Object.is(this.props.settingsForm, nextProps.settingsForm);
+    // }
+    //
+    // public componentDidUpdate() {
+    //     const { user }: any = this.props;
+    //     const { setSettingsForm }: any = this.props.settingsActions;
+    //     console.log(user);
+    //     setSettingsForm ({
+    //         login: user.login,
+    //         email: user.email
+    //         }
+    //     );
+    // }
 
     public changeUser() {
         const { history, settingsForm }: any = this.props;
         const { updateUser } = this.props.userActions;
+
+        const errors: any = {};
+        console.log(settingsForm);
+        Validation(settingsForm, errors);
+        this.setState({errors: errors});
+        for (const key in errors) {
+            console.log(key, errors[key]);
+            if (errors[key].length) {
+                return;
+            }
+        }
+
         updateUser(settingsForm);
         history.push('/me');
     }
@@ -54,9 +85,12 @@ class Settings extends React.Component<IProps, any> {
         setSettingsForm(updateSettings);
     }
 
+
+
     public render(): JSX.Element {
-        const { user } = this.props;
+        const { user }: any = this.props;
         const { logoutUser }: any = this.props.userActions;
+        const { errors }: any = this.state;
 
         if (user.isAuthorized === null || user.isAuthorized === undefined) {
             return (
@@ -103,6 +137,7 @@ class Settings extends React.Component<IProps, any> {
                                     dest='login'
                                     defaultValue={user.login}
                                     onChange={this.changeSettingsForm}
+                                    errorText={errors.login}
                                 />
                                 <Input
                                     blockClass='user-email  form-block-content-inputs-item'
@@ -111,6 +146,7 @@ class Settings extends React.Component<IProps, any> {
                                     defaultValue={user.email}
                                     dest='email'
                                     onChange={this.changeSettingsForm}
+                                    errorText={errors.email}
                                 />
                                 <Button onClick={this.changeUser} className='login-button' text='Confirm'/>
                             </div>

@@ -28,7 +28,7 @@ class MainPage extends React.Component<IProps, any> {
     }
 
     public slide(event) {
-        const iconValue: any = event.target;
+        const iconValue: any = event.currentTarget.firstChild;
         const icon: any = iconValue.parentElement;
         const header: any = document.querySelector('.main-page__header');
         const height: number = icon.getBoundingClientRect().top + window.scrollY - header.getBoundingClientRect().height;
@@ -69,8 +69,8 @@ class MainPage extends React.Component<IProps, any> {
                 <div className='main-page__content'>
                     <div className='main-page__content-row'>
                         <Menu buttons={buttons}/>
-                        <div className='scroll'>
-                            <div onClick={this.slide} className='scroll-icon rotate-scroll-close'/>
+                        <div className='scroll' onClick={this.slide}>
+                            <div className='scroll-icon rotate-scroll-close'/>
                         </div>
                     </div>
                     <div className='main-page__content-row main-page__content-row_low-height'>

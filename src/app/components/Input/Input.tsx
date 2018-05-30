@@ -12,14 +12,16 @@ interface IProps {
     onChange: any;
     dest?: string;
     defaultValue?: string;
+    errorText?: string;
 }
 
 export default class Input extends React.Component<IProps, any> {
 
     public render(): JSX.Element {
-        const {blockClass, inputName, type, inputClass, placeholder, defaultValue, onChange, dest}: any = this.props;
+        const {errorText, blockClass, inputName, type, inputClass, placeholder, defaultValue, onChange, dest}: any = this.props;
         return (
             <div className={'input-block ' + blockClass}>
+                {errorText && <p className='input-block__error'>{errorText}</p> }
                 <input
                     name={inputName}
                     type={type}

@@ -1,6 +1,11 @@
 import { SET_SIGNUP_FORM } from '../constants/ReducersConstants';
 
-const initialState: any = {};
+const initialState: any = {
+    login: '',
+    email: '',
+    password: '',
+    repeatPassword: ''
+};
 
 export default function signupForm(state: any = initialState, action: any): any {
     switch (action.type) {
