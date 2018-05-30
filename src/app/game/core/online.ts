@@ -4,11 +4,14 @@ import ws from '../../modules/WebSocket/WebSocket';
 
 export default class OnlineGame extends GameCore {
 
-    public constructor(controller: any, scene: any) {
+    public scoreUpdate: any;
+
+    public constructor(controller: any, scene: any, scoreUpdate: any) {
         super(controller, scene);
         this.onGameStarted = this.onGameStarted.bind(this);
         this.onGameStateChanged = this.onGameStateChanged.bind(this);
         this.onControlsPressed = this.onControlsPressed.bind(this);
+        this.scoreUpdate = scoreUpdate;
     }
 
     public start(): void {
@@ -40,6 +43,9 @@ export default class OnlineGame extends GameCore {
         // console.log(players);
         const mobs = event.mobs;
         this.scene.update(players, mobs);
+        this.scoreUpdate({
+
+        });
     }
 
     public onRoundCompleted(event: any): void {

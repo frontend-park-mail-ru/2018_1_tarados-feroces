@@ -8,8 +8,9 @@ export default class OfflineGame extends GameCore {
     public gameLoopId: any;
     public scoreUpdate: any;
     public currentPoints: number;
+    public player: any;
 
-    public constructor(controller, scene, scoreUpdate) {
+    public constructor(controller: any, scene: any, player: any, scoreUpdate: any) {
         super(controller, scene);
         this.rounds = [];
         this.currentRound = 0;
@@ -18,6 +19,7 @@ export default class OfflineGame extends GameCore {
         this.gameLoopId = null;
         this.scoreUpdate = scoreUpdate;
         this.currentPoints = 0;
+        this.player = player;
     }
 
     public start(): void {
@@ -79,9 +81,11 @@ export default class OfflineGame extends GameCore {
             this.currentPoints += 1;
 
             this.scoreUpdate([
-                {login: 'anton', points: this.currentPoints},
-                {login: 'danya', points: this.currentPoints},
-            ]);
+                {
+                    login: this.player, points: this.currentPoints
+                }]
+
+            );
             return;
         }
         if (!this.checkEndOfRounds()) {

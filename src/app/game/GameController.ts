@@ -21,7 +21,7 @@ class GameController {
         window.addEventListener('keypress', (event) => this.checkKeys(event, online));
         window.addEventListener('keydown', (event) => this.checkKeys(event, online));
         window.addEventListener('keyup', (event) => this.checkKeys(event, online));
-        const controls = [...document.getElementsByClassName('controllers')];
+        const controls = Array.from(document.getElementsByClassName('controllers'));
         controls.forEach((item) => {
             item.addEventListener('touchstart', () => {
                 const className = item.classList[1];
@@ -147,11 +147,11 @@ class GameController {
         return this.checkBotCollision(player, wave);
     }
 
-    // public stop(): void {
-    //     window.removeEventListener('keypress', this.checkKeys);
-    //     window.removeEventListener('keyup', this.checkKeys);
-    //     this.keyMap = {};
-    // }
+    public stop(): void {
+        // window.removeEventListener('keypress', this.checkKeys);
+        // window.removeEventListener('keyup', this.checkKeys);
+        // this.keyMap = {};
+    }
 }
 
 const gameController = new GameController();

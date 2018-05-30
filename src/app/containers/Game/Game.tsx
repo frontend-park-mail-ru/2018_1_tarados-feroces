@@ -3,29 +3,26 @@ import * as React from 'react';
 import './Game.scss';
 
 import Label from '../../components/Label/Label';
-
 import Button from '../../components/Button/Button';
+import GameCounter from '../../components/GameCounter/GameCounter';
 
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import * as userActions from "../../actions/UserActions";
-import * as loginActions from "../../actions/LoginActions";
 
 import OfflineGame from '../../game/core/offline';
 import OnlineGame from '../../game/core/online';
 import gameController from '../../game/GameController';
 import Scene from '../../game/objects/Scene';
-import GameCounter from '../../components/GameCounter/GameCounter';
 
 
 interface IProps {
     history?: any;
     user?: any
-    // userActions?: any;
-    // loginActions?: any;
+    userActions?: any;
 }
 
-export default class GameContainer extends React.Component<IProps, any> {
+class GameContainer extends React.Component<IProps, any> {
 
     public game: any;
     public canvas: any;
@@ -37,10 +34,8 @@ export default class GameContainer extends React.Component<IProps, any> {
         this.goGame = this.goGame.bind(this);
         this.setScore = this.setScore.bind(this);
         this.state = {
-            scores: [
-                        {login: 'anton', points: 0},
-                        {login: 'danya', points: 0}
-                    ]
+            scores: [ { login: this.props.user.login,
+                        points: 0 } ]
         };
     }
 
@@ -74,7 +69,8 @@ export default class GameContainer extends React.Component<IProps, any> {
             return;
         }
         const scene = new Scene(this.canvas);
-        this.game = new OfflineGame(gameController, scene, this.setScore);
+        this.game = new OfflineGame(gameController, scene,
+            [this.props.user.login], this.setScore);
 
         // 0 - transform %, 1 - direction, 2 - timeout ms
         const rounds = [
@@ -174,11 +170,17 @@ export default class GameContainer extends React.Component<IProps, any> {
     }
 
 }
-//
-// const mapStateToProps = (state) => {
-//     return {
-//         user: state.user
-//     };
-// };
-//
-// export default connect(mapStateToProps)(GameCounter);
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        userActions: bindActionCreators(userActions, dispatch)
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(GameContainer);

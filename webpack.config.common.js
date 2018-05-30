@@ -72,7 +72,7 @@ module.exports = {
             },
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
-                loader: 'url-loader?limit=10000!img-loader?progressive=true'
+                loader: 'url-loader?limit=100000!img-loader?progressive=true'
             },
             {
                 test: /\.(ttf|otf|eot|woff(2)?)(\?[a-z0-9]+)?$/,

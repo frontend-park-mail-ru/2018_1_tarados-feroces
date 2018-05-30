@@ -59,10 +59,9 @@
     //background-color: $header-background;
     filter: brightness(150%);
 
-    background-image: url("../../../static/imgs/arena-back.png");
-    //background-image: url("../../../static/imgs/dark.png");
+    background-image: url("../../../static/imgs/newBack.jpg");
     background-size: cover;
-    background-repeat: no-repeat;
+    //background-repeat: no-repeat;
 
     &-canvas {
       z-index: 9998;
