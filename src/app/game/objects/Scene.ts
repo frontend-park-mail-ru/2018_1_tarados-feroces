@@ -27,9 +27,10 @@ export default class Scene {
 
     public initPlayer(x: number = this.arena.x + this.arena.width / 2,
                y: number = this.arena.y + this.arena.height / 2,
+               login: string,
                color: string = 'red',
                id: number = 0): void {
-        const player = new Player(this.ctx, x, y, color);
+        const player = new Player(this.ctx, x, y, login, color);
         player.draw();
         this.players[id] = player;
     }
