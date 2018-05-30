@@ -47,7 +47,7 @@ class Authorized extends React.Component<IProps, any> {
             multiplayer: false,
             isReady: false,
         };
-
+        
         this.showLeaders = this.showLeaders.bind(this);
         this.showNews = this.showNews.bind(this);
         this.hideFriends = this.hideFriends.bind(this);
@@ -257,13 +257,6 @@ class Authorized extends React.Component<IProps, any> {
         const { logoutUser }: any = this.props.userActions;
         const { leaderActive, newsActive, hideFriends }: any = this.state;
 
-         const avatars = [
-             '../static/imgs/user-logo.jpg',
-             '../static/imgs/user-logo.jpg',
-             '../static/imgs/user-logo.jpg',
-             '../static/imgs/user-logo.jpg'
-         ];
-
         if (user.isAuthorized === null || user.isAuthorized === undefined) {
             return (
                 <Loading />
@@ -282,7 +275,7 @@ class Authorized extends React.Component<IProps, any> {
                     className='auth-page__header header'
                     logoutHandler={logoutUser}
                     settingsHandler={this.settings}
-                    onPlay={ this.state.multiplayer ? this.startGame : this.playSingleplayer }
+                    onPlay={ this.props.user.party ? this.startGame : this.playSingleplayer }
                 />
 
                 <div className='auth-page__content'>
