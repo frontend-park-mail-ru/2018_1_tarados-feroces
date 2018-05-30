@@ -19,6 +19,7 @@ export function setUser(user): any {
 
 export function getUser() {
     return async (dispatch) => {
+        dispatch(setUser({'isAuthorized': null}));
         const response = await transport.doGet(HttpConstants.GET_USER);
         if (response.ok && !ws.address) {
             ws.open();
