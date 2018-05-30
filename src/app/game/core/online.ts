@@ -21,6 +21,18 @@ export default class OnlineGame extends GameCore {
         ws.sendMessage(ws.messages.GAME_READY, {});
     }
 
+    public setPause(): void {
+        console.log('PAUSED');
+        document.querySelector('.game__pause-notes').querySelector('.label-text').textContent = 'PAUSED';
+        const pause = document.querySelector('.game__pause');
+        pause.classList.remove('hidden');
+    }
+
+    public resume(): void {
+        const pause = document.querySelector('.game__pause');
+        pause.classList.add('hidden');
+    }
+
     public onControlsPressed(event: any): void {
         const movement = {};
         movement['x'] = this.controller.keyMap['RIGHT'] ? 1 : 0 +

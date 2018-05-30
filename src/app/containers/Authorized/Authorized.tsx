@@ -49,7 +49,7 @@ class Authorized extends React.Component<IProps, any> {
             multiplayer: false,
             isReady: false,
         };
-        
+
         this.showLeaders = this.showLeaders.bind(this);
         this.showNews = this.showNews.bind(this);
         this.hideFriends = this.hideFriends.bind(this);
@@ -145,6 +145,7 @@ class Authorized extends React.Component<IProps, any> {
     public updateParty(data): void {
         const { setParty }: any = this.props.userActions;
         setParty(data);
+
     }
 
     public leaveParty(): void {

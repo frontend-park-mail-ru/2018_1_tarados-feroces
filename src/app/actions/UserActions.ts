@@ -114,6 +114,7 @@ export function logoutUser() {
 }
 
 function logout(): any {
+    ws.close(1000, 'Logout');
     return {
         type: LOGOUT_USER,
         payload: { isAuthorized: false }
@@ -182,7 +183,7 @@ export function leaveParty(): any {
 
 export function setParty(data): any {
     return (dispatch) => {
-        dispatch(party(data));
+        dispatch(party(data.users.lenght ? data : false));
     }
 }
 

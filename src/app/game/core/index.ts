@@ -27,25 +27,22 @@ export default class GameCore {
         bus.off(ws.messages.SERVER_SNAP, this.onGameStateChanged);
         // bus.off('WAVE_COMPLETED', this.onWaveCompleted);
         bus.off('ROUND_COMPLETED', this.onRoundCompleted);
+        bus.off('PAUSE', this.setPause);
+
     }
 
-    public onControlsPressed(event): any {
-    }
+    public onControlsPressed(event): any {}
 
-    public onGameStateChanged(event): any {
-    }
+    public onGameStateChanged(event): any {}
 
-    public onGameStarted(event): any {
-    }
+    public onGameStarted(event): any {}
 
-    public onGameFinished(event): any {
-    }
+    public onGameFinished(event): any {}
 
     public setPause(): void {}
 
     // onWaveCompleted() {
     // }
 
-    onRoundCompleted(event) {
-    }
+    onRoundCompleted(event) {}
 }
