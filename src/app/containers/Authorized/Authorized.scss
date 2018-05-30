@@ -112,7 +112,7 @@
               font-size: 35px;
               align-self: center;
               color: $header-text-color;
-              font-family: $main-font;
+              font-family: $headers-font;
             }
           }
         }
@@ -216,7 +216,7 @@
             &-value {
               font-size: 30px;
               color: $blocks-text-color;
-              font-family: $main-font;
+              font-family: $headers-font;
               user-select: none;
               align-self: center;
             }

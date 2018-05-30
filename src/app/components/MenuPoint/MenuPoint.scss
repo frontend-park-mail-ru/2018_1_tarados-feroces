@@ -19,7 +19,7 @@
   }
   &-text {
     font-size: 40px;
-    font-family: $main-font;
+    font-family: $headers-font;
     margin: auto;
   }
 }
@@ -29,7 +29,7 @@
     height: 140px;
     &-text {
       font-size: 54px;
-      font-family: $main-font;
+      font-family: $headers-font;
       margin: auto;
     }
   }
