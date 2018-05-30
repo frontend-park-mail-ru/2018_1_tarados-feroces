@@ -106,7 +106,7 @@ class MainPage extends React.Component<IProps, any> {
 
     private goSingle() {
         const { history } = this.props;
-        history.push('/game');
+        history.push('/single/');
     }
 
     private goSignup() {

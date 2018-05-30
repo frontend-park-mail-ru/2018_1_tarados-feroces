@@ -34,7 +34,7 @@ export default class OnlineGame extends GameCore {
         console.log('GAME INITED');
         this.controller.start();
         event.users.forEach((item) => {
-            this.scene.initPlayer(item.x, item.y, item.color, item.party_id);
+            this.scene.initPlayer(item.x, item.y, item.login, item.color, item.party_id);
         });
     }
 
@@ -42,10 +42,15 @@ export default class OnlineGame extends GameCore {
         const players = event.players;
         // console.log(players);
         const mobs = event.mobs;
-        this.scene.update(players, mobs);
-        this.scoreUpdate({
-
+        const scorePlayers = players.map(item => {
+            if (item.alive) {
+                return {login: this.scene.players[item.party_id].login, points: item.score.points}
+            }
         });
+        console.log('PLAYERS: ', scorePlayers);
+        this.scoreUpdate(scorePlayers);
+        this.scene.update(players, mobs);
+
     }
 
     public onRoundCompleted(event: any): void {

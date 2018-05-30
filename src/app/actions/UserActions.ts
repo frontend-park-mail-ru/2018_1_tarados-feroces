@@ -183,7 +183,7 @@ export function acceptParty(leader) {
     return async (dispatch) => {
         const response = await transport.doPost(HttpConstants.ACCEPT_PARTY_INVITE, {leader, answer: 'accept'});
         const json = await response.json();
-        !response.ok && alert(json.message);
+        response.ok ? dispatch(getParty()) : alert(json.message);
     }
 }
 
@@ -191,7 +191,7 @@ export function acceptFriends(request_id) {
     return async (dispatch) => {
         const response = await transport.doPost(HttpConstants.ACCEPT_FRIENDS_INVITE, {request_id, answer: 'accept'});
         const json = await response.json();
-        response.ok ? getFriends() : alert(json.message);
+        response.ok ? dispatch(getFriends()) : alert(json.message);
     }
 }
 

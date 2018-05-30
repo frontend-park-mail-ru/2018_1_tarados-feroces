@@ -4,16 +4,19 @@ export default class Player extends MovableObject {
 
     public radius: number;
     public speed: number;
+    public login: string;
 
     public constructor(ctx: any,
                        x: number,
                        y: number,
+                       login: string,
                        color: string = 'red',
                        speed: number = 8,
                        radius: number = 30) {
         super(ctx, x, y, color);
         this.radius = radius;
         this.speed = speed;
+        this.login = login;
     }
 
     public setCoords(x, y): Player {

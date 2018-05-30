@@ -133,7 +133,10 @@ class GameContainer extends React.Component<IProps, any> {
     public render(): JSX.Element {
         return (
             <div className='game'>
-                <GameCounter scores={this.state.scores}/>
+                {this.props.user.isAuthorized &&
+                    <GameCounter scores={this.state.scores}/>
+                }
+
                 <div className='game__title'>
                     <Label className='game__title-text'/>
                 </div>

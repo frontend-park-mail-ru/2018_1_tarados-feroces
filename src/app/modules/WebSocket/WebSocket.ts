@@ -30,7 +30,7 @@ class Ws {
         this.ws.onopen = () => {
             console.log(`WS on ${this.address} was opened`);
             this.ws.onmessage = (message) => {
-                console.log(message);
+                // console.log(message);
                 const data = JSON.parse(message.data);
                 bus.emit(data.cls, data);
             };

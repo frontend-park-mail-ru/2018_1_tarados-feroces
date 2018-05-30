@@ -82,10 +82,10 @@ class Authorized extends React.Component<IProps, any> {
         bus.on(ws.messages.PARTY_VIEW, (data) => {
             this.updateParty(data);
         });
-        bus.on(ws.messages.ASK_FOR_GAME, (message) => {
+        bus.on(ws.messages.ASK_FOR_GAME, (data) => {
             this.showGameInvite();
         });
-        bus.on(ws.messages.GAME_PREPARE, (message) => {
+        bus.on(ws.messages.GAME_PREPARE, (data) => {
             this.playMultiplayer();
         });
     }
