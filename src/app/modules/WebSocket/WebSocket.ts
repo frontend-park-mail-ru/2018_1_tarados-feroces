@@ -21,6 +21,7 @@ class Ws {
             SERVER_SNAP: 'ServerSnap',
             CLIENT_SNAP: 'ClientSnap',
             INTERRUPT_GAME: 'InterruptGame',
+            EMPTY_PARTY: 'EmptyPartyView'
         };
     }
 
