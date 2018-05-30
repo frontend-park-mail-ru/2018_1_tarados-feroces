@@ -7,7 +7,7 @@ const initialState: any = {
     isAuthorized: null,
     email: '',
     login: '',
-    peopleLoading: true
+    peopleLoading: true,
 };
 
 export default function user(state: any = initialState, action: any): any {
