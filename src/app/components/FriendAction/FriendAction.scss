@@ -17,11 +17,11 @@
     border-bottom: thin black solid;
 
     &:hover {
-      background-color: $orange-color;
+      background-color: $blocks-background-hover;
     }
 
     &:active {
-      background-color: $blocks-background-hover;
+      background-color: $blocks-background-active;
     }
 
     &-text {

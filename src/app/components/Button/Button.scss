@@ -43,7 +43,7 @@ $trans_delay : .1s;
     font-size: 40px;
     box-shadow: $blocks-text-color 0px 0px 10px 1px inset;
     &:before {
-      border-bottom:80px solid $orange-color !important;
+      border-bottom:80px solid $blocks-background-hover !important;
     }
   }
 }
@@ -77,7 +77,7 @@ $trans_delay : .1s;
     -webkit-transform:translateX(-100%);
     transform:translateX(-100%);
     border-right:50px solid rgba(0,0,0,0);
-    border-bottom:70px solid $orange-color;
+    border-bottom:70px solid $blocks-background-hover;
   }
   &:hover{
     &:before{
