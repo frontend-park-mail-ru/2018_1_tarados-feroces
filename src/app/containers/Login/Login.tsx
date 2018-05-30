@@ -17,10 +17,12 @@ import * as userActions from "../../actions/UserActions";
 import * as loginActions from "../../actions/LoginActions";
 import {Redirect} from 'react-router';
 import Loading from '../../components/Loading/Loading';
+import Error from '../../components/Error/Error';
 
 interface IProps {
     user?: any;
     loginForm?: any;
+    error?: any;
     history?: any;
     userActions?: any;
     loginActions?: any;
@@ -114,6 +116,7 @@ class Login extends React.Component<IProps, any> {
                         </form>
                     </div>
                 </div>
+                <Error/>
             </div>
         );
     }
@@ -127,7 +130,8 @@ class Login extends React.Component<IProps, any> {
 const mapStateToProps = (state) => {
     return {
         user: state.user,
-        loginForm: state.loginForm
+        loginForm: state.loginForm,
+        error: state.error
     };
 };
 

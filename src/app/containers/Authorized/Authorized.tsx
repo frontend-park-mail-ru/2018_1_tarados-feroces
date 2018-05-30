@@ -69,6 +69,7 @@ class Authorized extends React.Component<IProps, any> {
         this.playMultiplayer = this.playMultiplayer.bind(this);
         this.playSingleplayer = this.playSingleplayer.bind(this);
         this.startGame = this.startGame.bind(this);
+        this.leaveParty = this.leaveParty.bind(this);
 
         bus.on(ws.messages.ADD_AS_FRIEND, (data) => {
             data.message = 'New friend request';
@@ -139,6 +140,9 @@ class Authorized extends React.Component<IProps, any> {
     public updateParty(data): void {
         const { setParty }: any = this.props.userActions;
         setParty(data);
+    }
+
+    public leaveParty(data): void {
     }
 
     public sendFriendsInvite(): void {
@@ -374,7 +378,7 @@ class Authorized extends React.Component<IProps, any> {
                                 </div>
                             </div>
                         </div>
-                        <Party className={!hideFriends ? 'content-right-party' : 'hidden'}/>
+                        <Party onLeave={this.leaveParty} className={!hideFriends ? 'content-right-party' : 'hidden'}/>
                     </div>
                 </div>
             </div>

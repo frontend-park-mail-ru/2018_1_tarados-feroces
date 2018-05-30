@@ -22,3 +22,19 @@ $orange-color: rgba(255, 102, 42, 0.6);
 
 $btn-color : rgba(0, 0, 0, 0.7);
 
+* {
+  -webkit-box-sizing:border-box;
+  box-sizing:border-box;
+  -webkit-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
+}
+
+
+.btn:before,
+.btn:after {
+  -webkit-box-sizing:border-box;
+  box-sizing:border-box;
+  -webkit-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
+}
+

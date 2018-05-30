@@ -7,7 +7,8 @@ import {
 
 import ws from '../modules/WebSocket/WebSocket';
 
-import {setSettingsForm} from './SettingsActions';
+import { setSettingsForm } from './SettingsActions';
+import { setError } from './ErrorActions';
 
 
 export function setUser(user): any {
@@ -74,7 +75,9 @@ export function signupUser(data) {
         data['avatar'] = '../static/imgs/user-logo.jpg';
         const response = await transport.doPost(HttpConstants.SIGNUP, data);
         const json = await response.json();
-        response.ok ? dispatch(signup({...json, 'isAuthorized': true })) : alert(json.message);
+        response.ok ?
+            dispatch(signup({...json, 'isAuthorized': true })) :
+            dispatch(setError({ ...json }));
     }
 }
 
@@ -89,7 +92,9 @@ export function loginUser(data) {
     return async (dispatch) => {
         const response = await transport.doPost(HttpConstants.LOGIN, data);
         const json = await response.json();
-        response.ok ? dispatch(signup({...json, 'isAuthorized': true })) : alert(json.message);
+        response.ok ?
+            dispatch(login({...json, 'isAuthorized': true })) :
+            dispatch(setError({ ...json }));
     }
 }
 

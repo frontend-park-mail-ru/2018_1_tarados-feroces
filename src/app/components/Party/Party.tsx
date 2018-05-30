@@ -10,6 +10,7 @@ interface IProps {
     user?: any;
     userActions?: any;
     className?: string;
+    onLeave?: Function;
 }
 
 class Party extends React.Component<IProps, any> {
@@ -21,7 +22,7 @@ class Party extends React.Component<IProps, any> {
 
 
     public render(): JSX.Element {
-        const { className, user }: any = this.props;
+        const { className, user, onLeave }: any = this.props;
         let getAvatars = null;
         if (!user.party) {
             getAvatars = (
@@ -48,7 +49,12 @@ class Party extends React.Component<IProps, any> {
         }
         return (
             <div className={'party ' + className}>
-                {getAvatars}
+                <div className='party__friends'>
+                    {getAvatars}
+                </div>
+                <div className='party__leave' onClick={onLeave}>
+                    <div className='party__leave__value'/>
+                </div>
             </div>
         );
 

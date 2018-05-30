@@ -8,22 +8,52 @@
   //border-radius: 15px;
   border: thin solid black;
   //border-right: thin solid black;
-  justify-content: flex-start;
   width: 100%;
   margin: auto;
+  justify-content: space-between;
+
+  &__leave {
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+    width: 70px;
+    cursor: pointer;
+    //height: 76px;
+    //border: thin $border-color solid;
+    &:hover {
+      background-color: $blocks-background-hover;
+    }
+    &:active {
+      background-color: $blocks-background-active;
+    }
+
+    &__value {
+      width: 40px;
+      height: 40px;
+      align-self: center;
+      background-image: url("../../../static/imgs/leave.png");
+      background-size: cover;
+    }
+  }
+
+  &__friends {
+    display: flex;
+    justify-content: flex-start;
+
+  }
 
   &__friend {
     display: flex;
     justify-content: center;
     margin: 5px;
-    width: 90px;
+    width: 65px;
     //border-radius: 15px;
     //border: thin black solid;
 
     &-logo {
       align-self: center;
-      width: 70px;
-      height: 70px;
+      width: 60px;
+      height: 60px;
       border-radius: 15px;
     }
   }

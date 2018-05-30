@@ -5,6 +5,8 @@ import signupForm from './signupForm';
 import settingsForm from './settingsForm';
 import leaderboard from './leaderboard';
 import news from './news';
+import game from './game';
+import error from './error';
 
 export default combineReducers(
     {
@@ -13,6 +15,8 @@ export default combineReducers(
         signupForm,
         settingsForm,
         leaderboard,
-        news
+        news,
+        game,
+        error
     }
 );
