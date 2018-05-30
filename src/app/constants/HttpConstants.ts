@@ -28,5 +28,7 @@ export const ACCEPT_FRIENDS_INVITE: string = '/user/friend/response';
 
 export const START_GAME: string = '/game/party';
 
+export const LEAVE_PARTY: string = '/party/leave';
+
 
 

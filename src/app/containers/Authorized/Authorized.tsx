@@ -174,7 +174,7 @@ class Authorized extends React.Component<IProps, any> {
 
     public settings(): void {
         const { history }: any = this.props;
-        history.push('/settings');
+        history.push('/settings/');
     }
 
     public goFriends(): void {

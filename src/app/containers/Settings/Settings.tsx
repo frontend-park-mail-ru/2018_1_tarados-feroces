@@ -44,21 +44,6 @@ class Settings extends React.Component<IProps, any> {
         }
     }
 
-    // public shouldComponentUpdate(nextProps: IProps, nextState: IProps): boolean {
-    //     return !Object.is(this.props.settingsForm, nextProps.settingsForm);
-    // }
-    //
-    // public componentDidUpdate() {
-    //     const { user }: any = this.props;
-    //     const { setSettingsForm }: any = this.props.settingsActions;
-    //     console.log(user);
-    //     setSettingsForm ({
-    //         login: user.login,
-    //         email: user.email
-    //         }
-    //     );
-    // }
-
     public changeUser() {
         const { history, settingsForm }: any = this.props;
         const { updateUser } = this.props.userActions;
@@ -75,7 +60,7 @@ class Settings extends React.Component<IProps, any> {
         }
 
         updateUser(settingsForm);
-        history.push('/me');
+        history.push('/me/');
     }
 
     public changeSettingsForm(event): void {
@@ -107,10 +92,11 @@ class Settings extends React.Component<IProps, any> {
         return (
             <div className='main-page'>
                 <Header
+                    isNotPlay={ true }
                     isAuth={ true }
                     user={ user }
                     className='auth-page__header header'
-                    logoutHandler={logoutUser}
+                    logoutHandler={ logoutUser }
                 />
 
                 <div className='form-block settings'>

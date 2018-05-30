@@ -165,11 +165,18 @@ function setPeopleLoading(state) {
 }
 
 export function getParty(): any {
-    console.log('GET PARTY');
     return async (dispatch) => {
         const response = await transport.doGet(HttpConstants.GET_PARTY);
         const json = await response.json();
         response.ok ? dispatch(party(json)) : dispatch(party(false));
+    }
+}
+
+export function leaveParty(): any {
+    return async (dispatch) => {
+        const response = await transport.doGet(HttpConstants.LEAVE_PARTY);
+        const json = await response.json();
+        response.ok ? dispatch(party(false)) : dispatch(setError({ ...json }));
     }
 }
 

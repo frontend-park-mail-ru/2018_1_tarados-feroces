@@ -75,7 +75,7 @@ class Login extends React.Component<IProps, any> {
         }
         if (user.isAuthorized) {
             return (
-                <Redirect to='/me' />
+                <Redirect to='/me/' />
             );
         }
         return (
