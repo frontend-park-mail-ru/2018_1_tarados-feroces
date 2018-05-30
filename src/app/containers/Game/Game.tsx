@@ -14,6 +14,7 @@ import OfflineGame from '../../game/core/offline';
 import OnlineGame from '../../game/core/online';
 import gameController from '../../game/GameController';
 import Scene from '../../game/objects/Scene';
+import ws from "../../modules/WebSocket/WebSocket";
 
 
 interface IProps {
@@ -190,6 +191,7 @@ class GameContainer extends React.Component<IProps, any> {
     }
 
     private exitGame() {
+        ws.sendMessage(ws.messages.INTERRUPT_GAME, {});
         const { history } = this.props;
         history.push('/');
     }
