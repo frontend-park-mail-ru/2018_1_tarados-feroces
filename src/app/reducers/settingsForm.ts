@@ -1,6 +1,9 @@
 import { SET_SETTINGS_FORM } from '../constants/ReducersConstants';
 
-const initialState: any = {};
+const initialState: any = {
+    login: '',
+    email: ''
+};
 
 export default function settingsForm(state: any = initialState, action: any): any {
     switch (action.type) {

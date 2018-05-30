@@ -14,6 +14,7 @@ import * as signupActions from '../../actions/SignupActions';
 import {connect} from 'react-redux';
 import Loading from '../../components/Loading/Loading';
 import * as loginActions from '../../actions/LoginActions';
+import Validation from '../../modules/Validator';
 
 interface IProps {
     user?: any;
@@ -30,14 +31,27 @@ class Signup extends React.Component<IProps, any> {
         this.goBack = this.goBack.bind(this);
         this.registerUser = this.registerUser.bind(this);
         this.changeSignupForm = this.changeSignupForm.bind(this);
+        this.state = {
+            errors: {}
+        }
     }
 
     public async registerUser() {
         const { signupForm }: any = this.props;
         const { signupUser, getUser }: any = this.props.userActions;
 
+        const errors: any = {};
+        Validation(signupForm, errors);
+        this.setState({errors: errors});
+        for (const key in errors) {
+            console.log(key, errors[key]);
+            if (errors[key].length) {
+                return;
+            }
+        }
         await signupUser(signupForm);
         getUser();
+
     }
 
     public changeSignupForm(event): void {
@@ -50,7 +64,8 @@ class Signup extends React.Component<IProps, any> {
 
 
     public render(): JSX.Element {
-        const { user } = this.props;
+        const { user }: any = this.props;
+        const { errors }: any = this.state;
 
         if (user.isAuthorized === null || user.isAuthorized === undefined) {
             return (
@@ -85,6 +100,7 @@ class Signup extends React.Component<IProps, any> {
                                     placeholder='Login'
                                     dest='login'
                                     onChange={this.changeSignupForm}
+                                    errorText={errors.login}
                                 />
                                 <Input
                                     blockClass='user-email form-block-content-inputs-item'
@@ -92,6 +108,7 @@ class Signup extends React.Component<IProps, any> {
                                     placeholder='Email'
                                     dest='email'
                                     onChange={this.changeSignupForm}
+                                    errorText={errors.email}
                                 />
                                 <Input
                                     blockClass='password form-block-content-inputs-item'
@@ -99,12 +116,15 @@ class Signup extends React.Component<IProps, any> {
                                     placeholder='Password'
                                     dest='password'
                                     onChange={this.changeSignupForm}
+                                    errorText={errors.password}
                                 />
                                 <Input
                                     blockClass='repeatPassword form-block-content-inputs-item'
                                     type='password'
                                     placeholder='Repeat password'
-                                    onChange={() => {}}
+                                    dest='repeatPassword'
+                                    onChange={this.changeSignupForm}
+                                    errorText={errors.repeatPassword}
                                 />
                                 <Button onClick={this.registerUser} className='login-button' text='Sign up'/>
                             </div>

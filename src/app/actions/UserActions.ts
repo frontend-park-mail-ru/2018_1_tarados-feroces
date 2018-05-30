@@ -7,6 +7,8 @@ import {
 
 import ws from '../modules/WebSocket/WebSocket';
 
+import {setSettingsForm} from './SettingsActions';
+
 
 export function setUser(user): any {
     return {
@@ -21,9 +23,14 @@ export function getUser() {
         if (response.ok && !ws.address) {
             ws.open();
         }
+        const json = await response.json();
+        response.ok && dispatch(setSettingsForm({
+            login: json.login,
+            email: json.email
+        }));
         dispatch(
             setUser(
-            response.ok ? ( {...(await response.json()), 'isAuthorized': true } ) : { 'isAuthorized': false }
+            response.ok ? ( {...json, 'isAuthorized': true } ) : { 'isAuthorized': false }
             )
         );
     }

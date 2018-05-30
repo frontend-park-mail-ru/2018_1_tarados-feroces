@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import '../../components/Form/Form.scss';
 
+import Validation from '../../modules/Validator/index';
+
 import Header from '../../components/Header/Header';
 import Label from '../../components/Label/Label';
 import Form from '../../components/Form/Form';
@@ -31,13 +33,26 @@ class Login extends React.Component<IProps, any> {
         this.goBack = this.goBack.bind(this);
         this.loginUser = this.loginUser.bind(this);
         this.changeLoginForm = this.changeLoginForm.bind(this);
+        this.state = {
+            errors: {}
+        }
     }
 
     public async loginUser() {
         const { loginForm } = this.props;
         const { loginUser, getUser }: any = this.props.userActions;
+        const errors: any = {};
+        Validation(loginForm, errors);
+        this.setState({errors: errors});
+        for (const key in errors) {
+            console.log(key, errors[key]);
+            if (errors[key].length) {
+                return;
+            }
+        }
         await loginUser(loginForm);
         getUser();
+
     }
 
     public changeLoginForm(event): void {
@@ -50,6 +65,7 @@ class Login extends React.Component<IProps, any> {
 
     public render(): JSX.Element {
         const { user } = this.props;
+        const { errors } = this.state;
 
         if (user.isAuthorized === null || user.isAuthorized === undefined) {
             return (
@@ -83,6 +99,7 @@ class Login extends React.Component<IProps, any> {
                                     placeholder='Login'
                                     dest='login'
                                     onChange={this.changeLoginForm}
+                                    errorText={errors.login}
                                 />
                                 <Input
                                     blockClass='password form-block-content-inputs-item'
@@ -90,6 +107,7 @@ class Login extends React.Component<IProps, any> {
                                     placeholder='Password'
                                     dest='password'
                                     onChange={this.changeLoginForm}
+                                    errorText={errors.password}
                                 />
                                 <Button onClick={this.loginUser} className='login-button' text='Sign In'/>
                             </div>
