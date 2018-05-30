@@ -45,20 +45,6 @@ video {
   //transform: scale(1.1);
 }
 
-.background {
-  position: fixed;
-  left: 0;
-  top: 0;
-  background-image: url('/static/imgs/background.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  filter: brightness(50%);
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;
-  transform: scale(1.1);
-}
-
 .logo {
   display: inline-block;
   &__text {
@@ -66,17 +52,6 @@ video {
     font-size: 60px;
     font-family: $main-font;
   }
-}
-
-.snow {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;
-  background-image: url("../imgs/snowflake.png"), url("../imgs/snowflake3.png");
-  animation: fadeIn 1.5s, snow 1.5s linear infinite;
 }
 
 .hidden {

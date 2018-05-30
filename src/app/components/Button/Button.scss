@@ -1,14 +1,5 @@
 @import "../../../static/css/config";
 
-*,
-.btn:before,
-.btn:after {
-  -webkit-box-sizing:border-box;
-  box-sizing:border-box;
-  -webkit-transition: 0.3s ease-in-out;
-  transition: 0.3s ease-in-out;
-}
-
 $btn-width  : 200px !default;
 $btn-height : 70px !default;
 $lineheight : 70px;

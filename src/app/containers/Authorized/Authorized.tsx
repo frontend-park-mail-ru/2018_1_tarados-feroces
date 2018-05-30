@@ -12,6 +12,8 @@ import Party from '../../components/Party/Party';
 import People from '../../components/People/People';
 import Loading from '../../components/Loading/Loading';
 import Leaderboard from '../../components/Leaderboard/Leaderboard';
+import Error from '../../components/Error/Error';
+
 
 import {connect} from 'react-redux';
 import * as userActions from '../../actions/UserActions';
@@ -69,6 +71,7 @@ class Authorized extends React.Component<IProps, any> {
         this.playMultiplayer = this.playMultiplayer.bind(this);
         this.playSingleplayer = this.playSingleplayer.bind(this);
         this.startGame = this.startGame.bind(this);
+        this.leaveParty = this.leaveParty.bind(this);
 
         bus.on(ws.messages.ADD_AS_FRIEND, (data) => {
             data.message = 'New friend request';
@@ -142,6 +145,9 @@ class Authorized extends React.Component<IProps, any> {
     public updateParty(data): void {
         const { setParty }: any = this.props.userActions;
         setParty(data);
+    }
+
+    public leaveParty(data): void {
     }
 
     public sendFriendsInvite(): void {
@@ -377,9 +383,10 @@ class Authorized extends React.Component<IProps, any> {
                                 </div>
                             </div>
                         </div>
-                        <Party className={!hideFriends ? 'content-right-party' : 'hidden'}/>
+                        <Party onLeave={this.leaveParty} className={!hideFriends ? 'content-right-party' : 'hidden'}/>
                     </div>
                 </div>
+                <Error/>
             </div>
         );
     }

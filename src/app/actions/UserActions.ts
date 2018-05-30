@@ -7,7 +7,8 @@ import {
 
 import ws from '../modules/WebSocket/WebSocket';
 
-import {setSettingsForm} from './SettingsActions';
+import { setSettingsForm } from './SettingsActions';
+import { setError } from './ErrorActions';
 
 
 export function setUser(user): any {
@@ -50,7 +51,7 @@ export function sendFriendsInvite(data) {
     return async (dispatch) => {
         const response = await transport.doPost(HttpConstants.SEND_FRIENDS_INVITE, data);
         const json = await response.json();
-        !response.ok && alert(json.message);
+        !response.ok && dispatch(setError({ ...json }));
     };
 }
 
@@ -58,7 +59,7 @@ export function sendPartyInvite(data) {
     return async (dispatch) => {
         const response = await transport.doPost(HttpConstants.SEND_PARTY_INVITE, data);
         const json = await response.json();
-        !response.ok && alert(json.message);
+        !response.ok && dispatch(setError({ ...json }));
     };
 }
 
@@ -74,7 +75,9 @@ export function signupUser(data) {
         data['avatar'] = '../static/imgs/user-logo.jpg';
         const response = await transport.doPost(HttpConstants.SIGNUP, data);
         const json = await response.json();
-        response.ok ? dispatch(signup({...json, 'isAuthorized': true })) : alert(json.message);
+        response.ok ?
+            dispatch(signup({...json, 'isAuthorized': true })) :
+            dispatch(setError({ ...json }));
     }
 }
 
@@ -89,7 +92,9 @@ export function loginUser(data) {
     return async (dispatch) => {
         const response = await transport.doPost(HttpConstants.LOGIN, data);
         const json = await response.json();
-        response.ok ? dispatch(signup({...json, 'isAuthorized': true })) : alert(json.message);
+        response.ok ?
+            dispatch(login({...json, 'isAuthorized': true })) :
+            dispatch(setError({ ...json }));
     }
 }
 
@@ -104,7 +109,8 @@ export function logoutUser() {
     return async (dispatch) => {
         const response = await transport.doGet(HttpConstants.LOGOUT);
         const json = await response.json();
-        response.ok ? dispatch(logout()) : alert(json.message);    }
+        response.ok ? dispatch(logout()) : dispatch(setError({...json}));
+    }
 }
 
 function logout(): any {
@@ -122,7 +128,7 @@ export function getFriends(prefix = ''): any {
         if (json.message) {
             json = [];
         }
-        response.ok ? dispatch(friends(json)) : alert(json.message);
+        response.ok ? dispatch(friends(json)) : dispatch(setError({ ...json }));
         dispatch(setPeopleLoading(false));
     }
 }
@@ -139,7 +145,7 @@ export function getPeople(prefix = ''): any {
         dispatch(setPeopleLoading(true));
         const response = await transport.doPost(HttpConstants.GET_PEOPLE, { prefix });
         const json = await response.json();
-        response.ok ? dispatch(people(json)) : alert(json.message);
+        response.ok ? dispatch(people(json)) : dispatch(setError({ ...json }));
         dispatch(setPeopleLoading(false));
     }
 }
@@ -185,7 +191,7 @@ export function acceptParty(leader) {
     return async (dispatch) => {
         const response = await transport.doPost(HttpConstants.ACCEPT_PARTY_INVITE, {leader, answer: 'accept'});
         const json = await response.json();
-        response.ok ? dispatch(getParty()) : alert(json.message);
+        response.ok ? dispatch(getParty()) : dispatch(setError({ ...json }));
     }
 }
 
@@ -193,7 +199,7 @@ export function acceptFriends(request_id) {
     return async (dispatch) => {
         const response = await transport.doPost(HttpConstants.ACCEPT_FRIENDS_INVITE, {request_id, answer: 'accept'});
         const json = await response.json();
-        response.ok ? dispatch(getFriends()) : alert(json.message);
+        response.ok ? dispatch(getFriends()) : dispatch(setError({ ...json }));
     }
 }
 

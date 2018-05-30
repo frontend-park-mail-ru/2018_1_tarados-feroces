@@ -5,6 +5,7 @@ import Header from '../../components/Header/Header';
 import Label from '../../components/Label/Label';
 import Form from '../../components/Form/Form';
 import Input from '../../components/Input/Input';
+import Error from '../../components/Error/Error';
 import Button from '../../components/Button/Button';
 import Image from '../../components/Image/Image';
 import {Redirect} from 'react-router';
@@ -153,6 +154,7 @@ class Settings extends React.Component<IProps, any> {
                         </form>
                     </div>
                 </div>
+                <Error/>
             </div>
         );
     }

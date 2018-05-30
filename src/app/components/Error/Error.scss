@@ -10,7 +10,7 @@
   text-align: $text-align;
 }
 
-.confirm-game {
+.error {
   position: fixed;
   top: 0;
   left: 0;
@@ -20,7 +20,7 @@
   z-index: 9999;
 }
 
-.confirm-game-modal {
+.error-modal {
   @include position-center;
   width: 30%;
   max-height: 30%;
@@ -31,15 +31,20 @@
   align-items: center;
 
   &__message {
+    display: flex;
     font-size: 40px;
     font-family: $main-font;
     color: $blocks-text-color;
+    align-self: center;
   }
 
+
   &__accept {
-    margin-top: 20px;
     display: flex;
+    margin-top: 30px;
     width: 90%;
-    justify-content: center;
+    justify-content: space-around;
   }
+
+
 }
