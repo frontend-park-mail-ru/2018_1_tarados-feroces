@@ -33,6 +33,7 @@ class People extends React.Component<IProps, any> {
             <div className='friends-people'>
                 {(user.peopleLoading || !people) ?
                     <ModalLoader/> :
+                    !people.message &&
                     people.map((person, index) => {
                         return (
                             <Friend key={index} onClick={onClick} avatar={person.avatar} login={person.login} />
