@@ -12,7 +12,8 @@ class GameController {
             LEFT: [65, 37],
             RIGHT: [68, 39],
             UP: [87, 38],
-            DOWN: [83, 40]
+            DOWN: [83, 40],
+            ESC: [27]
         };
 
     }
@@ -64,6 +65,13 @@ class GameController {
 
     public checkKeys(event: any, online: any): void {
         let direction = '';
+
+        if (this.KEYS['ESC'].includes(event.keyCode) && event.type === 'keydown') {
+            console.log('esc');
+            console.log(online);
+            bus.emit('PAUSE', {});
+            return;
+        }
 
         console.log(event.type, '-->', event.keyCode);
 

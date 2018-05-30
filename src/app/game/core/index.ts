@@ -17,6 +17,7 @@ export default class GameCore {
         bus.on(ws.messages.CLIENT_SNAP, this.onControlsPressed);
         bus.on(ws.messages.SERVER_SNAP, this.onGameStateChanged);
         bus.on('ROUND_COMPLETED', this.onRoundCompleted);
+        bus.on('PAUSE', this.setPause);
     }
 
     public stop(): void {
@@ -39,6 +40,8 @@ export default class GameCore {
 
     public onGameFinished(event): any {
     }
+
+    public setPause(): void {}
 
     // onWaveCompleted() {
     // }

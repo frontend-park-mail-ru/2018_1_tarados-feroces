@@ -33,10 +33,12 @@ class GameContainer extends React.Component<IProps, any> {
         this.exitGame = this.exitGame.bind(this);
         this.goGame = this.goGame.bind(this);
         this.setScore = this.setScore.bind(this);
+        this.resumeGame = this.resumeGame.bind(this);
         this.props.userActions.getUser();
         this.state = {
             scores: [ { login: this.props.user.login,
-                        points: 0 } ]
+                        points: 0 } ],
+            game: null
         };
     }
 
@@ -54,6 +56,9 @@ class GameContainer extends React.Component<IProps, any> {
         const pause = document.querySelector('.game__pause');
         pause.classList.add('hidden');
 
+        const gameOver = document.querySelector('.game__over');
+        gameOver.classList.add('hidden');
+
         const {history} = this.props;
         const online = history.location.pathname === '/multi/';
         console.log(online, history.location.pathname);
@@ -65,13 +70,20 @@ class GameContainer extends React.Component<IProps, any> {
         if (online) {
             console.log('ONLINE');
             const scene = new Scene(this.canvas);
-            this.game = new OnlineGame(gameController, scene, this.setScore);
-            this.game.start();
+            const game = new OnlineGame(gameController, scene, this.setScore);
+            this.setState({
+                game: game
+            });
+            game.start();
             return;
         }
         const scene = new Scene(this.canvas);
-        this.game = new OfflineGame(gameController, scene,
+        const game = new OfflineGame(gameController, scene,
             [this.props.user.login], this.setScore);
+
+        this.setState({
+            game: game
+        });
 
         // 0 - transform %, 1 - direction, 2 - timeout ms
         const rounds = [
@@ -125,9 +137,9 @@ class GameContainer extends React.Component<IProps, any> {
                 ],
             ],
         ];
-        this.game.saveRounds(rounds);
+        game.saveRounds(rounds);
 
-        this.game.start();
+        game.start();
     }
 
     public render(): JSX.Element {
@@ -144,8 +156,17 @@ class GameContainer extends React.Component<IProps, any> {
                     <div className='game__pause-data'>
                         <Label className='game__pause-notes'/>
                         <div className='game__pause-buttons'>
-                            <Button className='game__exit button' onClick={this.exitGame} text='Go back' />
-                            <Button className='game__repeat button' onClick={this.goGame} text='Play again' />
+                            <Button className='game__exit button' onClick={this.exitGame} text='Exit' />
+                            <Button className='game__repeat button' onClick={this.resumeGame} text='Resume'/>
+                        </div>
+                    </div>
+                </div>
+                <div className='game__over'>
+                    <div className='game__over-data'>
+                        <Label className='game__over-notes'/>
+                        <div className='game__over-buttons'>
+                            <Button className='game__exit button' onClick={this.exitGame} text='Exit' />
+                            <Button className='game__repeat button' onClick={this.goGame} text='Play again'/>
                         </div>
                     </div>
                 </div>
@@ -173,11 +194,15 @@ class GameContainer extends React.Component<IProps, any> {
         history.push('/');
     }
 
+    private resumeGame() {
+        this.state.game.resume();
+    }
+
 }
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user
+        user: state.user,
     };
 };
 

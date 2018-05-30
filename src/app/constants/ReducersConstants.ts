@@ -18,7 +18,7 @@ export const SET_PEOPLE_LOADING: string = 'GET_FRIENDS';
 
 export const GET_PARTY: string = 'GET_PARTY';
 
-export const SET_SCORE: string = 'SET_SCORE';
+export const GAME_OVER: string = 'GAME_OVER';
 
 
 
