@@ -28,11 +28,14 @@ import InviteDialog from '../../components/InviteDialog/InviteDialog';
 import Image from '../../components/Image/Image';
 import GameDialog from "../../components/GameDialog/GameDialog";
 import {getPeople} from "../../actions/UserActions";
+import * as leaderActions from '../../actions/LeaderboardActions';
 
 interface IProps {
     history?: any;
     user?: any;
     userActions?: any;
+    leaderboard?: any;
+    leaderActions?: any;
 }
 
 class Authorized extends React.Component<IProps, any> {
@@ -48,6 +51,7 @@ class Authorized extends React.Component<IProps, any> {
             gameInvite: false,
             multiplayer: false,
             isReady: false,
+            position: 18
         };
 
         this.showLeaders = this.showLeaders.bind(this);
@@ -72,6 +76,7 @@ class Authorized extends React.Component<IProps, any> {
         this.playSingleplayer = this.playSingleplayer.bind(this);
         this.startGame = this.startGame.bind(this);
         this.leaveParty = this.leaveParty.bind(this);
+        this.paginate = this.paginate.bind(this);
 
         bus.on(ws.messages.ADD_AS_FRIEND, (data) => {
             data.message = 'New friend request';
@@ -96,6 +101,13 @@ class Authorized extends React.Component<IProps, any> {
         bus.on(ws.messages.GAME_PREPARE, (data) => {
             this.playMultiplayer();
         });
+    }
+
+    public paginate(): void {
+        const { getLeaderboard } = this.props.leaderActions;
+        const { position }: any = this.state;
+        getLeaderboard( {position: 0, count: position} );
+        this.setState({position: position + 9});
     }
 
     public showGameInvite(): void {
@@ -310,7 +322,7 @@ class Authorized extends React.Component<IProps, any> {
                                 />
                             </div>
                             <AuthContent>
-                                { leaderActive && <Leaderboard /> }
+                                { leaderActive && <Leaderboard paginate={this.paginate}/> }
                                 { newsActive && <News /> }
                             </AuthContent>
                         </div>
@@ -401,13 +413,15 @@ class Authorized extends React.Component<IProps, any> {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user
+        user: state.user,
+        leaderboard: state.leaderboard
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        userActions: bindActionCreators(userActions, dispatch)
+        userActions: bindActionCreators(userActions, dispatch),
+        leaderActions: bindActionCreators(leaderActions, dispatch)
     };
 };
 
