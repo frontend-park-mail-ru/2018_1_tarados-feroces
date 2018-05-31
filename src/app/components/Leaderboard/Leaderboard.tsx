@@ -5,21 +5,23 @@ import './Leaderboard.scss';
 import {bindActionCreators} from 'redux';
 import * as leaderActions from '../../actions/LeaderboardActions';
 import {connect} from 'react-redux';
+import Button from '../Button/Button';
 
 interface IProps {
     leaderboard?: any;
     leaderActions?: any;
+    paginate?: any;
 }
 
 class Leaderboard extends React.Component<IProps, any> {
 
-    public async componentWillMount() {
+    public componentWillMount() {
         const { getLeaderboard } = this.props.leaderActions;
-        await getLeaderboard( {position: 0, count: 9} );
+        getLeaderboard( {position: 0, count: 9} );
     }
 
     public render(): JSX.Element {
-        const { leaderboard } = this.props;
+        const { leaderboard, paginate } = this.props;
         console.log(leaderboard);
 
         if (!Object.keys(leaderboard).length) {
@@ -51,6 +53,9 @@ class Leaderboard extends React.Component<IProps, any> {
                 <div className='table'>
                     {header}
                     {rows}
+                </div>
+                <div className='scoreboard__pagination'>
+                    <Button onClick={paginate} text='More'/>
                 </div>
             </div>
         );
