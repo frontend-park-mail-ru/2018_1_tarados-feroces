@@ -17,12 +17,13 @@ export default class OnlineGame extends GameCore {
     public start(): void {
         super.start();
         this.controller.start(true);
-        console.log('watahell');
+        const pause = document.querySelector('.game__over');
+        pause.classList.add('hidden');
+        this.resume();
         ws.sendMessage(ws.messages.GAME_READY, {});
     }
 
     public setPause(): void {
-        console.log('PAUSED');
         document.querySelector('.game__pause-notes').querySelector('.label-text').textContent = 'PAUSED';
         const pause = document.querySelector('.game__pause');
         pause.classList.remove('hidden');
@@ -58,7 +59,6 @@ export default class OnlineGame extends GameCore {
         const scorePlayers = players.map(item => {
             return {login: this.scene.players[item.party_id].login, points: item.score.points}
         });
-        // console.log('PLAYERS: ', scorePlayers);
         this.scoreUpdate(scorePlayers);
         this.scene.update(players, mobs);
 
