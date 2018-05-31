@@ -14,24 +14,19 @@ interface IProps {
 
 class News extends React.Component<IProps, any> {
 
-    // public async componentWillMount() {
-    //     // const { getNews } = this.props.newsActions;
-    //     // await getNews( {position: 0, count: 9} );
-    // }
-
     public render(): JSX.Element {
         const news = [
             {
                 title: 'Deadlinez released!',
                 datetime: '2.06.2018',
-                body: '4 months have passed since the start of the development of Deadlinez. ' +
+                body: 'Four months have passed since the start of the development of Deadlinez. ' +
                 'Today we are glad to present you the release version of the project!',
             },
             {
                 title: 'Redesign outcome',
                 datetime: '29.05.2018',
                 body: 'Redesign! We worked, painted and composed the colors. ' +
-                'The flame and glow are chosen by us. There was a song of ice and flame.',
+                'The flame and glow are chosen by us. There was a song of ice and fire.',
             },
             {
                 title: 'Updated technology stack',

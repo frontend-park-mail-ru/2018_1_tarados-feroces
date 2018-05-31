@@ -7,9 +7,9 @@ export default class Player extends MovableObject {
     public login: string;
 
     public constructor(ctx: any,
+                       login: string,
                        x: number,
                        y: number,
-                       login: string,
                        color: string = 'red',
                        speed: number = 8,
                        radius: number = 30) {

@@ -3,11 +3,8 @@
 .party {
   display: flex;
   background-color: $blocks-background;
-  //box-shadow: 4px 4px 10px 2px #00072d;
   flex-direction: row;
-  //border-radius: 15px;
   border: thin solid black;
-  //border-right: thin solid black;
   width: 100%;
   margin: auto;
   justify-content: space-between;
@@ -18,8 +15,7 @@
     margin: 5px;
     width: 70px;
     cursor: pointer;
-    //height: 76px;
-    //border: thin $border-color solid;
+
     &:hover {
       background-color: $blocks-background-hover;
     }
@@ -47,8 +43,6 @@
     justify-content: center;
     margin: 5px;
     width: 65px;
-    //border-radius: 15px;
-    //border: thin black solid;
 
     &-logo {
       align-self: center;

@@ -54,11 +54,11 @@ class GameContainer extends React.Component<IProps, any> {
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight;
 
-        const pause = document.querySelector('.game__pause');
-        pause.classList.add('hidden');
-
-        const gameOver = document.querySelector('.game__over');
-        gameOver.classList.add('hidden');
+        // const pause = document.querySelector('.game__pause');
+        // pause.classList.add('hidden');
+        //
+        // const gameOver = document.querySelector('.game__over');
+        // gameOver.classList.add('hidden');
 
         const {history} = this.props;
         const online = history.location.pathname === '/multi/';
@@ -186,9 +186,9 @@ class GameContainer extends React.Component<IProps, any> {
     }
 
     private goGame() {
-        const { history } = this.props;
-        history.push('/single/');
+        this.doGame(false);
     }
+
 
     private exitGame() {
         ws.sendMessage(ws.messages.INTERRUPT_GAME, {});

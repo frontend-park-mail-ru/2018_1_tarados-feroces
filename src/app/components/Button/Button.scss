@@ -21,16 +21,10 @@ $trans_delay : .1s;
   font-family: $headers-font;
   text-align: center;
   float:left;
-  //margin: 25px;
   position:relative;
   -webkit-transition: 1s ease-out;
   transition: 1s ease-out;
   background-color: $btn-color;
-
-  //&__value {
-  //  display: flex;
-  //  align-self: ;
-  //}
 
   &-play{
     align-self: center;

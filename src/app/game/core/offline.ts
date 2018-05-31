@@ -21,15 +21,17 @@ export default class OfflineGame extends GameCore {
 
         this.gameLoopId = null;
         this.scoreUpdate = scoreUpdate;
-        this.currentPoints = 0;
         this.player = player;
         this.paused = false;
     }
 
     public start(): void {
         super.start();
+
         this.controller.start(false);
-        this.scene.initPlayer();
+        this.restartGame();
+        this.scene.initPlayer(this.player.login);
+
         this.nextRound();
         this.gameLoopId = requestAnimationFrame(this.gameLoop);
     }
@@ -38,6 +40,20 @@ export default class OfflineGame extends GameCore {
         super.stop();
         this.controller.stop();
         cancelAnimationFrame(this.gameLoopId);
+    }
+
+    public restartGame(): void {
+        this.scene.clear();
+        this.currentPoints = 0;
+
+        this.scoreUpdate([
+            {
+                login: this.player, points: 0
+            }]
+        );
+        const pause = document.querySelector('.game__over');
+        pause.classList.add('hidden');
+        this.resume();
     }
 
     public gameOver(message: string): void {

@@ -5,6 +5,7 @@ class GameController {
 
     public keyMap: any;
     public KEYS: any;
+    public online: boolean;
 
     public constructor() {
         this.keyMap = {};
@@ -16,12 +17,18 @@ class GameController {
             ESC: [27]
         };
 
+        this.keysEvent = this.keysEvent.bind(this);
+    }
+
+    public keysEvent(event: Event) {
+        this.checkKeys(event, this.online)
     }
 
     public start(online: any): void {
-        window.addEventListener('keypress', (event) => this.checkKeys(event, online));
-        window.addEventListener('keydown', (event) => this.checkKeys(event, online));
-        window.addEventListener('keyup', (event) => this.checkKeys(event, online));
+        this.online = online;
+        window.addEventListener('keypress', this.keysEvent);
+        window.addEventListener('keydown', this.keysEvent);
+        window.addEventListener('keyup', this.keysEvent);
         const controls = Array.from(document.getElementsByClassName('controllers'));
         controls.forEach((item) => {
             item.addEventListener('touchstart', () => {
@@ -156,9 +163,10 @@ class GameController {
     }
 
     public stop(): void {
-        // window.removeEventListener('keypress', this.checkKeys);
-        // window.removeEventListener('keyup', this.checkKeys);
-        // this.keyMap = {};
+        window.removeEventListener('keypress', this.keysEvent);
+        window.removeEventListener('keyup', this.keysEvent);
+        window.removeEventListener('keydown', this.keysEvent);
+        this.keyMap = {};
     }
 }
 

@@ -3,7 +3,6 @@ import * as React from 'react';
 import './MenuPoint.scss';
 import {Link} from 'react-router-dom';
 import {Redirect} from 'react-router';
-// import {withRouter} from 'react-router';
 
 interface IProps {
     text: string;
