@@ -12,6 +12,8 @@ export default class Scene {
     public arena: Arena;
     public round: Round;
     public players: any;
+    public propsX: any;
+    public propsY: any;
 
     public constructor(canvas: any) {
         this.ctx = canvas.getContext('2d');
@@ -23,6 +25,11 @@ export default class Scene {
         this.arena = new Arena(ctx);
         this.round = null;
         this.players = {};
+    }
+
+    public initScene(x: number, y: number): void {
+        this.propsX = this.width / x;
+        this.propsY = this.height / y;
     }
 
     public initPlayer(x: number = this.arena.x + this.arena.width / 2,
@@ -56,7 +63,8 @@ export default class Scene {
     private _drawItem(item: any, color: string = 'black', radius: number = 40): void {
         const ctx = this.ctx;
         ctx.beginPath();
-        ctx.arc(item.pos.x, item.pos.y, radius, 0, 360, false);
+        ctx.arc(item.pos.x * this.propsX, item.pos.y * this.propsY, radius, 0, 360,
+            false);
         ctx.fillStyle = color;
         ctx.fill();
         ctx.closePath();

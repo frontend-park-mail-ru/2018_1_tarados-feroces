@@ -62,7 +62,7 @@
 
           &::-webkit-scrollbar-thumb
           {
-            background-color: $blocks-background-hover;
+            background-color: $orange-color;
             //border: 1px solid #555555;
           }
         }
@@ -91,7 +91,7 @@
             //box-shadow: 20px 0 20px -20px $orange-color inset, -20px 0 20px -20px $orange-color inset;
             &_active {
               background-color: $blocks-background-active;
-              border-bottom: 2px solid $blocks-background-hover;
+              border-bottom: 2px solid $orange-color;
             }
             &:hover {
               background-color: $blocks-background-hover;
@@ -210,7 +210,7 @@
 
             &-active {
               background-color: $blocks-background-active;
-              border-bottom: 2px solid $blocks-background-hover;
+              border-bottom: 2px solid $orange-color;
             }
 
             &-value {
@@ -242,7 +242,7 @@
 
           &::-webkit-scrollbar-thumb
           {
-            background-color: $blocks-background-hover;
+            background-color: $orange-color;
             //border: 1px solid #555555;
           }
         }

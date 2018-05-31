@@ -40,7 +40,7 @@ $trans_delay : .1s;
     line-height:80px;
     box-shadow: $blocks-text-color 0px 0px 10px 1px inset;
     &:before {
-      border-bottom:80px solid $blocks-background-hover !important;
+      border-bottom:80px solid $orange-color !important;
     }
   }
 }
