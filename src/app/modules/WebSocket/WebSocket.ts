@@ -32,6 +32,7 @@ class Ws {
             console.log(`WS on ${this.address} was opened`);
             this.ws.onmessage = (message) => {
                 const data = JSON.parse(message.data);
+                console.log(data);
                 bus.emit(data.cls, data);
             };
             this.ws.onclose = () => {
@@ -50,6 +51,7 @@ class Ws {
                 this.ws.send(JSON.stringify({message}));
             }
         }
+        console.log('SENT: ', {cls: cls, data: message});
     }
 
     close(code, reason) {
