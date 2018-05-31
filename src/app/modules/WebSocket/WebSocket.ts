@@ -31,8 +31,8 @@ class Ws {
         this.ws.onopen = () => {
             console.log(`WS on ${this.address} was opened`);
             this.ws.onmessage = (message) => {
-                // console.log(message);
                 const data = JSON.parse(message.data);
+                data.cls !== 'ServerSnap' && console.log(data);
                 bus.emit(data.cls, data);
             };
             this.ws.onclose = () => {
