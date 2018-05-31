@@ -29,7 +29,7 @@ export default class OfflineGame extends GameCore {
     public start(): void {
         super.start();
         this.controller.start(false);
-        this.scene.initPlayer();
+        this.scene.initPlayer(this.player.login);
         this.nextRound();
         this.gameLoopId = requestAnimationFrame(this.gameLoop);
     }

@@ -32,7 +32,8 @@ class Ws {
             console.log(`WS on ${this.address} was opened`);
             this.ws.onmessage = (message) => {
                 const data = JSON.parse(message.data);
-                data.cls !== 'ServerSnap' && data.cls !== 'ClientSnap' && console.log(data);
+                // data.cls !== 'ServerSnap' && data.cls !== 'ClientSnap' && console.log(data);
+                console.log(data);
                 bus.emit(data.cls, data);
             };
             this.ws.onclose = () => {
@@ -43,14 +44,17 @@ class Ws {
     }
 
     sendMessage(cls, message) {
-        message['cls'] = cls;
-        console.log(message);
+        if (this.ws && this.ws.readyState === WebSocket.OPEN) {
+            message['cls'] = cls;
+            console.log(message);
 
-        if (message !== null && typeof message === 'object') {
-            this.ws.send(JSON.stringify(message));
-        } else {
-            this.ws.send(JSON.stringify({message}));
+            if (message !== null && typeof message === 'object') {
+                this.ws.send(JSON.stringify(message));
+            } else {
+                this.ws.send(JSON.stringify({message}));
+            }
         }
+
     }
 
     close(code, reason) {

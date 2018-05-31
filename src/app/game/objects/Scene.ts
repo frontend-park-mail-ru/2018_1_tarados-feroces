@@ -32,12 +32,11 @@ export default class Scene {
         this.propsY = this.height / y;
     }
 
-    public initPlayer(x: number = this.arena.x + this.arena.width / 2,
+    public initPlayer(login: string, x: number = this.arena.x + this.arena.width / 2,
                y: number = this.arena.y + this.arena.height / 2,
-               login: string,
-               color: string = 'red',
+               color: string = '#fa4c2b',
                id: number = 0): void {
-        const player = new Player(this.ctx, x, y, login, color);
+        const player = new Player(this.ctx, login, x, y, color);
         player.draw();
         this.players[id] = player;
     }
@@ -51,13 +50,6 @@ export default class Scene {
         players.forEach((item) => {
             this._drawItem(item, this.players[item.party_id].color);
         });
-        // console.log(this.players);
-
-
-        // Object.keys(this.players).forEach(item => {
-        //     console.log(item, ': ', this.players[item]);
-        //     this._drawItem(this.players[item]);
-        // })
     }
 
     public drawMobs(mobs: any): void {

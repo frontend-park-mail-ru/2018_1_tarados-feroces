@@ -47,7 +47,7 @@ export default class OnlineGame extends GameCore {
         this.controller.start();
         this.scene.initScene(event.scene);
         event.users.forEach((item) => {
-            this.scene.initPlayer(item.x, item.y, item.login, item.color, item.party_id);
+            this.scene.initPlayer(item.login, item.x, item.y, item.color, item.party_id);
         });
     }
 
