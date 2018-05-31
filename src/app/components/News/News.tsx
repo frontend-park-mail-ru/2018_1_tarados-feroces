@@ -22,28 +22,22 @@ class News extends React.Component<IProps, any> {
     public render(): JSX.Element {
         const news = [
             {
-                title: 'Such an amazing post 1',
-                datetime: '13.04.2018',
-                body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\n' +
-                'incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud\n' +
-                'exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure\n' +
-                'dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+                title: 'Deadlinez released!',
+                datetime: '2.06.2018',
+                body: '4 months have passed since the start of the development of Deadlinez. ' +
+                'Today we are glad to present you the release version of the project!',
             },
             {
-                title: 'Such an amazing post from the future 2',
-                datetime: '20.04.2018',
-                body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\n' +
-                'incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud\n' +
-                'exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure\n' +
-                'dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+                title: 'Redesign outcome',
+                datetime: '29.05.2018',
+                body: 'Redesign! We worked, painted and composed the colors. ' +
+                'The flame and glow are chosen by us. There was a song of ice and flame.',
             },
             {
-                title: 'Such an amazing post 3',
-                datetime: '13.04.2018',
-                body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\n' +
-                'incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud\n' +
-                'exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure\n' +
-                'dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+                title: 'Updated technology stack',
+                datetime: '18.05.2018',
+                body: 'Today we are glad to notify you that our site was completely rewritten on the modern ' +
+                'framework - React!',
             }];
         console.log(news);
 
