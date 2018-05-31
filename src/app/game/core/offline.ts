@@ -44,7 +44,6 @@ export default class OfflineGame extends GameCore {
 
     public restartGame(): void {
         this.scene.clear();
-
         this.currentPoints = 0;
 
         this.scoreUpdate([

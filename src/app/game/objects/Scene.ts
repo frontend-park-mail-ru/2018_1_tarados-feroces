@@ -59,7 +59,7 @@ export default class Scene {
     public update(players: any, mobs: any): void {
         this.clear();
         this.drawPlayers(players);
-        // this.drawMobs(mobs);
+        this.drawMobs(mobs);
     }
 
     private _drawItem(item: any, color: string = 'black', radius: number = 30): void {

@@ -54,7 +54,6 @@ export default class OnlineGame extends GameCore {
 
     public onGameStateChanged(event: any): void {
         const players = event.players;
-        // console.log(players);
         const mobs = event.mobs;
         const scorePlayers = players.map(item => {
             return {login: this.scene.players[item.party_id].login, points: item.score.points}

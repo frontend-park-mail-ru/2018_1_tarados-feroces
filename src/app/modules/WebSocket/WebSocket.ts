@@ -32,13 +32,10 @@ class Ws {
             console.log(`WS on ${this.address} was opened`);
             this.ws.onmessage = (message) => {
                 const data = JSON.parse(message.data);
-                // data.cls !== 'ServerSnap' && data.cls !== 'ClientSnap' && console.log(data);
-                console.log(data);
                 bus.emit(data.cls, data);
             };
             this.ws.onclose = () => {
                 console.log(`WS on ${this.address} was closed`);
-                // this.open();
             };
         };
     }
@@ -46,7 +43,6 @@ class Ws {
     sendMessage(cls, message) {
         if (this.ws && this.ws.readyState === WebSocket.OPEN) {
             message['cls'] = cls;
-            console.log(message);
 
             if (message !== null && typeof message === 'object') {
                 this.ws.send(JSON.stringify(message));
@@ -54,7 +50,6 @@ class Ws {
                 this.ws.send(JSON.stringify({message}));
             }
         }
-
     }
 
     close(code, reason) {

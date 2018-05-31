@@ -2,7 +2,6 @@
 
 .input-block {
   width: 80%;
-  //height: 60px;
   display: flex;
   flex-direction: column;
   @media only screen and (max-device-width : 1000px) {
@@ -10,7 +9,6 @@
     height: 120px;
   }
 
-  display: flex;
   &_avatar {
     display: flex;
     flex-direction: column;
@@ -28,7 +26,6 @@
 
   }
   &__input {
-    //margin-top: 10px;
     font-size: 20px;
     font-family: $main-font;
     margin: auto;

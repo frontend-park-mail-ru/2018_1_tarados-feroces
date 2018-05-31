@@ -64,7 +64,6 @@ class Settings extends React.Component<IProps, any> {
         const { updateUser } = this.props.userActions;
 
         const errors: any = {};
-        console.log(settingsForm);
         Validation(settingsForm, errors);
         this.setState({errors: errors});
         for (const key in errors) {
@@ -116,7 +115,7 @@ class Settings extends React.Component<IProps, any> {
                 <div className='form-block settings'>
                     <div className='form-block-content'>
                         <div onClick={ this.goBack } className='form-block-content__back'>
-                            <Image className='form-block-content__back-icon' src='static/imgs/back.png'/>
+                            <Image className='form-block-content__back-icon' src='../static/imgs/back.png'/>
                         </div>
                         <form>
                             <Label className='form-block-content__label' text='Settings'/>
