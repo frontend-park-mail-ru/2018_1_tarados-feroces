@@ -39,7 +39,6 @@ class News extends React.Component<IProps, any> {
                 body: 'Today we are glad to notify you that our site was completely rewritten on the modern ' +
                 'framework - React!',
             }];
-        console.log(news);
 
         if (!Object.keys(news).length) {
             return (

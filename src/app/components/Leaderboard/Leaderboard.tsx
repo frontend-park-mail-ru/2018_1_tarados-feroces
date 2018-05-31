@@ -27,7 +27,7 @@ class Leaderboard extends React.Component<IProps, any> {
                 <div></div>
             );
         }
-        const headerPoints = ['Points', 'Nickname'];
+        const headerPoints = ['Nickname', 'Points'];
         const users = leaderboard.data;
         const columns = headerPoints.map((header, key) => <div key={key} className='table__header'>{header}</div>);
 
@@ -40,8 +40,8 @@ class Leaderboard extends React.Component<IProps, any> {
         const rows = users.map((element, key) => {
             return (
                 <div key={key} className='table__row scoreboard__row'>
-                    <div className='table__data'>{element.score.points}</div>
                     <div className='table__data'>{element.user.login}</div>
+                    <div className='table__data'>{element.score.points}</div>
                 </div>
             );
         });
