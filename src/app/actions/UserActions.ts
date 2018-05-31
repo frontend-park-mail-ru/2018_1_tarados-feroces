@@ -125,7 +125,7 @@ export function getFriends(prefix = ''): any {
     return async (dispatch) => {
         dispatch(setPeopleLoading(true));
         const response = await transport.doPost(HttpConstants.GET_FRIENDS, { prefix });
-        ws.sendMessage('ping', {message: 'PING'});
+        ws.sendMessage('ClientSnap', {x: 1, y: 1});
         let json = await response.json();
         if (json.message) {
             json = [];
