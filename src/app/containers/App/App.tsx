@@ -11,6 +11,7 @@ import Signup from '../Signup/Signup';
 import Authorized from '../Authorized/Authorized';
 import Settings from '../Settings/Settings';
 import GameContainer from '../Game/Game';
+import Promo from '../Promo/Promo';
 
 import '../../../static/css/main.scss';
 
@@ -36,6 +37,7 @@ class App extends React.Component<any, any> {
                     <Route path={ PathConstants.SETTINGS } component={ Settings } />
                     <Route path={ PathConstants.SINGLE } component={ GameContainer } />
                     <Route path={ PathConstants.MULTI } component={ GameContainer } />
+                    <Route path={ PathConstants.PROMO } component={ Promo } />
                 </Switch>
             </Router>
         );

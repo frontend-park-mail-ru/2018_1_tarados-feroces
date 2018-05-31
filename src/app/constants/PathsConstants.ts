@@ -5,3 +5,4 @@ export const AUTHORIZED: string = '/me';
 export const SETTINGS: string = '/settings';
 export const SINGLE: string = '/single';
 export const MULTI: string = '/multi';
+export const PROMO: string = '/promo';

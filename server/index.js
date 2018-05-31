@@ -12,6 +12,7 @@ app.use('/settings', express.static(path.join('dist')));
 app.use('/me', express.static(path.join('dist')));
 app.use('/single', express.static(path.join('dist')));
 app.use('/multi', express.static(path.join('dist')));
+app.use('/promo', express.static(path.join('dist')));
 // app.use(/\/.+/gi, express.static(path.join('dist')));
 // app.use(express.static(path.join('dist')));
 
