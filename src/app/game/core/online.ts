@@ -56,9 +56,7 @@ export default class OnlineGame extends GameCore {
         // console.log(players);
         const mobs = event.mobs;
         const scorePlayers = players.map(item => {
-            if (item.alive) {
-                return {login: this.scene.players[item.party_id].login, points: item.score.points}
-            }
+            return {login: this.scene.players[item.party_id].login, points: item.score.points}
         });
         // console.log('PLAYERS: ', scorePlayers);
         this.scoreUpdate(scorePlayers);
