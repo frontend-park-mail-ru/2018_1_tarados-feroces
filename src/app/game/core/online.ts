@@ -60,7 +60,7 @@ export default class OnlineGame extends GameCore {
                 return {login: this.scene.players[item.party_id].login, points: item.score.points}
             }
         });
-        console.log('PLAYERS: ', scorePlayers);
+        // console.log('PLAYERS: ', scorePlayers);
         this.scoreUpdate(scorePlayers);
         this.scene.update(players, mobs);
 
