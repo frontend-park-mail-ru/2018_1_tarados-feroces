@@ -25,7 +25,6 @@ export default class GameCore {
         bus.off(ws.messages.FINISH_GAME, this.onGameFinished);
         bus.off(ws.messages.CLIENT_SNAP, this.onControlsPressed);
         bus.off(ws.messages.SERVER_SNAP, this.onGameStateChanged);
-        bus.off('WAVE_COMPLETED', this.onWaveCompleted);
         bus.off('ROUND_COMPLETED', this.onRoundCompleted);
         bus.off('PAUSE', this.setPause);
     }

@@ -48,12 +48,12 @@ export default class Scene {
     public drawPlayers(players: any): void {
 
         players.forEach((item) => {
-            this._drawItem(item, this.players[item.party_id].color);
+            this._drawItem(item.pos.x, item.pos.y, this.players[item.party_id].color);
         });
     }
 
     public drawMobs(mobs: any): void {
-        mobs.forEach((item) => this._drawItem(item));
+        mobs.forEach((item) => this._drawItem(item.x, item.y));
     }
 
     public update(players: any, mobs: any): void {
@@ -62,10 +62,10 @@ export default class Scene {
         this.drawMobs(mobs);
     }
 
-    private _drawItem(item: any, color: string = 'black', radius: number = 30): void {
+    private _drawItem(x: number, y:number, color: string = 'black', radius: number = 30): void {
         const ctx = this.ctx;
         ctx.beginPath();
-        ctx.arc(item.pos.x * this.propsX, item.pos.y * this.propsY, radius, 0, 360,
+        ctx.arc(x * this.propsX, y * this.propsY, radius, 0, 360,
             false);
         ctx.fillStyle = color;
         ctx.fill();
