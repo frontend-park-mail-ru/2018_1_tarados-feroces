@@ -191,7 +191,7 @@ class GameContainer extends React.Component<IProps, any> {
 
 
     private exitGame() {
-        ws.sendMessage(ws.messages.INTERRUPT_GAME, {});
+        ws.sendMessage(ws.messages.LEAVE_GAME, {});
         const { history } = this.props;
         history.push('/');
     }

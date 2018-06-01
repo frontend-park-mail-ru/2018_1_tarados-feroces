@@ -17,7 +17,7 @@ class Ws {
             PARTY_VIEW: 'PartyView',
             INIT_GAME: 'InitGame',
             GAME_PREPARE: 'GamePrepare',
-            FINISH_GAME: 'FinishGame',
+            LEAVE_GAME: 'LeaveGame',
             SERVER_SNAP: 'ServerSnap',
             CLIENT_SNAP: 'ClientSnap',
             INTERRUPT_GAME: 'InterruptGame',
