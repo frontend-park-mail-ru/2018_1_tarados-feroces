@@ -11,6 +11,7 @@ export default class OnlineGame extends GameCore {
         this.onGameStarted = this.onGameStarted.bind(this);
         this.onGameStateChanged = this.onGameStateChanged.bind(this);
         this.onControlsPressed = this.onControlsPressed.bind(this);
+        this.setPause = this.setPause.bind(this);
         this.scoreUpdate = scoreUpdate;
     }
 

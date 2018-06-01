@@ -21,7 +21,7 @@ class GameController {
     }
 
     public keysEvent(event: Event) {
-        this.checkKeys(event, this.online)
+        this.checkKeys(event, true)
     }
 
     public start(online: any): void {
