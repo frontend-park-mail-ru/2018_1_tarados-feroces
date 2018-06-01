@@ -10,7 +10,7 @@ export default class Promo extends React.Component<IProps, any> {
     }
 
     public render(): JSX.Element {
-        window.location.replace('https://mail.ru');
+        // window.location.replace('https://mail.ru');
         return (<div/>);
     }
 }
