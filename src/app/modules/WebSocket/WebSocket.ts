@@ -22,7 +22,6 @@ class Ws {
             CLIENT_SNAP: 'ClientSnap',
             INTERRUPT_GAME: 'InterruptGame',
             EMPTY_PARTY: 'EmptyPartyView',
-            PING: 'ping'
         };
     }
 
@@ -45,7 +44,6 @@ class Ws {
     sendMessage(cls, message) {
         console.log('SENDING...');
         if (this.ws && this.ws.readyState === WebSocket.OPEN) {
-            console.log(cls);
             message['cls'] = cls;
 
             if (message !== null && typeof message === 'object') {

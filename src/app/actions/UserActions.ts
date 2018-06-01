@@ -125,7 +125,6 @@ export function getFriends(prefix = ''): any {
     return async (dispatch) => {
         dispatch(setPeopleLoading(true));
         const response = await transport.doPost(HttpConstants.GET_FRIENDS, { prefix });
-        ws.sendMessage('ping', {message: 'Hello'});
         let json = await response.json();
         if (json.message) {
             json = [];
