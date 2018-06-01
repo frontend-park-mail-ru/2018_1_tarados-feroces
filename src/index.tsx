@@ -7,7 +7,7 @@ import serviceWorkerRegister from './app/modules/ServiceWorker/ServiceWorker';
 
 const store = configureStore({});
 
-serviceWorkerRegister();
+// serviceWorkerRegister();
 
 ReactDOM.render(
     (
