@@ -153,6 +153,7 @@ class GameContainer extends React.Component<IProps, any> {
                 <div className='game__title'>
                     <Label className='game__title-text'/>
                 </div>
+                <div className='game__waiting'/>
                 <div className='game__pause'>
                     <div className='game__pause-data'>
                         <Label className='game__pause-notes'/>
@@ -168,6 +169,14 @@ class GameContainer extends React.Component<IProps, any> {
                         <div className='game__over-buttons'>
                             <Button className='game__exit button' onClick={this.exitGame} text='Exit' />
                             <Button className='game__repeat button' onClick={this.goGame} text='Play again'/>
+                        </div>
+                    </div>
+                </div>
+                <div className='game__over-online'>
+                    <div className='game__over-online-data'>
+                        <Label className='game__over-online-notes'/>
+                        <div className='game__over-online-buttons'>
+                            <Button className='game__exit button' onClick={this.exitGame} text='Exit' />
                         </div>
                     </div>
                 </div>

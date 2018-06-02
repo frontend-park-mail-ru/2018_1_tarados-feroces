@@ -12,6 +12,8 @@ export default class OnlineGame extends GameCore {
         this.onGameStateChanged = this.onGameStateChanged.bind(this);
         this.onControlsPressed = this.onControlsPressed.bind(this);
         this.setPause = this.setPause.bind(this);
+        this.onGameFinished = this.onGameFinished.bind(this);
+        this.onPlayerDead = this.onPlayerDead.bind(this);
         this.scoreUpdate = scoreUpdate;
     }
 
@@ -32,7 +34,17 @@ export default class OnlineGame extends GameCore {
 
     public resume(): void {
         const pause = document.querySelector('.game__pause');
+        const waiting = document.querySelector('.game__waiting');
+        const on = document.querySelector('.game__over-online');
         pause.classList.add('hidden');
+        waiting.classList.add('hidden');
+        on.classList.add('hidden');
+    }
+
+    public gameOver(message: string): void {
+        document.querySelector('.game__over-notes').querySelector('.label-text').textContent = message;
+        const pause = document.querySelector('.game__over-online');
+        pause.classList.remove('hidden');
     }
 
     public onControlsPressed(event: any): void {
@@ -68,7 +80,11 @@ export default class OnlineGame extends GameCore {
 
     }
 
-    // onGameFinished(event) {
-    //     bus.emit('CLOSE_GAME');
-    // }
+    public onPlayerDead(event: any): void {
+
+    }
+
+    public onGameFinished(event: any): void {
+        this.gameOver('YOU LOSE');
+    }
 }

@@ -18,6 +18,14 @@
     }
   }
 
+  &__waiting {
+    z-index: 9999;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
   &__pause {
     z-index: 9999;
     position: absolute;
@@ -47,6 +55,34 @@
     }
   }
 
+  &__over-online {
+    z-index: 9999;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+
+    &-data {
+      width: 80%;
+      height: 50%;
+      align-self: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &-notes {
+      margin-bottom: 50px;
+    }
+
+    &-buttons {
+      display: flex;
+      width: 50%;
+      justify-content: center;
+    }
+  }
 
   &__over {
     z-index: 9999;

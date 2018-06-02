@@ -22,6 +22,9 @@ class Ws {
             CLIENT_SNAP: 'ClientSnap',
             INTERRUPT_GAME: 'InterruptGame',
             EMPTY_PARTY: 'EmptyPartyView',
+            PAUSE: 'PAUSE',
+            END_GAME: 'EndGame',
+            DEATH: 'DeathMessage',
         };
     }
 

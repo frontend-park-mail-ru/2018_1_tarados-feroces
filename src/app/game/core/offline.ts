@@ -72,7 +72,11 @@ export default class OfflineGame extends GameCore {
 
     public resume(): void {
         const pause = document.querySelector('.game__pause');
+        const waiting = document.querySelector('.game__waiting');
+        const on = document.querySelector('.game__over-online');
         pause.classList.add('hidden');
+        waiting.classList.add('hidden');
+        on.classList.add('hidden');
         this.paused = false;
     }
 
